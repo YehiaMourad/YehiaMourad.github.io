@@ -4,6 +4,25 @@
 
 const STRINGS = {
   en: {
+    "f.all": "All", "f.about": "About", "f.work": "Work",
+    "b.hi": "Hey 👋 I'm Yehia.",
+    "b.intro": "Senior Product Designer at TwentyToo, turning AI capabilities into products people get. Based in Cairo.",
+    "b.copy": "Copy email", "b.copied": "Copied!",
+    "b.cairo": "Cairo, now",
+    "b.years": "years designing digital products",
+    "b.q1": "RTL isn't an afterthought. It's the default.",
+    "b.q2": "A good design system makes the next decision cheaper.",
+    "b.now": "Now",
+    "b.now1": "Leading product design for a B2B AI-SaaS platform",
+    "b.now2": "Growing a 96-component library and UI style guide",
+    "b.now3": "Designing with agentic workflows: Claude + Figma MCP",
+    "b.resume": "Resume (PDF)",
+    "b.focus": "Focus",
+    "b.focus.v": "AI-SaaS · B2B · B2B2C",
+    "b.lang": "Ships in",
+    "b.lang.v": "Arabic & English",
+    "b.cta": "Hiring a product designer? Let's talk.",
+    "b.read": "Read", "b.soon": "Soon",
     "nav.work": "Work",
     "nav.about": "About",
     "nav.contact": "Contact",
@@ -69,6 +88,25 @@ const STRINGS = {
   },
 
   ar: {
+    "f.all": "الكل", "f.about": "عني", "f.work": "الأعمال",
+    "b.hi": "أهلًا 👋 أنا يحيى.",
+    "b.intro": "مصمم منتجات أول في TwentyToo، بحوّل قدرات الذكاء الاصطناعي لمنتجات الناس تفهمها. مقيم في القاهرة.",
+    "b.copy": "انسخ الإيميل", "b.copied": "اتنسخ!",
+    "b.cairo": "القاهرة، دلوقتي",
+    "b.years": "سنين في تصميم المنتجات الرقمية",
+    "b.q1": "الـRTL مش إضافة في الآخر. هو الأساس.",
+    "b.q2": "نظام التصميم الكويس بيخلي القرار الجاي أسهل.",
+    "b.now": "دلوقتي",
+    "b.now1": "بقود تصميم منصة AI-SaaS لقطاع الأعمال",
+    "b.now2": "بطوّر مكتبة من 96 مكوّن ودليل واجهات",
+    "b.now3": "بصمم بـworkflows ذكية: Claude + Figma MCP",
+    "b.resume": "السيرة الذاتية (PDF)",
+    "b.focus": "التركيز",
+    "b.focus.v": "AI-SaaS · B2B · B2B2C",
+    "b.lang": "بشتغل بـ",
+    "b.lang.v": "العربي والإنجليزي",
+    "b.cta": "محتاج مصمم منتجات؟ خلينا نتكلم.",
+    "b.read": "اقرأ", "b.soon": "قريبًا",
     "nav.work": "الأعمال",
     "nav.about": "عني",
     "nav.contact": "تواصل",
@@ -143,6 +181,7 @@ function setLang(lang) {
     if (value !== undefined) el.innerHTML = value;
   });
   try { localStorage.setItem("lang", lang); } catch (e) {}
+  document.dispatchEvent(new Event("langchange"));
 }
 
 function savedLang() {
@@ -155,6 +194,16 @@ function savedLang() {
 
 document.addEventListener("DOMContentLoaded", () => {
   setLang(savedLang());
+  // light / dark
+  const root = document.documentElement;
+  try { const t = localStorage.getItem("theme"); if (t) root.dataset.theme = t; } catch (e) {}
+  document.querySelectorAll(".theme-toggle").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+      root.dataset.theme = dark ? "light" : "dark";
+      try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {}
+    });
+  });
   document.querySelectorAll(".lang-toggle").forEach(btn => {
     btn.addEventListener("click", () => {
       setLang(document.documentElement.lang === "ar" ? "en" : "ar");
