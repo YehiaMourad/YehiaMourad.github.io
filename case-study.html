@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>POS redesign — Yehia Mourad</title>
+<meta name="description" content="A UX audit of an Arabic point-of-sale system and a prototype that applies every finding.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="i18n.js" defer></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="./">Yehia Mourad</a>
+    <nav class="nav">
+      <a href="./#work" class="hide-sm" data-i18n="nav.work">Work</a>
+      <a href="./#contact" data-i18n="nav.contact">Contact</a>
+      <button class="lang-toggle" type="button" data-i18n="lang.toggle">عربي</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="wrap cs-hero">
+    <a class="back" href="./"><span class="arrow">←</span> <span data-i18n="cs.back">All work</span></a>
+    <h1 data-i18n="cs.title">Fixing a cashier screen, one finding at a time</h1>
+    <p class="lead" data-i18n="cs.lead">A UX audit of an Arabic point-of-sale system for furniture retail, followed by a working prototype that applies every finding.</p>
+    <div class="cs-facts">
+      <div><span data-i18n="cs.f1.k">Role</span><strong data-i18n="cs.f1.v">Product designer</strong></div>
+      <div><span data-i18n="cs.f2.k">Type</span><strong data-i18n="cs.f2.v">UX audit + prototype</strong></div>
+      <div><span data-i18n="cs.f3.k">Platform</span><strong data-i18n="cs.f3.v">Desktop POS, RTL</strong></div>
+      <div><span data-i18n="cs.f4.k">Year</span><strong data-i18n="cs.f4.v">2026</strong></div>
+    </div>
+  </section>
+
+  <div class="wrap cs-cover">
+    <!-- Cover image: add style="background-image:url(assets/pos-cover.png)" and delete the .ph div -->
+    <div class="shot"><div class="ph ph-1"><div class="frame"></div></div></div>
+  </div>
+
+  <div class="wrap">
+    <section class="cs-section">
+      <h2 data-i18n="cs.s1">Context</h2>
+      <div class="cs-body"><p class="todo" data-i18n="cs.s1.p">[Who uses this screen…]</p></div>
+    </section>
+
+    <section class="cs-section">
+      <h2 data-i18n="cs.s2">The problem</h2>
+      <div class="cs-body"><p class="todo" data-i18n="cs.s2.p">[What was going wrong…]</p></div>
+    </section>
+
+    <section class="cs-section">
+      <h2 data-i18n="cs.s3">What I found</h2>
+      <div class="cs-body">
+        <p data-i18n="cs.s3.p">I audited two core screens and logged 14 findings across usability, hierarchy, accessibility and consistency. The biggest ones:</p>
+        <div class="findings">
+          <div class="finding"><strong data-i18n="cs.k1.t">Touch targets</strong><span class="todo" data-i18n="cs.k1.d"></span></div>
+          <div class="finding"><strong data-i18n="cs.k2.t">Invoice hierarchy</strong><span class="todo" data-i18n="cs.k2.d"></span></div>
+          <div class="finding"><strong data-i18n="cs.k3.t">Pay vs. Suspend</strong><span class="todo" data-i18n="cs.k3.d"></span></div>
+          <div class="finding"><strong data-i18n="cs.k4.t">RTL cart layout</strong><span class="todo" data-i18n="cs.k4.d"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2 data-i18n="cs.s4">Key decisions</h2>
+      <div class="cs-body">
+        <p class="todo" data-i18n="cs.s4.p">[Two or three decisions…]</p>
+        <div class="shot"><div class="ph ph-4"><div class="frame"></div></div></div>
+        <p class="caption" data-i18n="cs.cap1">[Before / after: invoice panel]</p>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2 data-i18n="cs.s5">Outcome</h2>
+      <div class="cs-body"><p class="todo" data-i18n="cs.s5.p">[What changed…]</p></div>
+    </section>
+
+    <section class="cs-section">
+      <h2 data-i18n="cs.s6">What I'd do next</h2>
+      <div class="cs-body"><p class="todo" data-i18n="cs.s6.p">[One honest paragraph…]</p></div>
+    </section>
+  </div>
+
+  <section class="wrap next">
+    <a href="./">
+      <div><div class="label" data-i18n="cs.next.k">Next project</div><h2 data-i18n="cs.next.t">TwentyToo</h2></div>
+      <span class="arrow" style="font-size:32px">→</span>
+    </a>
+  </section>
+</main>
+
+<footer class="site-footer"><div class="wrap" data-i18n="footer">© 2026 Yehia Mourad</div></footer>
+
+</body>
+</html>

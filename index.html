@@ -1,250 +1,105 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Yehia Mourad — Senior Product Designer</title>
-<meta name="description" content="Senior Product Designer in Cairo. B2B ERP and POS, consumer apps, design systems, Arabic RTL.">
-<meta property="og:title" content="Yehia Mourad — Senior Product Designer">
-<meta property="og:description" content="B2B ERP and POS, consumer apps, design systems, Arabic RTL.">
+<title>Yehia Mourad — Product Designer</title>
+<meta name="description" content="Senior Product Designer in Cairo. AI-SaaS, B2B platforms and design systems, in Arabic and English.">
+<meta property="og:title" content="Yehia Mourad — Product Designer">
+<meta property="og:description" content="AI-SaaS, B2B platforms and design systems, in Arabic and English.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #f6f4ef;
-    --surface: #ffffff;
-    --ink: #17171a;
-    --muted: #6b6a66;
-    --line: #e2dfd7;
-    --accent: #2d3282;
-    --accent-soft: #e6e7f5;
-    --max: 1080px;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #121214;
-      --surface: #1b1b1f;
-      --ink: #f1efea;
-      --muted: #9b9a95;
-      --line: #2c2c31;
-      --accent: #9da3ff;
-      --accent-soft: #23243d;
-    }
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font: 400 17px/1.6 Inter, system-ui, sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: inherit; }
-  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
-
-  /* nav */
-  nav {
-    position: sticky; top: 0; z-index: 10;
-    background: color-mix(in srgb, var(--bg) 85%, transparent);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--line);
-  }
-  nav .wrap { display: flex; justify-content: space-between; align-items: center; height: 60px; }
-  .logo { font-weight: 600; text-decoration: none; letter-spacing: -0.01em; }
-  nav ul { display: flex; gap: 28px; list-style: none; }
-  nav ul a { text-decoration: none; color: var(--muted); font-size: 15px; }
-  nav ul a:hover { color: var(--ink); }
-
-  /* hero */
-  .hero { padding: 112px 0 96px; }
-  .eyebrow { font-size: 14px; color: var(--muted); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
-  .dot { width: 8px; height: 8px; border-radius: 50%; background: #22a35a; }
-  h1 {
-    font-family: "Instrument Serif", Georgia, serif;
-    font-weight: 400;
-    font-size: clamp(42px, 7vw, 76px);
-    line-height: 1.04;
-    letter-spacing: -0.02em;
-    max-width: 15ch;
-  }
-  h1 em { color: var(--accent); }
-  .hero p { margin-top: 28px; max-width: 54ch; color: var(--muted); font-size: 19px; }
-  .cta { display: flex; gap: 12px; margin-top: 36px; flex-wrap: wrap; }
-  .btn {
-    display: inline-block; padding: 12px 22px; border-radius: 999px;
-    text-decoration: none; font-weight: 500; font-size: 15px;
-    border: 1px solid var(--ink);
-  }
-  .btn.primary { background: var(--ink); color: var(--bg); }
-  .btn:hover { opacity: .85; }
-
-  /* sections */
-  section { padding: 80px 0; border-top: 1px solid var(--line); }
-  .section-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 40px; gap: 20px; flex-wrap: wrap; }
-  h2 { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; font-size: 40px; letter-spacing: -0.01em; }
-  .section-head span { color: var(--muted); font-size: 15px; }
-
-  /* work */
-  .work { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
-  .card {
-    display: block; text-decoration: none;
-    background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
-    overflow: hidden; transition: transform .2s ease, border-color .2s ease;
-  }
-  .card:hover { transform: translateY(-3px); border-color: var(--muted); }
-  .thumb {
-    aspect-ratio: 16 / 10; position: relative;
-    display: grid; place-items: center;
-    font-family: "Instrument Serif", serif; font-size: 30px; color: #fff;
-    background-size: cover; background-position: center;
-  }
-  /* Replace these gradients with real screenshots: background-image: url(assets/pos.png) */
-  .t1 { background-color: #2d3282; background-image: linear-gradient(135deg, #2d3282, #5a60c9); }
-  .t2 { background-color: #e0603a; background-image: linear-gradient(135deg, #f08a4b, #d9445a); }
-  .t3 { background-color: #1f6f5c; background-image: linear-gradient(135deg, #1f6f5c, #3fa58a); }
-  .t4 { background-color: #3a3a40; background-image: linear-gradient(135deg, #2b2b30, #5b5b66); }
-  .card-body { padding: 22px 24px 26px; }
-  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
-  .tag { font-size: 12px; padding: 3px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 500; }
-  .card h3 { font-size: 20px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 6px; }
-  .card p { color: var(--muted); font-size: 15px; }
-  .more { display: inline-block; margin-top: 14px; font-size: 14px; font-weight: 500; }
-
-  /* about */
-  .about { display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; }
-  .about p + p { margin-top: 16px; }
-  .about p { color: var(--muted); }
-  .about strong { color: var(--ink); font-weight: 500; }
-  .facts { list-style: none; border-top: 1px solid var(--line); }
-  .facts li { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
-  .facts li span:first-child { color: var(--muted); }
-  .facts li span:last-child { text-align: right; }
-
-  /* contact */
-  .contact h2 { font-size: clamp(36px, 6vw, 60px); max-width: 16ch; line-height: 1.08; }
-  .contact .cta { margin-top: 32px; }
-
-  footer { padding: 32px 0 48px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
-
-  @media (max-width: 760px) {
-    nav ul { gap: 18px; }
-    .hero { padding: 72px 0 64px; }
-    .work { grid-template-columns: 1fr; }
-    .about { grid-template-columns: 1fr; gap: 36px; }
-    section { padding: 64px 0; }
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="i18n.js" defer></script>
 </head>
 <body>
 
-<nav>
+<header class="site-header">
   <div class="wrap">
-    <a class="logo" href="#">Yehia Mourad</a>
-    <ul>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </div>
-</nav>
-
-<header class="hero">
-  <div class="wrap">
-    <div class="eyebrow"><span class="dot"></span>Senior Product Designer · Cairo · Open to new roles</div>
-    <h1>I design products people use <em>all day</em> at work.</h1>
-    <p>Six years designing ERP systems, point-of-sale tools, and consumer apps. Most of it in Arabic and English, most of it for people who don't have time to figure out a confusing screen.</p>
-    <div class="cta">
-      <a class="btn primary" href="#work">See my work</a>
-      <a class="btn" href="assets/Yehia-Mourad-Resume.pdf">Resume</a>
-    </div>
+    <a class="brand" href="./">Yehia Mourad</a>
+    <nav class="nav">
+      <a href="#work" class="hide-sm" data-i18n="nav.work">Work</a>
+      <a href="#about" class="hide-sm" data-i18n="nav.about">About</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+      <button class="lang-toggle" type="button" data-i18n="lang.toggle">عربي</button>
+    </nav>
   </div>
 </header>
 
-<section id="work">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Selected work</h2>
-      <span>B2B · B2C · Design systems · RTL</span>
-    </div>
-
-    <div class="work">
-      <a class="card" href="#">
-        <div class="thumb t1">POS Redesign</div>
-        <div class="card-body">
-          <div class="tags"><span class="tag">B2B</span><span class="tag">RTL</span><span class="tag">Audit</span></div>
-          <h3>Fixing a cashier screen, one finding at a time</h3>
-          <p>A UX audit of an Arabic point-of-sale system: 14 findings, then a working prototype that applies all of them.</p>
-          <span class="more">Case study coming soon</span>
-        </div>
-      </a>
-
-      <a class="card" href="#">
-        <div class="thumb t2">Pleny</div>
-        <div class="card-body">
-          <div class="tags"><span class="tag">B2C</span><span class="tag">Design system</span></div>
-          <h3>A third theme for a food social app</h3>
-          <p>Adding a standalone Onboarding mode next to Light and Dark, with gradient tokens that still pass contrast checks.</p>
-          <span class="more">Case study coming soon</span>
-        </div>
-      </a>
-
-      <a class="card" href="#">
-        <div class="thumb t3">ERP Modules</div>
-        <div class="card-body">
-          <div class="tags"><span class="tag">Enterprise</span><span class="tag">B2B</span></div>
-          <h3>Inventory, HR, and finance for TAS ERP</h3>
-          <p>Core modules for an enterprise ERP: dense data, long forms, and workflows that span several teams.</p>
-          <span class="more">Case study coming soon</span>
-        </div>
-      </a>
-
-      <a class="card" href="#">
-        <div class="thumb t4">Dopa · Jamal</div>
-        <div class="card-body">
-          <div class="tags"><span class="tag">Mobile</span><span class="tag">B2C</span></div>
-          <h3>Travel and car rental apps</h3>
-          <p>Mobile apps, web portals, and dashboards for a travel booking product and a car rental service.</p>
-          <span class="more">Case study coming soon</span>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<section id="about">
-  <div class="wrap about">
+<main>
+  <section class="wrap intro">
     <div>
-      <h2 style="margin-bottom:24px">About</h2>
-      <p>I started in <strong>QA engineering</strong>, which means I spent years finding the exact moment a product breaks. That habit stuck. I design with edge cases, empty states, and real data in mind from the start, not as cleanup at the end.</p>
-      <p>These days I work across <strong>B2B and B2C</strong>: ERP and POS systems on one side, consumer mobile apps on the other. I care a lot about <strong>design systems</strong> and the tooling around them, and I've been building AI-assisted workflows that connect design decisions straight to Figma tokens.</p>
-      <p>Most of my work ships in <strong>Arabic and English</strong>, so RTL isn't an afterthought for me. It's the default.</p>
+      <div class="status" data-i18n="intro.status">Open to Senior Product Designer roles</div>
+      <h1 data-i18n="intro.title">Yehia Mourad, senior product designer. <span>AI-SaaS, B2B platforms and design systems, in Arabic and English.</span></h1>
     </div>
-    <ul class="facts">
-      <li><span>Experience</span><span>6+ years</span></li>
-      <li><span>Based in</span><span>Cairo, Egypt</span></li>
-      <li><span>Focus</span><span>B2B, B2C, design systems</span></li>
-      <li><span>Languages</span><span>Arabic, English</span></li>
-      <li><span>Tools</span><span>Figma, Figma MCP, HTML/CSS</span></li>
-      <li><span>Background</span><span>QA engineering</span></li>
-    </ul>
-  </div>
-</section>
+    <p data-i18n="intro.text">8+ years designing digital products, the last 5 on complex B2B and B2B2C platforms. Right now I turn AI model capabilities into workflows people can actually use. Based in Cairo.</p>
+  </section>
 
-<section id="contact" class="contact">
-  <div class="wrap">
-    <h2>Hiring for a product design role? Let's talk.</h2>
-    <div class="cta">
-      <a class="btn primary" href="mailto:yehia.mourad@outlook.com">Email me</a>
-      <a class="btn" href="https://www.linkedin.com/in/yehia-mourad">LinkedIn</a>
-      <a class="btn" href="https://github.com/YehiaMourad">GitHub</a>
+  <section id="work" class="wrap grid">
+    <!-- To use a real image: add style="background-image:url(assets/pos-cover.png)" to .shot and delete the .ph div -->
+    <a class="tile featured" href="case-study.html">
+      <div class="shot"><div class="ph ph-1"><div class="frame"></div></div></div>
+      <div class="meta">
+        <div><h2 data-i18n="p1.title">POS redesign</h2><p data-i18n="p1.text">A UX audit of an Arabic point-of-sale system, and a prototype that fixes all 14 findings</p></div>
+        <span class="kind" data-i18n="p1.kind">B2B · RTL</span>
+      </div>
+    </a>
+
+    <div class="tile">
+      <div class="shot"><div class="ph ph-2"><div class="frame"></div></div></div>
+      <div class="meta">
+        <div><h2><span data-i18n="p2.title">TwentyToo</span><span class="soon" data-i18n="soon">Soon</span></h2><p data-i18n="p2.text">A B2B AI-SaaS platform and a 96-component design system</p></div>
+        <span class="kind" data-i18n="p2.kind">AI-SaaS · Design system</span>
+      </div>
     </div>
-  </div>
-</section>
 
-<footer>
-  <div class="wrap">© 2026 Yehia Mourad</div>
-</footer>
+    <div class="tile">
+      <div class="shot"><div class="ph ph-3"><div class="frame"></div></div></div>
+      <div class="meta">
+        <div><h2><span data-i18n="p3.title">Reach Link</span><span class="soon" data-i18n="soon">Soon</span></h2><p data-i18n="p3.text">A two-sided marketplace for influencers and brands</p></div>
+        <span class="kind" data-i18n="p3.kind">B2B2C · Marketplace</span>
+      </div>
+    </div>
+
+    <div class="tile">
+      <div class="shot"><div class="ph ph-4"><div class="frame"></div></div></div>
+      <div class="meta">
+        <div><h2><span data-i18n="p4.title">Kuwait Airlines</span><span class="soon" data-i18n="soon">Soon</span></h2><p data-i18n="p4.text">Operational workflows, redesigned to cut task time by 20%</p></div>
+        <span class="kind" data-i18n="p4.kind">Enterprise</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="band">
+    <div class="wrap about">
+      <div class="label" data-i18n="about.label">About</div>
+      <div class="about-body">
+        <p data-i18n="about.p1">I lead product design end to end, from discovery and information architecture to prototypes, design systems and handoff. <span>I work closely with product, engineering and data teams to turn messy requirements into products that feel simple.</span></p>
+        <p data-i18n="about.p2">These days I focus on AI-SaaS, and I use agentic workflows with Claude and Figma MCP in my own process. <span>Much of my work ships in Arabic, so RTL isn't an afterthought for me. It's the default.</span></p>
+        <div class="facts">
+          <div><strong data-i18n="fact1.v">8+ years</strong><span data-i18n="fact1.k">Experience</span></div>
+          <div><strong data-i18n="fact2.v">AI-SaaS, B2B, B2B2C</strong><span data-i18n="fact2.k">Focus</span></div>
+          <div><strong data-i18n="fact3.v">Arabic &amp; English</strong><span data-i18n="fact3.k">Languages</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="band">
+    <div class="wrap contact">
+      <h2 data-i18n="contact.title">Hiring a product designer? Let's talk.</h2>
+      <div class="links">
+        <a class="btn solid" href="mailto:yehia.mourad@outlook.com" data-i18n="contact.email">Email</a>
+        <a class="btn" href="https://www.linkedin.com/in/yehia-mourad">LinkedIn</a>
+        <a class="btn" href="https://www.behance.net/Yehia-Mourad">Behance</a>
+        <a class="btn" href="assets/Yehia-Mourad-Resume.pdf" data-i18n="contact.resume">Resume</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer"><div class="wrap" data-i18n="footer">© 2026 Yehia Mourad</div></footer>
 
 </body>
 </html>
