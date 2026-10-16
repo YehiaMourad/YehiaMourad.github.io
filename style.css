@@ -389,3 +389,12 @@ html[dir="rtl"] .next-proj .go svg { transform: scaleX(-1); }
 .mark:hover { transform: rotate(-6deg); }
 .cs-mark { position: fixed; top: 20px; inset-inline-start: 20px; z-index: 40; width: 40px; height: 40px; display: block; }
 @media (max-width: 760px) { .cs-mark { top: 12px; inset-inline-start: 12px; } }
+
+/* logo swaps with theme */
+.mark .logo-d { display: none; }
+:root[data-theme="dark"] .mark .logo-l { display: none; }
+:root[data-theme="dark"] .mark .logo-d { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .mark .logo-l { display: none; }
+  :root:not([data-theme="light"]) .mark .logo-d { display: block; }
+}
