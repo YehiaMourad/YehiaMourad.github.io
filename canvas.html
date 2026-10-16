@@ -81,6 +81,12 @@
     background-image: radial-gradient(var(--dot) 1.2px, transparent 1.3px); background-size: calc(24px * var(--z, 1)) calc(24px * var(--z, 1));
     background-position: var(--bx, 0) var(--by, 0); }
   .viewport.dragging { cursor: grabbing; }
+  /* canvas behaves like a design tool: dragging moves the canvas, never selects text */
+  .viewport { -webkit-user-select: none; user-select: none; }
+  .viewport img, .viewport a { -webkit-user-drag: none; user-drag: none; }
+  /* canvas behaves like a design tool: dragging pans, it never selects text or drags images */
+  .viewport { -webkit-user-select: none; user-select: none; }
+  .viewport img, .viewport a { -webkit-user-drag: none; user-drag: none; }
   .world { position: absolute; left: 0; top: 0; width: 3000px; height: 1900px; transform-origin: 0 0; will-change: transform; }
   .world.fly { transition: transform .7s cubic-bezier(.65,0,.25,1); }
 
@@ -177,7 +183,7 @@
   @media (max-width: 860px) {
     body { overflow: auto; }
     .layers, .zbar, .people, .file .crumb, .file .sl, .tools .hide-sm { display: none; }
-    .viewport { position: relative; inset: auto; cursor: auto; touch-action: auto; overflow: visible; padding: 92px 14px 40px; min-height: 100vh; background-size: 22px 22px; }
+    .viewport { -webkit-user-select: text; user-select: text; position: relative; inset: auto; cursor: auto; touch-action: auto; overflow: visible; padding: 92px 14px 40px; min-height: 100vh; background-size: 22px 22px; }
     .world { position: static; width: auto; height: auto; transform: none !important; display: flex; flex-direction: column; gap: 56px; }
     .frame { position: relative !important; left: auto !important; top: auto !important; width: 100% !important; height: auto !important; }
     .frame-body { height: auto; }
@@ -429,7 +435,10 @@
   vp.addEventListener("pointerdown", e => {
     if (mobile() || e.button !== 0) return;
     if (e.target.closest("button")) return;
+    e.preventDefault();                       // stop text selection and image ghost-dragging
+    window.getSelection()?.removeAllRanges();
     drag = { sx: e.clientX, sy: e.clientY, x, y }; moved = false;
+    getSelection()?.removeAllRanges();
   });
   addEventListener("pointermove", e => {
     if (!drag) return;
@@ -438,6 +447,8 @@
     if (moved) { x = drag.x + dx; y = drag.y + dy; apply(false); }
   });
   addEventListener("pointerup", () => { drag = null; vp.classList.remove("dragging"); });
+  vp.addEventListener("dragstart", e => { if (!mobile()) e.preventDefault(); });
+  vp.addEventListener("dragstart", e => e.preventDefault());
   vp.addEventListener("click", e => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
 
   // wheel: pan; ctrl/cmd or pinch: zoom
