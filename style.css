@@ -382,3 +382,10 @@ html[dir="rtl"] .next-proj .go svg { transform: scaleX(-1); }
   .meta-row { grid-template-columns: 1fr 1fr; }
   .cover { border-radius: 24px; }
 }
+
+/* ---------- Logo ---------- */
+.mark { background: none; padding: 0; overflow: hidden; border-radius: 12px; transition: transform .2s; }
+.mark img { width: 100%; height: 100%; display: block; }
+.mark:hover { transform: rotate(-6deg); }
+.cs-mark { position: fixed; top: 20px; inset-inline-start: 20px; z-index: 40; width: 40px; height: 40px; display: block; }
+@media (max-width: 760px) { .cs-mark { top: 12px; inset-inline-start: 12px; } }
