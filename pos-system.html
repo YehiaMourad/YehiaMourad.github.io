@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Primex POS — Yehia Mourad</title>
+<meta name="description" content="Taking the Cashier POS out of a full ERP and turning it into its own product for tablets and cashier screens.">
+<meta property="og:title" content="Primex POS — Yehia Mourad">
+<meta property="og:description" content="Taking the Cashier POS out of a full ERP and turning it into its own product for tablets and cashier screens.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#efece6">
+<meta property="og:image" content="https://yehiamourad.github.io/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="style.css">
+<script src="i18n.js" defer></script>
+<script src="case.js" defer></script>
+</head>
+<body class="cs">
+
+<!--
+  Same structure as case-study.html.
+  - Every text block exists twice: class="en" and class="ar".
+  - class="detail" hides in TL;DR mode, class="tldr" shows only in TL;DR mode.
+  - Screens: assets/primex-restaurant.png and assets/primex-pos-hypermarket.webp.
+    If a screen file is missing, its figure hides itself.
+-->
+
+<a class="mark cs-mark" href="./" aria-label="Yehia Mourad, home"><img class="logo-l" src="assets/logo-mark.svg" alt=""><img class="logo-d" src="assets/logo-mark-dark.svg" alt=""></a>
+
+<div class="cs-tools">
+  <button class="chip lang-toggle" type="button" data-i18n="lang.toggle">عربي</button>
+  <button class="chip theme-toggle" type="button" aria-label="Switch light or dark">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+  </button>
+  <a class="chip close" href="./#work" aria-label="Close and go back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"/></svg>
+  </a>
+</div>
+
+<main class="cs-page">
+
+  <div class="cover" style="view-transition-name: pos-cover; background-image:url(assets/primex-cover.webp)"></div>
+
+  <div class="seg" role="tablist" aria-label="Reading mode">
+    <button class="on" data-mode="detailed" role="tab"><span class="en">Detailed</span><span class="ar">بالتفصيل</span></button>
+    <button data-mode="tldr" role="tab">TL;DR</button>
+  </div>
+
+  <article class="col">
+
+    <span class="kicker"><span class="en">Case study · Primex POS</span><span class="ar">دراسة حالة · Primex POS</span></span>
+    <h1>
+      <span class="en">Cashier POS, decoupled from an ERP</span>
+      <span class="ar">نقطة بيع الكاشير، مفصولة عن نظام ERP</span>
+    </h1>
+    <p class="lead">
+      <span class="en">I took the Cashier POS out of a full ERP platform and made it its own product, running on tablets and cashier screens. An interface finally built for the pace of the counter.</span>
+      <span class="ar">طلّعت شاشة الكاشير من منصة ERP كاملة وخليتها منتج لوحدها، شغالة على التابلت وشاشات الكاشير. واجهة معمولة أخيرًا على سرعة الكاونتر.</span>
+    </p>
+
+    <dl class="meta-row">
+      <div><dt><span class="en">Role</span><span class="ar">الدور</span></dt><dd>Senior Product Designer</dd></div>
+      <div><dt><span class="en">Platform</span><span class="ar">المنصة</span></dt><dd><span class="en">Tablets &amp; cashier screens</span><span class="ar">تابلت وشاشات كاشير</span></dd></div>
+      <div><dt><span class="en">Scope</span><span class="ar">النطاق</span></dt><dd><span class="en">Design system · 2 layouts</span><span class="ar">نظام تصميم · تصميمين</span></dd></div>
+      <div><dt><span class="en">Status</span><span class="ar">الحالة</span></dt><dd><span class="en">In validation</span><span class="ar">في مرحلة التحقق</span></dd></div>
+    </dl>
+
+    <!-- ===== TL;DR ===== -->
+    <section class="tldr">
+      <h2><span class="en">The short version</span><span class="ar">باختصار</span></h2>
+      <ul class="en">
+        <li>Pulled the Cashier POS out of the <b>Primex ERP</b> and turned it into a standalone product for tablets and cashier screens.</li>
+        <li>The old screen was built for <b>seated back-office staff</b>. Cashiers stand, work fast, and have a queue in front of them.</li>
+        <li>One rule drove every decision: <b>does this make checkout faster?</b></li>
+        <li>Built a <b>dedicated POS design system</b>: bigger touch targets, flatter navigation, glanceable components.</li>
+        <li>One core, <b>two layouts</b>: browse-first for restaurants, scan-first for hypermarkets.</li>
+        <li>Now <b>in validation</b> with the client and a lead cashier, before full rollout.</li>
+      </ul>
+      <ul class="ar">
+        <li>طلّعت شاشة الكاشير من <b>Primex ERP</b> وحولتها لمنتج مستقل للتابلت وشاشات الكاشير.</li>
+        <li>الشاشة القديمة كانت معمولة <b>لموظفين قاعدين على مكتب</b>. الكاشير واقف، بيشتغل بسرعة، وقدامه طابور.</li>
+        <li>قاعدة واحدة حكمت كل قرار: <b>ده بيخلي الدفع أسرع ولا لأ؟</b></li>
+        <li>بنيت <b>نظام تصميم خاص بنقطة البيع</b>: مساحات لمس أكبر، تنقل أبسط، ومكونات تتقري بنظرة.</li>
+        <li>نفس الأساس، <b>تصميمين</b>: تصفح للمطاعم، وسكان للهايبر ماركت.</li>
+        <li>دلوقتي <b>في مرحلة التحقق</b> مع العميل وكبير الكاشيرز، قبل ما يتعمم.</li>
+      </ul>
+    </section>
+
+    <!-- ===== 01 Overview ===== -->
+    <section class="detail">
+      <span class="num">01 / <span class="en">Overview</span><span class="ar">نظرة عامة</span></span>
+      <h2><span class="en">One module, set free from the monolith</span><span class="ar">موديول واحد، خرج من النظام الضخم</span></h2>
+      <p class="en">The Cashier POS lived inside Primex, a full ERP platform. It was one screen among dozens, all built for back-office work. I led the design work to carve it out into its own product: Primex POS, running on tablets and dedicated cashier screens, made for the point of sale instead of the back office.</p>
+      <p class="ar">شاشة الكاشير كانت جوه Primex، منصة ERP كاملة. كانت شاشة وسط عشرات الشاشات، كلها معمولة لشغل المكاتب. قدت شغل التصميم عشان نفصلها لمنتج لوحده: Primex POS، شغال على التابلت وشاشات الكاشير، ومعمول لنقطة البيع مش للمكتب.</p>
+    </section>
+
+    <!-- ===== 02 Problem ===== -->
+    <section class="detail">
+      <span class="num">02 / <span class="en">The problem</span><span class="ar">المشكلة</span></span>
+      <h2><span class="en">Designed for a desk, used at a counter</span><span class="ar">معمولة لمكتب، وبتتستخدم على كاونتر</span></h2>
+      <p class="en">The ERP was designed for desk staff: people sitting at workstations, going through deep menus with time to spare. Cashiers live the opposite: standing, rushed, with a queue forming in front of them. The old interface just wasn't built for that.</p>
+      <p class="ar">الـERP كان معمول لموظفين على مكاتب: ناس قاعدة قدام الكمبيوتر، بتدخل في قوايم كتير وعندها وقت. الكاشير عايش العكس: واقف، مستعجل، وقدامه طابور بيكبر. الواجهة القديمة ببساطة مكانتش معمولة لكده.</p>
+      <div class="cards3">
+        <div><b class="en">Standing, not seated</b><b class="ar">واقف، مش قاعد</b><p class="en">Touch targets and reach matter more than information density.</p><p class="ar">مساحات اللمس والوصول أهم من كمية المعلومات على الشاشة.</p></div>
+        <div><b class="en">Seconds, not minutes</b><b class="ar">ثواني، مش دقايق</b><p class="en">Every extra tap happens in front of a waiting customer.</p><p class="ar">كل ضغطة زيادة بتحصل قدام عميل مستني.</p></div>
+        <div><b class="en">Noise, not focus</b><b class="ar">دوشة، مش تركيز</b><p class="en">A busy floor punishes any screen that asks for attention.</p><p class="ar">المكان الزحمة بيعاقب أي شاشة محتاجة تركيز.</p></div>
+      </div>
+    </section>
+
+    <!-- ===== 03 Context ===== -->
+    <section class="detail">
+      <span class="num">03 / <span class="en">Context</span><span class="ar">السياق</span></span>
+      <h2><span class="en">Speed became the brief</span><span class="ar">السرعة بقت هي البريف</span></h2>
+      <p class="en">In conversations with the PM and the team, one priority kept coming up above everything else: speed. Not features, not settings. The number of steps, and the mental effort, between "customer arrives" and "receipt printed".</p>
+      <p class="ar">في كلامي مع الـPM والفريق، أولوية واحدة كانت بتطلع فوق كل حاجة: السرعة. مش مميزات، ومش إعدادات. عدد الخطوات، والمجهود الذهني، من "العميل وصل" لحد "الفاتورة اتطبعت".</p>
+      <blockquote class="pull">
+        <p class="en">Every design decision was measured against one question: does this make checkout faster, or slower?</p>
+        <p class="ar">كل قرار تصميم كان بيتقاس بسؤال واحد: ده بيخلي الدفع أسرع، ولا أبطأ؟</p>
+        <cite><span class="en">Design principle · Primex POS</span><span class="ar">مبدأ التصميم · Primex POS</span></cite>
+      </blockquote>
+    </section>
+
+    <!-- ===== 04 Design approach ===== -->
+    <section class="detail">
+      <span class="num">04 / <span class="en">Design approach</span><span class="ar">طريقة التصميم</span></span>
+      <h2><span class="en">A dedicated system, a flexible layout</span><span class="ar">نظام خاص، وتصميم مرن</span></h2>
+      <p class="en">I built a design system just for the POS, separate from the ERP: larger touch targets, a flatter navigation model, and components you can read at a glance. On top of it, I designed one layout that adapts to very different kinds of business.</p>
+      <p class="ar">بنيت نظام تصميم خاص بنقطة البيع، منفصل عن الـERP: مساحات لمس أكبر، تنقل أبسط، ومكونات تتقري بنظرة. وفوقه صممت تصميم واحد بيتأقلم مع أنواع بيزنس مختلفة جدًا.</p>
+
+      <span class="pill">4A · <span class="en">Restaurant layout</span><span class="ar">تصميم المطاعم</span></span>
+      <h3><span class="en">Browse-first: built for the menu</span><span class="ar">التصفح الأول: معمول للمنيو</span></h3>
+      <ul class="en">
+        <li>Items grouped by category for fast visual browsing</li>
+        <li>Order status shown as clear chips in the cart</li>
+        <li>Order type picker: Dine-in, Takeaway, Delivery</li>
+      </ul>
+      <ul class="ar">
+        <li>الأصناف متقسمة على كاتيجوريز عشان التصفح بالعين يبقى سريع</li>
+        <li>حالة الطلب ظاهرة كـchips واضحة في السلة</li>
+        <li>اختيار نوع الطلب: صالة، تيك أواي، توصيل</li>
+      </ul>
+    </section>
+
+    <figure class="wide detail">
+      <img class="shot-img" src="assets/primex-restaurant.png" alt="Primex POS restaurant layout" loading="lazy" onerror="this.closest('figure').remove()">
+      <figcaption><span class="en">Restaurant layout: category browsing, order type, and status chips in the cart.</span><span class="ar">تصميم المطاعم: تصفح بالكاتيجوري، نوع الطلب، وحالة الطلب في السلة.</span></figcaption>
+    </figure>
+
+    <section class="detail">
+      <span class="pill">4B · <span class="en">Hypermarket layout</span><span class="ar">تصميم الهايبر ماركت</span></span>
+      <h3><span class="en">Scan-first: built for throughput</span><span class="ar">السكان الأول: معمول للسرعة</span></h3>
+      <ul class="en">
+        <li>The barcode scanner is the main input</li>
+        <li>Keyboard shortcuts come before visual browsing</li>
+        <li>Made for big catalogs, where search speed beats browsing</li>
+      </ul>
+      <ul class="ar">
+        <li>الباركود هو طريقة الإدخال الأساسية</li>
+        <li>اختصارات الكيبورد قبل التصفح بالعين</li>
+        <li>معمول للكتالوجات الكبيرة، اللي سرعة البحث فيها أهم من التصفح</li>
+      </ul>
+    </section>
+
+    <figure class="wide detail">
+      <img class="shot-img" src="assets/primex-pos-hypermarket.webp" alt="Primex POS hypermarket layout" loading="lazy" onerror="this.closest('figure').remove()">
+      <figcaption><span class="en">The hypermarket layout (Arabic, RTL): barcode-first search, F-key shortcuts, dense cart.</span><span class="ar">تصميم الهايبر ماركت (عربي، RTL): بحث بالباركود الأول، اختصارات F، وسلة مليانة معلومات.</span></figcaption>
+    </figure>
+
+    <!-- ===== 05 Key insight ===== -->
+    <section class="detail">
+      <span class="num">05 / <span class="en">Key insight</span><span class="ar">أهم استنتاج</span></span>
+      <h2><span class="en">Same system, opposite interaction models</span><span class="ar">نفس النظام، وطريقتين استخدام عكس بعض</span></h2>
+      <p class="en">The core POS didn't change between businesses. How people use it did. A restaurant sells a small menu people know by sight. A hypermarket sells thousands of items nobody browses. So the layout changes completely: visual browsing on one side, scan-first speed on the other.</p>
+      <p class="ar">أساس نقطة البيع متغيرش بين البيزنسين. اللي اتغير هو طريقة الاستخدام. المطعم بيبيع منيو صغير الناس بتعرفه بالشكل. الهايبر ماركت بيبيع آلاف المنتجات محدش بيتصفحها. فالتصميم بيتغير خالص: تصفح بالعين في ناحية، وسرعة السكان في الناحية التانية.</p>
+    </section>
+
+    <div class="compare detail">
+      <div>
+        <span class="pill"><span class="en">Restaurant</span><span class="ar">مطعم</span></span>
+        <h3><span class="en">Visual browsing</span><span class="ar">تصفح بالعين</span></h3>
+        <dl>
+          <dt><span class="en">Primary input</span><span class="ar">الإدخال الأساسي</span></dt><dd><span class="en">Touch, tap items</span><span class="ar">لمس، تضغط على الصنف</span></dd>
+          <dt><span class="en">Catalog</span><span class="ar">الكتالوج</span></dt><dd><span class="en">~50–200 items, known by sight</span><span class="ar">~50–200 صنف، معروفين بالشكل</span></dd>
+          <dt><span class="en">Navigation</span><span class="ar">التنقل</span></dt><dd><span class="en">Category grid</span><span class="ar">جريد كاتيجوريز</span></dd>
+          <dt><span class="en">Speed lever</span><span class="ar">مصدر السرعة</span></dt><dd><span class="en">Recognition over recall</span><span class="ar">تتعرف عليه بدل ما تفتكره</span></dd>
+        </dl>
+      </div>
+      <div>
+        <span class="pill"><span class="en">Hypermarket</span><span class="ar">هايبر ماركت</span></span>
+        <h3><span class="en">Scan-first speed</span><span class="ar">سرعة السكان</span></h3>
+        <dl>
+          <dt><span class="en">Primary input</span><span class="ar">الإدخال الأساسي</span></dt><dd><span class="en">Barcode scanner + keys</span><span class="ar">باركود + كيبورد</span></dd>
+          <dt><span class="en">Catalog</span><span class="ar">الكتالوج</span></dt><dd><span class="en">Thousands of SKUs</span><span class="ar">آلاف المنتجات</span></dd>
+          <dt><span class="en">Navigation</span><span class="ar">التنقل</span></dt><dd><span class="en">Search + F-key shortcuts</span><span class="ar">بحث + اختصارات F</span></dd>
+          <dt><span class="en">Speed lever</span><span class="ar">مصدر السرعة</span></dt><dd><span class="en">Muscle memory, no looking</span><span class="ar">إيدك عارفة طريقها من غير ما تبص</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <!-- ===== 06 Status ===== -->
+    <section class="detail">
+      <span class="num">06 / <span class="en">Current status</span><span class="ar">الوضع الحالي</span></span>
+      <h2><span class="en">In validation, before rollout</span><span class="ar">في التحقق، قبل التعميم</span></h2>
+      <p class="en">The product is in its validation phase. I'm collecting feedback from the client and a lead cashier, the person who will live in this interface every day, before it rolls out to the wider team. What they notice on real transactions will drive the last round of refinements.</p>
+      <p class="ar">المنتج دلوقتي في مرحلة التحقق. بجمع آراء العميل وكبير الكاشيرز، الشخص اللي هيعيش على الشاشة دي كل يوم، قبل ما تتعمم على باقي الفريق. اللي هيلاحظوه في عمليات بيع حقيقية هو اللي هيحدد آخر جولة تعديلات.</p>
+      <ol class="steps">
+        <li class="done"><span class="en">Decoupled &amp; designed</span><span class="ar">اتفصل واتصمم</span></li>
+        <li class="now"><span class="en">Validation with the client + lead cashier</span><span class="ar">تحقق مع العميل + كبير الكاشيرز</span></li>
+        <li><span class="en">Full rollout</span><span class="ar">تعميم كامل</span></li>
+      </ol>
+    </section>
+
+  </article>
+
+  <a class="next-proj" href="./#work">
+    <span class="small"><span class="en">Back to all work</span><span class="ar">رجوع لكل الأعمال</span></span>
+    <span class="go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+  </a>
+
+</main>
+</body>
+</html>
