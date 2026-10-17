@@ -87,7 +87,7 @@
   /* canvas behaves like a design tool: dragging pans, it never selects text or drags images */
   .viewport { -webkit-user-select: none; user-select: none; }
   .viewport img, .viewport a { -webkit-user-drag: none; user-drag: none; }
-  .world { position: absolute; left: 0; top: 0; width: 3000px; height: 2760px; transform-origin: 0 0; will-change: transform; }
+  .world { position: absolute; left: 0; top: 0; width: 3000px; height: 2860px; transform-origin: 0 0; will-change: transform; }
   .world.fly { transition: transform .7s cubic-bezier(.65,0,.25,1); }
 
   .frame { position: absolute; }
@@ -239,8 +239,10 @@
     .jhead h2 { font-size: 30px; }
     .jhead p { text-align: left; }
     .jaxis { display: none; }
-    .jcards { grid-template-columns: 1fr; }
-    .section-box { display: none; }
+    .jcards { grid-template-columns: 1fr; grid-auto-rows: auto; gap: 10px; }
+    .jcard .loc { padding-top: 12px; }
+    .section-box { position: relative !important; left: auto !important; top: auto !important; width: auto !important; height: auto !important; background: none; border: 0; margin-bottom: -16px; }
+    .section-box .section-name { position: static; display: inline-block; }
     .cap-actions { flex-direction: column; }
     .pin { position: relative !important; left: auto !important; top: auto !important; margin: -40px 0 0 10px; }
     .pin .bubble { width: auto; flex: 1; }
@@ -312,23 +314,47 @@
       <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
     </section>
 
-    <!-- Tokens -->
-    <section class="frame tokens" data-name="Brand tokens" data-icon="grid" style="left:2260px; top:100px; width:560px; height:560px;">
-      <div class="frame-label"><span>Brand tokens</span><span class="mono">Design system</span></div>
+    <!-- Benaa (desktop app) -->
+    <section class="frame proj" data-name="Benaa" data-icon="frame" style="left:2260px; top:100px; width:640px; height:480px;">
+      <div class="frame-label"><span>Benaa</span><span class="mono">Desktop app</span></div>
       <div class="frame-body">
-        <h5>color / brand</h5>
-        <div class="sw"><div style="background:#ff6a3d"><span>coral</span></div><div style="background:#4f56d6"><span>indigo</span></div><div style="background:#2b1d55"><span>deep</span></div><div style="background:#18181a"><span>ink</span></div></div>
-        <h5>type / Bricolage Grotesque</h5>
-        <div class="type-row"><b style="font-size:44px;letter-spacing:-.03em;line-height:1">Display</b><span>700 · 44</span></div>
-        <div class="type-row"><b style="font-size:26px;letter-spacing:-.02em">Heading</b><span>600 · 26</span></div>
-        <div class="type-row"><span style="font-family:inherit;font-size:16px;color:var(--ink)">Body text for reading</span><span>400 · 16</span></div>
-        <div class="type-row"><span style="font-size:13px;color:var(--muted)">Caption / meta</span><span>mono · 11</span></div>
+        <div class="shot ph-5"><div class="scr"></div></div>
+        <div class="cap"><div><span class="tag">CASE STUDY · DESKTOP APP</span><h3>Benaa</h3><p>Desktop app. Case study on the way.</p></div><span class="open soon">Soon</span></div>
+      </div>
+      <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
+    </section>
+
+    <!-- Fahs (mobile app) -->
+    <section class="frame proj" data-name="Fahs" data-icon="phone" style="left:100px; top:780px; width:360px; height:720px;">
+      <div class="frame-label"><span>Fahs</span><span class="mono">Mobile app</span></div>
+      <div class="frame-body">
+        <div class="shot ph-6"><div class="scr phone"></div></div>
+        <div class="cap"><div><span class="tag">CASE STUDY · MOBILE</span><h3>Fahs</h3><p>Mobile app. Case study on the way.</p></div><span class="open soon">Soon</span></div>
+      </div>
+      <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
+    </section>
+
+    <!-- Visual projects section -->
+    <div class="section-box" style="left:540px; top:780px; width:840px; height:860px;"><span class="section-name">Visual projects</span></div>
+    <section class="frame proj" data-name="Reach Link" data-icon="phone" style="left:580px; top:884px; width:360px; height:720px;">
+      <div class="frame-label"><span>Reach Link</span><span class="mono">Visual</span></div>
+      <div class="frame-body">
+        <div class="shot ph-3"><div class="scr phone"></div></div>
+        <div class="cap"><div><span class="tag">VISUAL · MARKETPLACE</span><h3>Reach Link</h3><p>Influencer–brand marketplace. Used by 223 creators and 27 brands.</p></div><span class="open soon">Soon</span></div>
+      </div>
+      <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
+    </section>
+    <section class="frame proj" data-name="Muzain" data-icon="phone" style="left:980px; top:884px; width:360px; height:720px;">
+      <div class="frame-label"><span>Muzain app</span><span class="mono">Visual</span></div>
+      <div class="frame-body">
+        <div class="shot ph-7"><div class="scr phone"></div></div>
+        <div class="cap"><div><span class="tag">VISUAL · MOBILE</span><h3>Muzain app</h3><p>Visuals coming soon.</p></div><span class="open soon">Soon</span></div>
       </div>
       <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
     </section>
 
     <!-- About -->
-    <section class="frame about" data-name="About" data-icon="text" style="left:100px; top:780px; width:720px; height:480px;">
+    <section class="frame about" data-name="About" data-icon="text" style="left:1460px; top:780px; width:720px; height:480px;">
       <div class="frame-label"><span>About</span><span class="mono">720 × 480</span></div>
       <div class="frame-body">
         <div class="photo"><img src="assets/me.png" alt="Yehia Mourad" onerror="this.remove()">YM</div>
@@ -345,49 +371,13 @@
       <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
     </section>
 
-    <!-- Benaa (desktop app) -->
-    <section class="frame proj" data-name="Benaa" data-icon="frame" style="left:900px; top:780px; width:640px; height:480px;">
-      <div class="frame-label"><span>Benaa</span><span class="mono">Desktop app</span></div>
-      <div class="frame-body">
-        <div class="shot ph-5"><div class="scr"></div></div>
-        <div class="cap"><div><span class="tag">CASE STUDY · DESKTOP APP</span><h3>Benaa</h3><p>Desktop app. Case study on the way.</p></div><span class="open soon">Soon</span></div>
-      </div>
-      <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
-    </section>
-
-    <!-- Fahs (mobile app) -->
-    <section class="frame proj" data-name="Fahs" data-icon="phone" style="left:1620px; top:780px; width:360px; height:720px;">
-      <div class="frame-label"><span>Fahs</span><span class="mono">Mobile app</span></div>
-      <div class="frame-body">
-        <div class="shot ph-6"><div class="scr phone"></div></div>
-        <div class="cap"><div><span class="tag">CASE STUDY · MOBILE</span><h3>Fahs</h3><p>Mobile app. Case study on the way.</p></div><span class="open soon">Soon</span></div>
-      </div>
-      <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
-    </section>
-
-    <!-- Contact -->
-    <section class="frame contact" id="contact" data-name="Contact" data-icon="chat" style="left:2060px; top:780px; width:760px; height:480px;">
-      <div class="frame-label"><span>Contact</span><span class="mono">Let's talk</span></div>
-      <div class="frame-body">
-        <h2>Hiring a product designer?<br>Let's talk.</h2>
-        <p>Usually reply within a day.</p>
-        <div class="row">
-          <button class="cbtn solid" data-copy>Copy email</button>
-          <a class="cbtn" href="https://www.linkedin.com/in/yehia-mourad" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="cbtn" href="https://www.behance.net/Yehia-Mourad" target="_blank" rel="noopener">Behance</a>
-          <a class="cbtn" href="assets/Yehia-Mourad-Resume.pdf" target="_blank">Resume</a>
-        </div>
-      </div>
-      <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
-    </section>
-
     <!-- Journey: experience timeline (from the resume) -->
-    <section class="frame journey" id="journey" data-name="Journey" data-icon="timeline" style="left:100px; top:1620px; width:1360px; height:1030px;">
+    <section class="frame journey" id="journey" data-name="Journey" data-icon="timeline" style="left:100px; top:1740px; width:1360px; height:1030px;">
       <div class="frame-label"><span>Journey</span><span class="mono">Newest first · 2014 → 2026</span></div>
       <div class="frame-body">
         <div class="jhead">
           <h2>Where I've worked<span>.</span></h2>
-          <p>8+ years in digital product design, 5+ on complex B2B and B2B2C. Full-time and part-time roles, remote with teams in the US, Kuwait, Jordan and the UAE.</p>
+          <p>8+ years in digital product design, 5+ on complex B2B and B2B2C. Full-time and part-time roles, remote with teams in Kuwait, Jordan and the UAE.</p>
         </div>
         <div class="jcards">
           <article class="jcard cur">
@@ -399,7 +389,7 @@
             <span class="when">Dec 2023 – Sep 2026</span><h3>TwentyToo</h3><span class="role">Senior Product Designer</span>
             <p>End-to-end design for a B2B AI-SaaS platform, including its AI chat agent. UI style guide, a 96-component library, onboarding flows.</p>
             <span class="metric">96 components</span>
-            <div class="loc"><span>USA · Remote</span></div>
+            <div class="loc"><span>Remote</span></div>
           </article>
           <article class="jcard">
             <span class="when">Jan 2023 – Dec 2025</span><h3>Reach Link</h3><span class="role">Senior UI/UX Designer</span>
@@ -459,21 +449,33 @@
       <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
     </section>
 
-    <!-- Visual projects section -->
-    <div class="section-box" style="left:1540px; top:1620px; width:840px; height:860px;"><span class="section-name">Visual projects</span></div>
-    <section class="frame proj" data-name="Reach Link" data-icon="phone" style="left:1580px; top:1724px; width:360px; height:720px;">
-      <div class="frame-label"><span>Reach Link</span><span class="mono">Visual</span></div>
+    <!-- Tokens -->
+    <section class="frame tokens" data-name="Brand tokens" data-icon="grid" style="left:1540px; top:1740px; width:560px; height:560px;">
+      <div class="frame-label"><span>Brand tokens</span><span class="mono">Design system</span></div>
       <div class="frame-body">
-        <div class="shot ph-3"><div class="scr phone"></div></div>
-        <div class="cap"><div><span class="tag">VISUAL · MARKETPLACE</span><h3>Reach Link</h3><p>Influencer–brand marketplace. Used by 223 creators and 27 brands.</p></div><span class="open soon">Soon</span></div>
+        <h5>color / brand</h5>
+        <div class="sw"><div style="background:#ff6a3d"><span>coral</span></div><div style="background:#4f56d6"><span>indigo</span></div><div style="background:#2b1d55"><span>deep</span></div><div style="background:#18181a"><span>ink</span></div></div>
+        <h5>type / Bricolage Grotesque</h5>
+        <div class="type-row"><b style="font-size:44px;letter-spacing:-.03em;line-height:1">Display</b><span>700 · 44</span></div>
+        <div class="type-row"><b style="font-size:26px;letter-spacing:-.02em">Heading</b><span>600 · 26</span></div>
+        <div class="type-row"><span style="font-family:inherit;font-size:16px;color:var(--ink)">Body text for reading</span><span>400 · 16</span></div>
+        <div class="type-row"><span style="font-size:13px;color:var(--muted)">Caption / meta</span><span>mono · 11</span></div>
       </div>
       <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
     </section>
-    <section class="frame proj" data-name="Muzain" data-icon="phone" style="left:1980px; top:1724px; width:360px; height:720px;">
-      <div class="frame-label"><span>Muzain app</span><span class="mono">Visual</span></div>
+
+    <!-- Contact -->
+    <section class="frame contact" id="contact" data-name="Contact" data-icon="chat" style="left:2180px; top:1740px; width:760px; height:480px;">
+      <div class="frame-label"><span>Contact</span><span class="mono">Let's talk</span></div>
       <div class="frame-body">
-        <div class="shot ph-7"><div class="scr phone"></div></div>
-        <div class="cap"><div><span class="tag">VISUAL · MOBILE</span><h3>Muzain app</h3><p>Visuals coming soon.</p></div><span class="open soon">Soon</span></div>
+        <h2>Hiring a product designer?<br>Let's talk.</h2>
+        <p>Usually reply within a day.</p>
+        <div class="row">
+          <button class="cbtn solid" data-copy>Copy email</button>
+          <a class="cbtn" href="https://www.linkedin.com/in/yehia-mourad" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="cbtn" href="https://www.behance.net/Yehia-Mourad" target="_blank" rel="noopener">Behance</a>
+          <a class="cbtn" href="assets/Yehia-Mourad-Resume.pdf" target="_blank">Resume</a>
+        </div>
       </div>
       <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
     </section>
@@ -481,22 +483,22 @@
     <!-- Comment pins: Yehia's notes on his own work -->
     <div class="pin" data-after="POS system" style="left:1480px; top:150px;">
       <span class="dot">Y</span>
-      <div class="bubble"><b>Yehia <span>· note</span></b>Moved the total to the top and made Pay the only obvious button. Fewer mis-taps at a busy till.</div>
+      <div class="bubble"><b>Yehia <span>· note</span></b>Every decision got one question: does this make checkout faster, or slower?</div>
     </div>
     <div class="pin closed" data-after="TwentyToo" style="left:2130px; top:420px;">
       <span class="dot">Y</span>
       <div class="bubble"><b>Yehia <span>· note</span></b>96 components, one source of truth. Handoff stopped being a meeting.</div>
     </div>
-    <div class="pin closed" data-after="Reach Link" style="left:1890px; top:1940px;">
+    <div class="pin closed" data-after="Reach Link" style="left:890px; top:1100px;">
       <span class="dot">Y</span>
       <div class="bubble"><b>Yehia <span>· note</span></b>Two-sided flows: the influencer and the brand each see the same campaign from their side.</div>
     </div>
-    <div class="pin closed" data-after="About" style="left:760px; top:1180px;">
+    <div class="pin closed" data-after="About" style="left:2120px; top:1180px;">
       <span class="dot">Y</span>
       <div class="bubble"><b>Yehia <span>· note</span></b>Started in QA. I still design for the moment things break.</div>
     </div>
 
-    <div class="pin closed" data-after="Journey" style="left:1474px; top:1600px;">
+    <div class="pin closed" data-after="Journey" style="left:1474px; top:1720px;">
       <span class="dot">Y</span>
       <div class="bubble"><b>Yehia <span>· note</span></b>Started by building websites in 2014. Now leading design on an AI-SaaS platform.</div>
     </div>
@@ -647,7 +649,7 @@
 
   // Yehia's cursor wanders between the things he wants you to see
   const cur = document.getElementById("ycursor");
-  const stops = [[640, 520], [1380, 560], [1520, 170], [2000, 600], [2700, 380], [1300, 1100], [1850, 1300], [420, 1900], [1760, 2100], [2160, 2050], [700, 1150]];
+  const stops = [[640, 520], [1380, 560], [1520, 170], [2000, 600], [2700, 380], [300, 1300], [880, 1350], [1900, 1100], [420, 2100], [1800, 1950], [2500, 1950], [700, 1150]];
   let si = 0;
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   function wander() { const [cx, cy] = stops[si++ % stops.length]; cur.style.transform = `translate(${cx}px, ${cy}px)`; }
