@@ -83,6 +83,8 @@ svg * { transition: fill .8s ease, stop-color .8s ease, opacity .8s ease; }
 @keyframes blink { 0%,85%,100% { opacity: .2; } 90% { opacity: 1; } }
 @keyframes tail { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(14deg); } }
 .cloud { animation: drift linear infinite; }
+@keyframes pole { from { transform: translateY(0); } to { transform: translateY(20px); } }
+.pole { animation: pole 1.2s linear infinite; }
 .boat { animation: drift-slow linear infinite; }
 .bob { animation: bob 3.2s ease-in-out infinite; transform-box: fill-box; }
 .plane { animation: fly 6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
@@ -95,7 +97,7 @@ svg * { transition: fill .8s ease, stop-color .8s ease, opacity .8s ease; }
 .moon { opacity: var(--moon-o); }
 .win { fill: var(--win); }
 .lit { opacity: var(--win-o); }
-@media (prefers-reduced-motion: reduce) { .cloud, .boat, .bob, .plane, .star, .rip, .beacon, .cat-tail { animation: none !important; } }
+@media (prefers-reduced-motion: reduce) { .cloud, .boat, .bob, .plane, .star, .rip, .beacon, .cat-tail, .pole { animation: none !important; } }
 
 /* ---------- Pins: positioned in % of the 1600×900 world ---------- */
 .pin { position: absolute; left: calc(var(--x) / 1600 * 100%); top: calc(var(--y) / 900 * 100%); z-index: 3; }
@@ -117,6 +119,8 @@ svg * { transition: fill .8s ease, stop-color .8s ease, opacity .8s ease; }
 :root[data-time="night"] .chip .yr { background: rgba(255,255,255,.12); }
 .chip.left { left: auto; right: -14px; transform: none; }
 .chip.left:hover { transform: translateY(-3px) scale(1.04); }
+.chip.right { left: -14px; transform: none; }
+.chip.right:hover { transform: translateY(-3px) scale(1.04); }
 
 /* ---------- Hero copy ---------- */
 .copy { position: absolute; z-index: 4; left: max(24px, 5vw); top: max(84px, 13vh); max-width: min(560px, 88vw); color: var(--text-on-scene); pointer-events: none; transition: opacity .3s; }
@@ -190,6 +194,31 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
 .item .thumb.tg-2 { background-image: linear-gradient(140deg, #ff6a3d, #ffb36b); }
 .item .thumb.tg-3 { background-image: linear-gradient(140deg, #18181a, #3a3346); }
 
+.item .thumb.tg-4 { background-image: linear-gradient(140deg, #ffb347, #ff6a3d); }
+.item .thumb.tg-5 { background-image: linear-gradient(140deg, #2b1d55, #4f56d6); }
+.visuals { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+.vcard { cursor: pointer; }
+.vimg { display: block; aspect-ratio: 4/3; border-radius: 20px; transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+.vcard:hover .vimg { transform: translateY(-4px) rotate(-1deg); }
+.vimg.tg-2 { background: linear-gradient(140deg, #ff6a3d, #ffb36b); }
+.vimg.tg-6 { background: linear-gradient(140deg, #4f56d6, #9b5de5); }
+.vmeta { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 4px 0; }
+.vmeta h3 { font-size: 22px; letter-spacing: -.02em; }
+.vmeta .tag { font-size: 13px; padding: 5px 12px; border-radius: 999px; background: var(--paper-2); }
+.timeline { list-style: none; margin-top: 36px; border-top: 1.5px solid var(--ink); }
+.timeline li { display: grid; grid-template-columns: 190px 1fr; gap: 24px; padding: 24px 0; border-bottom: 1px solid #ddd5c6; }
+.timeline .when { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 4px; }
+.timeline h3 { font-size: 20px; font-weight: 500; letter-spacing: -.01em; }
+.timeline h3 b { font-weight: 700; }
+.timeline .where { display: inline-block; font-size: 13px; color: var(--muted); margin-top: 2px; }
+.timeline p { margin-top: 8px; color: #4a4846; max-width: 62ch; }
+.timeline li.early h3 { font-size: 17px; }
+.certs { margin-top: 18px; font-size: 14px; color: var(--muted); }
+.item { cursor: pointer; }
+@media (max-width: 760px) {
+  .visuals { grid-template-columns: 1fr; }
+  .timeline li { grid-template-columns: 1fr; gap: 4px; }
+}
 .about { display: grid; grid-template-columns: 300px 1fr; gap: 56px; align-items: start; margin-top: 36px; }
 .polaroid { background: #fff; padding: 12px 12px 44px; border-radius: 6px; box-shadow: 0 18px 40px rgba(40,25,10,.16); transform: rotate(-3deg); position: relative; }
 .polaroid .ph { aspect-ratio: 4/5; border-radius: 3px; background: linear-gradient(140deg, #2b1d55, #4f56d6) center/cover; display: grid; place-items: center; color: #fff; font-size: 52px; font-weight: 800; overflow: hidden; }
@@ -214,9 +243,14 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
   .hero { height: 100svh; }
   .scroller { overflow-x: auto; overflow-y: hidden; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
   .scroller::-webkit-scrollbar { display: none; }
-  .world { left: 0; transform: none !important; width: calc(100svh * 16 / 9); }
-  .copy { top: 70px; left: 18px; right: 18px; max-width: none; position: fixed; }
-  body.past .copy { opacity: 0; pointer-events: none; }
+  /* phones: headline on top, the city as a swipeable panorama underneath */
+  .world { left: 0; bottom: 0; transform: none !important; height: 64svh; width: calc(64svh * 16 / 9); }
+  .copy { top: 72px; left: 18px; right: 18px; max-width: none; position: absolute; }
+  .chip { font-size: 12px; gap: 6px; padding: 3px 9px 3px 3px; bottom: 28px; }
+  .chip .lg { width: 20px; height: 20px; font-size: 10px; }
+  .chip .yr { display: none; }
+  .pin .stem { height: 20px; }
+  .pin .dot { width: 12px; height: 12px; left: -6px; top: -6px; border-width: 3px; }
   .copy h1 { font-size: 34px; }
   .copy p { font-size: 14px; }
   .hint, .fly-hint { display: none; }
@@ -250,7 +284,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     <div class="copy">
       <span class="hey">👋 hey, I'm Yehia</span>
       <h1>Designing so users never <span class="strike">file a ticket.</span></h1>
-      <p>Senior product designer in Cairo. Ex-QA engineer, so I still design for the moment things break.</p>
+      <p>Senior product designer in Cairo. I turn complex B2B and AI products into flows people actually get.</p>
     </div>
 
     <div class="scroller" id="scroller">
@@ -339,6 +373,26 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
             </g>
           </g>
 
+          <!-- Benaa: building under construction + crane -->
+          <g>
+            <g stroke="var(--tower-d)" stroke-width="3" fill="none" opacity=".9">
+              <rect x="1452" y="470" width="120" height="150"/>
+              <path d="M1452 508 H1572 M1452 546 H1572 M1452 584 H1572 M1482 470 V620 M1512 470 V620 M1542 470 V620"/>
+            </g>
+            <rect x="1452" y="546" width="120" height="74" fill="var(--wall)"/>
+            <g class="lit"><rect x="1462" y="556" width="12" height="12" class="win"/><rect x="1522" y="590" width="12" height="12" class="win"/></g>
+            <g fill="#ffb347">
+              <rect x="1494" y="300" width="12" height="320" fill="url(#lattice)"/>
+              <rect x="1494" y="300" width="12" height="320" opacity=".85"/>
+              <rect x="1360" y="292" width="210" height="10"/>
+              <path d="M1506 292 L1500 262 L1494 292 Z"/>
+              <rect x="1540" y="302" width="26" height="22" fill="#5b4636"/>
+              <rect x="1488" y="300" width="24" height="18" rx="3" fill="#2b1d55"/>
+            </g>
+            <path d="M1500 262 L1370 296 M1500 262 L1566 296" stroke="#ffb347" stroke-width="2"/>
+            <g class="bob" style="animation-duration:4s"><path d="M1392 302 V410" stroke="#5b4636" stroke-width="2"/><rect x="1376" y="410" width="34" height="18" rx="2" fill="#ff6a3d"/></g>
+          </g>
+
           <!-- Cairo Tower: About -->
           <g>
             <rect x="1062" y="250" width="36" height="372" fill="url(#lattice)"/>
@@ -417,16 +471,48 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
             <text x="1250" y="742" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="15" fill="#fff" letter-spacing=".5">TWENTYTOO</text>
           </g>
 
+          <!-- Muzain: salon -->
+          <g>
+            <rect x="26" y="648" width="176" height="122" fill="var(--wall)"/>
+            <rect x="26" y="648" width="176" height="12" fill="var(--wall-d)"/>
+            <rect x="18" y="636" width="192" height="14" rx="3" fill="#2b1d55"/>
+            <path d="M36 676 L192 676 L200 700 L28 700 Z" fill="#4f56d6"/>
+            <path d="M28 700 Q42 712 56 700 Q70 712 84 700 Q98 712 112 700 Q126 712 140 700 Q154 712 168 700 Q182 712 200 700 Z" fill="#4f56d6"/>
+            <rect x="44" y="712" width="70" height="46" rx="4" fill="#fff8ee"/>
+            <path d="M60 748 L60 728 Q60 720 70 720 L86 720 Q96 720 96 730 L96 748" fill="none" stroke="#2b1d55" stroke-width="5" stroke-linecap="round"/>
+            <rect x="56" y="748" width="46" height="6" rx="2" fill="#2b1d55"/>
+            <path d="M130 770 L130 724 A22 22 0 0 1 174 724 L174 770 Z" fill="#2b1d55"/>
+            <g transform="translate(214 690)">
+              <rect x="-7" y="0" width="14" height="66" rx="7" fill="#fff"/>
+              <clipPath id="poleclip"><rect x="-7" y="0" width="14" height="66" rx="7"/></clipPath>
+              <g clip-path="url(#poleclip)"><g class="pole">
+                <path d="M-14 -20 L14 -34 L14 -26 L-14 -12 Z M-14 0 L14 -14 L14 -6 L-14 8 Z M-14 20 L14 6 L14 14 L-14 28 Z M-14 40 L14 26 L14 34 L-14 48 Z M-14 60 L14 46 L14 54 L-14 68 Z M-14 80 L14 66 L14 74 L-14 88 Z" fill="#ff6a3d"/>
+              </g></g>
+              <circle cx="0" cy="-4" r="7" fill="#4f56d6"/><circle cx="0" cy="70" r="6" fill="#5b4636"/>
+            </g>
+          </g>
+
           <!-- palms -->
           <g>
-            <g transform="translate(140 770)"><path d="M0 0 C4 -40 2 -80 12 -120" stroke="var(--trunk)" stroke-width="9" fill="none" stroke-linecap="round"/><g transform="translate(12 -122)" fill="var(--palm)"><path d="M0 0 C-30 -18 -60 -8 -74 10 C-50 -2 -26 -2 0 4 Z"/><path d="M0 0 C30 -20 62 -10 76 8 C50 -4 26 -2 0 4 Z"/><path d="M0 0 C-14 -30 -6 -54 6 -64 C2 -40 6 -22 4 2 Z" fill="var(--palm-d)"/><path d="M0 0 C-36 4 -54 26 -56 42 C-40 22 -24 12 0 4 Z" fill="var(--palm-d)"/><path d="M0 0 C34 2 54 22 58 40 C40 20 24 10 0 4 Z" fill="var(--palm-d)"/></g></g>
             <g transform="translate(640 772) scale(.85)"><path d="M0 0 C-4 -40 0 -86 -10 -122" stroke="var(--trunk)" stroke-width="9" fill="none" stroke-linecap="round"/><g transform="translate(-10 -124)" fill="var(--palm)"><path d="M0 0 C-30 -18 -60 -8 -74 10 C-50 -2 -26 -2 0 4 Z"/><path d="M0 0 C30 -20 62 -10 76 8 C50 -4 26 -2 0 4 Z"/><path d="M0 0 C-36 4 -54 26 -56 42 C-40 22 -24 12 0 4 Z" fill="var(--palm-d)"/><path d="M0 0 C34 2 54 22 58 40 C40 20 24 10 0 4 Z" fill="var(--palm-d)"/></g></g>
             <g transform="translate(1440 768)"><path d="M0 0 C4 -40 2 -90 14 -130" stroke="var(--trunk)" stroke-width="10" fill="none" stroke-linecap="round"/><g transform="translate(14 -132)" fill="var(--palm)"><path d="M0 0 C-30 -18 -60 -8 -74 10 C-50 -2 -26 -2 0 4 Z"/><path d="M0 0 C30 -20 62 -10 76 8 C50 -4 26 -2 0 4 Z"/><path d="M0 0 C-14 -30 -6 -54 6 -64 C2 -40 6 -22 4 2 Z" fill="var(--palm-d)"/><path d="M0 0 C-36 4 -54 26 -56 42 C-40 22 -24 12 0 4 Z" fill="var(--palm-d)"/><path d="M0 0 C34 2 54 22 58 40 C40 20 24 10 0 4 Z" fill="var(--palm-d)"/></g></g>
             <g transform="translate(1540 790) scale(.7)"><path d="M0 0 C-4 -40 0 -86 -10 -122" stroke="var(--trunk)" stroke-width="9" fill="none" stroke-linecap="round"/><g transform="translate(-10 -124)" fill="var(--palm)"><path d="M0 0 C-30 -18 -60 -8 -74 10 C-50 -2 -26 -2 0 4 Z"/><path d="M0 0 C30 -20 62 -10 76 8 C50 -4 26 -2 0 4 Z"/><path d="M0 0 C-36 4 -54 26 -56 42 C-40 22 -24 12 0 4 Z" fill="var(--palm-d)"/></g></g>
           </g>
 
+          <!-- Fahs: inspection kiosk -->
+          <g>
+            <rect x="1004" y="690" width="96" height="80" rx="6" fill="#fff8ee"/>
+            <path d="M996 690 L1108 690 L1100 672 L1004 672 Z" fill="#2b1d55"/>
+            <rect x="1016" y="704" width="72" height="34" rx="4" fill="var(--glass-1)"/>
+            <rect class="lit" x="1016" y="704" width="72" height="34" rx="4" fill="#ffd27a" opacity=".85"/>
+            <rect x="1012" y="746" width="80" height="6" rx="3" fill="#e3c49e"/>
+            <circle cx="1052" cy="648" r="20" fill="#fff" stroke="#4f56d6" stroke-width="6"/>
+            <path d="M1066 662 L1080 676" stroke="#4f56d6" stroke-width="8" stroke-linecap="round"/>
+            <path d="M1044 648 L1050 654 L1062 640" stroke="#ff6a3d" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+
           <!-- the street cat -->
-          <g transform="translate(1030 790)">
+          <g transform="translate(668 792)">
             <path class="cat-tail" d="M22 -6 C40 -10 44 -30 34 -38" stroke="#e98a3a" stroke-width="6" fill="none" stroke-linecap="round"/>
             <ellipse cx="10" cy="-12" rx="20" ry="14" fill="#f29a4a"/>
             <circle cx="-8" cy="-28" r="12" fill="#f29a4a"/>
@@ -437,23 +523,32 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
         </svg>
 
         <!-- ======================= PINS ======================= -->
+        <!-- case studies -->
         <div class="pin" style="--x:390; --y:566"><span class="stem"></span><span class="dot"></span>
-          <button class="chip" data-place="pos"><span class="lg" style="background:#2b1d55">P</span>POS redesign<span class="yr">2026</span></button></div>
+          <button class="chip" data-place="pos"><span class="lg" style="background:#2b1d55">P</span>POS System<span class="yr">Case study</span></button></div>
         <div class="pin" style="--x:1250; --y:352"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="twentytoo"><span class="lg" style="background:#4f56d6">T</span>TwentyToo<span class="yr">2023 – now</span></button></div>
+        <div class="pin" style="--x:1500; --y:256"><span class="stem"></span><span class="dot"></span>
+          <button class="chip left" data-place="benaa"><span class="lg" style="background:#ffb347">B</span>Benaa<span class="yr">Desktop</span></button></div>
+        <div class="pin" style="--x:1052; --y:622"><span class="stem"></span><span class="dot"></span>
+          <button class="chip" data-place="fahs"><span class="lg" style="background:#4f56d6">F</span>Fahs<span class="yr">Mobile</span></button></div>
+        <!-- visual projects -->
         <div class="pin" style="--x:860; --y:552"><span class="stem"></span><span class="dot"></span>
-          <button class="chip" data-place="reach"><span class="lg" style="background:#ff6a3d">R</span>Reach Link<span class="yr">2023</span></button></div>
+          <button class="chip" data-place="reach"><span class="lg" style="background:#ff6a3d">R</span>Reach Link<span class="yr">Visual</span></button></div>
+        <div class="pin" style="--x:114; --y:630"><span class="stem"></span><span class="dot"></span>
+          <button class="chip right" data-place="muzain"><span class="lg" style="background:#2b1d55">M</span>Muzain<span class="yr">Visual</span></button></div>
+        <!-- me -->
         <div class="pin" style="--x:900; --y:150"><span class="stem"></span><span class="dot"></span>
-          <button class="chip" data-place="kuwait"><span class="lg" style="background:#18181a">✈</span>Kuwait Airlines<span class="yr">2022</span></button></div>
+          <button class="chip" data-place="journey"><span class="lg" style="background:#18181a">✈</span>My journey<span class="yr">US · KW · UAE</span></button></div>
         <div class="pin" style="--x:1080; --y:178"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="about"><span class="lg"><img src="assets/me.png" alt="" onerror="this.parentElement.textContent='Y';this.parentElement.style.background='#2b1d55'"></span>That's me 👋</button></div>
         <div class="pin" style="--x:560; --y:600"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="contact"><span class="lg" style="background:#ff6a3d">✉</span>Say hi</button></div>
-        <div class="pin" style="--x:1022; --y:748"><span class="stem"></span><span class="dot"></span>
+        <div class="pin" style="--x:660; --y:750"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="cat"><span class="lg" style="background:#f29a4a">🐈</span>Mishmish</button></div>
 
-        <div class="hint hand" style="left:calc(130 / 1600 * 100%); top:calc(586 / 900 * 100%)">click a place
-          <svg viewBox="0 0 64 30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 18 C20 6 40 8 56 16"/><path d="M48 9 L57 16 L47 22"/></svg>
+        <div class="hint hand" style="left:calc(268 / 1600 * 100%); top:calc(452 / 900 * 100%)">click a place
+          <svg viewBox="0 0 64 30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" style="transform:rotate(28deg)"><path d="M4 18 C20 6 40 8 56 16"/><path d="M48 9 L57 16 L47 22"/></svg>
         </div>
       </div>
     </div>
@@ -467,14 +562,45 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
   <svg class="tear" viewBox="0 0 1600 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 L0 22 L40 26 L70 14 L110 24 L150 12 L190 22 L230 16 L270 26 L320 10 L360 22 L410 14 L450 24 L500 12 L540 22 L590 16 L630 26 L680 12 L720 22 L770 14 L810 24 L860 10 L900 22 L950 16 L990 26 L1040 12 L1080 22 L1130 14 L1170 24 L1220 12 L1260 22 L1310 16 L1350 26 L1400 12 L1440 22 L1490 14 L1530 24 L1570 16 L1600 22 L1600 40 Z" fill="var(--paper)"/></svg>
 
   <div class="wrap sec">
-    <div class="eyebrow">Selected work</div>
+    <div class="eyebrow">Case studies</div>
     <h2>Places I've built <span class="hand">things for</span></h2>
     <div class="work">
-      <a class="item" href="case-study.html"><span class="n">01</span><div><h3>POS redesign</h3><p>14 findings on an Arabic cashier screen, then a prototype that fixes all of them.</p></div><span class="tag">B2B · RTL · Case study</span><span class="thumb" style="background-image:url(assets/pos-card.webp)"></span></a>
-      <div class="item" data-open="twentytoo" role="button" tabindex="0"><span class="n">02</span><div><h3>TwentyToo</h3><p>A B2B AI platform and a 96-component library.</p></div><span class="tag">AI-SaaS · Soon</span><span class="thumb tg-1"></span></div>
-      <div class="item" data-open="reach" role="button" tabindex="0"><span class="n">03</span><div><h3>Reach Link</h3><p>Two-sided campaigns, used by 223 creators and 27 brands.</p></div><span class="tag">Marketplace · Soon</span><span class="thumb tg-2"></span></div>
-      <div class="item" data-open="kuwait" role="button" tabindex="0"><span class="n">04</span><div><h3>Kuwait Airlines</h3><p>Operational workflows, redesigned to cut task time by 20%.</p></div><span class="tag">Enterprise · Soon</span><span class="thumb tg-3"></span></div>
+      <div class="item" data-open="pos" role="button" tabindex="0"><span class="n">01</span><div><h3>Design a full POS system</h3><p>An Arabic point-of-sale system, from cashier flows to the back office.</p></div><span class="tag">B2B · RTL · Soon</span><span class="thumb" style="background-image:url(assets/pos-card.webp)"></span></div>
+      <div class="item" data-open="twentytoo" role="button" tabindex="0"><span class="n">02</span><div><h3>TwentyToo</h3><p>A B2B AI-SaaS platform and a 96-component library.</p></div><span class="tag">AI-SaaS · Soon</span><span class="thumb tg-1"></span></div>
+      <div class="item" data-open="benaa" role="button" tabindex="0"><span class="n">03</span><div><h3>Benaa</h3><p>A desktop app. Case study on the way.</p></div><span class="tag">Desktop · Soon</span><span class="thumb tg-4"></span></div>
+      <div class="item" data-open="fahs" role="button" tabindex="0"><span class="n">04</span><div><h3>Fahs</h3><p>A mobile app. Case study on the way.</p></div><span class="tag">Mobile · Soon</span><span class="thumb tg-5"></span></div>
     </div>
+  </div>
+
+  <div class="wrap sec">
+    <div class="eyebrow">Visual projects</div>
+    <h2>Things that <span class="hand">just look good</span></h2>
+    <div class="visuals">
+      <div class="vcard" data-open="reach" role="button" tabindex="0"><span class="vimg tg-2"></span><div class="vmeta"><h3>Reach Link</h3><span class="tag">Marketplace · Soon</span></div></div>
+      <div class="vcard" data-open="muzain" role="button" tabindex="0"><span class="vimg tg-6"></span><div class="vmeta"><h3>Muzain app</h3><span class="tag">Mobile · Soon</span></div></div>
+    </div>
+  </div>
+
+  <div class="wrap sec" id="journey">
+    <div class="eyebrow">Journey</div>
+    <h2>Where I've <span class="hand">worked</span></h2>
+    <ol class="timeline">
+      <li><span class="when">Dec 2023 – now</span><div><h3>Senior Product Designer · <b>TwentyToo</b></h3><span class="where">USA · Remote</span>
+        <p>Lead end-to-end design for a B2B AI-SaaS platform. Built the UI style guide and a 96-component library, and designed onboarding and activation flows.</p></div></li>
+      <li><span class="when">Jan 2023 – Dec 2025</span><div><h3>Senior Product Designer · <b>Reach Link</b></h3><span class="where">Kuwait · Remote</span>
+        <p>Led design for a B2B2C influencer–brand marketplace and a link-in-bio platform. Two-sided campaign flows used by 223 creators and 27 brands.</p></div></li>
+      <li><span class="when">Mar – Aug 2025</span><div><h3>Product Designer · <b>Talentera (bayt.com)</b></h3><span class="where">UAE · Project-based</span>
+        <p>Led the Talentera events landing page, from content structure to final UI.</p></div></li>
+      <li><span class="when">Jan 2022 – Jan 2023</span><div><h3>UI/UX Designer · <b>Automated Systems Company</b></h3><span class="where">Kuwait</span>
+        <p>Redesigned operational workflows for Kuwait Airlines, cutting task time by 20%. Designed a full hospital management system end to end.</p></div></li>
+      <li><span class="when">Apr – Dec 2021</span><div><h3>Product Owner & UI/UX Designer · <b>Medica Healthy</b></h3><span class="where">Egypt</span>
+        <p>Owned the backlog and UI flows for a medical app, website and web portal.</p></div></li>
+      <li><span class="when">2019 – Mar 2021</span><div><h3>UI/UX Designer · <b>The Tailors Dev</b></h3><span class="where">Egypt</span>
+        <p>Landing pages, admin dashboards and high-fidelity prototypes for client sign-off.</p></div></li>
+      <li class="early"><span class="when">2014 – 2018</span><div><h3>UI Designer · <b>Spree Media</b> &nbsp;·&nbsp; Web Designer · <b>OMNAS</b></h3><span class="where">Egypt</span>
+        <p>Where it started: designing and building websites, then web product interfaces.</p></div></li>
+    </ol>
+    <p class="certs">Google UX Design Foundations · Designing Web & Mobile Interfaces</p>
   </div>
 
   <div class="wrap sec" id="about">
@@ -482,9 +608,9 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     <div class="about">
       <div class="polaroid"><div class="ph"><img src="assets/me.png" alt="Yehia Mourad" onerror="this.remove()">YM</div><span class="cap hand">Cairo, 2026</span></div>
       <div class="txt">
-        <p>8+ years in product design, the last 5 on complex B2B. <span>I lead from discovery to handoff, build design systems, and turn what AI models can do into flows people actually understand.</span></p>
-        <p>I started in QA. <span>That's why I design the empty states, the errors and the edge cases first. Most of my work ships in Arabic and English, so right-to-left is the default, not an afterthought.</span></p>
-        <div class="stamps"><span>AI-SaaS</span><span>Design systems</span><span>B2B · B2B2C</span><span>Arabic RTL</span><span>Claude + Figma MCP</span></div>
+        <p>8+ years in digital product design, 5+ on complex B2B and B2B2C products. <span>I lead from discovery and information architecture through prototyping, design systems and handoff.</span></p>
+        <p>Right now I'm focused on AI-SaaS: <span>turning complex model capabilities into clear workflows, and building design systems that help teams ship faster. Most of my work ships in Arabic and English, so right-to-left is the default.</span></p>
+        <div class="stamps"><span>AI-SaaS UX</span><span>Design systems</span><span>Interaction design</span><span>Product discovery</span><span>Arabic RTL</span><span>Claude + Figma MCP</span><span>Figma</span><span>JIRA</span></div>
       </div>
     </div>
   </div>
@@ -505,6 +631,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
 <nav class="nav" aria-label="Main">
   <a class="on" href="#top"><img src="assets/me.png" alt="" onerror="this.remove()">Home</a>
   <a href="#work">Work</a>
+  <a class="hide-sm" href="#journey">Journey</a>
   <a class="hide-sm" href="#about">About</a>
   <a href="#contact">Contact</a>
   <a class="cta" href="assets/Yehia-Mourad-Resume.pdf" target="_blank">Resume ↗</a>
@@ -550,26 +677,33 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
   document.getElementById("time").onclick = () => setTime(root.dataset.time === "day" ? "night" : "day");
 
   /* ---------- Places ---------- */
+  // Case studies and visuals marked soon: true show "coming soon" until you add them.
+  // To publish one later: add  cta: ["Read the case study", "your-page.html"]  and remove soon.
   const places = {
-    pos: { kicker: "B2B · RTL · 2026", title: "POS redesign", img: "assets/pos-card.webp",
-      text: "An Arabic point-of-sale system for furniture retail. I audited two core screens and rebuilt them as a working prototype.",
-      list: ["14 findings across usability, hierarchy and accessibility", "Total moved to the top, Pay made the only obvious action", "Delivered as a clickable HTML prototype"],
-      cta: ["Read the case study", "case-study.html"] },
-    twentytoo: { kicker: "AI-SaaS · 2023 – now", title: "TwentyToo", grad: "linear-gradient(140deg,#4f56d6,#9b5de5)",
-      text: "Leading end-to-end design for a B2B AI platform, turning what the models can do into workflows people understand.",
-      list: ["UI style guide and a 96-component library", "Onboarding and activation flows", "Close work with product, engineering and data"] },
-    reach: { kicker: "B2B2C marketplace · 2023", title: "Reach Link", grad: "linear-gradient(140deg,#ff6a3d,#ffb36b)",
-      text: "An influencer–brand marketplace and a link-in-bio platform, from discovery to launch.",
-      list: ["Two-sided campaign flows for creators and brands", "Used by 223 creators and 27 brands", "Design system guidelines across both products"] },
-    kuwait: { kicker: "Enterprise · 2022", title: "Kuwait Airlines", grad: "linear-gradient(140deg,#18181a,#3a3346)",
-      text: "Operational workflows for airline staff, redesigned at Automated Systems Company.",
-      list: ["Task completion time cut by 20%", "Dense, high-frequency internal tools"] },
+    pos: { kicker: "Case study · B2B · RTL", title: "Design a full POS system", img: "assets/pos-card.webp",
+      text: "An Arabic point-of-sale system, from the cashier's checkout to the back office. Full case study coming soon.",
+      list: ["Cashier flows built for speed under pressure", "Arabic RTL from the first sketch", "Prototyped and tested in the browser"], soon: true },
+    twentytoo: { kicker: "Case study · AI-SaaS · 2023 – now", title: "TwentyToo", grad: "linear-gradient(140deg,#4f56d6,#9b5de5)",
+      text: "Leading end-to-end design for a B2B AI-SaaS platform, turning complex model capabilities into clear, usable workflows.",
+      list: ["UI style guide and a library of 96 reusable components", "Onboarding and activation flows for an early-stage product", "Close work with product, engineering and data teams"], soon: true },
+    benaa: { kicker: "Case study · Desktop app", title: "Benaa", grad: "linear-gradient(140deg,#ffb347,#ff6a3d)",
+      text: "A desktop app. The full story is on its way.", soon: true },
+    fahs: { kicker: "Case study · Mobile app", title: "Fahs", grad: "linear-gradient(140deg,#2b1d55,#4f56d6)",
+      text: "A mobile app. The full story is on its way.", soon: true },
+    reach: { kicker: "Visual project · Marketplace", title: "Reach Link", grad: "linear-gradient(140deg,#ff6a3d,#ffb36b)",
+      text: "A B2B2C influencer–brand marketplace and a link-in-bio platform. Visuals coming soon.",
+      list: ["Two-sided campaign flows for creators and brands", "Used by 223 creators and 27 brands"], soon: true },
+    muzain: { kicker: "Visual project · Mobile app", title: "Muzain app", grad: "linear-gradient(140deg,#4f56d6,#9b5de5)",
+      text: "Visuals coming soon.", soon: true },
+    journey: { kicker: "8+ years · USA · Kuwait · UAE · Egypt", title: "My journey", grad: "linear-gradient(140deg,#18181a,#3a3346)",
+      text: "From building websites in 2014 to leading design on AI-SaaS today, working with teams across four countries.",
+      list: ["TwentyToo, USA · Senior Product Designer · 2023 – now", "Reach Link, Kuwait · Senior Product Designer · 2023 – 2025", "Talentera (bayt.com), UAE · Product Designer · 2025", "Automated Systems Co., Kuwait · Kuwait Airlines, −20% task time · 2022"],
+      cta: ["See the full journey", "#journey"] },
     about: { kicker: "Cairo · 8+ years", title: "That's me 👋", img: "assets/me.png", grad: "linear-gradient(140deg,#2b1d55,#4f56d6)",
-      text: "Senior product designer, ex-QA engineer. I design B2B and AI products in Arabic and English.",
+      text: "Senior product designer focused on AI-SaaS and complex B2B. I design in Arabic and English.",
       cta: ["More about me", "#about"] },
     contact: { kicker: "Usually reply within a day", title: "Say hi", grad: "linear-gradient(140deg,#ff6a3d,#2b1d55)",
-      text: "Hiring a product designer, or want to talk design systems and AI? My inbox is open.",
-      copy: true },
+      text: "Hiring a product designer, or want to talk design systems and AI? My inbox is open.", copy: true },
     cat: { kicker: "Head of QA", title: "Mishmish 🐈", grad: "linear-gradient(140deg,#f29a4a,#ffd27a)",
       text: "Every street in Cairo has a cat. This one sits on every keyboard and finds the bugs first." }
   };
@@ -587,7 +721,8 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     img.style.backgroundPosition = key === "about" ? "center 20%" : "center";
     let row = "";
     if (p.cta) row += `<a class="btn solid" href="${p.cta[1]}">${p.cta[0]} →</a>`;
-    else if (!p.copy && key !== "cat" && key !== "about") row += `<span class="btn ghost">Case study coming soon</span>`;
+    if (p.soon) row += `<span class="btn ghost">${p.kicker.startsWith("Visual") ? "Visuals" : "Case study"} coming soon</span>`;
+    if (p.extra) row += `<a class="btn" href="${p.extra[1]}">${p.extra[0]} →</a>`;
     if (p.copy) row += `<button class="btn solid" data-copy>Copy email</button><a class="btn" href="https://www.linkedin.com/in/yehia-mourad" target="_blank" rel="noopener">LinkedIn</a>`;
     $("s-row").innerHTML = row;
     $("s-row").querySelectorAll("[data-copy]").forEach(b => b.onclick = copy);
@@ -618,7 +753,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
   const phone = () => matchMedia("(max-width: 760px)").matches;
   function onScroll() {
     const navLinks = document.querySelectorAll(".nav a:not(.cta)");
-    const sections = ["top", "work", "about", "contact"].map(id => document.getElementById(id));
+    const sections = ["top", "work", "journey", "about", "contact"].map(id => document.getElementById(id));
     let cur = 0; sections.forEach((s, i) => { if (s.getBoundingClientRect().top < innerHeight * .45) cur = i; });
     navLinks.forEach((a, i) => a.classList.toggle("on", i === cur));
     document.body.classList.toggle("past", scrollY > innerHeight * .4);
