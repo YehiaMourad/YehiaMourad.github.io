@@ -87,7 +87,7 @@
   /* canvas behaves like a design tool: dragging pans, it never selects text or drags images */
   .viewport { -webkit-user-select: none; user-select: none; }
   .viewport img, .viewport a { -webkit-user-drag: none; user-drag: none; }
-  .world { position: absolute; left: 0; top: 0; width: 3000px; height: 1900px; transform-origin: 0 0; will-change: transform; }
+  .world { position: absolute; left: 0; top: 0; width: 3000px; height: 2600px; transform-origin: 0 0; will-change: transform; }
   .world.fly { transition: transform .7s cubic-bezier(.65,0,.25,1); }
 
   .frame { position: absolute; }
@@ -119,6 +119,15 @@
   .ph-2 { background-image: linear-gradient(140deg, #4f56d6, #9b5de5); }
   .ph-3 { background-image: linear-gradient(140deg, #ff6a3d, #ff9a6b); }
   .ph-4 { background-image: linear-gradient(140deg, #18181a, #3a3346); }
+  .ph-5 { background-image: linear-gradient(140deg, #ffb347, #ff6a3d); }
+  .ph-6 { background-image: linear-gradient(140deg, #2b1d55, #4f56d6); }
+  .ph-7 { background-image: linear-gradient(140deg, #4f56d6, #9b5de5); }
+  .cap-actions { display: flex; gap: 6px; flex: none; }
+  .open.ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--line); }
+  .open.ghost:hover { box-shadow: inset 0 0 0 1.5px var(--ink); }
+  /* Figma-style section */
+  .section-box { position: absolute; border-radius: 6px; background: color-mix(in srgb, var(--accent) 6%, transparent); border: 1.5px dashed color-mix(in srgb, var(--accent) 40%, transparent); }
+  .section-name { position: absolute; top: 12px; left: 14px; font-size: 13px; font-weight: 600; color: var(--accent); background: var(--panel); padding: 3px 10px; border-radius: 6px; box-shadow: var(--shadow); }
   .shot .scr { position: absolute; left: 50%; top: 42%; transform: translate(-50%, -50%); width: 64%; aspect-ratio: 16/10; border-radius: 12px; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.3); box-shadow: 0 30px 60px rgba(0,0,0,.22); }
   .shot .scr.phone { width: 42%; aspect-ratio: 9/18; border-radius: 26px; top: 46%; }
   .cap { position: absolute; left: 16px; right: 16px; bottom: 16px; background: var(--panel); border-radius: 14px; padding: 16px 18px; display: flex; justify-content: space-between; align-items: center; gap: 14px; }
@@ -155,6 +164,35 @@
   .cbtn { height: 44px; padding: 0 18px; border-radius: 11px; display: inline-flex; align-items: center; font-weight: 600; font-size: 14px; border: 1.5px solid rgba(255,255,255,.35); background: transparent; color: #fff; cursor: pointer; }
   .cbtn.solid { background: #fff; color: var(--deep); border-color: #fff; }
   .cbtn:hover { transform: translateY(-1px); }
+
+
+  /* journey: a timeline "component" */
+  .journey .frame-body { padding: 40px 44px; display: flex; flex-direction: column; }
+  .jhead { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+  .jhead h2 { font-size: 40px; line-height: 1.05; letter-spacing: -.03em; font-weight: 700; }
+  .jhead h2 span { color: var(--coral); }
+  .jhead p { color: var(--muted); font-size: 15px; max-width: 46ch; text-align: right; }
+  .jaxis { position: relative; height: 34px; margin: 34px 0 6px; }
+  .jaxis::before { content: ""; position: absolute; left: 0; right: 0; top: 16px; height: 2px; background: var(--line); }
+  .jaxis span { position: absolute; top: 0; font-family: var(--mono); font-size: 11px; color: var(--muted); transform: translateX(-50%); padding-top: 22px; }
+  .jaxis span::before { content: ""; position: absolute; left: 50%; top: 11px; width: 12px; height: 12px; margin-left: -6px; border-radius: 50%; background: var(--panel); border: 3px solid var(--muted); }
+  .jaxis span.now::before { border-color: var(--accent); background: var(--accent); box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 22%, transparent); }
+  .jaxis span.now { color: var(--accent); font-weight: 500; }
+  .jcards { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 1fr; gap: 14px; margin-top: 28px; flex: 1; }
+  .jcard { background: var(--bg); border-radius: 14px; padding: 18px 18px 16px; display: flex; flex-direction: column; position: relative; border: 1px solid transparent; }
+  .jcard.cur { background: color-mix(in srgb, var(--accent) 10%, var(--panel)); border-color: color-mix(in srgb, var(--accent) 35%, transparent); }
+  .jcard .when { font-family: var(--mono); font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+  .jcard .when::before { content: ""; width: 9px; height: 9px; border-radius: 50%; border: 2px solid var(--muted); flex: none; }
+  .jcard.cur .when::before { border-color: var(--accent); background: var(--accent); }
+  .jcard.cur .when { color: var(--accent); }
+  .jcard h3 { font-size: 19px; font-weight: 700; letter-spacing: -.015em; margin-top: 10px; line-height: 1.15; }
+  .jcard .role { font-size: 13.5px; color: var(--ink); margin-top: 3px; }
+  .jcard p { font-size: 13px; color: var(--muted); line-height: 1.5; margin-top: 10px; }
+  .jcard .loc { margin-top: auto; padding-top: 14px; display: flex; gap: 6px; flex-wrap: wrap; }
+  .jcard .loc span { font-size: 11px; padding: 3px 8px; border-radius: 999px; background: var(--panel); color: var(--muted); }
+  .jcard.cur .loc span:first-child { background: var(--accent); color: #fff; }
+  .jcard .metric { display: inline-block; margin-top: 10px; font-family: var(--mono); font-size: 12px; color: var(--coral); }
+  .jfoot { margin-top: 18px; font-size: 12.5px; color: var(--muted); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 
   /* comment pins */
   .pin { position: absolute; display: flex; align-items: flex-start; gap: 8px; z-index: 5; pointer-events: auto; }
@@ -196,6 +234,14 @@
     .contact .frame-body { padding: 30px 24px; }
     .contact h2 { font-size: 34px; }
     .contact .row { margin-top: 28px; }
+    .journey .frame-body { padding: 26px 20px; }
+    .jhead { flex-direction: column; align-items: flex-start; }
+    .jhead h2 { font-size: 30px; }
+    .jhead p { text-align: left; }
+    .jaxis { display: none; }
+    .jcards { grid-template-columns: 1fr; }
+    .section-box { display: none; }
+    .cap-actions { flex-direction: column; }
     .pin { position: relative !important; left: auto !important; top: auto !important; margin: -40px 0 0 10px; }
     .pin .bubble { width: auto; flex: 1; }
     .cursor { display: none; }
@@ -246,22 +292,22 @@
     </section>
 
     <!-- POS -->
-    <a class="frame proj" href="case-study.html" data-name="POS redesign" data-icon="frame" style="left:900px; top:100px; width:640px; height:560px;">
-      <div class="frame-label"><span>POS redesign</span><span class="mono">Case study</span></div>
+    <section class="frame proj" data-name="POS system" data-icon="frame" style="left:900px; top:100px; width:640px; height:560px;">
+      <div class="frame-label"><span>Design a full POS system</span><span class="mono">Case study</span></div>
       <div class="frame-body">
-        <!-- Real image: replace ph-1 with style="background-image:url(assets/pos.png)" -->
         <div class="shot" style="background-image:url(assets/pos-canvas.webp)"></div>
-        <div class="cap"><div><span class="tag">B2B · RTL · AUDIT</span><h3>POS redesign</h3><p>14 findings on an Arabic cashier screen, then a prototype that fixes all of them.</p></div><span class="open">Open ↗</span></div>
+        <div class="cap"><div><span class="tag">CASE STUDY · B2B · RTL</span><h3>Design a full POS system</h3><p>An Arabic point-of-sale system, from the cashier's checkout to the back office.</p></div>
+          <div class="cap-actions"><span class="open soon">Soon</span><a class="open ghost" href="case-study.html">POS audit ↗</a></div></div>
       </div>
       <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
-    </a>
+    </section>
 
     <!-- TwentyToo -->
     <section class="frame proj" data-name="TwentyToo" data-icon="frame" style="left:1620px; top:100px; width:560px; height:560px;">
       <div class="frame-label"><span>TwentyToo</span><span class="mono">AI-SaaS</span></div>
       <div class="frame-body">
         <div class="shot ph-2"><div class="scr"></div></div>
-        <div class="cap"><div><span class="tag">AI-SAAS · DESIGN SYSTEM</span><h3>TwentyToo</h3><p>A B2B AI platform and a 96-component library.</p></div><span class="open soon">Soon</span></div>
+        <div class="cap"><div><span class="tag">CASE STUDY · AI-SAAS</span><h3>TwentyToo</h3><p>A B2B AI-SaaS platform, a UI style guide and a 96-component library.</p></div><span class="open soon">Soon</span></div>
       </div>
       <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
     </section>
@@ -299,22 +345,22 @@
       <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
     </section>
 
-    <!-- Reach Link (phone frame) -->
-    <section class="frame proj" data-name="Reach Link" data-icon="phone" style="left:900px; top:780px; width:360px; height:720px;">
-      <div class="frame-label"><span>Reach Link</span><span class="mono">390 × 780</span></div>
+    <!-- Benaa (desktop app) -->
+    <section class="frame proj" data-name="Benaa" data-icon="frame" style="left:900px; top:780px; width:640px; height:480px;">
+      <div class="frame-label"><span>Benaa</span><span class="mono">Desktop app</span></div>
       <div class="frame-body">
-        <div class="shot ph-3"><div class="scr phone"></div></div>
-        <div class="cap"><div><span class="tag">B2B2C · MARKETPLACE</span><h3>Reach Link</h3><p>Used by 223 creators and 27 brands.</p></div><span class="open soon">Soon</span></div>
+        <div class="shot ph-5"><div class="scr"></div></div>
+        <div class="cap"><div><span class="tag">CASE STUDY · DESKTOP APP</span><h3>Benaa</h3><p>Desktop app. Case study on the way.</p></div><span class="open soon">Soon</span></div>
       </div>
       <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
     </section>
 
-    <!-- Kuwait Airlines -->
-    <section class="frame proj" data-name="Kuwait Airlines" data-icon="frame" style="left:1340px; top:780px; width:640px; height:480px;">
-      <div class="frame-label"><span>Kuwait Airlines</span><span class="mono">Enterprise</span></div>
+    <!-- Fahs (mobile app) -->
+    <section class="frame proj" data-name="Fahs" data-icon="phone" style="left:1620px; top:780px; width:360px; height:720px;">
+      <div class="frame-label"><span>Fahs</span><span class="mono">Mobile app</span></div>
       <div class="frame-body">
-        <div class="shot ph-4"><div class="scr"></div></div>
-        <div class="cap"><div><span class="tag">ENTERPRISE · WORKFLOWS</span><h3>Kuwait Airlines</h3><p>Operational workflows, redesigned to cut task time by 20%.</p></div><span class="open soon">Soon</span></div>
+        <div class="shot ph-6"><div class="scr phone"></div></div>
+        <div class="cap"><div><span class="tag">CASE STUDY · MOBILE</span><h3>Fahs</h3><p>Mobile app. Case study on the way.</p></div><span class="open soon">Soon</span></div>
       </div>
       <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
     </section>
@@ -335,8 +381,85 @@
       <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
     </section>
 
+    <!-- Journey: experience timeline (from the resume) -->
+    <section class="frame journey" id="journey" data-name="Journey" data-icon="timeline" style="left:100px; top:1620px; width:1360px; height:820px;">
+      <div class="frame-label"><span>Journey</span><span class="mono">Newest first · 2014 → now</span></div>
+      <div class="frame-body">
+        <div class="jhead">
+          <h2>Where I've worked<span>.</span></h2>
+          <p>8+ years in digital product design, 5+ on complex B2B and B2B2C. Remote with teams in the US, Kuwait and the UAE.</p>
+        </div>
+        <div class="jcards">
+          <article class="jcard cur">
+            <span class="when">Dec 2023 – now</span><h3>TwentyToo</h3><span class="role">Senior Product Designer</span>
+            <p>End-to-end design for a B2B AI-SaaS platform. UI style guide, a 96-component library, onboarding and activation flows.</p>
+            <span class="metric">96 components</span>
+            <div class="loc"><span>Current</span><span>USA · Remote</span></div>
+          </article>
+          <article class="jcard">
+            <span class="when">Jan 2023 – Dec 2025</span><h3>Reach Link</h3><span class="role">Senior Product Designer</span>
+            <p>B2B2C influencer–brand marketplace and a link-in-bio platform, from discovery to launch.</p>
+            <span class="metric">223 creators · 27 brands</span>
+            <div class="loc"><span>Kuwait · Remote</span></div>
+          </article>
+          <article class="jcard">
+            <span class="when">Mar – Aug 2025</span><h3>Talentera <small style="font-weight:500;color:var(--muted)">(bayt.com)</small></h3><span class="role">Product Designer</span>
+            <p>Led the Talentera events landing page, from content structure and layout to final UI.</p>
+            <div class="loc"><span>UAE · Project-based</span></div>
+          </article>
+          <article class="jcard">
+            <span class="when">Jan 2022 – Jan 2023</span><h3>Automated Systems Co.</h3><span class="role">UI/UX Designer</span>
+            <p>Operational workflows for Kuwait Airlines, and a full hospital management system end to end.</p>
+            <span class="metric">−20% task time</span>
+            <div class="loc"><span>Kuwait</span></div>
+          </article>
+          <article class="jcard">
+            <span class="when">Apr – Dec 2021</span><h3>Medica Healthy</h3><span class="role">Product Owner & UI/UX Designer</span>
+            <p>Owned the backlog and UI flows for a medical app, website and web portal.</p>
+            <div class="loc"><span>Egypt</span></div>
+          </article>
+          <article class="jcard">
+            <span class="when">2019 – Mar 2021</span><h3>The Tailors Dev</h3><span class="role">UI/UX Designer</span>
+            <p>Landing pages, admin dashboards and high-fidelity prototypes for client sign-off.</p>
+            <div class="loc"><span>Egypt</span></div>
+          </article>
+          <article class="jcard">
+            <span class="when">2014 – 2018</span><h3>Spree Media · OMNAS</h3><span class="role">UI Designer · Web Designer</span>
+            <p>Where it started: designing and building websites, then web product interfaces.</p>
+            <div class="loc"><span>Egypt</span></div>
+          </article>
+          <article class="jcard" style="background:var(--deep);color:#fff">
+            <span class="when" style="color:rgba(255,255,255,.7)">Toolkit</span><h3>What I bring</h3>
+            <p style="color:rgba(255,255,255,.75)">AI-SaaS UX · Design systems · Interaction design · Product discovery · Arabic RTL</p>
+            <p style="color:rgba(255,255,255,.75)">Figma (components, variables, auto layout) · Claude + Figma MCP · Figma AI · JIRA</p>
+          </article>
+        </div>
+        <div class="jfoot"><span>Google UX Design Foundations · Designing Web & Mobile Interfaces</span><a href="assets/Yehia-Mourad-Resume.pdf" target="_blank" style="color:var(--accent);font-weight:600">Full resume ↗</a></div>
+      </div>
+      <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
+    </section>
+
+    <!-- Visual projects section -->
+    <div class="section-box" style="left:1540px; top:1620px; width:840px; height:860px;"><span class="section-name">Visual projects</span></div>
+    <section class="frame proj" data-name="Reach Link" data-icon="phone" style="left:1580px; top:1724px; width:360px; height:720px;">
+      <div class="frame-label"><span>Reach Link</span><span class="mono">Visual</span></div>
+      <div class="frame-body">
+        <div class="shot ph-3"><div class="scr phone"></div></div>
+        <div class="cap"><div><span class="tag">VISUAL · MARKETPLACE</span><h3>Reach Link</h3><p>Influencer–brand marketplace. Used by 223 creators and 27 brands.</p></div><span class="open soon">Soon</span></div>
+      </div>
+      <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
+    </section>
+    <section class="frame proj" data-name="Muzain" data-icon="phone" style="left:1980px; top:1724px; width:360px; height:720px;">
+      <div class="frame-label"><span>Muzain app</span><span class="mono">Visual</span></div>
+      <div class="frame-body">
+        <div class="shot ph-7"><div class="scr phone"></div></div>
+        <div class="cap"><div><span class="tag">VISUAL · MOBILE</span><h3>Muzain app</h3><p>Visuals coming soon.</p></div><span class="open soon">Soon</span></div>
+      </div>
+      <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
+    </section>
+
     <!-- Comment pins: Yehia's notes on his own work -->
-    <div class="pin" data-after="POS redesign" style="left:1480px; top:150px;">
+    <div class="pin" data-after="POS system" style="left:1480px; top:150px;">
       <span class="dot">Y</span>
       <div class="bubble"><b>Yehia <span>· note</span></b>Moved the total to the top and made Pay the only obvious button. Fewer mis-taps at a busy till.</div>
     </div>
@@ -344,13 +467,18 @@
       <span class="dot">Y</span>
       <div class="bubble"><b>Yehia <span>· note</span></b>96 components, one source of truth. Handoff stopped being a meeting.</div>
     </div>
-    <div class="pin closed" data-after="Reach Link" style="left:1210px; top:1040px;">
+    <div class="pin closed" data-after="Reach Link" style="left:1890px; top:1940px;">
       <span class="dot">Y</span>
       <div class="bubble"><b>Yehia <span>· note</span></b>Two-sided flows: the influencer and the brand each see the same campaign from their side.</div>
     </div>
     <div class="pin closed" data-after="About" style="left:760px; top:1180px;">
       <span class="dot">Y</span>
       <div class="bubble"><b>Yehia <span>· note</span></b>Started in QA. I still design for the moment things break.</div>
+    </div>
+
+    <div class="pin closed" data-after="Journey" style="left:1474px; top:1600px;">
+      <span class="dot">Y</span>
+      <div class="bubble"><b>Yehia <span>· note</span></b>Started by building websites in 2014. Now leading design on an AI-SaaS platform.</div>
     </div>
 
     <!-- Live cursor -->
@@ -413,6 +541,7 @@
     text: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 5h14M12 5v14"/></svg>',
     phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="2" width="10" height="20" rx="2"/></svg>',
     grid: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>',
+    timeline: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h18"/><circle cx="6" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="18" cy="12" r="2"/></svg>',
     chat: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 4h16v12H8l-4 4z"/></svg>'
   };
   const list = document.getElementById("layer-list");
@@ -498,7 +627,7 @@
 
   // Yehia's cursor wanders between the things he wants you to see
   const cur = document.getElementById("ycursor");
-  const stops = [[640, 520], [1380, 560], [1520, 170], [2000, 600], [2700, 380], [1150, 1380], [2500, 1180], [700, 1150]];
+  const stops = [[640, 520], [1380, 560], [1520, 170], [2000, 600], [2700, 380], [1300, 1100], [1850, 1300], [420, 1900], [1760, 2100], [2160, 2050], [700, 1150]];
   let si = 0;
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   function wander() { const [cx, cy] = stops[si++ % stops.length]; cur.style.transform = `translate(${cx}px, ${cy}px)`; }
