@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pleny design system — Yehia Mourad</title>
+<meta name="description" content="Rebuilding the design system behind a photo-first food social app for Android, including a standalone Onboarding theme.">
+<meta property="og:title" content="Pleny design system — Yehia Mourad">
+<meta property="og:description" content="Rebuilding the design system behind a photo-first food social app for Android, including a standalone Onboarding theme.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#efece6">
+<meta property="og:image" content="https://yehiamourad.github.io/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="style.css">
+<script src="i18n.js" defer></script>
+<script src="case.js" defer></script>
+</head>
+<body class="cs">
+
+<!--
+  Same structure as pos-system.html.
+  - Every text block exists twice: class="en" and class="ar".
+  - class="detail" hides in TL;DR mode, class="tldr" shows only in TL;DR mode.
+  - Cover: add assets/pleny-cover.webp and replace the .ph inside .cover with
+    style="background-image:url(assets/pleny-cover.webp)" on .cover.
+  - Screens: drop these files into assets/ and they appear. If a file is missing, its figure hides itself.
+      assets/pleny-tokens.webp      (before/after token panels in Figma)
+      assets/pleny-type.webp        (the 18-role type scale)
+      assets/pleny-onboarding.webp  (Onboarding screens next to Light mode)
+      assets/pleny-badges.webp      (badges inside a real feed scroll)
+-->
+
+<a class="mark cs-mark" href="./" aria-label="Yehia Mourad, home"><img class="logo-l" src="assets/logo-mark.svg" alt=""><img class="logo-d" src="assets/logo-mark-dark.svg" alt=""></a>
+
+<div class="cs-tools">
+  <button class="chip lang-toggle" type="button" data-i18n="lang.toggle">عربي</button>
+  <button class="chip theme-toggle" type="button" aria-label="Switch light or dark">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+  </button>
+  <a class="chip close" href="./#work" aria-label="Close and go back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"/></svg>
+  </a>
+</div>
+
+<main class="cs-page">
+
+  <div class="cover" style="view-transition-name: pleny-cover;">
+    <div class="ph ph-2"><div class="frame"></div></div>
+  </div>
+
+  <div class="seg" role="tablist" aria-label="Reading mode">
+    <button class="on" data-mode="detailed" role="tab"><span class="en">Detailed</span><span class="ar">بالتفصيل</span></button>
+    <button data-mode="tldr" role="tab">TL;DR</button>
+  </div>
+
+  <article class="col">
+
+    <span class="kicker"><span class="en">Case study · Pleny</span><span class="ar">دراسة حالة · Pleny</span></span>
+    <h1>
+      <span class="en">Rebuilding a food app's design system, without breaking the build</span>
+      <span class="ar">إعادة بناء نظام تصميم لأبلكيشن أكل، من غير ما نكسر الكود</span>
+    </h1>
+    <p class="lead">
+      <span class="en">I led design at Pleny, a photo-first food social network, and restructured its Android design system: a new token architecture, a cleaner type and size scale, correct Material 3 elevation, and a standalone Onboarding theme.</span>
+      <span class="ar">قدت التصميم في Pleny، سوشيال نتورك للأكل قايمة على الصور، وأعدت هيكلة نظام التصميم بتاع الأندرويد: هيكل tokens جديد، type و size scale أنضف، elevation مظبوط على Material 3، وثيم Onboarding مستقل.</span>
+    </p>
+
+    <dl class="meta-row">
+      <div><dt><span class="en">Role</span><span class="ar">الدور</span></dt><dd><span class="en">Senior Product Designer, design lead</span><span class="ar">Senior Product Designer، قائد التصميم</span></dd></div>
+      <div><dt><span class="en">Platform</span><span class="ar">المنصة</span></dt><dd><span class="en">Android · Compose · M3</span><span class="ar">أندرويد · Compose · M3</span></dd></div>
+      <div><dt><span class="en">Scope</span><span class="ar">النطاق</span></dt><dd><span class="en">Design system · Onboarding theme</span><span class="ar">نظام تصميم · ثيم Onboarding</span></dd></div>
+      <div><dt><span class="en">When</span><span class="ar">الفترة</span></dt><dd><span class="en">Apr – Sep 2026</span><span class="ar">أبريل – سبتمبر 2026</span></dd></div>
+    </dl>
+
+    <!-- ===== TL;DR ===== -->
+    <section class="tldr">
+      <h2><span class="en">The short version</span><span class="ar">باختصار</span></h2>
+      <ul class="en">
+        <li>Restructured Pleny's Android design system into <b>three token layers</b>: primitive, semantic, component.</li>
+        <li>Split semantic colors into <b>background and foreground roles</b>, so every surface has a matching content color.</li>
+        <li>Added a standalone <b>Onboarding theme</b> next to Light and Dark, with its own gradient tokens and the same components.</li>
+        <li>Settled <b>18 type roles</b> in Poppins with an 11sp floor, a new size scale, and a 12dp page margin.</li>
+        <li>Replaced off-spec shadows with <b>Material 3's three-layer elevation</b>.</li>
+        <li>Ran it as a <b>seven-round migration</b> on a live app, with token names that match Jetpack Compose.</li>
+      </ul>
+      <ul class="ar">
+        <li>أعدت هيكلة نظام تصميم Pleny للأندرويد في <b>تلات طبقات tokens</b>: primitive و semantic و component.</li>
+        <li>قسمت الألوان الـsemantic لـ<b>أدوار خلفية وأدوار محتوى (bg و fg)</b>، فكل سطح ليه لون محتوى ماشي معاه.</li>
+        <li>زودت <b>ثيم Onboarding</b> مستقل جنب الـLight والـDark، بـgradient tokens خاصة بيه وبنفس الكومبوننتس.</li>
+        <li>ثبّت <b>18 دور للخط</b> بـPoppins بحد أدنى 11sp، و size scale جديد، و margin للصفحة 12dp.</li>
+        <li>بدلت الشادوز اللي مش مظبوطة بـ<b>elevation بتلات طبقات زي Material 3</b>.</li>
+        <li>اتعمل كـ<b>migration على سبع جولات</b> في أبلكيشن شغال، بأسماء tokens مطابقة لـJetpack Compose.</li>
+      </ul>
+    </section>
+
+    <!-- ===== 01 Context ===== -->
+    <section class="detail">
+      <span class="num">01 / <span class="en">Context</span><span class="ar">السياق</span></span>
+      <h2><span class="en">A social network where the food does the talking</span><span class="ar">سوشيال نتورك الأكل فيها هو اللي بيتكلم</span></h2>
+      <p class="en">Pleny wants to be the social network for foodies in MENA, live in Cairo, Alexandria, Dubai and Abu Dhabi. Think Instagram-style posting and following, mixed with restaurant discovery, trending dishes, recipes and creator recommendations.</p>
+      <p class="ar">Pleny عايزة تبقى السوشيال نتورك بتاعة محبين الأكل في المنطقة، وشغالة في القاهرة وإسكندرية ودبي وأبوظبي. تخيل بوستات ومتابعة زي إنستجرام، ومعاها اكتشاف مطاعم، وأكلات تريند، ووصفات، وترشيحات من الكريتورز.</p>
+      <p class="en">The audience is Gen Z and Millennials who already live on Instagram and TikTok. In a food app the photos carry the experience, so the UI has one job: frame the food, then get out of the way.</p>
+      <p class="ar">الجمهور Gen Z و Millennials عايشين أصلًا على إنستجرام وتيك توك. وفي أبلكيشن أكل الصور هي اللي شايلة التجربة، فالواجهة ليها شغلانة واحدة: تبرز الأكل، وبعدين تبعد عن طريقه.</p>
+    </section>
+
+    <!-- ===== 02 Problem ===== -->
+    <section class="detail">
+      <span class="num">02 / <span class="en">The problem</span><span class="ar">المشكلة</span></span>
+      <h2><span class="en">A system that grew faster than its structure</span><span class="ar">نظام كبر أسرع من الهيكل بتاعه</span></h2>
+      <p class="en">The v1 design system worked, but every new screen made it harder to work with.</p>
+      <p class="ar">نظام التصميم الأول كان شغال، بس كل شاشة جديدة كانت بتخلي الشغل عليه أصعب.</p>
+      <div class="cards3">
+        <div><b class="en">"Too many tokens"</b><b class="ar">"tokens كتير أوي"</b><p class="en">The real issue was grouping. Related values were scattered, so it felt bloated.</p><p class="ar">المشكلة الحقيقية كانت في التجميع. القيم اللي شبه بعض كانت متفرقة، فكان باين إنه منفوخ.</p></div>
+        <div><b class="en">Figma ≠ Compose</b><b class="ar">Figma ≠ Compose</b><p class="en">Names in Figma didn't match the code, so every handoff needed translating.</p><p class="ar">الأسماء في Figma مكانتش زي الكود، فكل handoff كان محتاج ترجمة.</p></div>
+        <div><b class="en">Contrast assumed</b><b class="ar">التباين متفترض</b><p class="en">Safe-sounding names hid pairs that failed WCAG AA.</p><p class="ar">أسماء شكلها آمن كانت مخبية ألوان فاشلة في WCAG AA.</p></div>
+      </div>
+      <p class="en">Elevation followed a two-layer shadow recipe from the community, and onboarding just borrowed Light mode, so the first impression looked like every other screen. And the app was live, so nothing could break along the way.</p>
+      <p class="ar">الـelevation كان ماشي بوصفة شادو طبقتين منتشرة في الكوميونيتي، والـonboarding كان واخد الـLight mode وخلاص، فأول انطباع كان شبه أي شاشة تانية. وكمان الأبلكيشن كان شغال، فمفيش حاجة كان ينفع تتكسر وإحنا ماشيين.</p>
+    </section>
+
+    <!-- ===== 03 Approach ===== -->
+    <section class="detail">
+      <span class="num">03 / <span class="en">Approach</span><span class="ar">طريقة الشغل</span></span>
+      <h2><span class="en">Three layers, seven rounds</span><span class="ar">تلات طبقات، سبع جولات</span></h2>
+      <p class="en">I broke the revamp into a seven-round migration, one foundation at a time, so each round could ship and be checked before the next. Underneath it, a new three-layer token architecture:</p>
+      <p class="ar">قسمت الشغل لـmigration على سبع جولات، أساس ورا أساس، عشان كل جولة تتسلم وتتراجع قبل اللي بعدها. وتحتها هيكل tokens جديد من تلات طبقات:</p>
+
+      <div class="layers3" role="img" aria-label="Primitive tokens feed semantic tokens, which feed component tokens. Light, Dark and Onboarding modes swap values at the semantic layer.">
+        <div class="lyr"><b>Primitive</b><span class="en">Raw values, no meaning. Contrast is checked here.</span><span class="ar">قيم خام من غير معنى. التباين بيتراجع هنا.</span><code>green/800</code></div>
+        <i class="arr" aria-hidden="true"></i>
+        <div class="lyr key"><b>Semantic</b><span class="en">Named by role: background or foreground. Swaps per mode.</span><span class="ar">متسمية بالدور: خلفية أو محتوى. بتتغير مع كل mode.</span><code>bg/tag/price/tier-1</code></div>
+        <i class="arr" aria-hidden="true"></i>
+        <div class="lyr"><b>Component</b><span class="en">Bound to one component, named like Compose. Same in every mode.</span><span class="ar">مربوطة بكومبوننت واحد، ومتسمية زي Compose. ثابتة في كل mode.</span><code>TextField colors</code></div>
+        <div class="modes"><span>Light</span><span>Dark</span><span class="on">Onboarding</span></div>
+      </div>
+
+      <p class="en">Three rules kept a live migration safe:</p>
+      <p class="ar">تلات قواعد خلوا الـmigration آمن على أبلكيشن شغال:</p>
+      <div class="cards3">
+        <div><b class="en">Rename in place</b><b class="ar">غيّر الاسم مكانه</b><p class="en">Figma keeps a variable's ID on rename, so every component binding survived.</p><p class="ar">Figma بيحتفظ بالـID لما تغير الاسم، فكل ربط بالكومبوننتس فضل شغال.</p></div>
+        <div><b class="en">Keep a bridge</b><b class="ar">سيب كوبري</b><p class="en">Old v1 tokens moved to a deprecated group until components were rebound.</p><p class="ar">الـtokens القديمة راحت جروب deprecated لحد ما الكومبوننتس اتربطت من جديد.</p></div>
+        <div><b class="en">Android naming wins</b><b class="ar">أسماء الأندرويد الأول</b><p class="en">Token names follow Compose APIs, so Figma reads like the code.</p><p class="ar">أسماء الـtokens ماشية على Compose، فـFigma بيتقري زي الكود.</p></div>
+      </div>
+    </section>
+
+    <figure class="wide detail">
+      <img class="shot-img" src="assets/pleny-tokens.webp" alt="Pleny token panels in Figma, before and after the restructure" onerror="this.closest('figure').remove()">
+      <figcaption><span class="en">The token panels in Figma, before and after the restructure.</span><span class="ar">لوحات الـtokens في Figma، قبل وبعد إعادة الهيكلة.</span></figcaption>
+    </figure>
+
+    <!-- ===== 04 What I built ===== -->
+    <section class="detail">
+      <span class="num">04 / <span class="en">What I built</span><span class="ar">اللي بنيته</span></span>
+      <h2><span class="en">One foundation at a time</span><span class="ar">أساس ورا أساس</span></h2>
+
+      <span class="pill">4A · <span class="en">Color</span><span class="ar">الألوان</span></span>
+      <h3><span class="en">Background and foreground roles</span><span class="ar">أدوار للخلفية وأدوار للمحتوى</span></h3>
+      <p class="en">I restructured the semantic colors around two roles. Every color answers one question first: is it something you sit content on, or the content itself? Each background role has a matching foreground role, so pairs became predictable and contrast checks systematic.</p>
+      <p class="ar">أعدت هيكلة الألوان الـsemantic حوالين دورين. كل لون بيجاوب على سؤال واحد الأول: هو حاجة المحتوى بيقعد عليها، ولا هو المحتوى نفسه؟ كل دور خلفية ليه دور محتوى ماشي معاه، فالألوان بقت متوقعة، وفحص التباين بقى بنظام.</p>
+      <p class="en">I also checked contrast at the primitive level instead of trusting names, and added <code>green/800</code>, <code>indigo/300</code>, <code>indigo/925</code> and <code>indigo/950</code> where pairs failed. One example: <code>green/700</code> on <code>green/50</code> only reached about 3.4:1, under AA's 4.5:1.</p>
+      <p class="ar">وكمان راجعت التباين على مستوى الـprimitives بدل ما أثق في الأسماء، وزودت <code>green/800</code> و <code>indigo/300</code> و <code>indigo/925</code> و <code>indigo/950</code> في الأماكن اللي كانت فاشلة. مثال: <code>green/700</code> على <code>green/50</code> كان بيوصل حوالي 3.4:1 بس، أقل من 4.5:1 المطلوبة لـAA.</p>
+
+      <span class="pill">4B · <span class="en">Typography</span><span class="ar">الخطوط</span></span>
+      <h3><span class="en">18 roles, an 11sp floor</span><span class="ar">18 دور، وحد أدنى 11sp</span></h3>
+      <p class="en">I settled 18 semantic roles, from <code>display-l-bold</code> down to <code>overline</code>, with letter spacing on every role. Poppins has a different x-height from Roboto, so sizes that read fine in Roboto felt small. That's where the 11sp floor comes from.</p>
+      <p class="ar">ثبّت 18 دور semantic، من <code>display-l-bold</code> لحد <code>overline</code>، وكل دور ليه letter spacing. Poppins الـx-height بتاعه مختلف عن Roboto، فمقاسات كانت مقرية كويس في Roboto بقت صغيرة. ومن هنا جه الحد الأدنى 11sp.</p>
+    </section>
+
+    <figure class="wide detail">
+      <img class="shot-img" src="assets/pleny-type.webp" alt="Pleny type scale with all 18 roles" onerror="this.closest('figure').remove()">
+      <figcaption><span class="en">The type scale: 18 roles in Poppins.</span><span class="ar">الـtype scale: 18 دور بـPoppins.</span></figcaption>
+    </figure>
+
+    <section class="detail">
+      <span class="pill">4C · <span class="en">Size &amp; spacing</span><span class="ar">المقاسات والمسافات</span></span>
+      <h3><span class="en">One margin, 12dp</span><span class="ar">margin واحد، 12dp</span></h3>
+      <p class="en">I rebuilt the size scale and tested page margins against Instagram and LinkedIn. Both use one consistent margin, so Pleny does too: 12dp, tight enough to give photos the width they need.</p>
+      <p class="ar">بنيت الـsize scale من جديد وقارنت الـmargins بإنستجرام ولينكدإن. الاتنين بيستخدموا margin واحد ثابت، فـPleny كمان: 12dp، ضيق كفاية إن الصور تاخد العرض اللي محتاجاه.</p>
+
+      <span class="pill">4D · <span class="en">Elevation</span><span class="ar">الـElevation</span></span>
+      <h3><span class="en">Three layers, the way M3 does it</span><span class="ar">تلات طبقات، زي M3 بالظبط</span></h3>
+      <p class="en">Figma Variables can't hold shadows, so elevation lives in Effect Styles. I replaced the two-layer shadows with Material 3's three (umbra 20%, penumbra 14%, ambient 12%) and fixed component levels.</p>
+      <p class="ar">الـVariables في Figma مبتشيلش شادوز، فالـelevation موجود في Effect Styles. بدلت الشادو أبو طبقتين بتلات طبقات زي Material 3 (umbra 20%، penumbra 14%، ambient 12%) وظبطت مستوى كل كومبوننت.</p>
+      <table class="spec">
+        <thead><tr><th><span class="en">Component</span><span class="ar">الكومبوننت</span></th><th><span class="en">Level</span><span class="ar">المستوى</span></th><th><span class="en">Why</span><span class="ar">ليه</span></th></tr></thead>
+        <tbody>
+          <tr><td><span class="en">Feed card</span><span class="ar">كارت الفيد</span></td><td><span class="en">1 (max)</span><span class="ar">1 (أقصى)</span></td><td><span class="en">Photos carry the hierarchy, not shadows</span><span class="ar">الصور هي اللي بتعمل التسلسل، مش الشادو</span></td></tr>
+          <tr><td>Bottom sheet</td><td>1</td><td><span class="en">Corrected to the M3 spec</span><span class="ar">اتظبط على M3</span></td></tr>
+          <tr><td>Navigation bar</td><td>2</td><td><span class="en">Corrected to the M3 spec</span><span class="ar">اتظبط على M3</span></td></tr>
+        </tbody>
+      </table>
+
+      <span class="pill">4E · <span class="en">Onboarding theme</span><span class="ar">ثيم الـOnboarding</span></span>
+      <h3><span class="en">A first impression of its own</span><span class="ar">أول انطباع ليه شخصيته</span></h3>
+      <p class="en">Onboarding became its own mode, separate from Light and Dark, with its own gradient tokens. Because modes switch at the semantic layer, first-run screens get a more expressive look while reusing the same components as the rest of the app.</p>
+      <p class="ar">الـOnboarding بقى mode لوحده، منفصل عن الـLight والـDark، وليه gradient tokens خاصة بيه. ولأن الـmodes بتتغير على طبقة الـsemantic، شاشات أول استخدام بقى ليها شكل أجرأ وهي بتستخدم نفس الكومبوننتس اللي في باقي الأبلكيشن.</p>
+      <p class="en">I previewed palettes and checked WCAG contrast before pushing anything to Figma, then turned that workflow into a reusable color strategist skill.</p>
+      <p class="ar">كنت بعمل preview للباليتات وأراجع تباين WCAG قبل ما أرفع أي حاجة على Figma، وبعدين حولت الطريقة دي لـskill اسمها color strategist ينفع تتستخدم تاني.</p>
+    </section>
+
+    <figure class="wide detail">
+      <img class="shot-img" src="assets/pleny-onboarding.webp" alt="Pleny onboarding screens next to the same screens in Light mode" onerror="this.closest('figure').remove()">
+      <figcaption><span class="en">Onboarding mode next to Light mode: same components, different theme.</span><span class="ar">الـOnboarding جنب الـLight: نفس الكومبوننتس، ثيم مختلف.</span></figcaption>
+    </figure>
+
+    <section class="detail">
+      <span class="pill">4F · <span class="en">Restaurant badges</span><span class="ar">بادجات المطاعم</span></span>
+      <h3><span class="en">Two families, two shapes</span><span class="ar">عيلتين، وشكلين</span></h3>
+      <p class="en">Restaurants needed labels that read at a glance while scrolling. I designed two taxonomies with different shapes so they never get confused, then tested them in a real feed scroll, which surfaced a few color collisions I flagged before handoff.</p>
+      <p class="ar">المطاعم كانت محتاجة labels تتقري بنظرة وأنت بتسكرول. صممت تصنيفين بشكلين مختلفين عشان ميتلخبطوش في بعض، وجربتهم في فيد حقيقي، وده طلّع شوية تداخل في الألوان علّمت عليه قبل الـhandoff.</p>
+    </section>
+
+    <div class="compare detail">
+      <div>
+        <span class="pill"><span class="en">Price tiers</span><span class="ar">مستويات السعر</span></span>
+        <h3><span class="en">Outlined pills</span><span class="ar">pills بحدود</span></h3>
+        <div class="badges"><span class="b-out"><span class="en">Affordable</span><span class="ar">اقتصادي</span></span><span class="b-out"><span class="en">Mid-range</span><span class="ar">متوسط</span></span><span class="b-out"><span class="en">Premium</span><span class="ar">بريميوم</span></span><span class="b-out"><span class="en">Fine dining</span><span class="ar">فاين داينينج</span></span></div>
+        <dl>
+          <dt><span class="en">Tokens</span><span class="ar">الـTokens</span></dt><dd><code>tag/price/tier-1</code> → <code>tier-4</code></dd>
+          <dt><span class="en">Tells you</span><span class="ar">بيقولك</span></dt><dd><span class="en">What it'll cost</span><span class="ar">هتدفع قد إيه</span></dd>
+        </dl>
+      </div>
+      <div>
+        <span class="pill"><span class="en">Social signals</span><span class="ar">إشارات اجتماعية</span></span>
+        <h3><span class="en">Filled pills</span><span class="ar">pills مليانة</span></h3>
+        <div class="badges"><span class="b-fill"><span class="en">Most Liked</span><span class="ar">الأكثر إعجابًا</span></span><span class="b-fill"><span class="en">Popular</span><span class="ar">مشهور</span></span><span class="b-fill"><span class="en">Trendy</span><span class="ar">تريند</span></span><span class="b-fill"><span class="en">Recently Joined</span><span class="ar">جديد</span></span></div>
+        <dl>
+          <dt><span class="en">Tokens</span><span class="ar">الـTokens</span></dt><dd><code>tag/social/*</code> · <code>text/social/*</code></dd>
+          <dt><span class="en">Tells you</span><span class="ar">بيقولك</span></dt><dd><span class="en">What people think</span><span class="ar">الناس شايفاه إزاي</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <figure class="wide detail">
+      <img class="shot-img" src="assets/pleny-badges.webp" alt="Pleny restaurant badges inside a feed scroll" onerror="this.closest('figure').remove()">
+      <figcaption><span class="en">Badges tested where they live: inside a scrolling feed.</span><span class="ar">البادجات اتجربت في مكانها الحقيقي: جوه فيد بيسكرول.</span></figcaption>
+    </figure>
+
+    <section class="detail">
+      <span class="pill">4G · <span class="en">Contact sync banner</span><span class="ar">بانر مزامنة الكونتاكتس</span></span>
+      <h3><span class="en">A nudge that doesn't block the feed</span><span class="ar">تنبيه من غير ما يقفل الفيد</span></h3>
+      <p class="en">A dismissible banner asking people to sync contacts, designed around animation behavior, touch target size and accessibility.</p>
+      <p class="ar">بانر ينفع يتقفل بيطلب من الناس يعملوا sync للكونتاكتس، متصمم حوالين الأنيميشن، ومساحة اللمس، وإمكانية الوصول.</p>
+    </section>
+
+    <!-- ===== 05 Decisions ===== -->
+    <section class="detail">
+      <span class="num">05 / <span class="en">Decisions</span><span class="ar">القرارات</span></span>
+      <h2><span class="en">The trade-offs that shaped it</span><span class="ar">الاختيارات اللي شكلته</span></h2>
+      <p class="en"><b>Regroup before you delete.</b> "Too many tokens" is usually a grouping problem. Auditing first separated real redundancy from things that only looked redundant.</p>
+      <p class="ar"><b>جمّع قبل ما تمسح.</b> "tokens كتير" غالبًا مشكلة تجميع. المراجعة الأول فرقت بين التكرار الحقيقي والحاجات اللي شكلها بس متكرر.</p>
+      <p class="en"><b>Feed cards stay flat.</b> Higher elevation would make cards pop, but on a photo-first feed it competes with the food.</p>
+      <p class="ar"><b>كروت الفيد تفضل فلات.</b> elevation أعلى كان هيبرز الكروت، بس في فيد قايم على الصور ده بينافس الأكل.</p>
+      <p class="en"><b>Shape over color for badges.</b> In a fast scroll, outlined versus filled reads faster than two close colors.</p>
+      <p class="ar"><b>الشكل قبل اللون في البادجات.</b> وأنت بتسكرول بسرعة، الفرق بين حدود ومليان بيتقري أسرع من لونين قريبين.</p>
+      <p class="en"><b>Don't rebuild what Android already does well.</b> Native components for the generic parts left engineering time for what's unique to Pleny: discovery, creator tools and recommendations.</p>
+      <p class="ar"><b>متبنيش حاجة الأندرويد عاملها كويس.</b> الكومبوننتس الجاهزة للأجزاء العامة سابت وقت للمطورين للحاجات اللي بتميز Pleny: الاكتشاف، وأدوات الكريتورز، والترشيحات.</p>
+    </section>
+
+    <!-- ===== 06 Outcome ===== -->
+    <section class="detail">
+      <span class="num">06 / <span class="en">Outcome</span><span class="ar">النتيجة</span></span>
+      <h2><span class="en">A migration nobody noticed, which was the point</span><span class="ar">migration محدش حس بيه، وده كان الهدف</span></h2>
+      <p class="en">Color, typography, size and elevation are done and mapped to Compose. The migration ran on a live app without breaking it. The Android team builds straight from the token maps instead of translating Figma names. Contrast is fixed in the primitives, so new screens start accessible. And onboarding got its own identity without a single new component.</p>
+      <p class="ar">الألوان والخطوط والمقاسات والـelevation خلصوا ومربوطين بـCompose. الـmigration اتعمل على أبلكيشن شغال من غير ما يتكسر. فريق الأندرويد بيبني على الـtoken maps على طول بدل ما يترجم أسماء Figma. التباين متظبط في الـprimitives، فأي شاشة جديدة بتبدأ accessible. والـonboarding بقى ليه شخصيته من غير ولا كومبوننت جديد.</p>
+      <ol class="steps">
+        <li class="done"><span class="en">Color, type, size, elevation</span><span class="ar">ألوان، خطوط، مقاسات، elevation</span></li>
+        <li class="done"><span class="en">Onboarding theme</span><span class="ar">ثيم الـOnboarding</span></li>
+        <li class="done"><span class="en">Handed off with token maps</span><span class="ar">اتسلم بالـtoken maps</span></li>
+      </ol>
+    </section>
+
+    <section class="detail">
+      <span class="num">07 / <span class="en">What I learned</span><span class="ar">اللي اتعلمته</span></span>
+      <h2><span class="en">Check the real thing</span><span class="ar">راجع الحاجة الحقيقية</span></h2>
+      <ul class="en">
+        <li>Check contrast at the primitive level. A safe-sounding name proves nothing.</li>
+        <li>Renaming in place is the cheapest insurance a design system has.</li>
+        <li>Test components where they live. Badges that looked distinct on a spec sheet collided in a feed.</li>
+        <li>Plenty of community specs are wrong. M3 elevation has three shadow layers, not two.</li>
+      </ul>
+      <ul class="ar">
+        <li>راجع التباين على مستوى الـprimitive. الاسم اللي شكله آمن مبيثبتش حاجة.</li>
+        <li>تغيير الاسم في مكانه أرخص تأمين لأي نظام تصميم.</li>
+        <li>جرب الكومبوننتس في مكانها. بادجات كانت باينة مختلفة على الورق اتداخلت في الفيد.</li>
+        <li>مواصفات كتير منتشرة غلط. الـelevation في M3 تلات طبقات شادو، مش اتنين.</li>
+      </ul>
+    </section>
+
+  </article>
+
+  <a class="next-proj" href="./#work">
+    <span class="small"><span class="en">Back to all work</span><span class="ar">رجوع لكل الأعمال</span></span>
+    <span class="go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+  </a>
+
+</main>
+</body>
+</html>
