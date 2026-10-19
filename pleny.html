@@ -30,10 +30,11 @@
   - Cover: add assets/pleny-cover.webp and replace the .ph inside .cover with
     style="background-image:url(assets/pleny-cover.webp)" on .cover.
   - Screens: drop these files into assets/ and they appear. If a file is missing, its figure hides itself.
-      assets/pleny-tokens.webp      (before/after token panels in Figma)
-      assets/pleny-type.webp        (the 18-role type scale)
-      assets/pleny-onboarding.webp  (Onboarding screens next to Light mode)
-      assets/pleny-badges.webp      (badges inside a real feed scroll)
+      assets/pleny-tokens.webp      (semantic surface + content tokens, 3 modes)  ✓ added
+      assets/pleny-primitives.webp  (indigo + neutral primitive ramps)            ✓ added
+      assets/pleny-type.webp        (the 19-role type scale)                      ✓ added
+      assets/pleny-badges.webp      (tag tokens across 3 modes)                   ✓ added
+      assets/pleny-onboarding.webp  (Onboarding screens next to Light mode)       still missing
 -->
 
 <a class="mark cs-mark" href="./" aria-label="Yehia Mourad, home"><img class="logo-l" src="assets/logo-mark.svg" alt=""><img class="logo-d" src="assets/logo-mark-dark.svg" alt=""></a>
@@ -85,7 +86,7 @@
         <li>Restructured Pleny's Android design system into <b>three token layers</b>: primitive, semantic, component.</li>
         <li>Split semantic colors into <b>background and foreground roles</b>, so every surface has a matching content color.</li>
         <li>Added a standalone <b>Onboarding theme</b> next to Light and Dark, with its own gradient tokens and the same components.</li>
-        <li>Settled <b>18 type roles</b> in Poppins with an 11sp floor, a new size scale, and a 12dp page margin.</li>
+        <li>Settled <b>19 type roles</b> in Poppins with an 11sp floor, a new size scale, and a 12dp page margin.</li>
         <li>Replaced off-spec shadows with <b>Material 3's three-layer elevation</b>.</li>
         <li>Ran it as a <b>seven-round migration</b> on a live app, with token names that match Jetpack Compose.</li>
       </ul>
@@ -93,7 +94,7 @@
         <li>أعدت هيكلة نظام تصميم Pleny للأندرويد في <b>تلات طبقات tokens</b>: primitive و semantic و component.</li>
         <li>قسمت الألوان الـsemantic لـ<b>أدوار خلفية وأدوار محتوى (bg و fg)</b>، فكل سطح ليه لون محتوى ماشي معاه.</li>
         <li>زودت <b>ثيم Onboarding</b> مستقل جنب الـLight والـDark، بـgradient tokens خاصة بيه وبنفس الكومبوننتس.</li>
-        <li>ثبّت <b>18 دور للخط</b> بـPoppins بحد أدنى 11sp، و size scale جديد، و margin للصفحة 12dp.</li>
+        <li>ثبّت <b>19 دور للخط</b> بـPoppins بحد أدنى 11sp، و size scale جديد، و margin للصفحة 12dp.</li>
         <li>بدلت الشادوز اللي مش مظبوطة بـ<b>elevation بتلات طبقات زي Material 3</b>.</li>
         <li>اتعمل كـ<b>migration على سبع جولات</b> في أبلكيشن شغال، بأسماء tokens مطابقة لـJetpack Compose.</li>
       </ul>
@@ -134,7 +135,7 @@
       <div class="layers3" role="img" aria-label="Primitive tokens feed semantic tokens, which feed component tokens. Light, Dark and Onboarding modes swap values at the semantic layer.">
         <div class="lyr"><b>Primitive</b><span class="en">Raw values, no meaning. Contrast is checked here.</span><span class="ar">قيم خام من غير معنى. التباين بيتراجع هنا.</span><code>green/800</code></div>
         <i class="arr" aria-hidden="true"></i>
-        <div class="lyr key"><b>Semantic</b><span class="en">Named by role: background or foreground. Swaps per mode.</span><span class="ar">متسمية بالدور: خلفية أو محتوى. بتتغير مع كل mode.</span><code>bg/tag/price/tier-1</code></div>
+        <div class="lyr key"><b>Semantic</b><span class="en">Named by role: background or foreground. Swaps per mode.</span><span class="ar">متسمية بالدور: خلفية أو محتوى. بتتغير مع كل mode.</span><code>surface/background</code></div>
         <i class="arr" aria-hidden="true"></i>
         <div class="lyr"><b>Component</b><span class="en">Bound to one component, named like Compose. Same in every mode.</span><span class="ar">مربوطة بكومبوننت واحد، ومتسمية زي Compose. ثابتة في كل mode.</span><code>TextField colors</code></div>
         <div class="modes"><span>Light</span><span>Dark</span><span class="on">Onboarding</span></div>
@@ -150,8 +151,8 @@
     </section>
 
     <figure class="wide detail">
-      <img class="shot-img" src="assets/pleny-tokens.webp" alt="Pleny token panels in Figma, before and after the restructure" onerror="this.closest('figure').remove()">
-      <figcaption><span class="en">The token panels in Figma, before and after the restructure.</span><span class="ar">لوحات الـtokens في Figma، قبل وبعد إعادة الهيكلة.</span></figcaption>
+      <img class="shot-img" src="assets/pleny-tokens.webp" alt="Pleny semantic tokens: surface and content roles with Light, Dark and Onboarding values" onerror="this.closest('figure').remove()">
+      <figcaption><span class="en">Semantic tokens split into surface (background) and content (foreground), each with a Light, Dark and Onboarding value.</span><span class="ar">الـsemantic tokens متقسمة لـsurface (خلفية) و content (محتوى)، وكل واحد ليه قيمة Light و Dark و Onboarding.</span></figcaption>
     </figure>
 
     <!-- ===== 04 What I built ===== -->
@@ -166,15 +167,23 @@
       <p class="en">I also checked contrast at the primitive level instead of trusting names, and added <code>green/800</code>, <code>indigo/300</code>, <code>indigo/925</code> and <code>indigo/950</code> where pairs failed. One example: <code>green/700</code> on <code>green/50</code> only reached about 3.4:1, under AA's 4.5:1.</p>
       <p class="ar">وكمان راجعت التباين على مستوى الـprimitives بدل ما أثق في الأسماء، وزودت <code>green/800</code> و <code>indigo/300</code> و <code>indigo/925</code> و <code>indigo/950</code> في الأماكن اللي كانت فاشلة. مثال: <code>green/700</code> على <code>green/50</code> كان بيوصل حوالي 3.4:1 بس، أقل من 4.5:1 المطلوبة لـAA.</p>
 
-      <span class="pill">4B · <span class="en">Typography</span><span class="ar">الخطوط</span></span>
-      <h3><span class="en">18 roles, an 11sp floor</span><span class="ar">18 دور، وحد أدنى 11sp</span></h3>
-      <p class="en">I settled 18 semantic roles, from <code>display-l-bold</code> down to <code>overline</code>, with letter spacing on every role. Poppins has a different x-height from Roboto, so sizes that read fine in Roboto felt small. That's where the 11sp floor comes from.</p>
-      <p class="ar">ثبّت 18 دور semantic، من <code>display-l-bold</code> لحد <code>overline</code>، وكل دور ليه letter spacing. Poppins الـx-height بتاعه مختلف عن Roboto، فمقاسات كانت مقرية كويس في Roboto بقت صغيرة. ومن هنا جه الحد الأدنى 11sp.</p>
     </section>
 
     <figure class="wide detail">
-      <img class="shot-img" src="assets/pleny-type.webp" alt="Pleny type scale with all 18 roles" onerror="this.closest('figure').remove()">
-      <figcaption><span class="en">The type scale: 18 roles in Poppins.</span><span class="ar">الـtype scale: 18 دور بـPoppins.</span></figcaption>
+      <img class="shot-img" src="assets/pleny-primitives.webp" alt="Pleny indigo and neutral primitive color ramps" onerror="this.closest('figure').remove()">
+      <figcaption><span class="en">Primitive ramps for indigo and neutral. Raw values only; meaning comes from the semantic layer.</span><span class="ar">درجات الـprimitive للـindigo والـneutral. قيم خام بس، والمعنى بييجي من طبقة الـsemantic.</span></figcaption>
+    </figure>
+
+    <section class="detail">
+      <span class="pill">4B · <span class="en">Typography</span><span class="ar">الخطوط</span></span>
+      <h3><span class="en">19 roles, an 11sp floor</span><span class="ar">19 دور، وحد أدنى 11sp</span></h3>
+      <p class="en">I settled 19 semantic roles, from <code>display-l-bold</code> down to <code>overline</code>, with letter spacing on every role. Poppins has a different x-height from Roboto, so sizes that read fine in Roboto felt small. That's where the 11sp floor comes from.</p>
+      <p class="ar">ثبّت 19 دور semantic، من <code>display-l-bold</code> لحد <code>overline</code>، وكل دور ليه letter spacing. Poppins الـx-height بتاعه مختلف عن Roboto، فمقاسات كانت مقرية كويس في Roboto بقت صغيرة. ومن هنا جه الحد الأدنى 11sp.</p>
+    </section>
+
+    <figure class="wide narrow detail">
+      <img class="shot-img" src="assets/pleny-type.webp" alt="Pleny type scale with all 19 roles" onerror="this.closest('figure').remove()">
+      <figcaption><span class="en">The type scale: 19 roles in Poppins, down to 11px for label, caption and overline.</span><span class="ar">الـtype scale: 19 دور بـPoppins، لحد 11px للـlabel والـcaption والـoverline.</span></figcaption>
     </figure>
 
     <section class="detail">
@@ -220,7 +229,7 @@
       <div>
         <span class="pill"><span class="en">Price tiers</span><span class="ar">مستويات السعر</span></span>
         <h3><span class="en">Outlined pills</span><span class="ar">pills بحدود</span></h3>
-        <div class="badges"><span class="b-out"><span class="en">Affordable</span><span class="ar">اقتصادي</span></span><span class="b-out"><span class="en">Mid-range</span><span class="ar">متوسط</span></span><span class="b-out"><span class="en">Premium</span><span class="ar">بريميوم</span></span><span class="b-out"><span class="en">Fine dining</span><span class="ar">فاين داينينج</span></span></div>
+        <div class="badges"><span class="b-out" style="--c:#27500A"><span class="en">Affordable</span><span class="ar">اقتصادي</span></span><span class="b-out" style="--c:#D38928"><span class="en">Mid-range</span><span class="ar">متوسط</span></span><span class="b-out" style="--c:#9216A6"><span class="en">Premium</span><span class="ar">بريميوم</span></span><span class="b-out" style="--c:#B23B79"><span class="en">Fine dining</span><span class="ar">فاين داينينج</span></span></div>
         <dl>
           <dt><span class="en">Tokens</span><span class="ar">الـTokens</span></dt><dd><code>tag/price/tier-1</code> → <code>tier-4</code></dd>
           <dt><span class="en">Tells you</span><span class="ar">بيقولك</span></dt><dd><span class="en">What it'll cost</span><span class="ar">هتدفع قد إيه</span></dd>
@@ -229,17 +238,17 @@
       <div>
         <span class="pill"><span class="en">Social signals</span><span class="ar">إشارات اجتماعية</span></span>
         <h3><span class="en">Filled pills</span><span class="ar">pills مليانة</span></h3>
-        <div class="badges"><span class="b-fill"><span class="en">Most Liked</span><span class="ar">الأكثر إعجابًا</span></span><span class="b-fill"><span class="en">Popular</span><span class="ar">مشهور</span></span><span class="b-fill"><span class="en">Trendy</span><span class="ar">تريند</span></span><span class="b-fill"><span class="en">Recently Joined</span><span class="ar">جديد</span></span></div>
+        <div class="badges"><span class="b-fill" style="--bg:#F0F0FD;--c:#3F3FD1"><span class="en">Most Liked</span><span class="ar">الأكثر إعجابًا</span></span><span class="b-fill" style="--bg:#FFEFE6;--c:#DE590A"><span class="en">Popular</span><span class="ar">مشهور</span></span><span class="b-fill" style="--bg:#E3F7EB;--c:#129654"><span class="en">Trendy</span><span class="ar">تريند</span></span><span class="b-fill" style="--bg:#FFE7D9;--c:#5C2505"><span class="en">Recently Joined</span><span class="ar">جديد</span></span></div>
         <dl>
-          <dt><span class="en">Tokens</span><span class="ar">الـTokens</span></dt><dd><code>tag/social/*</code> · <code>text/social/*</code></dd>
+          <dt><span class="en">Tokens</span><span class="ar">الـTokens</span></dt><dd><code>tag/social/*/container</code> · <code>/content</code></dd>
           <dt><span class="en">Tells you</span><span class="ar">بيقولك</span></dt><dd><span class="en">What people think</span><span class="ar">الناس شايفاه إزاي</span></dd>
         </dl>
       </div>
     </div>
 
     <figure class="wide detail">
-      <img class="shot-img" src="assets/pleny-badges.webp" alt="Pleny restaurant badges inside a feed scroll" onerror="this.closest('figure').remove()">
-      <figcaption><span class="en">Badges tested where they live: inside a scrolling feed.</span><span class="ar">البادجات اتجربت في مكانها الحقيقي: جوه فيد بيسكرول.</span></figcaption>
+      <img class="shot-img" src="assets/pleny-badges.webp" alt="Pleny tag tokens for price tiers, social signals, rating and verified, across three modes" onerror="this.closest('figure').remove()">
+      <figcaption><span class="en">The tag tokens behind the badges: price tiers, social signals, rating and verified, in all three modes.</span><span class="ar">الـtag tokens اللي ورا البادجات: مستويات السعر، والإشارات الاجتماعية، والتقييم، والـverified، في التلات modes.</span></figcaption>
     </figure>
 
     <section class="detail">
