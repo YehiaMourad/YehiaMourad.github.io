@@ -20,9 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const email = copyBtn.dataset.email;
       try {
         await navigator.clipboard.writeText(email);
-        const dict = STRINGS[document.documentElement.lang] || STRINGS.en;
-        label.textContent = dict["b.copied"];
-        setTimeout(() => { label.textContent = dict["b.copy"]; }, 1800);
+        label.textContent = "Copied!";
+        setTimeout(() => { label.textContent = "Copy email"; }, 1800);
       } catch (e) {
         window.location.href = "mailto:" + email;
       }
