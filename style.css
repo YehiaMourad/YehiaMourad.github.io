@@ -335,3 +335,39 @@ html[dir="rtl"] .compare { margin: 28px 50% 0 0; transform: translateX(50%); }
 @media (max-width: 760px) {
   .cards3, .compare, .steps { grid-template-columns: 1fr; }
 }
+
+/* ---------- Case study extras (pleny.html) ---------- */
+.col .cards3 + p, .col .layers3 + p, .col .spec + .pill { margin-top: 22px; }
+.col code { font: 500 .86em/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; padding: 2px 6px; border-radius: 6px; background: color-mix(in srgb, var(--ink) 7%, transparent); white-space: nowrap; }
+
+.layers3 { display: grid; grid-template-columns: 1fr 22px 1fr 22px 1fr; align-items: stretch; gap: 8px; margin-top: 22px; }
+.layers3 .lyr { display: flex; flex-direction: column; gap: 6px; background: var(--surface); border-radius: 18px; padding: 16px; box-shadow: var(--shadow); font-size: 14px; line-height: 1.45; color: var(--muted); }
+.layers3 .lyr b { color: var(--ink); font-size: 16px; }
+.layers3 .lyr code { margin-top: auto; align-self: flex-start; font-size: 12px; }
+.layers3 .lyr.key { box-shadow: 0 0 0 2px var(--accent), var(--shadow); }
+.layers3 .arr { align-self: center; height: 2px; background: var(--muted); position: relative; }
+.layers3 .arr::after { content: ""; position: absolute; inset-inline-end: -1px; top: -4px; border: 5px solid transparent; border-inline-start: 7px solid var(--muted); border-inline-end: 0; }
+.layers3 .modes { grid-column: 1 / -1; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; padding-top: 14px; position: relative; }
+.layers3 .modes::before { content: ""; position: absolute; top: 0; left: 50%; width: 2px; height: 10px; background: var(--muted); }
+.layers3 .modes span { font-size: 12.5px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); }
+.layers3 .modes span.on { border-color: var(--accent); color: var(--accent); font-weight: 600; background: color-mix(in srgb, var(--accent) 10%, var(--surface)); }
+
+.spec { width: 100%; border-collapse: collapse; margin-top: 18px; font-size: 15px; background: var(--surface); border-radius: 18px; overflow: hidden; box-shadow: var(--shadow); }
+.spec th, .spec td { text-align: start; padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.spec th { font-size: 13px; font-weight: 500; color: var(--muted); }
+.spec tr:last-child td { border-bottom: 0; }
+.spec td:nth-child(2) { white-space: nowrap; font-weight: 600; }
+
+.compare .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.compare .badges > span { font-size: 13px; font-weight: 500; padding: 4px 12px; border-radius: 999px; }
+.compare .b-out { border: 1.5px solid var(--accent); color: var(--accent); }
+.compare .b-fill { background: var(--coral); color: #fff; }
+
+@media (max-width: 760px) {
+  .layers3 { grid-template-columns: 1fr; }
+  .layers3 > * { order: 2; }
+  .layers3 > :nth-child(-n+3), .layers3 .modes { order: 1; }
+  .layers3 .modes { padding-bottom: 4px; }
+  .layers3 .arr { justify-self: center; width: 2px; height: 18px; }
+  .layers3 .arr::after { inset-inline-end: auto; left: -4px; top: auto; bottom: -1px; border: 5px solid transparent; border-top: 7px solid var(--muted); border-bottom: 0; }
+}
