@@ -196,6 +196,9 @@ body.cs { padding-bottom: 80px; }
   border-radius: 32px; background: var(--surface) center / cover no-repeat; box-shadow: var(--shadow);
 }
 .cover .ph .frame { width: 70% !important; aspect-ratio: 16 / 10 !important; border-radius: 14px !important; }
+/* landscape cover (twentytoo.html): same card, wider, so the headline isn't cropped */
+.cover.cover-wide { width: min(720px, 100%); aspect-ratio: 2880 / 2048; }
+.col ul.after-p { margin-top: 12px; }
 
 .seg { display: flex; width: max-content; margin: 22px auto 56px; padding: 5px; gap: 4px; border-radius: 999px; background: var(--surface); box-shadow: var(--shadow); }
 .seg button { font: inherit; font-size: 14px; border: 0; cursor: pointer; padding: 8px 18px; border-radius: 999px; background: transparent; color: var(--muted); }

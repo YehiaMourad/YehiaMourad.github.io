@@ -27,11 +27,14 @@
   Same structure as pos-system.html and pleny.html.
   - Every text block exists twice: class="en" and class="ar".
   - class="detail" hides in TL;DR mode, class="tldr" shows only in TL;DR mode.
-  - Cover: assets/twentytoo-cover.webp (homepage frame uses assets/twentytoo-canvas.webp).
-  - Screens: assets/twentytoo-limits.webp and assets/twentytoo-modes.webp.
-    If a screen file is missing, its figure hides itself.
+  - Cover: assets/twentytoo-cover.webp, landscape (class "cover cover-wide"). The homepage tile uses the same file.
+  - Screens: drop these files into assets/ and they appear. If a file is missing, its figure hides itself.
+      assets/twentytoo-limits.webp  (denim / EMEA reply, 4B)              added
+      assets/twentytoo-modes.webp   (mode selector, 4C)                   added
+      assets/twentytoo-empty.webp   (empty state with suggested prompts, 4A)   added
+      assets/twentytoo-answer.webp  (KSA fashion answer with product cards, under 4D)   added
   - Not shown yet: a screenshot of the confidence badges / ranges, and of the component library.
-    Add them as new <figure class="wide detail"> blocks under 4A and 4C.
+    Add them as new <figure class="wide detail"> blocks under 4B and 4D.
 -->
 
 <a class="mark cs-mark" href="./" aria-label="Yehia Mourad, home"><img class="logo-l" src="assets/logo-mark.svg" alt=""><img class="logo-d" src="assets/logo-mark-dark.svg" alt=""></a>
@@ -48,7 +51,7 @@
 
 <main class="cs-page">
 
-  <div class="cover" style="view-transition-name: twentytoo-cover; background-image:url(assets/twentytoo-cover.webp)"></div>
+  <div class="cover cover-wide" style="view-transition-name: twentytoo-cover; background-image:url(assets/twentytoo-cover.webp)"></div>
 
   <div class="seg" role="tablist" aria-label="Reading mode">
     <button class="on" data-mode="detailed" role="tab"><span class="en">Detailed</span><span class="ar">بالتفصيل</span></button>
@@ -80,6 +83,7 @@
       <ul class="en">
         <li>Lead product design on <b>TwentyToo</b>, a B2B AI-SaaS platform for Gulf retail market intelligence.</li>
         <li>The users are <b>category managers</b>: experts in their market, not in AI.</li>
+        <li>Gave the empty state <b>suggested questions</b> written like real category-manager tasks, so a first-time user knows what to ask.</li>
         <li>Made uncertainty visible with <b>confidence badges</b>, <b>ranges</b> instead of single numbers, and clear alerts when data isn't live yet.</li>
         <li>Gave users control with <b>three response modes</b> that trade speed against source breadth.</li>
         <li>Built a <b>style guide and a 96-component library</b> with one visual language for charts and insight cards.</li>
@@ -88,6 +92,7 @@
       <ul class="ar">
         <li>بقود تصميم المنتج في <b>TwentyToo</b>، منصة B2B AI-SaaS لمعلومات سوق الريتيل في الخليج.</li>
         <li>المستخدمين <b>مديرين كاتيجوري</b>: خبراء في سوقهم، مش في الـAI.</li>
+        <li>ادّيت الشاشة الفاضية <b>أسئلة مقترحة</b> مكتوبة زي مهام مدير كاتيجوري فعلًا، فالمستخدم الجديد يعرف يسأل إيه.</li>
         <li>خليت عدم اليقين ظاهر بـ<b>مؤشرات ثقة</b>، و<b>نطاقات</b> بدل رقم واحد، وتنبيه واضح لما البيانات لسه مش live.</li>
         <li>ادّيت المستخدم تحكم بـ<b>تلات أوضاع للرد</b> بتوازن بين السرعة واتساع المصادر.</li>
         <li>بنيت <b>style guide ومكتبة 96 مكوّن</b> بلغة بصرية واحدة للشارتس وكروت الـinsights.</li>
@@ -135,10 +140,30 @@
     <section class="detail">
       <span class="num">04 / <span class="en">Design decisions</span><span class="ar">قرارات التصميم</span></span>
       <h2><span class="en">Make the uncertainty visible, then let people choose</span><span class="ar">خلي عدم اليقين ظاهر، وسيب الناس تختار</span></h2>
-      <p class="en">Two ideas drove the interface, with a design system underneath to keep it consistent.</p>
-      <p class="ar">فكرتين حكموا الواجهة، وتحتهم نظام تصميم بيحافظ على الاتساق.</p>
+      <p class="en">Three ideas drove the interface: a clear starting point, visible uncertainty, and a choice over depth. A design system underneath keeps it consistent.</p>
+      <p class="ar">تلات أفكار حكموا الواجهة: نقطة بداية واضحة، وعدم يقين ظاهر، واختيار للعمق. وتحتهم نظام تصميم بيحافظ على الاتساق.</p>
 
-      <span class="pill">4A · <span class="en">Confidence, made visible</span><span class="ar">الثقة ظاهرة</span></span>
+      <span class="pill">4A · <span class="en">A clear starting point</span><span class="ar">نقطة بداية واضحة</span></span>
+      <h3><span class="en">Start from a question, not a blank box</span><span class="ar">ابدأ من سؤال، مش من خانة فاضية</span></h3>
+      <p class="en">A blank input tells a first-time user nothing about what the product can do. So the empty state suggests questions, written the way a category manager would actually ask them: forecast sell-through, identify overstock risk, compare margin against last season.</p>
+      <p class="ar">خانة الكتابة الفاضية مبتقولش للمستخدم الجديد المنتج يقدر يعمل إيه. فالشاشة الفاضية بتقترح أسئلة، مكتوبة زي ما مدير كاتيجوري بيسأل فعلًا: توقع الـsell-through، تحديد خطر الـoverstock، ومقارنة الهامش بالموسم اللي فات.</p>
+      <ul class="en after-p">
+        <li>Suggested prompts start with a verb, so they read as tasks, not features</li>
+        <li>The input hint names what to ask about: trends, pricing, sales, suppliers, or any retail analytics question</li>
+      </ul>
+      <ul class="ar after-p">
+        <li>الأسئلة المقترحة بتبدأ بفعل، فبتتقري كمهام مش كمميزات</li>
+        <li>تلميح خانة الكتابة بيذكر تسأل عن إيه: الترندات، التسعير، المبيعات، الموردين، أو أي سؤال تحليلات ريتيل</li>
+      </ul>
+    </section>
+
+    <figure class="wide detail">
+      <img class="shot-img" src="assets/twentytoo-empty.webp" alt="TwentyToo empty state with an input box and three suggested questions" loading="lazy" onerror="this.closest('figure').remove()">
+      <figcaption><span class="en">The empty state: an input hint and three suggested questions.</span><span class="ar">الشاشة الفاضية: تلميح في خانة الكتابة وتلات أسئلة مقترحة.</span></figcaption>
+    </figure>
+
+    <section class="detail">
+      <span class="pill">4B · <span class="en">Confidence, made visible</span><span class="ar">الثقة ظاهرة</span></span>
       <h3><span class="en">Show how sure the system is</span><span class="ar">وري النظام متأكد قد إيه</span></h3>
       <ul class="en">
         <li>Confidence badges on results, so certainty is visible instead of assumed</li>
@@ -158,7 +183,7 @@
     </figure>
 
     <section class="detail">
-      <span class="pill">4B · <span class="en">Depth as a choice</span><span class="ar">العمق اختيار</span></span>
+      <span class="pill">4C · <span class="en">Depth as a choice</span><span class="ar">العمق اختيار</span></span>
       <h3><span class="en">Three modes, one trade-off: speed against breadth</span><span class="ar">تلات أوضاع، مقايضة واحدة: السرعة قصاد الاتساع</span></h3>
       <p class="en">Category managers don't always want the same thing from a question. Sometimes they need a fast answer from verified data, sometimes a wider picture. Instead of picking one speed for everyone, I named the trade-off and left the choice to the user.</p>
       <p class="ar">مديرين الكاتيجوري مش دايمًا عايزين نفس الحاجة من السؤال. أحيانًا محتاجين إجابة سريعة من بيانات مؤكدة، وأحيانًا صورة أوسع. بدل ما أختار سرعة واحدة للكل، سميت المقايضة وسبت الاختيار للمستخدم.</p>
@@ -178,7 +203,7 @@
     </figure>
 
     <section class="detail">
-      <span class="pill">4C · <span class="en">One visual language for data</span><span class="ar">لغة بصرية واحدة للبيانات</span></span>
+      <span class="pill">4D · <span class="en">One visual language for data</span><span class="ar">لغة بصرية واحدة للبيانات</span></span>
       <h3><span class="en">A style guide the team can build on</span><span class="ar">style guide الفريق يقدر يبني عليه</span></h3>
       <ul class="en">
         <li>One consistent way to present charts and insight cards across the product</li>
@@ -189,6 +214,11 @@
         <li>مكتبة من 96 مكوّن reusable، فالفيتشرز الجديدة تتسلّم من غير ما نعيد بناء نفس الأنماط، والـhandoff بقى أسرع</li>
       </ul>
     </section>
+
+    <figure class="wide detail">
+      <img class="shot-img" src="assets/twentytoo-answer.webp" alt="TwentyToo chat: a question about trending fashion in Saudi Arabia answered with ranked trends, three product cards with prices, highlights and style tips" loading="lazy" onerror="this.closest('figure').remove()">
+      <figcaption><span class="en">A trend question answered in one reply: ranked trends, product cards with current and original prices, highlights and style tips. Screenshot tidied: duplicate lines and price labels corrected.</span><span class="ar">سؤال عن الترند اتجاوب في رد واحد: ترندات مرتبة، كروت منتجات بالسعر الحالي والأصلي، highlights ونصايح ستايل. الصورة اتنضفت: اتشال التكرار واتصححت أسعار الكروت.</span></figcaption>
+    </figure>
 
     <!-- ===== 05 Data & engineering ===== -->
     <section class="detail">
