@@ -360,8 +360,8 @@ html[dir="rtl"] .compare { margin: 28px 50% 0 0; transform: translateX(50%); }
 
 .compare .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
 .compare .badges > span { font-size: 13px; font-weight: 500; padding: 4px 12px; border-radius: 999px; }
-.compare .b-out { border: 1.5px solid var(--accent); color: var(--accent); }
-.compare .b-fill { background: var(--coral); color: #fff; }
+.compare .b-out { border: 1.5px solid var(--c); color: var(--c); background: #fff; }
+.compare .b-fill { background: var(--bg); color: var(--c); }
 
 @media (max-width: 760px) {
   .layers3 { grid-template-columns: 1fr; }
@@ -371,3 +371,4 @@ html[dir="rtl"] .compare { margin: 28px 50% 0 0; transform: translateX(50%); }
   .layers3 .arr { justify-self: center; width: 2px; height: 18px; }
   .layers3 .arr::after { inset-inline-end: auto; left: -4px; top: auto; bottom: -1px; border: 5px solid transparent; border-top: 7px solid var(--muted); border-bottom: 0; }
 }
+.wide.narrow .shot-img { max-width: 560px; margin: 0 auto; }
