@@ -27,8 +27,7 @@
   Same structure as pos-system.html.
   - Every text block exists twice: class="en" and class="ar".
   - class="detail" hides in TL;DR mode, class="tldr" shows only in TL;DR mode.
-  - Cover: add assets/pleny-cover.webp and replace the .ph inside .cover with
-    style="background-image:url(assets/pleny-cover.webp)" on .cover.
+  - Cover: assets/pleny-cover.webp (homepage frame uses assets/pleny-canvas.webp).
   - Screens: drop these files into assets/ and they appear. If a file is missing, its figure hides itself.
       assets/pleny-tokens.webp      (semantic surface + content tokens, 3 modes)  ✓ added
       assets/pleny-primitives.webp  (indigo + neutral primitive ramps)            ✓ added
@@ -51,9 +50,7 @@
 
 <main class="cs-page">
 
-  <div class="cover" style="view-transition-name: pleny-cover;">
-    <div class="ph ph-2"><div class="frame"></div></div>
-  </div>
+  <div class="cover" style="view-transition-name: pleny-cover; background-image:url(assets/pleny-cover.webp)"></div>
 
   <div class="seg" role="tablist" aria-label="Reading mode">
     <button class="on" data-mode="detailed" role="tab"><span class="en">Detailed</span><span class="ar">بالتفصيل</span></button>
