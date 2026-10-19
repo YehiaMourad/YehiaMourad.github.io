@@ -1,31 +1,30 @@
-<!doctype html>
-<html lang="en" dir="ltr">
+<!DOCTYPE html>
+
+<html dir="ltr" lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>TwentyToo — Yehia Mourad</title>
-<meta name="description" content="Designing trust into an AI market-intelligence platform: confidence cues, response modes and a design system for category managers.">
-<meta property="og:title" content="TwentyToo — Yehia Mourad">
-<meta property="og:description" content="Designing trust into an AI market-intelligence platform: confidence cues, response modes and a design system for category managers.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="icon" href="favicon.ico" sizes="32x32">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="manifest" href="site.webmanifest">
-<meta name="theme-color" content="#efece6">
-<meta property="og:image" content="https://yehiamourad.github.io/assets/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="style.css">
-<script src="i18n.js" defer></script>
-<script src="case.js" defer></script>
+<meta content="Designing trust into an AI market-intelligence platform: confidence cues, response modes and a design system for category managers." name="description"/>
+<meta content="TwentyToo — Yehia Mourad" property="og:title"/>
+<meta content="Designing trust into an AI market-intelligence platform: confidence cues, response modes and a design system for category managers." property="og:description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&amp;display=swap" rel="stylesheet"/>
+<link href="favicon.ico" rel="icon" sizes="32x32"/>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="site.webmanifest" rel="manifest"/>
+<meta content="#efece6" name="theme-color"/>
+<meta content="https://yehiamourad.github.io/assets/og-image.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="style.css" rel="stylesheet"/>
+<script defer="" src="i18n.js"></script>
+<script defer="" src="case.js"></script>
 </head>
 <body class="cs">
-
 <!--
   Same structure as pos-system.html and pleny.html.
-  - Every text block exists twice: class="en" and class="ar".
   - class="detail" hides in TL;DR mode, class="tldr" shows only in TL;DR mode.
   - Cover: assets/twentytoo-cover.webp, landscape (class "cover cover-wide"). The homepage tile uses the same file.
   - Screens: drop these files into assets/ and they appear. If a file is missing, its figure hides itself.
@@ -36,215 +35,171 @@
   - Not shown yet: a screenshot of the confidence badges / ranges, and of the component library.
     Add them as new <figure class="wide detail"> blocks under 4B and 4D.
 -->
-
-<a class="mark cs-mark" href="./" aria-label="Yehia Mourad, home"><img class="logo-l" src="assets/logo-mark.svg" alt=""><img class="logo-d" src="assets/logo-mark-dark.svg" alt=""></a>
-
+<a aria-label="Yehia Mourad, home" class="mark cs-mark" href="./"><img alt="" class="logo-l" src="assets/logo-mark.svg"/><img alt="" class="logo-d" src="assets/logo-mark-dark.svg"/></a>
 <div class="cs-tools">
-  <button class="chip lang-toggle" type="button" data-i18n="lang.toggle">عربي</button>
-  <button class="chip theme-toggle" type="button" aria-label="Switch light or dark">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-  </button>
-  <a class="chip close" href="./#work" aria-label="Close and go back">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"/></svg>
-  </a>
+
+<button aria-label="Switch light or dark" class="chip theme-toggle" type="button">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+</button>
+<a aria-label="Close and go back" class="chip close" href="./#work">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"></path></svg>
+</a>
 </div>
-
 <main class="cs-page">
+<div class="cover cover-wide" style="view-transition-name: twentytoo-cover; background-image:url(assets/twentytoo-cover.webp)"></div>
+<div aria-label="Reading mode" class="seg" role="tablist">
+<button class="on" data-mode="detailed" role="tab">Detailed</button>
+<button data-mode="tldr" role="tab">TL;DR</button>
+</div>
+<article class="col">
+<span class="kicker">Case study · TwentyToo</span>
+<h1>
+Designing for trust when the AI isn't sure
 
-  <div class="cover cover-wide" style="view-transition-name: twentytoo-cover; background-image:url(assets/twentytoo-cover.webp)"></div>
+</h1>
+<p class="lead">
+I lead product design at TwentyToo, a B2B AI-SaaS platform that gives retail teams real-time visibility into the Gulf market. The hard part wasn't the screens. It was turning AI answers that aren't always certain into something a category manager can act on.
 
-  <div class="seg" role="tablist" aria-label="Reading mode">
-    <button class="on" data-mode="detailed" role="tab"><span class="en">Detailed</span><span class="ar">بالتفصيل</span></button>
-    <button data-mode="tldr" role="tab">TL;DR</button>
-  </div>
+</p>
+<dl class="meta-row">
+<div><dt>Role</dt><dd>Senior Product Designer</dd></div>
+<div><dt>Platform</dt><dd>B2B AI-SaaS · Web</dd></div>
+<div><dt>Scope</dt><dd>AI interaction · Design system</dd></div>
+<div><dt>When</dt><dd>Dec 2023 – present</dd></div>
+</dl>
+<!-- ===== TL;DR ===== -->
+<section class="tldr">
+<h2>The short version</h2>
+<ul>
+<li>Lead product design on <b>TwentyToo</b>, a B2B AI-SaaS platform for Gulf retail market intelligence.</li>
+<li>The users are <b>category managers</b>: experts in their market, not in AI.</li>
+<li>Gave the empty state <b>suggested questions</b> written like real category-manager tasks, so a first-time user knows what to ask.</li>
+<li>Made uncertainty visible with <b>confidence badges</b>, <b>ranges</b> instead of single numbers, and clear alerts when data isn't live yet.</li>
+<li>Gave users control with <b>three response modes</b> that trade speed against source breadth.</li>
+<li>Built a <b>style guide and a 96-component library</b> with one visual language for charts and insight cards.</li>
+<li>Early-stage product, so no formal metrics yet. The signal came from <b>PM and stakeholder feedback</b>.</li>
+</ul>
 
-  <article class="col">
+</section>
+<!-- ===== 01 Context ===== -->
+<section class="detail">
+<span class="num">01 / Context</span>
+<h2>Ask the market a question</h2>
+<p>TwentyToo gives retail and e-commerce teams real-time visibility into the Gulf market: prices, discounts, competitor moves and assortment shifts across millions of products. You ask in plain language, like "how have women's dress prices in the UAE changed over the last 90 days?", and the platform answers from its own database.</p>
 
-    <span class="kicker"><span class="en">Case study · TwentyToo</span><span class="ar">دراسة حالة · TwentyToo</span></span>
-    <h1>
-      <span class="en">Designing for trust when the AI isn't sure</span>
-      <span class="ar">التصميم للثقة لما الـAI مش متأكد</span>
-    </h1>
-    <p class="lead">
-      <span class="en">I lead product design at TwentyToo, a B2B AI-SaaS platform that gives retail teams real-time visibility into the Gulf market. The hard part wasn't the screens. It was turning AI answers that aren't always certain into something a category manager can act on.</span>
-      <span class="ar">بقود تصميم المنتج في TwentyToo، منصة B2B AI-SaaS بتدي فرق الريتيل رؤية لحظية لسوق الخليج. الصعب مكانش الشاشات. كان إزاي أحوّل إجابات AI مش دايمًا مؤكدة لحاجة مدير كاتيجوري يقدر يتصرف عليها.</span>
-    </p>
+<p>The product is early in its life. Fashion is live in Saudi Arabia and the UAE, with more categories on the way. That shaped most of the decisions below.</p>
 
-    <dl class="meta-row">
-      <div><dt><span class="en">Role</span><span class="ar">الدور</span></dt><dd>Senior Product Designer</dd></div>
-      <div><dt><span class="en">Platform</span><span class="ar">المنصة</span></dt><dd><span class="en">B2B AI-SaaS · Web</span><span class="ar">B2B AI-SaaS · ويب</span></dd></div>
-      <div><dt><span class="en">Scope</span><span class="ar">النطاق</span></dt><dd><span class="en">AI interaction · Design system</span><span class="ar">تفاعل مع الـAI · نظام تصميم</span></dd></div>
-      <div><dt><span class="en">When</span><span class="ar">الفترة</span></dt><dd><span class="en">Dec 2023 – present</span><span class="ar">ديسمبر 2023 – دلوقتي</span></dd></div>
-    </dl>
+</section>
+<!-- ===== 02 Problem ===== -->
+<section class="detail">
+<span class="num">02 / The problem</span>
+<h2>Experts in the market, not in AI</h2>
+<p>The people using TwentyToo are category managers. They know pricing and assortment better than anyone, but they aren't technical, and they turn these answers into real pricing decisions. An AI answer that is wrong but sounds sure of itself is worse than no answer.</p>
 
-    <!-- ===== TL;DR ===== -->
-    <section class="tldr">
-      <h2><span class="en">The short version</span><span class="ar">باختصار</span></h2>
-      <ul class="en">
-        <li>Lead product design on <b>TwentyToo</b>, a B2B AI-SaaS platform for Gulf retail market intelligence.</li>
-        <li>The users are <b>category managers</b>: experts in their market, not in AI.</li>
-        <li>Gave the empty state <b>suggested questions</b> written like real category-manager tasks, so a first-time user knows what to ask.</li>
-        <li>Made uncertainty visible with <b>confidence badges</b>, <b>ranges</b> instead of single numbers, and clear alerts when data isn't live yet.</li>
-        <li>Gave users control with <b>three response modes</b> that trade speed against source breadth.</li>
-        <li>Built a <b>style guide and a 96-component library</b> with one visual language for charts and insight cards.</li>
-        <li>Early-stage product, so no formal metrics yet. The signal came from <b>PM and stakeholder feedback</b>.</li>
-      </ul>
-      <ul class="ar">
-        <li>بقود تصميم المنتج في <b>TwentyToo</b>، منصة B2B AI-SaaS لمعلومات سوق الريتيل في الخليج.</li>
-        <li>المستخدمين <b>مديرين كاتيجوري</b>: خبراء في سوقهم، مش في الـAI.</li>
-        <li>ادّيت الشاشة الفاضية <b>أسئلة مقترحة</b> مكتوبة زي مهام مدير كاتيجوري فعلًا، فالمستخدم الجديد يعرف يسأل إيه.</li>
-        <li>خليت عدم اليقين ظاهر بـ<b>مؤشرات ثقة</b>، و<b>نطاقات</b> بدل رقم واحد، وتنبيه واضح لما البيانات لسه مش live.</li>
-        <li>ادّيت المستخدم تحكم بـ<b>تلات أوضاع للرد</b> بتوازن بين السرعة واتساع المصادر.</li>
-        <li>بنيت <b>style guide ومكتبة 96 مكوّن</b> بلغة بصرية واحدة للشارتس وكروت الـinsights.</li>
-        <li>منتج في بدايته، فمفيش مقاييس رسمية لسه. الإشارة جت من <b>فيدباك الـPM والـstakeholders</b>.</li>
-      </ul>
-    </section>
+<div class="cards3">
+<div><b>Expert, not technical</b><p>They shouldn't need to know how the model works to trust it.</p></div>
+<div><b>Decisions, not dashboards</b><p>Results feed pricing and assortment calls, so clarity beats volume.</p></div>
+<div><b>Never fully certain</b><p>Model output has gaps and varying confidence, and coverage is still growing.</p></div>
+</div>
+</section>
+<!-- ===== 03 How I worked ===== -->
+<section class="detail">
+<span class="num">03 / How I worked</span>
+<h2>Discovery through the people closest to the market</h2>
+<p>I lead product design end to end: the interaction model, the UI strategy and the style guide. With no dedicated research function, discovery ran through conversations with the PM and stakeholders, who know the category managers and the market first-hand. That suits an early-stage team that moves fast.</p>
 
-    <!-- ===== 01 Context ===== -->
-    <section class="detail">
-      <span class="num">01 / <span class="en">Context</span><span class="ar">السياق</span></span>
-      <h2><span class="en">Ask the market a question</span><span class="ar">اسأل السوق سؤال</span></h2>
-      <p class="en">TwentyToo gives retail and e-commerce teams real-time visibility into the Gulf market: prices, discounts, competitor moves and assortment shifts across millions of products. You ask in plain language, like "how have women's dress prices in the UAE changed over the last 90 days?", and the platform answers from its own database.</p>
-      <p class="ar">TwentyToo بتدي فرق الريتيل والتجارة الإلكترونية رؤية لحظية لسوق الخليج: أسعار وخصومات وحركة المنافسين وتغيّر التشكيلات عبر ملايين المنتجات. بتسأل بلغة عادية، زي "أسعار فساتين السيدات في الإمارات اتغيرت إزاي في آخر 90 يوم؟"، والمنصة بترد من قاعدة بياناتها.</p>
-      <p class="en">The product is early in its life. Fashion is live in Saudi Arabia and the UAE, with more categories on the way. That shaped most of the decisions below.</p>
-      <p class="ar">المنتج لسه في بدايته. الفاشون شغال في السعودية والإمارات، وكاتيجوريز تانية جاية. وده أثّر على معظم القرارات تحت.</p>
-    </section>
+<blockquote class="pull">
+<p>The interface should never claim more certainty than the system actually has.</p>
 
-    <!-- ===== 02 Problem ===== -->
-    <section class="detail">
-      <span class="num">02 / <span class="en">The problem</span><span class="ar">المشكلة</span></span>
-      <h2><span class="en">Experts in the market, not in AI</span><span class="ar">خبراء في السوق، مش في الـAI</span></h2>
-      <p class="en">The people using TwentyToo are category managers. They know pricing and assortment better than anyone, but they aren't technical, and they turn these answers into real pricing decisions. An AI answer that is wrong but sounds sure of itself is worse than no answer.</p>
-      <p class="ar">المستخدمين مديرين كاتيجوري. عارفين التسعير والتشكيلة أحسن من أي حد، بس مش تقنيين، وبيحوّلوا الإجابات دي لقرارات تسعير حقيقية. إجابة AI غلط وواثقة من نفسها أسوأ من مفيش إجابة.</p>
-      <div class="cards3">
-        <div><b class="en">Expert, not technical</b><b class="ar">خبير، مش تقني</b><p class="en">They shouldn't need to know how the model works to trust it.</p><p class="ar">مايحتاجوش يفهموا الموديل بيشتغل إزاي علشان يثقوا فيه.</p></div>
-        <div><b class="en">Decisions, not dashboards</b><b class="ar">قرارات، مش داشبوردز</b><p class="en">Results feed pricing and assortment calls, so clarity beats volume.</p><p class="ar">النتايج بتغذي قرارات تسعير وتشكيلة، فالوضوح أهم من الكمية.</p></div>
-        <div><b class="en">Never fully certain</b><b class="ar">مش مؤكد 100%</b><p class="en">Model output has gaps and varying confidence, and coverage is still growing.</p><p class="ar">ناتج الموديل فيه فجوات وثقة متفاوتة، والتغطية لسه بتكبر.</p></div>
-      </div>
-    </section>
+<cite>Design principle · TwentyToo</cite>
+</blockquote>
+</section>
+<!-- ===== 04 Design decisions ===== -->
+<section class="detail">
+<span class="num">04 / Design decisions</span>
+<h2>Make the uncertainty visible, then let people choose</h2>
+<p>Three ideas drove the interface: a clear starting point, visible uncertainty, and a choice over depth. A design system underneath keeps it consistent.</p>
 
-    <!-- ===== 03 How I worked ===== -->
-    <section class="detail">
-      <span class="num">03 / <span class="en">How I worked</span><span class="ar">طريقة الشغل</span></span>
-      <h2><span class="en">Discovery through the people closest to the market</span><span class="ar">اكتشاف من الناس الأقرب للسوق</span></h2>
-      <p class="en">I lead product design end to end: the interaction model, the UI strategy and the style guide. With no dedicated research function, discovery ran through conversations with the PM and stakeholders, who know the category managers and the market first-hand. That suits an early-stage team that moves fast.</p>
-      <p class="ar">بقود تصميم المنتج من الأول للآخر: نموذج التفاعل، واستراتيجية الـUI، والـstyle guide. من غير فريق ريسيرش مخصص، الاكتشاف كان بيمشي من كلامي مع الـPM والـstakeholders، اللي عارفين مديرين الكاتيجوري والسوق من قريب. وده مناسب لفريق في بدايته بيتحرك بسرعة.</p>
-      <blockquote class="pull">
-        <p class="en">The interface should never claim more certainty than the system actually has.</p>
-        <p class="ar">الواجهة ماتدّعيش يقين أكتر من اللي النظام عنده فعلًا.</p>
-        <cite><span class="en">Design principle · TwentyToo</span><span class="ar">مبدأ التصميم · TwentyToo</span></cite>
-      </blockquote>
-    </section>
+<span class="pill">4A · A clear starting point</span>
+<h3>Start from a question, not a blank box</h3>
+<p>A blank input tells a first-time user nothing about what the product can do. So the empty state suggests questions, written the way a category manager would actually ask them: forecast sell-through, identify overstock risk, compare margin against last season.</p>
 
-    <!-- ===== 04 Design decisions ===== -->
-    <section class="detail">
-      <span class="num">04 / <span class="en">Design decisions</span><span class="ar">قرارات التصميم</span></span>
-      <h2><span class="en">Make the uncertainty visible, then let people choose</span><span class="ar">خلي عدم اليقين ظاهر، وسيب الناس تختار</span></h2>
-      <p class="en">Three ideas drove the interface: a clear starting point, visible uncertainty, and a choice over depth. A design system underneath keeps it consistent.</p>
-      <p class="ar">تلات أفكار حكموا الواجهة: نقطة بداية واضحة، وعدم يقين ظاهر، واختيار للعمق. وتحتهم نظام تصميم بيحافظ على الاتساق.</p>
+<ul class="after-p">
+<li>Suggested prompts start with a verb, so they read as tasks, not features</li>
+<li>The input hint names what to ask about: trends, pricing, sales, suppliers, or any retail analytics question</li>
+</ul>
 
-      <span class="pill">4A · <span class="en">A clear starting point</span><span class="ar">نقطة بداية واضحة</span></span>
-      <h3><span class="en">Start from a question, not a blank box</span><span class="ar">ابدأ من سؤال، مش من خانة فاضية</span></h3>
-      <p class="en">A blank input tells a first-time user nothing about what the product can do. So the empty state suggests questions, written the way a category manager would actually ask them: forecast sell-through, identify overstock risk, compare margin against last season.</p>
-      <p class="ar">خانة الكتابة الفاضية مبتقولش للمستخدم الجديد المنتج يقدر يعمل إيه. فالشاشة الفاضية بتقترح أسئلة، مكتوبة زي ما مدير كاتيجوري بيسأل فعلًا: توقع الـsell-through، تحديد خطر الـoverstock، ومقارنة الهامش بالموسم اللي فات.</p>
-      <ul class="en after-p">
-        <li>Suggested prompts start with a verb, so they read as tasks, not features</li>
-        <li>The input hint names what to ask about: trends, pricing, sales, suppliers, or any retail analytics question</li>
-      </ul>
-      <ul class="ar after-p">
-        <li>الأسئلة المقترحة بتبدأ بفعل، فبتتقري كمهام مش كمميزات</li>
-        <li>تلميح خانة الكتابة بيذكر تسأل عن إيه: الترندات، التسعير، المبيعات، الموردين، أو أي سؤال تحليلات ريتيل</li>
-      </ul>
-    </section>
+</section>
+<figure class="wide detail">
+<img alt="TwentyToo empty state with an input box and three suggested questions" class="shot-img" loading="lazy" onerror="this.closest('figure').remove()" src="assets/twentytoo-empty.webp"/>
+<figcaption>The empty state: an input hint and three suggested questions.</figcaption>
+</figure>
+<section class="detail">
+<span class="pill">4B · Confidence, made visible</span>
+<h3>Show how sure the system is</h3>
+<ul>
+<li>Confidence badges on results, so certainty is visible instead of assumed</li>
+<li>Ranges instead of a single exact number when confidence is lower</li>
+<li>Clear alerts when data is missing, or a region or category isn't live yet</li>
+</ul>
 
-    <figure class="wide detail">
-      <img class="shot-img" src="assets/twentytoo-empty.webp" alt="TwentyToo empty state with an input box and three suggested questions" loading="lazy" onerror="this.closest('figure').remove()">
-      <figcaption><span class="en">The empty state: an input hint and three suggested questions.</span><span class="ar">الشاشة الفاضية: تلميح في خانة الكتابة وتلات أسئلة مقترحة.</span></figcaption>
-    </figure>
+</section>
+<figure class="wide detail">
+<img alt="TwentyToo chat: a request for a denim sell-through forecast in EMEA gets an answer that explains what isn't covered yet" class="shot-img" loading="lazy" onerror="this.closest('figure').remove()" src="assets/twentytoo-limits.webp"/>
+<figcaption>Asked for a denim sell-through forecast in EMEA, the answer says what isn't covered yet, then points to what is.</figcaption>
+</figure>
+<section class="detail">
+<span class="pill">4C · Depth as a choice</span>
+<h3>Three modes, one trade-off: speed against breadth</h3>
+<p>Category managers don't always want the same thing from a question. Sometimes they need a fast answer from verified data, sometimes a wider picture. Instead of picking one speed for everyone, I named the trade-off and left the choice to the user.</p>
 
-    <section class="detail">
-      <span class="pill">4B · <span class="en">Confidence, made visible</span><span class="ar">الثقة ظاهرة</span></span>
-      <h3><span class="en">Show how sure the system is</span><span class="ar">وري النظام متأكد قد إيه</span></h3>
-      <ul class="en">
-        <li>Confidence badges on results, so certainty is visible instead of assumed</li>
-        <li>Ranges instead of a single exact number when confidence is lower</li>
-        <li>Clear alerts when data is missing, or a region or category isn't live yet</li>
-      </ul>
-      <ul class="ar">
-        <li>مؤشرات ثقة (badges) على النتايج، فالتأكد ظاهر مش متفترض</li>
-        <li>نطاقات (ranges) بدل رقم دقيق واحد لما الثقة تقل</li>
-        <li>تنبيه واضح لما البيانات ناقصة، أو المنطقة أو الكاتيجوري لسه مش live</li>
-      </ul>
-    </section>
+<table class="spec">
+<thead><tr><th>Mode</th><th>Speed</th><th>Sources</th></tr></thead>
+<tbody>
+<tr><td>Core Insights</td><td>Fastest</td><td>TwentyToo database only</td></tr>
+<tr><td>Fast Expanded Insights</td><td>Fast</td><td>Database + rapid internet signals</td></tr>
+<tr><td>Expanded Insights</td><td>Slower</td><td>Database + internet search</td></tr>
+</tbody>
+</table>
+</section>
+<figure class="wide detail">
+<img alt="TwentyToo mode selector listing Core Insights, Expanded Insights and Fast Expanded Insights with their data sources" class="shot-img" loading="lazy" onerror="this.closest('figure').remove()" src="assets/twentytoo-modes.webp"/>
+<figcaption>The mode selector: each option says where its answer comes from.</figcaption>
+</figure>
+<section class="detail">
+<span class="pill">4D · One visual language for data</span>
+<h3>A style guide the team can build on</h3>
+<ul>
+<li>One consistent way to present charts and insight cards across the product</li>
+<li>A library of 96 reusable components, so new features ship without rebuilding the same patterns, and handoff gets faster</li>
+</ul>
 
-    <figure class="wide detail">
-      <img class="shot-img" src="assets/twentytoo-limits.webp" alt="TwentyToo chat: a request for a denim sell-through forecast in EMEA gets an answer that explains what isn't covered yet" loading="lazy" onerror="this.closest('figure').remove()">
-      <figcaption><span class="en">Asked for a denim sell-through forecast in EMEA, the answer says what isn't covered yet, then points to what is.</span><span class="ar">لما اتسأل عن توقع sell-through للدنيم في EMEA، الرد بيقول إيه اللي لسه مش متغطي، وبعدين بيوجّه لللي متاح.</span></figcaption>
-    </figure>
+</section>
+<figure class="wide detail">
+<img alt="TwentyToo chat: a question about trending fashion in Saudi Arabia answered with ranked trends, three product cards with prices, highlights and style tips" class="shot-img" loading="lazy" onerror="this.closest('figure').remove()" src="assets/twentytoo-answer.webp"/>
+<figcaption>A trend question answered in one reply: ranked trends, product cards with current and original prices, highlights and style tips. Screenshot tidied: duplicate lines and price labels corrected.</figcaption>
+</figure>
+<!-- ===== 05 Data & engineering ===== -->
+<section class="detail">
+<span class="num">05 / Working with data &amp; engineering</span>
+<h2>Design starts with the model's limits</h2>
+<p>Honest uncertainty design starts before the interface. I worked closely with engineering and data to understand what the model can and can't do today, like no sell-through forecasting yet and partial regional coverage, then designed the interface to reflect those limits instead of hiding them.</p>
 
-    <section class="detail">
-      <span class="pill">4C · <span class="en">Depth as a choice</span><span class="ar">العمق اختيار</span></span>
-      <h3><span class="en">Three modes, one trade-off: speed against breadth</span><span class="ar">تلات أوضاع، مقايضة واحدة: السرعة قصاد الاتساع</span></h3>
-      <p class="en">Category managers don't always want the same thing from a question. Sometimes they need a fast answer from verified data, sometimes a wider picture. Instead of picking one speed for everyone, I named the trade-off and left the choice to the user.</p>
-      <p class="ar">مديرين الكاتيجوري مش دايمًا عايزين نفس الحاجة من السؤال. أحيانًا محتاجين إجابة سريعة من بيانات مؤكدة، وأحيانًا صورة أوسع. بدل ما أختار سرعة واحدة للكل، سميت المقايضة وسبت الاختيار للمستخدم.</p>
-      <table class="spec">
-        <thead><tr><th><span class="en">Mode</span><span class="ar">الوضع</span></th><th><span class="en">Speed</span><span class="ar">السرعة</span></th><th><span class="en">Sources</span><span class="ar">المصادر</span></th></tr></thead>
-        <tbody>
-          <tr><td>Core Insights</td><td><span class="en">Fastest</span><span class="ar">الأسرع</span></td><td><span class="en">TwentyToo database only</span><span class="ar">قاعدة بيانات TwentyToo بس</span></td></tr>
-          <tr><td>Fast Expanded Insights</td><td><span class="en">Fast</span><span class="ar">سريع</span></td><td><span class="en">Database + rapid internet signals</span><span class="ar">القاعدة + إشارات سريعة من الإنترنت</span></td></tr>
-          <tr><td>Expanded Insights</td><td><span class="en">Slower</span><span class="ar">أبطأ</span></td><td><span class="en">Database + internet search</span><span class="ar">القاعدة + بحث في الإنترنت</span></td></tr>
-        </tbody>
-      </table>
-    </section>
+</section>
+<!-- ===== 06 Status ===== -->
+<section class="detail">
+<span class="num">06 / Where it stands</span>
+<h2>Early product, qualitative signal</h2>
+<p>The product is early and doesn't have mature analytics yet, so I don't have metrics to report. The signal I worked from was direct feedback from the PM and stakeholders, who sit close to how category managers use the tool.</p>
 
-    <figure class="wide detail">
-      <img class="shot-img" src="assets/twentytoo-modes.webp" alt="TwentyToo mode selector listing Core Insights, Expanded Insights and Fast Expanded Insights with their data sources" loading="lazy" onerror="this.closest('figure').remove()">
-      <figcaption><span class="en">The mode selector: each option says where its answer comes from.</span><span class="ar">اختيار الوضع: كل اختيار بيقول الإجابة جاية منين.</span></figcaption>
-    </figure>
+<p>Next, I'd add one simple measure from day one: how often each response mode gets used. It would turn the qualitative loop into something measurable.</p>
 
-    <section class="detail">
-      <span class="pill">4D · <span class="en">One visual language for data</span><span class="ar">لغة بصرية واحدة للبيانات</span></span>
-      <h3><span class="en">A style guide the team can build on</span><span class="ar">style guide الفريق يقدر يبني عليه</span></h3>
-      <ul class="en">
-        <li>One consistent way to present charts and insight cards across the product</li>
-        <li>A library of 96 reusable components, so new features ship without rebuilding the same patterns, and handoff gets faster</li>
-      </ul>
-      <ul class="ar">
-        <li>طريقة واحدة متسقة لعرض الشارتس وكروت الـinsights في المنتج كله</li>
-        <li>مكتبة من 96 مكوّن reusable، فالفيتشرز الجديدة تتسلّم من غير ما نعيد بناء نفس الأنماط، والـhandoff بقى أسرع</li>
-      </ul>
-    </section>
-
-    <figure class="wide detail">
-      <img class="shot-img" src="assets/twentytoo-answer.webp" alt="TwentyToo chat: a question about trending fashion in Saudi Arabia answered with ranked trends, three product cards with prices, highlights and style tips" loading="lazy" onerror="this.closest('figure').remove()">
-      <figcaption><span class="en">A trend question answered in one reply: ranked trends, product cards with current and original prices, highlights and style tips. Screenshot tidied: duplicate lines and price labels corrected.</span><span class="ar">سؤال عن الترند اتجاوب في رد واحد: ترندات مرتبة، كروت منتجات بالسعر الحالي والأصلي، highlights ونصايح ستايل. الصورة اتنضفت: اتشال التكرار واتصححت أسعار الكروت.</span></figcaption>
-    </figure>
-
-    <!-- ===== 05 Data & engineering ===== -->
-    <section class="detail">
-      <span class="num">05 / <span class="en">Working with data &amp; engineering</span><span class="ar">الشغل مع الداتا والتطوير</span></span>
-      <h2><span class="en">Design starts with the model's limits</span><span class="ar">التصميم بيبدأ من حدود الموديل</span></h2>
-      <p class="en">Honest uncertainty design starts before the interface. I worked closely with engineering and data to understand what the model can and can't do today, like no sell-through forecasting yet and partial regional coverage, then designed the interface to reflect those limits instead of hiding them.</p>
-      <p class="ar">تصميم عدم اليقين بصدق بيبدأ قبل الواجهة. اشتغلت قريب مع الـengineering والداتا علشان أفهم الموديل يقدر يعمل إيه ومايقدرش دلوقتي، زي إن مفيش forecasting للـsell-through لسه والتغطية الإقليمية جزئية، وبعدين صممت الواجهة تعكس الحدود دي بدل ما تخبيها.</p>
-    </section>
-
-    <!-- ===== 06 Status ===== -->
-    <section class="detail">
-      <span class="num">06 / <span class="en">Where it stands</span><span class="ar">الوضع الحالي</span></span>
-      <h2><span class="en">Early product, qualitative signal</span><span class="ar">منتج في بدايته، وإشارة نوعية</span></h2>
-      <p class="en">The product is early and doesn't have mature analytics yet, so I don't have metrics to report. The signal I worked from was direct feedback from the PM and stakeholders, who sit close to how category managers use the tool.</p>
-      <p class="ar">المنتج في بدايته ومعندوش analytics ناضجة لسه، فمعنديش مقاييس أعرضها. الإشارة اللي اشتغلت عليها كانت فيدباك مباشر من الـPM والـstakeholders، القريبين من طريقة استخدام مديرين الكاتيجوري للأداة.</p>
-      <p class="en">Next, I'd add one simple measure from day one: how often each response mode gets used. It would turn the qualitative loop into something measurable.</p>
-      <p class="ar">الخطوة الجاية، كنت هزوّد مقياس بسيط من أول يوم: كام مرة كل وضع للرد بيتستخدم. ده هيخلي حلقة الفيدباك النوعية حاجة تتقاس.</p>
-    </section>
-
-  </article>
-
-  <a class="next-proj" href="./#work">
-    <span class="small"><span class="en">Back to all work</span><span class="ar">رجوع لكل الأعمال</span></span>
-    <span class="go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-  </a>
-
+</section>
+</article>
+<a class="next-proj" href="./#work">
+<span class="small">Back to all work</span>
+<span class="go"><svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24" width="16"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</a>
 </main>
 </body>
 </html>
