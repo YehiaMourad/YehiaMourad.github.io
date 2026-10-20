@@ -173,16 +173,33 @@
   .note { display: flex; gap: 12px; align-items: flex-start; background: var(--frame2); border-radius: 14px; padding: 1.4cqw 1.6cqw; font-size: max(14px, 1.25cqw); max-width: 52ch; }
   .note .dot { flex: none; width: 2.2em; height: 2.2em; border-radius: 50%; background: var(--coral); color: #fff; font-weight: 800; display: grid; place-items: center; font-size: .8em; }
 
-  /* 4 experience */
-  .s-exp { gap: max(14px, 2cqw); }
-  .s-exp .top { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; }
-  .jobs { display: grid; grid-template-columns: 1fr 1fr; gap: 0 4cqw; flex: 1; align-content: start; }
-  .job { display: grid; grid-template-columns: 1fr auto; gap: 0 12px; padding: .95cqw 0; border-bottom: 1px solid var(--line); font-size: max(13px, 1.1cqw); }
-  .job b { font-weight: 700; }
-  .job em { font: 400 max(11px, .85cqw)/1.8 var(--mono); font-style: normal; color: var(--muted); }
-  .job span { grid-column: 1 / -1; color: var(--muted); font-size: .9em; }
-  .job .pt { color: var(--coral); }
-  .job.cur b::after { content: "Now"; font: 500 max(9px, .7cqw) var(--mono); color: #fff; background: var(--coral); padding: .25em .6em; border-radius: 6px; margin-left: 8px; vertical-align: .2em; text-transform: uppercase; letter-spacing: .05em; }
+  /* 4 experience: timeline cards; this frame scrolls inside, like a Figma frame with vertical scrolling */
+  .s-exp { gap: max(14px, 1.8cqw); overflow-y: auto; scrollbar-width: thin; }
+  .s-exp .top { display: flex; align-items: flex-end; justify-content: space-between; gap: 3cqw; }
+  .s-exp .top .lead { font-size: max(13px, 1.1cqw); max-width: 44ch; text-align: right; }
+  .jcards { display: grid; grid-template-columns: repeat(4, 1fr); gap: max(10px, 1.2cqw); }
+  .jcard { background: var(--frame2); border-radius: 14px; padding: max(14px, 1.5cqw); display: flex; flex-direction: column; border: 1px solid transparent; min-width: 0; }
+  .jcard.cur { background: color-mix(in srgb, var(--indigo) 10%, var(--frame)); border-color: color-mix(in srgb, var(--indigo) 35%, transparent); }
+  .jcard .when { font: 400 max(10px, .85cqw) var(--mono); color: var(--muted); display: flex; align-items: center; gap: 8px; }
+  .jcard .when::before { content: ""; width: 9px; height: 9px; border-radius: 50%; border: 2px solid var(--muted); flex: none; }
+  .jcard.cur .when, .jcard.cur .when::before { color: var(--indigo); border-color: var(--indigo); }
+  .jcard.cur .when::before { background: var(--indigo); }
+  .jcard h3 { font-size: max(16px, 1.5cqw); letter-spacing: -.015em; margin-top: .7cqw; line-height: 1.15; }
+  .jcard h3 small { font-weight: 500; color: var(--muted); font-size: .7em; }
+  .jcard .role { font-size: max(12px, 1.05cqw); margin-top: 3px; }
+  .jcard p { font-size: max(12px, 1cqw); color: var(--muted); line-height: 1.5; margin-top: .8cqw; }
+  .jcard .metric { display: inline-block; margin-top: .8cqw; font: 500 max(11px, .9cqw) var(--mono); color: var(--coral); }
+  .jcard .loc { margin-top: auto; padding-top: 1.1cqw; display: flex; gap: 6px; flex-wrap: wrap; }
+  .jcard .loc span { font-size: max(10px, .85cqw); padding: 3px 8px; border-radius: 999px; background: var(--frame); color: var(--muted); }
+  .jcard.cur .loc span:first-child { background: var(--indigo); color: #fff; }
+  .jcard.kit { background: var(--deep); color: #fff; }
+  .jcard.kit .when, .jcard.kit p { color: rgba(255,255,255,.75); }
+  .jcard.kit .when::before { border-color: rgba(255,255,255,.75); }
+  .jfoot { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: max(12px, 1cqw); color: var(--muted); }
+  .jfoot a { color: var(--indigo); font-weight: 600; }
+  .s-exp .next { margin-top: 0; }
+  .scrollcue { position: sticky; bottom: 0; align-self: center; font: 500 max(11px, .85cqw) var(--mono); color: var(--muted); background: var(--frame); padding: .4em .9em; border-radius: 999px; box-shadow: 0 2px 10px rgba(0,0,0,.08); transition: opacity .2s; }
+  .s-exp.end .scrollcue { opacity: 0; }
 
   /* 5 contact */
   .s-contact { justify-content: center; gap: max(18px, 2.4cqw); background: var(--deep); color: #f2f1ee; }
@@ -216,8 +233,7 @@
     .card .shot { flex: none; aspect-ratio: 16 / 9; }
     .card .cap { padding: 14px 16px 16px; gap: 6px; }
     .s-about .photo { max-width: 180px; }
-    .jobs { grid-template-columns: 1fr; }
-    .job { padding: 10px 0; }
+    .jcards { grid-template-columns: 1fr; } .s-exp .top .lead { text-align: left; } .scrollcue { display: none; }
     .note, .props { padding: 14px; } .props { padding: 0; gap: 6px 18px; }
     .s-work .top, .s-exp .top { flex-direction: column; align-items: flex-start; }
     .say { width: 90px; top: 24px; right: 22px; }
@@ -282,21 +298,49 @@
     </section>
 
     <section class="screen s-exp" data-name="Experience" id="experience" aria-label="Experience">
-      <div class="top"><div><span class="kick"><b>●</b> 2014 → 2026</span><h2>Where I've worked<em>.</em></h2></div>
-        <a class="btn" data-hot href="assets/Yehia-Mourad-Resume.pdf" target="_blank">Full resume ↗</a></div>
-      <div class="jobs">
-        <div class="job cur"><b>TwentyToo</b><em>2023–now</em><span>Senior Product Designer · AI-SaaS</span></div>
-        <div class="job"><b>Talentera (bayt.com)</b><em>2025</em><span>Product Designer · UAE, project-based</span></div>
-        <div class="job"><b>Pleny</b><em>2026</em><span>Senior Product Designer · <i class="pt">Part-time</i></span></div>
-        <div class="job"><b>Automated Systems Co.</b><em>2022–23</em><span>UI/UX Designer · Kuwait Airlines</span></div>
-        <div class="job"><b>Reach Link</b><em>2023–25</em><span>Senior UI/UX Designer · Kuwait</span></div>
-        <div class="job"><b>Medica Healthy</b><em>2021</em><span>Product Owner &amp; UI/UX Designer</span></div>
-        <div class="job"><b>Geeks</b><em>2022–25</em><span>UI/UX Designer · Jordan · <i class="pt">Part-time</i></span></div>
-        <div class="job"><b>The Tailors Dev</b><em>2019–21</em><span>UI/UX Designer</span></div>
-        <div class="job"><b>TAS ERP</b><em>2022–25</em><span>UI/UX Designer · ERP · <i class="pt">Part-time</i></span></div>
-        <div class="job"><b>Spree · OMNAS</b><em>2014–18</em><span>UI Designer · Web Designer. Where it started.</span></div>
+      <div class="top"><div><span class="kick"><b>●</b> Newest first · 2014 → 2026</span><h2>Where I've worked<em>.</em></h2></div>
+        <p class="lead">8+ years in digital product design, 5+ on complex B2B and B2B2C. Full-time and part-time roles, remote with teams in Kuwait, Jordan and the UAE.</p></div>
+      <div class="jcards">
+        <article class="jcard cur"><span class="when">Dec 2023 – now</span><h3>TwentyToo</h3><span class="role">Senior Product Designer</span>
+          <p>End-to-end design for a B2B AI-SaaS platform, including its AI chat agent. UI style guide, a 96-component library, onboarding flows.</p><span class="metric">96 components</span>
+          <div class="loc"><span>Current</span><span>Remote</span></div></article>
+        <article class="jcard"><span class="when">Apr – Sep 2026</span><h3>Pleny</h3><span class="role">Senior Product Designer</span>
+          <p>Led design for a food social network app. Restructured and improved the design system for the Android app, including a new onboarding theme.</p>
+          <div class="loc"><span>Part-time</span><span>Egypt</span></div></article>
+        <article class="jcard"><span class="when">Jan 2023 – Dec 2025</span><h3>Reach Link</h3><span class="role">Senior UI/UX Designer</span>
+          <p>Influencer–brand marketplace, performance dashboards, and an events system with QR check-in.</p><span class="metric">223 creators · 27 brands</span>
+          <div class="loc"><span>Kuwait · Remote</span></div></article>
+        <article class="jcard"><span class="when">Nov 2022 – Nov 2025</span><h3>Geeks</h3><span class="role">UI/UX Designer</span>
+          <p>Dopa, a travel and activities app with its web dashboard, and Jamal, a car rental app and website.</p>
+          <div class="loc"><span>Part-time</span><span>Jordan · Remote</span></div></article>
+        <article class="jcard"><span class="when">Dec 2022 – Jun 2025</span><h3>TAS ERP</h3><span class="role">UI/UX Designer</span>
+          <p>Enterprise ERP modules for inventory, HR and finance.</p>
+          <div class="loc"><span>Part-time</span><span>Egypt</span></div></article>
+        <article class="jcard"><span class="when">Mar – Aug 2025</span><h3>Talentera <small>(bayt.com)</small></h3><span class="role">Product Designer</span>
+          <p>Led the Talentera events landing page, from content structure and layout to final UI.</p>
+          <div class="loc"><span>UAE · Project-based</span></div></article>
+        <article class="jcard"><span class="when">Jan 2022 – Jan 2023</span><h3>Automated Systems Co.</h3><span class="role">UI/UX Designer</span>
+          <p>Operational workflows for Kuwait Airlines, and a full hospital management system end to end.</p><span class="metric">−20% task time</span>
+          <div class="loc"><span>Kuwait</span></div></article>
+        <article class="jcard"><span class="when">Apr – Dec 2021</span><h3>Medica Healthy</h3><span class="role">Product Owner &amp; UI/UX Designer</span>
+          <p>Owned the backlog and UI flows for a medical app, website and web portal.</p>
+          <div class="loc"><span>Egypt</span></div></article>
+        <article class="jcard"><span class="when">Dec 2019 – Mar 2021</span><h3>The Tailors Dev</h3><span class="role">UI/UX Designer</span>
+          <p>Landing pages, admin dashboards and high-fidelity prototypes for client sign-off.</p>
+          <div class="loc"><span>Egypt</span></div></article>
+        <article class="jcard"><span class="when">Sep 2016 – Oct 2018</span><h3>Spree</h3><span class="role">UI Designer</span>
+          <p>Interfaces for web products at a media and marketing tech company.</p>
+          <div class="loc"><span>Egypt</span></div></article>
+        <article class="jcard"><span class="when">Sep 2014 – Sep 2016</span><h3>OMNAS</h3><span class="role">Web Designer</span>
+          <p>Where it started: designing and building websites.</p>
+          <div class="loc"><span>Egypt</span></div></article>
+        <article class="jcard kit"><span class="when">Toolkit</span><h3>What I bring</h3>
+          <p>AI-SaaS UX · Design systems · Interaction design · Product discovery · Arabic RTL</p>
+          <p>Figma (components, variables, auto layout) · Claude + Figma MCP · Figma AI · JIRA</p></article>
       </div>
+      <div class="jfoot"><span>Google UX Design Foundations · Designing Web &amp; Mobile Interfaces</span><a data-hot href="assets/Yehia-Mourad-Resume.pdf" target="_blank">Full resume ↗</a></div>
       <button class="next" data-hot data-go="contact">Next: Contact →</button>
+      <span class="scrollcue" aria-hidden="true">Scroll ↓</span>
     </section>
 
     <section class="screen s-contact" data-name="Contact" id="contact" aria-label="Contact">
@@ -348,6 +392,10 @@
 
   // remember which homepage view the visitor picked
   document.querySelectorAll(".mode a").forEach(a => a.addEventListener("click", () => { try { localStorage.setItem("home", a.dataset.mode); } catch (e) {} }));
+
+  // experience frame: hide the scroll cue once you reach the bottom
+  const exp = document.getElementById("experience");
+  exp.addEventListener("scroll", () => exp.classList.toggle("end", exp.scrollTop + exp.clientHeight >= exp.scrollHeight - 8), { passive: true });
 
   // dots
   screens.forEach((s, i) => { const b = document.createElement("button"); b.setAttribute("aria-label", s.dataset.name); b.onclick = () => go(i); dots.appendChild(b); });
