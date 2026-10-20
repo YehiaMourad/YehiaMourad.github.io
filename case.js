@@ -1,6 +1,7 @@
 // Case study interactions: Detailed / TL;DR switch, design option demo, Esc to close.
 
-document.addEventListener("DOMContentLoaded", () => {
+// initCase() also runs after a locked case study is unlocked and its content is added.
+window.initCase = () => {
   // Detailed / TL;DR
   const segBtns = document.querySelectorAll(".seg button");
   const setMode = mode => {
@@ -25,6 +26,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }));
     demo.dataset.variant = "a";
   });
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  window.initCase();
 
   // Esc closes the case study
   document.addEventListener("keydown", e => {
