@@ -15,23 +15,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="theme.js"></script>
 <style>
-  /* Presentation mode: a dark prototype player (always dark), one frame at a time.
-     Frames follow the light/dark theme. */
+  /* Presentation mode: one frame at a time, sitting on the same dotted canvas as the homepage.
+     Everything follows the light/dark theme. */
   :root {
-    --stage: #1e1e21; --bar: #2a2a2e; --bar-ink: #e9e8e5; --bar-muted: #9b9a96; --bar-line: #3a3a3f;
+    --canvas: #e9e6df; --dot: #cfcac0; --fshadow: 0 1px 2px rgba(0,0,0,.05), 0 24px 60px rgba(40,30,10,.12);
     --frame: #faf9f6; --frame2: #efece6; --ink: #18181a; --muted: #6f6d68; --line: #e3dfd6;
     --coral: #ff6a3d; --indigo: #4f56d6; --deep: #2b1d55; --hot: #0d99ff;
     --mono: "JetBrains Mono", ui-monospace, monospace;
     --cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='30' viewBox='-3 -3 66 94'%3E%3Cpath d='M0 0L0 76L20 57L34 88L48 82L34 51L60 49Z' fill='%23ff6a3d' stroke='%23fff' stroke-width='5' stroke-linejoin='round'/%3E%3C/svg%3E") 2 2, default;
-    color-scheme: dark;
+    color-scheme: light;
   }
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-    --frame: #1c1c1f; --frame2: #141416; --ink: #f2f1ee; --muted: #9b9a96; --line: #2c2c31; --indigo: #7c82ff; } }
-  :root[data-theme="dark"] { --frame: #1c1c1f; --frame2: #141416; --ink: #f2f1ee; --muted: #9b9a96; --line: #2c2c31; --indigo: #7c82ff; }
+    --canvas: #141416; --dot: #2c2c31; --fshadow: 0 0 0 1px #2a2a2e, 0 24px 60px rgba(0,0,0,.5); color-scheme: dark; --frame: #1c1c1f; --frame2: #141416; --ink: #f2f1ee; --muted: #9b9a96; --line: #2c2c31; --indigo: #7c82ff; } }
+  :root[data-theme="dark"] { --canvas: #141416; --dot: #2c2c31; --fshadow: 0 0 0 1px #2a2a2e, 0 24px 60px rgba(0,0,0,.5); color-scheme: dark; --frame: #1c1c1f; --frame2: #141416; --ink: #f2f1ee; --muted: #9b9a96; --line: #2c2c31; --indigo: #7c82ff; }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; }
-  body { background: var(--stage); color: var(--bar-ink); font: 400 15px/1.5 "Bricolage Grotesque", system-ui, sans-serif;
+  body { background: var(--canvas) radial-gradient(var(--dot) 1.2px, transparent 1.3px) 0 0 / 24px 24px; color: var(--ink); font: 400 15px/1.5 "Bricolage Grotesque", system-ui, sans-serif;
     -webkit-font-smoothing: antialiased; cursor: var(--cursor); display: grid; grid-template-rows: minmax(0,1fr) auto; grid-template-columns: minmax(0,1fr); overflow: hidden;
     padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0); }
   a { color: inherit; text-decoration: none; }
@@ -81,22 +81,23 @@
   @media (max-width: 640px) { .brand .role { display: none; } .brand img { height: 24px; } }
 
   .nav { display: flex; justify-content: center; align-items: center; gap: 4px; }
-  .nav button { width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center; color: var(--bar-ink); }
-  .nav button:hover:not(:disabled) { background: #3a3a3f; }
+  .nav button { width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center; color: var(--ink); }
+  .nav button:hover:not(:disabled) { background: var(--bg); }
   .nav button:disabled { opacity: .3; cursor: default; }
   .nav svg, .ptool svg { width: 16px; height: 16px; }
   .nav .where { min-width: 150px; text-align: center; font-size: 13px; }
   .nav .where b { font-weight: 600; }
-  .nav .where span { font-family: var(--mono); color: var(--bar-muted); font-size: 12px; margin-left: 8px; }
-  .ptool { height: 30px; padding: 0 10px; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--bar-ink); }
-  .ptool:hover { background: #3a3a3f; }
+  .nav .where span { font-family: var(--mono); color: var(--muted); font-size: 12px; margin-left: 8px; }
+  .ptool { height: 30px; padding: 0 10px; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+  .ptool:hover { background: var(--bg); color: var(--ink); }
 
-  .foot { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 14px; padding: 8px 16px; font-size: 12px; color: var(--bar-muted); min-height: 52px; }
-  .foot .fl { min-width: 0; overflow: hidden; }
-  .foot .fr { display: flex; align-items: center; justify-content: flex-end; gap: 14px; }
+  .foot { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 14px; padding: 6px 12px 14px; font-size: 12px; color: var(--muted); }
+  .foot .fl { min-width: 0; overflow: hidden; padding-left: 8px; }
+  .player { display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 8px; border-radius: 14px; background: var(--panel); box-shadow: var(--shadow); }
+  .player .sep { width: 1px; height: 20px; background: var(--line); }
   .foot .dots { display: flex; gap: 6px; }
-  .foot .dots button { width: 8px; height: 8px; border-radius: 50%; background: #4a4a50; padding: 0; }
-  .foot .dots button.on { background: var(--bar-ink); width: 22px; border-radius: 4px; }
+  .foot .dots button { width: 8px; height: 8px; border-radius: 50%; background: var(--dot); padding: 0; }
+  .foot .dots button.on { background: var(--ink); width: 22px; border-radius: 4px; }
   .foot .anim { font-family: var(--mono); opacity: 0; transition: opacity .2s; white-space: nowrap; }
   .foot .anim.show { opacity: 1; }
   .foot .anim b { color: var(--hot); font-weight: 500; }
@@ -104,9 +105,13 @@
 
   /* stage + device */
   .stage { display: grid; place-items: center; padding: 84px 20px 8px; min-height: 0; }
-  .device { position: relative; width: min(1240px, calc(100vw - 40px), calc((100dvh - 164px) * 1.6)); aspect-ratio: 16 / 10;
+  .fwrap { display: grid; gap: 8px; }
+  .flabel { display: flex; gap: 10px; font-size: 12px; color: var(--muted); padding-left: 2px; }
+  .flabel b { font-weight: 600; color: var(--ink); }
+  .flabel span { font-family: var(--mono); opacity: .8; }
+  .device { position: relative; width: min(1240px, calc(100vw - 40px), calc((100dvh - 210px) * 1.6)); aspect-ratio: 16 / 10;
     border-radius: 10px; overflow: hidden; background: var(--frame); color: var(--ink); container-type: size;
-    box-shadow: 0 0 0 1px rgba(255,255,255,.06), 0 30px 80px rgba(0,0,0,.45); }
+    box-shadow: var(--fshadow); }
   .screen { position: absolute; inset: 0; padding: 5.2cqw 6cqw; display: flex; flex-direction: column; overflow: hidden;
     opacity: 0; visibility: hidden; transform: translateX(6%); transition: opacity .35s ease, transform .45s cubic-bezier(.2,.7,.2,1), visibility 0s .45s; }
   .screen.on { opacity: 1; visibility: visible; transform: none; transition: opacity .35s ease, transform .45s cubic-bezier(.2,.7,.2,1); }
@@ -193,16 +198,16 @@
   @keyframes clk { 0%,70%,100% { transform: none; } 80% { transform: scale(.9) translate(2%,2%); } }
   @media (prefers-reduced-motion: reduce) { .say .clk { animation: none; } }
 
-  .toast { position: fixed; left: 50%; bottom: 64px; transform: translate(-50%, 20px); background: #f2f1ee; color: #18181a; padding: 10px 16px; border-radius: 10px; font-size: 14px; opacity: 0; transition: .25s; pointer-events: none; z-index: 10; }
+  .toast { position: fixed; left: 50%; bottom: 80px; transform: translate(-50%, 20px); background: var(--ink); color: var(--frame); padding: 10px 16px; border-radius: 10px; font-size: 14px; opacity: 0; transition: .25s; pointer-events: none; z-index: 10; }
   .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
   /* small screens: the frame fills the stage and scrolls inside, like a prototype on a phone */
   @media (max-width: 760px), (max-height: 520px) {
     .ptool .lbl, .foot .anim { display: none; }
-    .foot { padding: 6px 10px; }
+    .foot { padding: 4px 10px 10px; grid-template-columns: 1fr; justify-items: center; } .foot .fl { display: none; } .player { height: 44px; gap: 6px; } .flabel { display: none; }
     .nav { gap: 0; } .nav button { width: 28px; }
     .nav .where { min-width: 0; white-space: nowrap; } .nav .where span { display: none; }
-    .stage { padding: 74px 10px 4px; }
+    .stage { padding: 74px 10px 4px; } .fwrap { display: block; width: 100%; height: 100%; }
     .device { width: 100%; height: 100%; aspect-ratio: auto; container-type: inline-size; }
     .screen { padding: 28px 22px 24px; overflow-y: auto; gap: 18px; }
     .s-hello, .s-about { grid-template-columns: 1fr; align-content: start; gap: 22px; }
@@ -232,6 +237,8 @@
 </header>
 
 <main class="stage">
+  <div class="fwrap">
+  <div class="flabel" aria-hidden="true"><b id="fname">Hello</b><span>1440 × 900</span></div>
   <div class="device" id="device">
 
     <section class="screen s-hello" data-name="Hello" id="hello" aria-label="Hello">
@@ -306,17 +313,21 @@
     </section>
 
   </div>
+  </div>
 </main>
 
 <footer class="foot">
   <div class="fl"><span class="anim" id="anim">Navigate to <b id="anim-to">Work</b> · Smart animate · 450ms</span></div>
+  <div class="player">
   <nav class="nav" aria-label="Frames">
     <button id="prev" aria-label="Previous frame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
     <div class="where" aria-live="polite"><b id="name">Hello</b><span id="count">1 / 5</span></div>
     <button id="next" aria-label="Next frame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
   </nav>
-  <div class="fr"><div class="dots" id="dots" role="tablist" aria-label="Frames"></div>
-  <button class="ptool" id="restart" aria-label="Restart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg><span class="lbl">Restart</span></button></div>
+  <span class="sep"></span><div class="dots" id="dots" role="tablist" aria-label="Frames"></div><span class="sep"></span>
+<button class="ptool" id="restart" aria-label="Restart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg><span class="lbl">Restart</span></button>
+  </div>
+  <div></div>
 </footer>
 
 <div class="toast" id="toast" role="status"></div>
@@ -346,7 +357,7 @@
     if (i === cur) return;
     screens.forEach((s, j) => { s.classList.toggle("on", j === i); s.classList.toggle("left", j < i); s.setAttribute("aria-hidden", j !== i); s.inert = j !== i; });
     cur = i;
-    nameEl.textContent = screens[i].dataset.name; countEl.textContent = (i + 1) + " / " + screens.length;
+    nameEl.textContent = document.getElementById("fname").textContent = screens[i].dataset.name; countEl.textContent = (i + 1) + " / " + screens.length;
     prev.disabled = i === 0; next.disabled = i === screens.length - 1;
     [...dots.children].forEach((d, j) => d.classList.toggle("on", j === i));
     try { history.replaceState(null, "", i ? "#" + ids[i] : location.pathname); } catch (e) {}
