@@ -219,7 +219,9 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
 .btn { height: 46px; padding: 0 20px; border-radius: 999px; display: inline-flex; align-items: center; gap: 8px; font-weight: 600; border: 1.5px solid var(--ink); background: transparent; }
 .btn.solid { background: var(--ink); color: var(--paper); }
 .btn.ghost { border-color: var(--rule); color: var(--muted); }
-.x { position: absolute; top: 12px; right: 12px; width: 36px; height: 36px; border-radius: 50%; border: 0; background: rgba(255,255,255,.9); display: grid; place-items: center; font-size: 18px; box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+.x { position: absolute; top: 12px; right: 12px; width: 38px; height: 38px; border-radius: 50%; border: 0; background: rgba(255,255,255,.92); color: #18181a; display: grid; place-items: center; box-shadow: 0 2px 8px rgba(0,0,0,.18); }
+.x svg { width: 18px; height: 18px; }
+:root[data-time="night"] .x { background: rgba(24,22,36,.82); color: #f2f1ee; box-shadow: 0 2px 8px rgba(0,0,0,.4), inset 0 0 0 1px rgba(255,255,255,.14); }
 
 /* ---------- Paper sections below the world ---------- */
 .paper { position: relative; background: var(--paper); margin-top: -2px; z-index: 5; }
@@ -756,7 +758,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
 <!-- place sheet -->
 <div class="scrim" id="scrim"></div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="s-title">
-  <div class="img" id="s-img"><button class="x" id="s-close" aria-label="Close">×</button></div>
+  <div class="img" id="s-img"><button class="x" id="s-close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
   <div class="body">
     <div class="kicker" id="s-kicker"></div>
     <h3 id="s-title"></h3>
