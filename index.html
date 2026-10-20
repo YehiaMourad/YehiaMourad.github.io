@@ -17,6 +17,7 @@
   // open the prototype view if that's what this visitor picked last time
   try { if (localStorage.getItem("home") === "prototype" && !/view=canvas/.test(location.search)) location.replace("prototype.html" + location.hash); } catch (e) {}
 </script>
+<script src="theme.js"></script>
 <style>
   :root {
     --bg: #efece6; --canvas: #e9e6df; --dot: #cfcac0; --panel: #faf9f6; --ink: #18181a; --muted: #6f6d68; --line: #dedad2;
@@ -393,13 +394,6 @@
   const EMAIL = "yehia.mourad@outlook.com";
   const root = document.documentElement, body = document.body;
 
-  // theme
-  try { const t = localStorage.getItem("theme"); if (t) root.dataset.theme = t; } catch (e) {}
-  document.getElementById("t-theme").onclick = () => {
-    const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
-    root.dataset.theme = dark ? "light" : "dark";
-    try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {}
-  };
 
 
   // remember which homepage view the visitor picked

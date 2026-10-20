@@ -1,5 +1,5 @@
 // The site is English only. This file keeps the page in English (left to right)
-// and handles the light / dark toggle.
+// Light / dark is handled by theme.js.
 
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.documentElement;
@@ -7,12 +7,4 @@ document.addEventListener("DOMContentLoaded", () => {
   root.dir = "ltr";
   try { localStorage.removeItem("lang"); } catch (e) {}
 
-  try { const t = localStorage.getItem("theme"); if (t) root.dataset.theme = t; } catch (e) {}
-  document.querySelectorAll(".theme-toggle").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
-      root.dataset.theme = dark ? "light" : "dark";
-      try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {}
-    });
-  });
 });

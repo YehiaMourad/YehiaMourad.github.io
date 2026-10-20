@@ -13,6 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="theme.js"></script>
 <style>
   /* Presentation mode: a dark prototype player (always dark), one frame at a time.
      Frames follow the light/dark theme. */
@@ -137,6 +138,8 @@
   .s-hello .logo { width: 100%; max-width: 44cqw; }
   .s-hello .logo img { width: 100%; display: block; }
   .s-hello .logo .d { display: none; }
+  :root[data-theme="dark"] .s-hello .logo .l { display: none; } :root[data-theme="dark"] .s-hello .logo .d { display: block; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .s-hello .logo .l { display: none; } :root:not([data-theme="light"]) .s-hello .logo .d { display: block; } }
   .s-hello .txt { display: grid; gap: max(16px, 2cqw); }
   .s-hello h1 { font-size: max(26px, 3.3cqw); }
   .s-hello .meta { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -330,12 +333,6 @@
   const dots = document.getElementById("dots"), anim = document.getElementById("anim"), animTo = document.getElementById("anim-to");
   let cur = -1;
 
-  // theme (frames only; the player stays dark)
-  try { const t = localStorage.getItem("theme"); if (t) root.dataset.theme = t; } catch (e) {}
-  const isDark = () => root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
-  const syncLogo = () => { const d = isDark(); document.querySelectorAll(".s-hello .logo .l").forEach(i => i.style.display = d ? "none" : "block"); document.querySelectorAll(".s-hello .logo .d").forEach(i => i.style.display = d ? "block" : "none"); };
-  document.getElementById("t-theme").onclick = () => { root.dataset.theme = isDark() ? "light" : "dark"; try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {} syncLogo(); };
-  syncLogo();
 
 
   // remember which homepage view the visitor picked
