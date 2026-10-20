@@ -71,6 +71,7 @@ a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; cursor: pointer; }
 .hand { font-family: "Caveat", cursive; }
 svg * { transition: fill .8s ease, stop-color .8s ease, opacity .8s ease; }
+.layer { transition: none; }
 
 /* ---------- Hero: sticky world, "scroll to fly in" ---------- */
 .hero { position: relative; height: 175vh; }
@@ -103,13 +104,14 @@ svg * { transition: fill .8s ease, stop-color .8s ease, opacity .8s ease; }
 .star { animation: twinkle 3s ease-in-out infinite; }
 .rip { stroke-dasharray: 18 42; animation: ripple 4s linear infinite; }
 .beacon { animation: blink 2.4s infinite; }
-.cat-tail { animation: tail 1.8s ease-in-out infinite; transform-box: fill-box; transform-origin: 0% 100%; }
+@keyframes steam { 0%,100% { opacity: .2; transform: translateY(2px); } 50% { opacity: 1; transform: translateY(-3px); } }
+.steam { animation: steam 2.6s ease-in-out infinite; }
 .stars { opacity: var(--stars-o); }
 .sun { opacity: var(--sun-o); }
 .moon { opacity: var(--moon-o); }
 .win { fill: var(--win); }
 .lit { opacity: var(--win-o); }
-@media (prefers-reduced-motion: reduce) { .cloud, .boat, .bob, .plane, .star, .rip, .beacon, .cat-tail, .pole { animation: none !important; } }
+@media (prefers-reduced-motion: reduce) { .cloud, .boat, .bob, .plane, .star, .rip, .beacon, .steam, .pole { animation: none !important; } }
 
 /* ---------- Pins: positioned in % of the 1600×900 world ---------- */
 .pin { position: absolute; left: calc(var(--x) / 1600 * 100%); top: calc(var(--y) / 900 * 100%); z-index: 3; }
@@ -138,12 +140,13 @@ svg * { transition: fill .8s ease, stop-color .8s ease, opacity .8s ease; }
 .copy { position: absolute; z-index: 4; left: max(24px, 5vw); top: max(96px, 14vh); max-width: min(560px, 88vw); color: var(--text-on-scene); pointer-events: none; transition: opacity .3s; }
 .copy > * { pointer-events: auto; }
 .hey { display: inline-flex; align-items: center; gap: 8px; font-size: 16px; color: var(--sub-on-scene); }
-.copy h1 { font-size: clamp(38px, 5.4vw, 72px); line-height: 1; letter-spacing: -.045em; font-weight: 800; margin-top: 14px; }
+.copy h1 { font-size: clamp(34px, min(5.4vw, 7.2vh), 72px); line-height: 1; letter-spacing: -.045em; font-weight: 800; margin-top: 14px; }
 .strike { position: relative; white-space: nowrap; color: var(--sub-on-scene); }
 .strike::after { content: ""; position: absolute; left: -4px; right: -4px; top: 52%; height: .2em; border-radius: 99px; background: var(--coral); transform: rotate(-3deg) scaleX(0); transform-origin: left; animation: strike .7s .9s cubic-bezier(.65,0,.25,1) forwards; }
 @keyframes strike { to { transform: rotate(-3deg) scaleX(1); } }
 .copy p { margin-top: 16px; font-size: clamp(15px, 1.3vw, 18px); color: var(--sub-on-scene); max-width: 44ch; }
-.hint { position: absolute; z-index: 4; font-size: 26px; color: var(--text-on-scene); display: flex; align-items: center; gap: 6px; transform: rotate(-4deg); pointer-events: none; }
+.hey-row { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+.hint { position: relative; margin: 0; font-size: 24px; color: var(--text-on-scene); display: inline-flex; align-items: center; gap: 6px; transform: rotate(-4deg); pointer-events: none; }
 .hint svg { width: 64px; height: 30px; }
 
 /* ---------- Header: same toolbar as Canvas and Prototype ---------- */
@@ -327,7 +330,10 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
 <section class="hero" id="top">
   <div class="stage">
     <div class="copy">
-      <span class="hey">👋 hey, I'm Yehia</span>
+      <div class="hey-row"><span class="hey">👋 hey, I'm Yehia</span>
+      <span class="hint hand">click a place
+        <svg viewBox="0 0 64 30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" style="transform:rotate(28deg)"><path d="M4 18 C20 6 40 8 56 16"/><path d="M48 9 L57 16 L47 22"/></svg>
+      </span></div>
       <h1>Designing so users never <span class="strike">file a ticket.</span></h1>
       <p>Senior product designer in Cairo. I turn complex B2B and AI products into flows people actually get.</p>
     </div>
@@ -344,6 +350,8 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
             </linearGradient>
             <radialGradient id="sunglow"><stop offset="0" stop-color="#fff3c9" stop-opacity=".9"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient>
             <radialGradient id="moonglow"><stop offset="0" stop-color="#d9d4ff" stop-opacity=".55"/><stop offset="1" stop-color="#d9d4ff" stop-opacity="0"/></radialGradient>
+            <linearGradient id="haze" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--sky-3)" stop-opacity="0"/><stop offset=".75" style="stop-color:var(--sky-3)" stop-opacity=".45"/><stop offset="1" style="stop-color:var(--sky-3)" stop-opacity="0"/></linearGradient>
+            <radialGradient id="shadow"><stop offset="0" stop-color="#1a1030" stop-opacity=".32"/><stop offset="1" stop-color="#1a1030" stop-opacity="0"/></radialGradient>
             <linearGradient id="nile" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--nile-1)"/><stop offset="1" style="stop-color:var(--nile-2)"/></linearGradient>
             <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--glass-1)"/><stop offset="1" style="stop-color:var(--glass-2)"/></linearGradient>
             <linearGradient id="board" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff6a3d"/><stop offset="1" stop-color="#ff9f6b"/></linearGradient>
@@ -351,6 +359,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
             <pattern id="lattice" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0 10 L10 0 M-2 2 L2 -2 M8 12 L12 8" stroke="var(--tower-d)" stroke-width="1.6"/></pattern>
           </defs>
 
+          <g class="layer" data-depth="0.05">
           <!-- sky -->
           <rect width="1600" height="900" fill="url(#sky)"/>
           <g class="stars" fill="#fff">
@@ -363,6 +372,8 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           <g class="sun"><circle cx="1430" cy="150" r="150" fill="url(#sunglow)"/><circle cx="1430" cy="150" r="58" fill="var(--sun)"/></g>
           <g class="moon"><circle cx="1430" cy="150" r="140" fill="url(#moonglow)"/><circle cx="1430" cy="150" r="46" fill="#f1edff"/><circle cx="1414" cy="140" r="9" fill="#ddd7f7"/><circle cx="1446" cy="166" r="6" fill="#ddd7f7"/></g>
 
+          </g>
+          <g class="layer" data-depth="0.15">
           <!-- clouds -->
           <g fill="var(--cloud)" style="opacity:var(--cloud-o)">
             <g class="cloud" style="animation-duration:120s;animation-delay:-30s"><ellipse cx="0" cy="120" rx="90" ry="28"/><ellipse cx="40" cy="100" rx="60" ry="34"/><ellipse cx="-40" cy="108" rx="44" ry="24"/></g>
@@ -370,8 +381,10 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
             <g class="cloud" style="animation-duration:140s;animation-delay:-70s"><ellipse cx="0" cy="60" rx="60" ry="18"/><ellipse cx="-20" cy="48" rx="36" ry="20"/></g>
           </g>
 
+          </g>
+          <g class="layer" data-depth="0.2">
           <!-- plane: Kuwait Airlines -->
-          <g transform="translate(900 170)">
+          <g transform="translate(900 250)">
             <path d="M-260 14 C-180 10 -100 6 -30 4" stroke="#fff" stroke-opacity=".55" stroke-width="5" stroke-linecap="round" fill="none" stroke-dasharray="2 14"/>
             <g class="plane">
               <path d="M-40 0 C-20 -8 40 -8 62 -3 C72 0 72 6 62 8 C40 12 -20 12 -40 6 Z" fill="#fff"/>
@@ -384,6 +397,9 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
             </g>
           </g>
 
+          </g>
+          <g class="layer" data-depth="0.25">
+<g transform="translate(800 580) scale(1.05 1) translate(-800 -580)">
           <!-- far desert + pyramids -->
           <path d="M0 540 C200 515 380 525 600 532 C900 540 1200 520 1600 535 L1600 640 L0 640 Z" fill="var(--sand-far)"/>
           <g>
@@ -392,6 +408,9 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
             <path d="M40 552 L105 487 L170 552 Z" fill="var(--pyr-l)"/><path d="M105 487 L170 552 L122 552 Z" fill="var(--pyr-d)"/>
           </g>
 
+          </g>
+          </g>
+          <g class="layer" data-depth="0.35">
           <!-- city skyline far -->
           <g fill="var(--city-far)">
             <rect x="640" y="470" width="60" height="90"/><rect x="705" y="500" width="40" height="60"/>
@@ -418,6 +437,9 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
             </g>
           </g>
 
+          </g>
+          <rect class="haze" x="-100" y="330" width="1800" height="320" fill="url(#haze)"/>
+          <g class="layer" data-depth="0.5">
           <!-- Benaa: building under construction + crane -->
           <g>
             <g stroke="var(--tower-d)" stroke-width="3" fill="none" opacity=".9">
@@ -443,13 +465,16 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
             <rect x="1062" y="250" width="36" height="372" fill="url(#lattice)"/>
             <rect x="1062" y="250" width="36" height="372" fill="var(--tower)" opacity=".55"/>
             <path d="M1058 622 L1102 622 L1110 640 L1050 640 Z" fill="var(--tower-d)"/>
-            <path d="M1046 250 C1046 214 1060 196 1080 186 C1100 196 1114 214 1114 250 Z" fill="var(--tower)"/>
+            <path d="M1046 250 C1046 214 1060 196 1080 186 C1100 196 1114 214 1114 250 Z" fill="var(--tower)"/><path d="M1080 186 C1100 196 1114 214 1114 250 L1080 250 Z" fill="#000" opacity=".1"/>
             <path d="M1046 250 L1114 250 L1110 262 L1050 262 Z" fill="var(--tower-d)"/>
             <rect x="1056" y="222" width="48" height="8" fill="var(--tower-d)" opacity=".7"/>
             <rect x="1078" y="140" width="4" height="48" fill="var(--tower-d)"/>
             <circle class="beacon" cx="1080" cy="138" r="5" fill="#ff6a3d"/>
           </g>
 
+          </g>
+          <g class="layer" data-depth="0.6">
+<g transform="translate(800 670) scale(1.05 1) translate(-800 -670)">
           <!-- Nile -->
           <path d="M0 610 C300 600 600 615 900 608 C1200 600 1400 612 1600 606 L1600 740 L0 740 Z" fill="url(#nile)"/>
           <g stroke="var(--ripple)" stroke-width="3" stroke-linecap="round" fill="none">
@@ -463,15 +488,29 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           <!-- the contact felucca (bobs in place) -->
           <g transform="translate(560 690)"><g class="bob"><path d="M-40 0 L40 0 L28 14 L-28 14 Z" fill="#5b3a29"/><path d="M0 0 L0 -86 L40 -4 Z" fill="#fff8ee"/><path d="M-3 -4 L-3 -62 L-30 -4 Z" fill="#ff6a3d"/><path d="M0 -86 L0 -98 L14 -92 Z" fill="#4f56d6"/></g></g>
 
+          </g>
+          </g>
+          <g class="layer" data-depth="0.75">
+<g transform="translate(800 760) scale(1.05 1.06) translate(-800 -760)">
           <!-- near bank -->
           <path d="M0 735 C300 725 600 742 900 732 C1200 724 1400 738 1600 730 L1600 900 L0 900 Z" fill="var(--bank)"/>
           <path d="M0 760 C320 748 640 770 960 756 C1240 746 1420 762 1600 752 L1600 900 L0 900 Z" fill="var(--grass)"/>
           <path d="M0 820 C300 805 700 830 1000 812 C1300 800 1450 818 1600 808 L1600 900 L0 900 Z" fill="var(--grass-d)"/>
 
+          </g>
+          </g>
+          <g class="layer" data-depth="0.9">
+          <!-- contact shadows: ground the buildings -->
+          <g fill="url(#shadow)">
+            <ellipse cx="390" cy="770" rx="175" ry="12"/><ellipse cx="114" cy="772" rx="110" ry="10"/><ellipse cx="860" cy="772" rx="90" ry="8"/>
+            <ellipse cx="1250" cy="772" rx="105" ry="12"/><ellipse cx="1052" cy="772" rx="70" ry="9"/><ellipse cx="1187" cy="878" rx="100" ry="10"/>
+            <ellipse cx="668" cy="792" rx="70" ry="8"/><ellipse cx="632" cy="774" rx="34" ry="6"/><ellipse cx="1442" cy="770" rx="40" ry="7"/><ellipse cx="1534" cy="792" rx="30" ry="6"/>
+          </g>
           <!-- POS: market shop -->
           <g>
             <rect x="250" y="600" width="280" height="168" fill="var(--wall)"/>
             <rect x="250" y="600" width="280" height="14" fill="var(--wall-d)"/>
+            <rect x="486" y="614" width="44" height="154" fill="#000" opacity=".07"/>
             <path d="M240 600 L540 600 L540 590 L240 590 Z" fill="var(--roof)"/>
             <rect x="300" y="570" width="180" height="22" rx="4" fill="#2b1d55"/>
             <text x="390" y="586" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="700" font-size="14" fill="#fff">Market · POS</text>
@@ -520,6 +559,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           <g>
             <rect x="26" y="648" width="176" height="122" fill="var(--wall)"/>
             <rect x="26" y="648" width="176" height="12" fill="var(--wall-d)"/>
+            <rect x="172" y="660" width="30" height="110" fill="#000" opacity=".07"/>
             <rect x="18" y="636" width="192" height="14" rx="3" fill="#2b1d55"/>
             <path d="M36 676 L192 676 L200 700 L28 700 Z" fill="#4f56d6"/>
             <path d="M28 700 Q42 712 56 700 Q70 712 84 700 Q98 712 112 700 Q126 712 140 700 Q154 712 168 700 Q182 712 200 700 Z" fill="#4f56d6"/>
@@ -573,47 +613,52 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
             <circle cx="966" cy="806" r="12" fill="#2b1d55"/><circle cx="966" cy="806" r="5" fill="#d9d4ca"/>
           </g>
 
-          <!-- the street cat -->
+          <!-- the ahwa: a street café, where projects start -->
           <g transform="translate(668 792)">
-            <path class="cat-tail" d="M22 -6 C40 -10 44 -30 34 -38" stroke="#e98a3a" stroke-width="6" fill="none" stroke-linecap="round"/>
-            <ellipse cx="10" cy="-12" rx="20" ry="14" fill="#f29a4a"/>
-            <circle cx="-8" cy="-28" r="12" fill="#f29a4a"/>
-            <path d="M-18 -36 L-16 -48 L-8 -38 Z M-2 -38 L4 -48 L6 -34 Z" fill="#f29a4a"/>
-            <circle cx="-12" cy="-29" r="1.8" fill="#18181a"/><circle cx="-4" cy="-29" r="1.8" fill="#18181a"/>
-            <path d="M0 -14 L0 -2 M14 -12 L14 -2" stroke="#e98a3a" stroke-width="5" stroke-linecap="round"/>
+            <path d="M0 -6 V-92" stroke="#5b4636" stroke-width="4" stroke-linecap="round"/>
+            <path d="M-58 -78 Q0 -118 58 -78 Z" fill="#4f56d6"/>
+            <path d="M-58 -78 Q-29 -70 -19 -78 Q0 -70 19 -78 Q29 -70 58 -78" fill="none" stroke="#fff4e6" stroke-width="5" stroke-linejoin="round"/>
+            <path d="M-19 -78 Q-14 -108 0 -112 Q-8 -100 -6 -78 Z M19 -78 Q14 -108 0 -112 Q8 -100 6 -78 Z" fill="#fff4e6" opacity=".9"/>
+            <ellipse cx="0" cy="-34" rx="34" ry="7" fill="#c9643d"/>
+            <path d="M-4 -34 V-4 M4 -34 V-4" stroke="#5b4636" stroke-width="3"/>
+            <path d="M-14 -2 H14" stroke="#5b4636" stroke-width="4" stroke-linecap="round"/>
+            <g fill="#e3c49e"><rect x="-58" y="-26" width="18" height="5" rx="2"/><rect x="40" y="-26" width="18" height="5" rx="2"/></g>
+            <path d="M-56 -21 V-2 M-42 -21 V-2 M42 -21 V-2 M56 -21 V-2" stroke="#5b4636" stroke-width="3"/>
+            <rect x="-18" y="-50" width="20" height="13" rx="2" fill="#fff8ee" transform="rotate(-8 -8 -44)"/>
+            <path d="M-14 -46 H-2 M-14 -42 H-6" stroke="#4f56d6" stroke-width="1.6" stroke-linecap="round" transform="rotate(-8 -8 -44)"/>
+            <path d="M8 -49 L10 -37 H18 L20 -49 Z" fill="#fff" opacity=".85"/><path d="M9 -44 L10 -38 H18 L19 -44 Z" fill="#c9643d"/>
+            <path class="steam" d="M12 -54 C10 -60 16 -62 14 -68 M17 -54 C15 -60 21 -62 19 -68" stroke="#fff" stroke-opacity=".75" stroke-width="2" fill="none" stroke-linecap="round"/>
+          </g>
           </g>
         </svg>
 
         <!-- ======================= PINS ======================= -->
         <!-- case studies -->
-        <div class="pin" style="--x:390; --y:566"><span class="stem"></span><span class="dot"></span>
+        <div class="pin" data-depth="0.9" style="--x:390; --y:566"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="pos"><span class="lg" style="background:#2b1d55">P</span>Primex POS<span class="yr">Case study</span></button></div>
-        <div class="pin" style="--x:1250; --y:352"><span class="stem"></span><span class="dot"></span>
+        <div class="pin" data-depth="0.9" style="--x:1250; --y:352"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="twentytoo"><span class="lg" style="background:#4f56d6">T</span>TwentyToo<span class="yr">Case study</span></button></div>
-        <div class="pin" style="--x:1500; --y:256"><span class="stem"></span><span class="dot"></span>
+        <div class="pin" data-depth="0.5" style="--x:1500; --y:256"><span class="stem"></span><span class="dot"></span>
           <button class="chip left" data-place="benaa"><span class="lg" style="background:#ffb347">B</span>Benaa<span class="yr">Desktop</span></button></div>
-        <div class="pin" style="--x:1052; --y:622"><span class="stem"></span><span class="dot"></span>
+        <div class="pin" data-depth="0.9" style="--x:1052; --y:622"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="fahs"><span class="lg" style="background:#4f56d6">F</span>Fahs<span class="yr">Mobile</span></button></div>
-        <div class="pin" style="--x:1162; --y:754"><span class="stem"></span><span class="dot"></span>
+        <div class="pin" data-depth="0.9" style="--x:1162; --y:754"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="pleny"><span class="lg" style="background:#ff6a3d">P</span>Pleny<span class="yr">Case study</span></button></div>
         <!-- visual projects -->
-        <div class="pin" style="--x:860; --y:552"><span class="stem"></span><span class="dot"></span>
+        <div class="pin" data-depth="0.9" style="--x:860; --y:552"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="reach"><span class="lg" style="background:#ff6a3d">R</span>Reach Link<span class="yr">Visual</span></button></div>
-        <div class="pin" style="--x:114; --y:630"><span class="stem"></span><span class="dot"></span>
+        <div class="pin" data-depth="0.9" style="--x:114; --y:630"><span class="stem"></span><span class="dot"></span>
           <button class="chip right" data-place="muzain"><span class="lg" style="background:#2b1d55">M</span>Muzain<span class="yr">Visual</span></button></div>
         <!-- me -->
-        <div class="pin" style="--x:900; --y:150"><span class="stem"></span><span class="dot"></span>
+        <div class="pin" data-depth="0.2" style="--x:900; --y:230"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="journey"><span class="lg" style="background:#18181a">✈</span>My journey<span class="yr">EG · KW · UAE · JO</span></button></div>
-        <div class="pin" style="--x:1080; --y:178"><span class="stem"></span><span class="dot"></span>
+        <div class="pin" data-depth="0.5" style="--x:1080; --y:178"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="about"><span class="lg"><img src="assets/me.png" alt="" onerror="this.parentElement.textContent='Y';this.parentElement.style.background='#2b1d55'"></span>That's me 👋</button></div>
-        <div class="pin" style="--x:560; --y:600"><span class="stem"></span><span class="dot"></span>
+        <div class="pin" data-depth="0.6" style="--x:560; --y:600"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="contact"><span class="lg" style="background:#ff6a3d">✉</span>Say hi</button></div>
-        <div class="pin" style="--x:660; --y:750"><span class="stem"></span><span class="dot"></span>
-          <button class="chip" data-place="cat"><span class="lg" style="background:#f29a4a">🐈</span>Mishmish</button></div>
+        <div class="pin" data-depth="0.9" style="--x:660; --y:750"><span class="stem"></span><span class="dot"></span>
+          <button class="chip" data-place="ahwa"><span class="lg" style="background:#4f56d6">☕</span>The ahwa<span class="yr">How I start</span></button></div>
 
-        <div class="hint hand" style="left:calc(268 / 1600 * 100%); top:calc(452 / 900 * 100%)">click a place
-          <svg viewBox="0 0 64 30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" style="transform:rotate(28deg)"><path d="M4 18 C20 6 40 8 56 16"/><path d="M48 9 L57 16 L47 22"/></svg>
-        </div>
       </div>
     </div>
 
@@ -768,8 +813,9 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
       cta: ["More about me", "#about"] },
     contact: { kicker: "Usually reply within a day", title: "Say hi", grad: "linear-gradient(140deg,#ff6a3d,#2b1d55)",
       text: "Hiring a product designer, or want to talk design systems and AI? My inbox is open.", copy: true },
-    cat: { kicker: "Head of QA", title: "Mishmish 🐈", grad: "linear-gradient(140deg,#f29a4a,#ffd27a)",
-      text: "Every street in Cairo has a cat. This one sits on every keyboard and finds the bugs first." }
+    ahwa: { kicker: "How I start · Cairo", title: "The ahwa ☕", grad: "linear-gradient(140deg,#4f56d6,#c9643d)",
+      text: "Before Figma opens, there's a glass of tea and a notebook. I sketch the flow on paper first, rough and fast, so the hard questions show up early.",
+      list: ["Sketch the flow before the screens", "Talk to the people who'll use it", "Then build it properly, in Arabic and English"] }
   };
 
   const $ = id => document.getElementById(id);
@@ -830,6 +876,20 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
   }
   addEventListener("scroll", onScroll, { passive: true });
   onScroll();
+
+  /* ---------- Depth: layers move at different speeds with the mouse ---------- */
+  const layers = [...world.querySelectorAll("svg .layer")], pinsD = [...world.querySelectorAll(".pin[data-depth]")];
+  let tx = 0, ty = 0, cx = 0, cy = 0, raf = 0;
+  function depth() {
+    raf = 0; cx += (tx - cx) * .07; cy += (ty - cy) * .07;
+    const k = world.offsetWidth / 1600;
+    layers.forEach(l => { const d = +l.dataset.depth; l.setAttribute("transform", `translate(${(-cx * 30 * d).toFixed(2)} ${(-cy * 10 * d).toFixed(2)})`); });
+    pinsD.forEach(p => { const d = +p.dataset.depth; p.style.transform = `translate(${(-cx * 30 * d * k).toFixed(2)}px, ${(-cy * 10 * d * k).toFixed(2)}px)`; });
+    if (Math.abs(tx - cx) > .002 || Math.abs(ty - cy) > .002) raf = requestAnimationFrame(depth);
+  }
+  if (matchMedia("(pointer: fine)").matches && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    addEventListener("pointermove", e => { tx = e.clientX / innerWidth * 2 - 1; ty = e.clientY / innerHeight * 2 - 1; if (!raf) raf = requestAnimationFrame(depth); }, { passive: true });
+  }
 
   /* ---------- Phones: start the panorama on the market ---------- */
   if (phone()) {
