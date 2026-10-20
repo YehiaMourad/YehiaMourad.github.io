@@ -264,7 +264,7 @@ body:not([data-mode="tldr"]) .tldr { display: none; }
 .mark:hover { transform: rotate(-6deg); }
 .cs-mark { position: fixed; top: 20px; inset-inline-start: 20px; z-index: 40; width: auto; height: 44px; display: block;
   padding: 7px 12px; border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); }
-.cs-mark img { height: 30px; width: auto; }
+.cs-mark img { height: 25px; width: auto; }
 .cs-mark:hover { transform: none; }
 @media (max-width: 760px) { .cs-mark { top: 12px; inset-inline-start: 12px; } }
 

@@ -49,7 +49,7 @@
   .toolbar .logo { width: 32px; height: 32px; border-radius: 9px; overflow: hidden; flex: none; }
   /* one-line logo in the header: name + clicking cursor, with the role as a live tag */
   .brand { display: flex; align-items: flex-end; gap: 2px; flex: none; padding: 0 6px 0 8px; height: 40px; }
-  .brand img { height: 30px; width: auto; display: block; align-self: center; }
+  .brand img { height: 25px; width: auto; display: block; align-self: center; }
   .brand .d { display: none; }
   :root[data-theme="dark"] .brand .l { display: none; }
   :root[data-theme="dark"] .brand .d { display: block; }
@@ -72,7 +72,7 @@
   .mode a.on { background: var(--seg-on); color: var(--seg-on-ink); box-shadow: 0 1px 2px rgba(0,0,0,.12); }
   @media (max-width: 640px) { .mode a { padding: 0 8px; font-size: 12px; } .mode a svg { display: none; } }
   @media (max-width: 380px) { .toolbar .share { display: none; } }
-  @media (max-width: 480px) { #t-theme { display: none; } .toolbar { gap: 6px; } .toolbar .brand img { height: 18px; } .share { height: 32px; padding: 0 10px; font-size: 13px; } }
+  @media (max-width: 480px) { #t-theme { display: none; } .toolbar { gap: 6px; } .toolbar .brand img { height: 16px; } .share { height: 32px; padding: 0 10px; font-size: 13px; } }
 
   .hint { font-size: 12.5px; color: var(--muted); white-space: nowrap; }
   .share { height: 36px; padding: 0 16px; border-radius: 10px; border: 0; background: var(--accent); color: #fff; font-weight: 600; cursor: pointer; white-space: nowrap; }
@@ -228,7 +228,7 @@
   }
   @media (max-width: 640px) {
     .brand .role { display: none; }
-    .brand img { height: 24px; }
+    .brand img { height: 20px; }
     .board { grid-template-columns: 1fr; grid-template-areas: "hello" "pos" "tt" "pleny" "soon" "exp" "about" "contact"; }
     .f-hello h1 { font-size: 44px; }
     .f-about .frame-body { grid-template-columns: 1fr; }
