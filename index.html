@@ -15,7 +15,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script>
   // open the prototype view if that's what this visitor picked last time
-  try { if (localStorage.getItem("home") === "prototype" && !/view=canvas/.test(location.search)) location.replace("prototype.html" + location.hash); } catch (e) {}
+  try { const v = localStorage.getItem("home"), to = { prototype: "prototype.html", playground: "playground.html" }[v];
+    if (to && !/view=canvas/.test(location.search)) location.replace(to + location.hash); } catch (e) {}
 </script>
 <script src="theme.js"></script>
 <style>
@@ -70,8 +71,8 @@
   .mode a svg { width: 14px; height: 14px; }
   .mode a:hover { color: var(--seg-on-ink); }
   .mode a.on { background: var(--seg-on); color: var(--seg-on-ink); box-shadow: 0 1px 2px rgba(0,0,0,.12); }
-  @media (max-width: 640px) { .mode a { padding: 0 8px; font-size: 12px; } .mode a svg { display: none; } }
-  @media (max-width: 380px) { .toolbar .share { display: none; } }
+  @media (max-width: 640px) { .mode a { padding: 0 9px; font-size: 12px; } .mode a:not(.on) .t { display: none; } }
+  @media (max-width: 480px) { .toolbar .share { display: none; } }
   @media (max-width: 480px) { #t-theme { display: none; } .toolbar { gap: 6px; } .toolbar .brand img { height: 16px; } .share { height: 32px; padding: 0 10px; font-size: 13px; } }
 
   .hint { font-size: 12.5px; color: var(--muted); white-space: nowrap; }
@@ -245,7 +246,7 @@
 
 <header class="toolbar">
   <a class="brand" href="./" aria-label="Yehia Mourad, home"><img class="l" src="assets/logo-header.svg" alt=""><img class="d" src="assets/logo-header-dark.svg" alt=""><span class="role">Product Designer</span></a>
-  <nav class="mode" aria-label="Homepage view"><a href="./?view=canvas" data-mode="canvas" class="on" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Canvas</a><a href="prototype.html" data-mode="prototype"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7z"/></svg>Prototype</a></nav>
+  <nav class="mode" aria-label="Homepage view"><a href="./?view=canvas" data-mode="canvas" title="Canvas" aria-label="Canvas" class="on" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span class="t">Canvas</span></a><a href="prototype.html" data-mode="prototype" title="Prototype" aria-label="Prototype"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7z"/></svg><span class="t">Prototype</span></a><a href="playground.html" data-mode="playground" title="Playground" aria-label="Playground"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="17" cy="7" r="2.5"/><path d="M2 20l7-10 4 6 2.5-3L22 20z"/></svg><span class="t">Playground</span></a></nav>
   <button class="tool" id="t-theme" title="Light / dark" aria-label="Switch light or dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
   <div class="spacer"></div>
   <span class="hint">Click any frame to open it</span>
@@ -287,8 +288,8 @@
     <div class="frame-label"><span>Experience</span><span class="mono">2014 → 2026</span><span class="size">Open ↗</span></div>
     <div class="frame-body">
       <h2>Where I've worked<span>.</span></h2>
-      <div class="xrow cur"><b>Pleny</b><em>2026</em><span>Senior Product Designer · Part-time</span></div>
-      <div class="xrow"><b>TwentyToo</b><em>2023–26</em><span>Senior Product Designer · AI-SaaS</span></div>
+      <div class="xrow cur"><b>TwentyToo</b><em>2023–now</em><span>Senior Product Designer · AI-SaaS</span></div>
+      <div class="xrow"><b>Pleny</b><em>2026</em><span>Senior Product Designer · Part-time</span></div>
       <div class="xrow"><b>Reach Link</b><em>2023–25</em><span>Senior UI/UX Designer · Kuwait</span></div>
       <div class="xrow"><b>Geeks</b><em>2022–25</em><span>UI/UX Designer · Jordan</span></div>
       <div class="xrow"><b>Automated Systems Co.</b><em>2022–23</em><span>UI/UX Designer · Kuwait Airlines</span></div>
@@ -355,8 +356,8 @@
     <div data-pane="journey" data-title="Experience">
       <h3>Where I've worked<span>.</span></h3>
       <p>8+ years in digital product design, 5+ on complex B2B and B2B2C. Full-time and part-time roles, remote with teams in Kuwait, Jordan and the UAE.</p>
-      <div class="job"><div class="top"><b>Pleny</b><em>Apr – Sep 2026</em></div><div class="role">Senior Product Designer</div><p>Led design for a food social network app. Restructured and improved the design system for the Android app, including a new onboarding theme.</p><div class="tags"><span class="hl">Latest</span><span>Part-time</span><span>Egypt</span></div></div>
-      <div class="job"><div class="top"><b>TwentyToo</b><em>Dec 2023 – Sep 2026</em></div><div class="role">Senior Product Designer</div><p>End-to-end design for a B2B AI-SaaS platform, including its AI chat agent. UI style guide, a 96-component library, onboarding flows.</p><div class="tags"><span>Remote</span></div></div>
+      <div class="job"><div class="top"><b>TwentyToo</b><em>Dec 2023 – now</em></div><div class="role">Senior Product Designer</div><p>End-to-end design for a B2B AI-SaaS platform, including its AI chat agent. UI style guide, a 96-component library, onboarding flows.</p><div class="tags"><span class="hl">Current</span><span>Remote</span></div></div>
+      <div class="job"><div class="top"><b>Pleny</b><em>Apr – Sep 2026</em></div><div class="role">Senior Product Designer</div><p>Led design for a food social network app. Restructured and improved the design system for the Android app, including a new onboarding theme.</p><div class="tags"><span>Part-time</span><span>Egypt</span></div></div>
       <div class="job"><div class="top"><b>Reach Link</b><em>Jan 2023 – Dec 2025</em></div><div class="role">Senior UI/UX Designer</div><p>Influencer–brand marketplace, performance dashboards, and an events system with QR check-in. 223 creators, 27 brands.</p><div class="tags"><span>Kuwait · Remote</span></div></div>
       <div class="job"><div class="top"><b>Geeks</b><em>Nov 2022 – Nov 2025</em></div><div class="role">UI/UX Designer</div><p>Dopa, a travel and activities app with its web dashboard, and Jamal, a car rental app and website.</p><div class="tags"><span>Part-time</span><span>Jordan · Remote</span></div></div>
       <div class="job"><div class="top"><b>TAS ERP</b><em>Dec 2022 – Jun 2025</em></div><div class="role">UI/UX Designer</div><p>Enterprise ERP modules for inventory, HR and finance.</p><div class="tags"><span>Part-time</span><span>Egypt</span></div></div>
