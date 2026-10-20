@@ -70,8 +70,8 @@
   .mode a svg { width: 14px; height: 14px; }
   .mode a:hover { color: var(--seg-on-ink); }
   .mode a.on { background: var(--seg-on); color: var(--seg-on-ink); box-shadow: 0 1px 2px rgba(0,0,0,.12); }
-  @media (max-width: 640px) { .mode a { padding: 0 8px; font-size: 12px; } .mode a svg { display: none; } }
-  @media (max-width: 380px) { .toolbar .share { display: none; } }
+  @media (max-width: 640px) { .mode a { padding: 0 9px; font-size: 12px; } .mode a:not(.on) .t { display: none; } }
+  @media (max-width: 480px) { .toolbar .share { display: none; } }
   @media (max-width: 480px) { #t-theme { display: none; } .toolbar { gap: 6px; } .toolbar .brand img { height: 16px; } .share { height: 32px; padding: 0 10px; font-size: 13px; } }
 
   .hint { font-size: 12.5px; color: var(--muted); white-space: nowrap; }
@@ -182,7 +182,7 @@
   .job em { font: 400 max(11px, .85cqw)/1.8 var(--mono); font-style: normal; color: var(--muted); }
   .job span { grid-column: 1 / -1; color: var(--muted); font-size: .9em; }
   .job .pt { color: var(--coral); }
-  .job.cur b::after { content: "Latest"; font: 500 max(9px, .7cqw) var(--mono); color: #fff; background: var(--coral); padding: .25em .6em; border-radius: 6px; margin-left: 8px; vertical-align: .2em; text-transform: uppercase; letter-spacing: .05em; }
+  .job.cur b::after { content: "Now"; font: 500 max(9px, .7cqw) var(--mono); color: #fff; background: var(--coral); padding: .25em .6em; border-radius: 6px; margin-left: 8px; vertical-align: .2em; text-transform: uppercase; letter-spacing: .05em; }
 
   /* 5 contact */
   .s-contact { justify-content: center; gap: max(18px, 2.4cqw); background: var(--deep); color: #f2f1ee; }
@@ -230,7 +230,7 @@
 
 <header class="toolbar">
   <a class="brand" href="./" aria-label="Yehia Mourad, home"><img class="l" src="assets/logo-header.svg" alt=""><img class="d" src="assets/logo-header-dark.svg" alt=""><span class="role">Product Designer</span></a>
-  <nav class="mode" aria-label="Homepage view"><a href="./?view=canvas" data-mode="canvas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Canvas</a><a href="prototype.html" data-mode="prototype" class="on" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7z"/></svg>Prototype</a></nav>
+  <nav class="mode" aria-label="Homepage view"><a href="./?view=canvas" data-mode="canvas" title="Canvas" aria-label="Canvas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span class="t">Canvas</span></a><a href="prototype.html" data-mode="prototype" title="Prototype" aria-label="Prototype" class="on" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7z"/></svg><span class="t">Prototype</span></a><a href="playground.html" data-mode="playground" title="Playground" aria-label="Playground"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="17" cy="7" r="2.5"/><path d="M2 20l7-10 4 6 2.5-3L22 20z"/></svg><span class="t">Playground</span></a></nav>
   <button class="tool" id="t-theme" title="Light / dark" aria-label="Switch light or dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
   <div class="spacer"></div>
   <button class="share" data-copy>Hire me</button>
@@ -285,9 +285,9 @@
       <div class="top"><div><span class="kick"><b>●</b> 2014 → 2026</span><h2>Where I've worked<em>.</em></h2></div>
         <a class="btn" data-hot href="assets/Yehia-Mourad-Resume.pdf" target="_blank">Full resume ↗</a></div>
       <div class="jobs">
-        <div class="job cur"><b>Pleny</b><em>2026</em><span>Senior Product Designer · <i class="pt">Part-time</i></span></div>
+        <div class="job cur"><b>TwentyToo</b><em>2023–now</em><span>Senior Product Designer · AI-SaaS</span></div>
         <div class="job"><b>Talentera (bayt.com)</b><em>2025</em><span>Product Designer · UAE, project-based</span></div>
-        <div class="job"><b>TwentyToo</b><em>2023–26</em><span>Senior Product Designer · AI-SaaS</span></div>
+        <div class="job"><b>Pleny</b><em>2026</em><span>Senior Product Designer · <i class="pt">Part-time</i></span></div>
         <div class="job"><b>Automated Systems Co.</b><em>2022–23</em><span>UI/UX Designer · Kuwait Airlines</span></div>
         <div class="job"><b>Reach Link</b><em>2023–25</em><span>Senior UI/UX Designer · Kuwait</span></div>
         <div class="job"><b>Medica Healthy</b><em>2021</em><span>Product Owner &amp; UI/UX Designer</span></div>

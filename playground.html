@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Yehia Mourad — Product Designer in Cairo</title>
+<title>Yehia Mourad — Senior Product Designer</title>
 <meta name="description" content="Senior Product Designer in Cairo. AI-SaaS, B2B platforms and design systems.">
 <meta property="og:title" content="Yehia Mourad — Senior Product Designer">
 <meta property="og:image" content="https://yehiamourad.github.io/assets/og-image.png">
@@ -13,6 +13,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<script src="theme.js"></script>
+<script>
+  // the scene follows light/dark: day for light, night for dark
+  (function () { var r = document.documentElement, t = r.dataset.theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); r.dataset.time = t === "dark" ? "night" : "day"; })();
+</script>
 <style>
 /* =========================================================
    Cairo, drawn by hand in SVG. Every project is a place.
@@ -34,9 +39,16 @@
   --glass-1: #6d74e6; --glass-2: #3d3fa8; --glass-win: #b9c0ff;
   --palm: #3f8a4a; --palm-d: #2f6b39; --trunk: #9a6a3c;
   --text-on-scene: #18181a; --sub-on-scene: rgba(24,24,26,.72);
+  --rule: var(--rule); --text-2: #4a4846;
+  --panel: #faf9f6; --bg: #efece6; --accent: #4f56d6; --shadow: 0 1px 2px rgba(0,0,0,.05), 0 12px 32px rgba(0,0,0,.07);
+  --nav-bg: rgba(250,246,238,.82); --nav-ink: #4a4846; --nav-on: #fff; --nav-line: rgba(255,255,255,.9);
   color-scheme: light;
 }
 :root[data-time="night"] {
+  --paper: #15141c; --paper-2: #24222f; --ink: #f2f1ee; --muted: #a3a19c; --rule: #2e2c3a; --text-2: #c9c6c0;
+  --panel: #1c1c1f; --bg: #111112; --accent: #7c82ff; --shadow: 0 1px 2px rgba(0,0,0,.4), 0 12px 32px rgba(0,0,0,.4);
+  --nav-bg: rgba(28,28,31,.86); --nav-ink: #c9c6c0; --nav-on: #2c2c31; --nav-line: rgba(255,255,255,.08);
+  color-scheme: dark;
   --sky-1: #0f0c2b; --sky-2: #251b52; --sky-3: #5b3b78;
   --cloud: #c9c3ff; --cloud-o: .12; --stars-o: 1; --moon-o: 1; --sun-o: 0;
   --sand-far: #6a4f6e; --dune: #59405d;
@@ -123,7 +135,7 @@ svg * { transition: fill .8s ease, stop-color .8s ease, opacity .8s ease; }
 .chip.right:hover { transform: translateY(-3px) scale(1.04); }
 
 /* ---------- Hero copy ---------- */
-.copy { position: absolute; z-index: 4; left: max(24px, 5vw); top: max(84px, 13vh); max-width: min(560px, 88vw); color: var(--text-on-scene); pointer-events: none; transition: opacity .3s; }
+.copy { position: absolute; z-index: 4; left: max(24px, 5vw); top: max(96px, 14vh); max-width: min(560px, 88vw); color: var(--text-on-scene); pointer-events: none; transition: opacity .3s; }
 .copy > * { pointer-events: auto; }
 .hey { display: inline-flex; align-items: center; gap: 8px; font-size: 16px; color: var(--sub-on-scene); }
 .copy h1 { font-size: clamp(38px, 5.4vw, 72px); line-height: 1; letter-spacing: -.045em; font-weight: 800; margin-top: 14px; }
@@ -134,7 +146,41 @@ svg * { transition: fill .8s ease, stop-color .8s ease, opacity .8s ease; }
 .hint { position: absolute; z-index: 4; font-size: 26px; color: var(--text-on-scene); display: flex; align-items: center; gap: 6px; transform: rotate(-4deg); pointer-events: none; }
 .hint svg { width: 64px; height: 30px; }
 
-/* ---------- Top-right controls ---------- */
+/* ---------- Header: same toolbar as Canvas and Prototype ---------- */
+  /* ---------- Toolbar ---------- */
+  .toolbar { color: var(--ink); position: fixed; top: 12px; left: 12px; right: 12px; z-index: 20; height: 52px; padding: 0 8px 0 10px;
+    display: flex; align-items: center; gap: 10px; background: var(--panel); border-radius: 16px; box-shadow: var(--shadow); }
+  /* one-line logo in the header: name + clicking cursor, with the role as a live tag */
+  .brand { display: flex; align-items: flex-end; gap: 2px; flex: none; padding: 0 6px 0 8px; height: 40px; }
+  .brand img { height: 25px; width: auto; display: block; align-self: center; }
+  .brand .d { display: none; }
+  :root[data-theme="dark"] .brand .l { display: none; }
+  :root[data-theme="dark"] .brand .d { display: block; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .brand .l { display: none; } :root:not([data-theme="light"]) .brand .d { display: block; } }
+  .brand .role { font-size: 11px; font-weight: 700; line-height: 1; color: #fff; background: var(--coral); padding: 4px 8px 5px; border-radius: 6px; margin: 0 0 1px -4px; white-space: nowrap; }
+  .file { display: flex; align-items: center; gap: 6px; font-size: 14px; white-space: nowrap; overflow: hidden; }
+  .file .crumb { color: var(--muted); }
+  .file b { font-weight: 600; }
+  .tool { width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; border: 0; background: transparent; cursor: pointer; color: var(--muted); }
+  .tool:hover { background: var(--bg); color: var(--ink); }
+  .tool svg { width: 18px; height: 18px; }
+  :root { --seg-bg: rgba(0,0,0,.05); --seg-ink: var(--muted); --seg-on: var(--panel); --seg-on-ink: var(--ink); }
+  .spacer { flex: 1; }
+  /* view switch: canvas homepage <-> prototype homepage */
+  .mode { display: inline-flex; gap: 2px; padding: 3px; border-radius: 10px; background: var(--seg-bg); flex: none; }
+  .mode a { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 7px; font-size: 13px; font-weight: 600; color: var(--seg-ink); white-space: nowrap; }
+  .mode a svg { width: 14px; height: 14px; }
+  .mode a:hover { color: var(--seg-on-ink); }
+  .mode a.on { background: var(--seg-on); color: var(--seg-on-ink); box-shadow: 0 1px 2px rgba(0,0,0,.12); }
+  @media (max-width: 640px) { .mode a { padding: 0 9px; font-size: 12px; } .mode a:not(.on) .t { display: none; } }
+  @media (max-width: 480px) { .toolbar .share { display: none; } }
+  @media (max-width: 480px) { #t-theme { display: none; } .toolbar { gap: 6px; } .toolbar .brand img { height: 16px; } .share { height: 32px; padding: 0 10px; font-size: 13px; } }
+
+  .share { height: 36px; padding: 0 16px; border-radius: 10px; border: 0; background: var(--accent); color: #fff; font-weight: 600; cursor: pointer; white-space: nowrap; }
+  .share:hover { filter: brightness(1.08); }
+  @media (max-width: 640px) { .brand .role { display: none; } .brand img { height: 20px; } }
+  .toolbar button { font: inherit; }
+/* ---------- (old top controls) ---------- */
 .top { position: fixed; top: 16px; right: 16px; z-index: 30; display: flex; gap: 8px; }
 .pill-btn { height: 40px; padding: 0 14px; border-radius: 999px; border: 0; display: inline-flex; align-items: center; gap: 8px; background: var(--glass); color: var(--glass-ink); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 6px 20px rgba(20,10,40,.15), inset 0 0 0 1px var(--glass-line); font-size: 14px; font-weight: 600; }
 .pill-btn .live { width: 8px; height: 8px; border-radius: 50%; background: #22a35a; box-shadow: 0 0 0 3px rgba(34,163,90,.2); }
@@ -148,12 +194,12 @@ svg * { transition: fill .8s ease, stop-color .8s ease, opacity .8s ease; }
 @keyframes wheel { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(8px); } }
 
 /* ---------- Bottom nav ---------- */
-.nav { position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 30; display: flex; align-items: center; gap: 2px; padding: 6px; border-radius: 999px; background: rgba(250,246,238,.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 10px 30px rgba(20,10,40,.18), inset 0 0 0 1px rgba(255,255,255,.9); }
-.nav a { height: 40px; padding: 0 16px; border-radius: 999px; display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 500; color: #4a4846; }
+.nav { position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 30; display: flex; align-items: center; gap: 2px; padding: 6px; border-radius: 999px; background: var(--nav-bg); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 10px 30px rgba(20,10,40,.18), inset 0 0 0 1px var(--nav-line); }
+.nav a { height: 40px; padding: 0 16px; border-radius: 999px; display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 500; color: var(--nav-ink); }
 .nav a:hover { color: var(--ink); background: rgba(0,0,0,.05); }
-.nav a.on { background: #fff; color: var(--ink); font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+.nav a.on { background: var(--nav-on); color: var(--ink); font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
 .nav a img { width: 22px; height: 22px; border-radius: 50%; object-fit: cover; flex: none; }
-.nav a.cta { background: var(--ink); color: #fff; font-weight: 600; margin-left: 6px; }
+.nav a.cta { background: var(--ink); color: var(--paper); font-weight: 600; margin-left: 6px; }
 
 /* ---------- Place sheet (opens when you click a pin) ---------- */
 .scrim { position: fixed; inset: 0; z-index: 40; background: rgba(15,10,35,.35); opacity: 0; pointer-events: none; transition: opacity .25s; }
@@ -168,8 +214,8 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
 .sheet ul { margin: 14px 0 0 18px; display: grid; gap: 6px; font-size: 15px; }
 .sheet .row { display: flex; gap: 8px; margin-top: 20px; flex-wrap: wrap; }
 .btn { height: 46px; padding: 0 20px; border-radius: 999px; display: inline-flex; align-items: center; gap: 8px; font-weight: 600; border: 1.5px solid var(--ink); background: transparent; }
-.btn.solid { background: var(--ink); color: #fff; }
-.btn.ghost { border-color: #d8d2c6; color: var(--muted); }
+.btn.solid { background: var(--ink); color: var(--paper); }
+.btn.ghost { border-color: var(--rule); color: var(--muted); }
 .x { position: absolute; top: 12px; right: 12px; width: 36px; height: 36px; border-radius: 50%; border: 0; background: rgba(255,255,255,.9); display: grid; place-items: center; font-size: 18px; box-shadow: 0 2px 8px rgba(0,0,0,.12); }
 
 /* ---------- Paper sections below the world ---------- */
@@ -182,7 +228,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
 .sec h2 .hand { font-weight: 600; color: var(--coral); letter-spacing: 0; font-size: 1.1em; }
 
 .work { margin-top: 36px; border-top: 1.5px solid var(--ink); }
-.item { display: grid; grid-template-columns: 64px 1fr auto 150px; align-items: center; gap: 22px; padding: 22px 0; border-bottom: 1px solid #ddd5c6; position: relative; }
+.item { display: grid; grid-template-columns: 64px 1fr auto 150px; align-items: center; gap: 22px; padding: 22px 0; border-bottom: 1px solid var(--rule); position: relative; }
 .item .n { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
 .item h3 { font-size: clamp(22px, 2.4vw, 30px); letter-spacing: -.02em; line-height: 1.1; }
 .item p { color: var(--muted); font-size: 15px; margin-top: 2px; }
@@ -206,12 +252,12 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
 .vmeta h3 { font-size: 22px; letter-spacing: -.02em; }
 .vmeta .tag { font-size: 13px; padding: 5px 12px; border-radius: 999px; background: var(--paper-2); }
 .timeline { list-style: none; margin-top: 36px; border-top: 1.5px solid var(--ink); }
-.timeline li { display: grid; grid-template-columns: 190px 1fr; gap: 24px; padding: 24px 0; border-bottom: 1px solid #ddd5c6; }
+.timeline li { display: grid; grid-template-columns: 190px 1fr; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--rule); }
 .timeline .when { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 4px; }
 .timeline h3 { font-size: 20px; font-weight: 500; letter-spacing: -.01em; }
 .timeline h3 b { font-weight: 700; }
 .timeline .where { display: inline-block; font-size: 13px; color: var(--muted); margin-top: 2px; }
-.timeline p { margin-top: 8px; color: #4a4846; max-width: 62ch; }
+.timeline p { margin-top: 8px; color: var(--text-2); max-width: 62ch; }
 .timeline li.early h3 { font-size: 17px; }
 .certs { margin-top: 18px; font-size: 14px; color: var(--muted); }
 .item { cursor: pointer; }
@@ -228,14 +274,14 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
 .about .txt p + p { margin-top: 16px; }
 .about .txt p span { color: var(--muted); }
 .stamps { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
-.stamps span { font-size: 14px; padding: 7px 14px; border-radius: 999px; border: 1.5px dashed #cfc5b3; }
+.stamps span { font-size: 14px; padding: 7px 14px; border-radius: 999px; border: 1.5px dashed var(--rule); }
 
 .contact { text-align: center; padding: 110px 0 150px; }
 .contact h2 { margin: 10px auto 0; max-width: 15ch; }
 .contact .row { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 30px; }
 .foot { text-align: center; color: var(--muted); font-size: 13px; padding-bottom: 96px; }
 
-.toast { position: fixed; left: 50%; top: 20px; transform: translate(-50%, -20px); opacity: 0; z-index: 50; background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 12px; font-size: 14px; transition: all .25s; pointer-events: none; }
+.toast { position: fixed; left: 50%; top: 80px; transform: translate(-50%, -20px); opacity: 0; z-index: 50; background: var(--ink); color: var(--paper); padding: 10px 16px; border-radius: 12px; font-size: 14px; transition: all .25s; pointer-events: none; }
 .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
 /* ---------- Phones ---------- */
@@ -245,7 +291,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
   .scroller::-webkit-scrollbar { display: none; }
   /* phones: headline on top, the city as a swipeable panorama underneath */
   .world { left: 0; bottom: 0; transform: none !important; height: 64svh; width: calc(64svh * 16 / 9); }
-  .copy { top: 72px; left: 18px; right: 18px; max-width: none; position: absolute; }
+  .copy { top: 78px; left: 18px; right: 18px; max-width: none; position: absolute; }
   .chip { font-size: 12px; gap: 6px; padding: 3px 9px 3px 3px; bottom: 28px; }
   .chip .lg { width: 20px; height: 20px; font-size: 10px; }
   .chip .yr { display: none; }
@@ -270,14 +316,13 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
 </head>
 <body>
 
-<div class="top">
-  <a class="logo" href="#top" aria-label="Top"><img src="assets/logo-mark.svg" alt=""></a>
-  <span class="pill-btn"><span class="live"></span><span class="txt-sm">Open to new roles</span></span>
-  <button class="pill-btn" id="time" aria-label="Switch day or night">
-    <svg id="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-    <span id="time-label">Night</span>
-  </button>
-</div>
+<header class="toolbar">
+  <a class="brand" href="./" aria-label="Yehia Mourad, home"><img class="l" src="assets/logo-header.svg" alt=""><img class="d" src="assets/logo-header-dark.svg" alt=""><span class="role">Product Designer</span></a>
+  <nav class="mode" aria-label="Homepage view"><a href="./?view=canvas" data-mode="canvas" title="Canvas" aria-label="Canvas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span class="t">Canvas</span></a><a href="prototype.html" data-mode="prototype" title="Prototype" aria-label="Prototype"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7z"/></svg><span class="t">Prototype</span></a><a href="playground.html" data-mode="playground" title="Playground" aria-label="Playground" class="on" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="17" cy="7" r="2.5"/><path d="M2 20l7-10 4 6 2.5-3L22 20z"/></svg><span class="t">Playground</span></a></nav>
+  <button class="tool" id="t-theme" title="Light / dark" aria-label="Switch light or dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+  <div class="spacer"></div>
+  <button class="share" data-copy>Hire me</button>
+</header>
 
 <section class="hero" id="top">
   <div class="stage">
@@ -511,6 +556,23 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
             <path d="M1044 648 L1050 654 L1062 640" stroke="#ff6a3d" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
           </g>
 
+          <!-- Pleny: food truck -->
+          <g transform="translate(268 58)">
+            <rect x="842" y="742" width="132" height="62" rx="10" fill="#fff8ee"/>
+            <path d="M944 742 L974 742 Q986 742 990 756 L996 782 L996 804 L944 804 Z" fill="#fff8ee"/>
+            <path d="M950 750 L976 750 Q982 750 984 758 L988 774 L950 774 Z" fill="var(--glass-1)"/>
+            <rect class="lit" x="950" y="750" width="34" height="24" rx="3" fill="#ffd27a" opacity=".8"/>
+            <rect x="842" y="784" width="154" height="8" fill="#ff6a3d"/>
+            <rect x="856" y="752" width="76" height="26" rx="4" fill="#2b1d55"/>
+            <rect class="lit" x="856" y="752" width="76" height="26" rx="4" fill="#ffd27a" opacity=".55"/>
+            <path d="M850 742 L938 742 L944 730 L844 730 Z" fill="#ff6a3d"/>
+            <path d="M844 730 Q853 740 862 730 Q871 740 880 730 Q889 740 898 730 Q907 740 916 730 Q925 740 934 730 Q939 736 944 730" fill="#fff4e6"/>
+            <g transform="translate(894 712)"><path d="M-16 0 A16 16 0 0 0 16 0 Z" fill="#ffb347"/><path d="M-18 0 H18" stroke="#c9643d" stroke-width="3" stroke-linecap="round"/><path d="M-6 -6 C-6 -12 0 -12 0 -16 M4 -6 C4 -12 10 -12 10 -16" stroke="#fff" stroke-opacity=".8" stroke-width="2.4" fill="none" stroke-linecap="round"/></g>
+            <rect x="892" y="714" width="4" height="16" fill="#5b4636"/>
+            <circle cx="872" cy="806" r="12" fill="#2b1d55"/><circle cx="872" cy="806" r="5" fill="#d9d4ca"/>
+            <circle cx="966" cy="806" r="12" fill="#2b1d55"/><circle cx="966" cy="806" r="5" fill="#d9d4ca"/>
+          </g>
+
           <!-- the street cat -->
           <g transform="translate(668 792)">
             <path class="cat-tail" d="M22 -6 C40 -10 44 -30 34 -38" stroke="#e98a3a" stroke-width="6" fill="none" stroke-linecap="round"/>
@@ -525,13 +587,15 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
         <!-- ======================= PINS ======================= -->
         <!-- case studies -->
         <div class="pin" style="--x:390; --y:566"><span class="stem"></span><span class="dot"></span>
-          <button class="chip" data-place="pos"><span class="lg" style="background:#2b1d55">P</span>POS System<span class="yr">Case study</span></button></div>
+          <button class="chip" data-place="pos"><span class="lg" style="background:#2b1d55">P</span>Primex POS<span class="yr">Case study</span></button></div>
         <div class="pin" style="--x:1250; --y:352"><span class="stem"></span><span class="dot"></span>
-          <button class="chip" data-place="twentytoo"><span class="lg" style="background:#4f56d6">T</span>TwentyToo<span class="yr">2023 – now</span></button></div>
+          <button class="chip" data-place="twentytoo"><span class="lg" style="background:#4f56d6">T</span>TwentyToo<span class="yr">Case study</span></button></div>
         <div class="pin" style="--x:1500; --y:256"><span class="stem"></span><span class="dot"></span>
           <button class="chip left" data-place="benaa"><span class="lg" style="background:#ffb347">B</span>Benaa<span class="yr">Desktop</span></button></div>
         <div class="pin" style="--x:1052; --y:622"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="fahs"><span class="lg" style="background:#4f56d6">F</span>Fahs<span class="yr">Mobile</span></button></div>
+        <div class="pin" style="--x:1162; --y:754"><span class="stem"></span><span class="dot"></span>
+          <button class="chip" data-place="pleny"><span class="lg" style="background:#ff6a3d">P</span>Pleny<span class="yr">Case study</span></button></div>
         <!-- visual projects -->
         <div class="pin" style="--x:860; --y:552"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="reach"><span class="lg" style="background:#ff6a3d">R</span>Reach Link<span class="yr">Visual</span></button></div>
@@ -539,7 +603,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           <button class="chip right" data-place="muzain"><span class="lg" style="background:#2b1d55">M</span>Muzain<span class="yr">Visual</span></button></div>
         <!-- me -->
         <div class="pin" style="--x:900; --y:150"><span class="stem"></span><span class="dot"></span>
-          <button class="chip" data-place="journey"><span class="lg" style="background:#18181a">✈</span>My journey<span class="yr">US · KW · UAE</span></button></div>
+          <button class="chip" data-place="journey"><span class="lg" style="background:#18181a">✈</span>My journey<span class="yr">EG · KW · UAE · JO</span></button></div>
         <div class="pin" style="--x:1080; --y:178"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="about"><span class="lg"><img src="assets/me.png" alt="" onerror="this.parentElement.textContent='Y';this.parentElement.style.background='#2b1d55'"></span>That's me 👋</button></div>
         <div class="pin" style="--x:560; --y:600"><span class="stem"></span><span class="dot"></span>
@@ -565,10 +629,11 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     <div class="eyebrow">Case studies</div>
     <h2>Places I've built <span class="hand">things for</span></h2>
     <div class="work">
-      <div class="item" data-open="pos" role="button" tabindex="0"><span class="n">01</span><div><h3>Design a full POS system</h3><p>An Arabic point-of-sale system, from cashier flows to the back office.</p></div><span class="tag">B2B · RTL · Soon</span><span class="thumb" style="background-image:url(assets/pos-card.webp)"></span></div>
-      <div class="item" data-open="twentytoo" role="button" tabindex="0"><span class="n">02</span><div><h3>TwentyToo</h3><p>A B2B AI-SaaS platform and a 96-component library.</p></div><span class="tag">AI-SaaS · Soon</span><span class="thumb tg-1"></span></div>
-      <div class="item" data-open="benaa" role="button" tabindex="0"><span class="n">03</span><div><h3>Benaa</h3><p>A desktop app. Case study on the way.</p></div><span class="tag">Desktop · Soon</span><span class="thumb tg-4"></span></div>
-      <div class="item" data-open="fahs" role="button" tabindex="0"><span class="n">04</span><div><h3>Fahs</h3><p>A mobile app. Case study on the way.</p></div><span class="tag">Mobile · Soon</span><span class="thumb tg-5"></span></div>
+      <div class="item" data-open="pos" role="button" tabindex="0"><span class="n">01</span><div><h3>Design a full POS system</h3><p>The Cashier POS, out of a full ERP and into its own product.</p></div><span class="tag">B2B · Primex POS</span><span class="thumb" style="background-image:url(assets/pos-canvas.webp)"></span></div>
+      <div class="item" data-open="twentytoo" role="button" tabindex="0"><span class="n">02</span><div><h3>Designing trust into an AI platform</h3><p>TwentyToo, a B2B AI-SaaS platform, and its AI chat agent.</p></div><span class="tag">AI-SaaS · TwentyToo</span><span class="thumb" style="background-image:url(assets/twentytoo-cover.webp);background-position:left center"></span></div>
+      <div class="item" data-open="pleny" role="button" tabindex="0"><span class="n">03</span><div><h3>Rebuilding a food app's design system</h3><p>Pleny's Android design system, restructured.</p></div><span class="tag">Design system · Pleny</span><span class="thumb" style="background-image:url(assets/pleny-canvas.webp)"></span></div>
+      <div class="item" data-open="benaa" role="button" tabindex="0"><span class="n">04</span><div><h3>Benaa</h3><p>A desktop app. Case study on the way.</p></div><span class="tag">Desktop · Soon</span><span class="thumb tg-4"></span></div>
+      <div class="item" data-open="fahs" role="button" tabindex="0"><span class="n">05</span><div><h3>Fahs</h3><p>A mobile app. Case study on the way.</p></div><span class="tag">Mobile · Soon</span><span class="thumb tg-5"></span></div>
     </div>
   </div>
 
@@ -585,12 +650,18 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     <div class="eyebrow">Journey</div>
     <h2>Where I've <span class="hand">worked</span></h2>
     <ol class="timeline">
-      <li><span class="when">Dec 2023 – now</span><div><h3>Senior Product Designer · <b>TwentyToo</b></h3><span class="where">USA · Remote</span>
-        <p>Lead end-to-end design for a B2B AI-SaaS platform. Built the UI style guide and a 96-component library, and designed onboarding and activation flows.</p></div></li>
+      <li><span class="when">Dec 2023 – now</span><div><h3>Senior Product Designer · <b>TwentyToo</b></h3><span class="where">Remote</span>
+        <p>Lead end-to-end design for a B2B AI-SaaS platform, including its AI chat agent. Built the UI style guide and a 96-component library, and designed onboarding and activation flows.</p></div></li>
+      <li><span class="when">Apr – Sep 2026</span><div><h3>Senior Product Designer · <b>Pleny</b></h3><span class="where">Egypt · Part-time</span>
+        <p>Led design for a food social network app. Restructured the design system for the Android app, including a new onboarding theme.</p></div></li>
       <li><span class="when">Jan 2023 – Dec 2025</span><div><h3>Senior Product Designer · <b>Reach Link</b></h3><span class="where">Kuwait · Remote</span>
         <p>Led design for a B2B2C influencer–brand marketplace and a link-in-bio platform. Two-sided campaign flows used by 223 creators and 27 brands.</p></div></li>
       <li><span class="when">Mar – Aug 2025</span><div><h3>Product Designer · <b>Talentera (bayt.com)</b></h3><span class="where">UAE · Project-based</span>
         <p>Led the Talentera events landing page, from content structure to final UI.</p></div></li>
+      <li><span class="when">Nov 2022 – Nov 2025</span><div><h3>UI/UX Designer · <b>Geeks</b></h3><span class="where">Jordan · Remote · Part-time</span>
+        <p>Dopa, a travel and activities app with its web dashboard, and Jamal, a car rental app and website.</p></div></li>
+      <li><span class="when">Dec 2022 – Jun 2025</span><div><h3>UI/UX Designer · <b>TAS ERP</b></h3><span class="where">Egypt · Part-time</span>
+        <p>Enterprise ERP modules for inventory, HR and finance.</p></div></li>
       <li><span class="when">Jan 2022 – Jan 2023</span><div><h3>UI/UX Designer · <b>Automated Systems Company</b></h3><span class="where">Kuwait</span>
         <p>Redesigned operational workflows for Kuwait Airlines, cutting task time by 20%. Designed a full hospital management system end to end.</p></div></li>
       <li><span class="when">Apr – Dec 2021</span><div><h3>Product Owner & UI/UX Designer · <b>Medica Healthy</b></h3><span class="where">Egypt</span>
@@ -657,35 +728,28 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
   const EMAIL = "yehia.mourad@outlook.com";
   const root = document.documentElement;
 
-  /* ---------- Day / night (defaults to Cairo time) ---------- */
-  const label = document.getElementById("time-label"), ico = document.getElementById("ico");
-  const MOON = '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>';
-  const SUN = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>';
-  function setTime(t) {
-    root.dataset.time = t;
-    label.textContent = t === "day" ? "Night" : "Day";
-    ico.innerHTML = t === "day" ? MOON : SUN;
-    try { localStorage.setItem("time", t); } catch (e) {}
-  }
-  let start;
-  try { start = localStorage.getItem("time"); } catch (e) {}
-  if (!start) {
-    const h = +new Intl.DateTimeFormat("en-GB", { hour: "numeric", hourCycle: "h23", timeZone: "Africa/Cairo" }).format(new Date());
-    start = h >= 6 && h < 18 ? "day" : "night";
-  }
-  setTime(start);
-  document.getElementById("time").onclick = () => setTime(root.dataset.time === "day" ? "night" : "day");
+  /* ---------- Day / night follows light / dark (theme.js) ---------- */
+  const mq = matchMedia("(prefers-color-scheme: dark)");
+  const syncTime = () => { const t = root.dataset.theme || (mq.matches ? "dark" : "light"); root.dataset.time = t === "dark" ? "night" : "day"; };
+  new MutationObserver(syncTime).observe(root, { attributes: true, attributeFilter: ["data-theme"] });
+  mq.addEventListener ? mq.addEventListener("change", syncTime) : mq.addListener(syncTime);
+  syncTime();
+  try { localStorage.removeItem("time"); } catch (e) {}
+  document.querySelectorAll(".mode a").forEach(a => a.addEventListener("click", () => { try { localStorage.setItem("home", a.dataset.mode); } catch (e) {} }));
 
   /* ---------- Places ---------- */
   // Case studies and visuals marked soon: true show "coming soon" until you add them.
   // To publish one later: add  cta: ["Read the case study", "your-page.html"]  and remove soon.
   const places = {
-    pos: { kicker: "Case study · B2B · RTL", title: "Design a full POS system", img: "assets/pos-card.webp",
-      text: "An Arabic point-of-sale system, from the cashier's checkout to the back office. Full case study coming soon.",
-      list: ["Cashier flows built for speed under pressure", "Arabic RTL from the first sketch", "Prototyped and tested in the browser"], soon: true },
-    twentytoo: { kicker: "Case study · AI-SaaS · 2023 – now", title: "TwentyToo", grad: "linear-gradient(140deg,#4f56d6,#9b5de5)",
-      text: "Leading end-to-end design for a B2B AI-SaaS platform, turning complex model capabilities into clear, usable workflows.",
-      list: ["UI style guide and a library of 96 reusable components", "Onboarding and activation flows for an early-stage product", "Close work with product, engineering and data teams"], soon: true },
+    pos: { kicker: "Case study · B2B · Primex POS", title: "Design a full POS system", img: "assets/pos-canvas.webp",
+      text: "Taking the Cashier POS out of a full ERP and turning it into its own product for tablets and cashier screens.",
+      list: ["One rule: does this make checkout faster?", "A dedicated POS design system with bigger touch targets", "Two layouts: browse-first for restaurants, scan-first for hypermarkets"], cta: ["Read the case study", "pos-system.html"] },
+    twentytoo: { kicker: "Case study · AI-SaaS · 2023 – now", title: "Designing trust into an AI platform", img: "assets/twentytoo-cover.webp",
+      text: "Leading end-to-end design for TwentyToo, a B2B AI-SaaS platform, turning complex model capabilities into clear, usable workflows.",
+      list: ["UI style guide and a library of 96 reusable components", "An AI chat agent people can trust", "Onboarding and activation flows"], cta: ["Read the case study", "twentytoo.html"] },
+    pleny: { kicker: "Case study · Design system · 2026", title: "Rebuilding a food app's design system", img: "assets/pleny-canvas.webp",
+      text: "Led design for Pleny, a food social network, and restructured the design system for its Android app.",
+      list: ["A new design system structure for Android", "A new onboarding theme", "Part-time, alongside TwentyToo"], cta: ["Read the case study", "pleny.html"] },
     benaa: { kicker: "Case study · Desktop app", title: "Benaa", grad: "linear-gradient(140deg,#ffb347,#ff6a3d)",
       text: "A desktop app. The full story is on its way.", soon: true },
     fahs: { kicker: "Case study · Mobile app", title: "Fahs", grad: "linear-gradient(140deg,#2b1d55,#4f56d6)",
@@ -695,9 +759,9 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
       list: ["Two-sided campaign flows for creators and brands", "Used by 223 creators and 27 brands"], soon: true },
     muzain: { kicker: "Visual project · Mobile app", title: "Muzain app", grad: "linear-gradient(140deg,#4f56d6,#9b5de5)",
       text: "Visuals coming soon.", soon: true },
-    journey: { kicker: "8+ years · USA · Kuwait · UAE · Egypt", title: "My journey", grad: "linear-gradient(140deg,#18181a,#3a3346)",
-      text: "From building websites in 2014 to leading design on AI-SaaS today, working with teams across four countries.",
-      list: ["TwentyToo, USA · Senior Product Designer · 2023 – now", "Reach Link, Kuwait · Senior Product Designer · 2023 – 2025", "Talentera (bayt.com), UAE · Product Designer · 2025", "Automated Systems Co., Kuwait · Kuwait Airlines, −20% task time · 2022"],
+    journey: { kicker: "8+ years · Egypt · Kuwait · UAE · Jordan", title: "My journey", grad: "linear-gradient(140deg,#18181a,#3a3346)",
+      text: "From building websites in 2014 to leading design on AI-SaaS today, with teams in Egypt, Kuwait, the UAE and Jordan.",
+      list: ["TwentyToo · Senior Product Designer · 2023 – now", "Pleny · Senior Product Designer · 2026, part-time", "Reach Link, Kuwait · Senior Product Designer · 2023 – 2025", "Talentera (bayt.com), UAE · Product Designer · 2025"],
       cta: ["See the full journey", "#journey"] },
     about: { kicker: "Cairo · 8+ years", title: "That's me 👋", img: "assets/me.png", grad: "linear-gradient(140deg,#2b1d55,#4f56d6)",
       text: "Senior product designer focused on AI-SaaS and complex B2B. I design in Arabic and English.",
