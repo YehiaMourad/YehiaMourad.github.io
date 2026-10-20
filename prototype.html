@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Yehia Mourad — Senior Product Designer</title>
+<meta name="description" content="Senior Product Designer in Cairo. AI-SaaS, B2B platforms and design systems.">
+<meta property="og:title" content="Yehia Mourad — Senior Product Designer">
+<meta property="og:image" content="https://yehiamourad.github.io/assets/og-image.png">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* Presentation mode: a dark prototype player (always dark), one frame at a time.
+     Frames follow the light/dark theme. Click empty space to flash the hotspots, like Figma. */
+  :root {
+    --stage: #1e1e21; --bar: #2a2a2e; --bar-ink: #e9e8e5; --bar-muted: #9b9a96; --bar-line: #3a3a3f;
+    --frame: #faf9f6; --frame2: #efece6; --ink: #18181a; --muted: #6f6d68; --line: #e3dfd6;
+    --coral: #ff6a3d; --indigo: #4f56d6; --deep: #2b1d55; --hot: #0d99ff;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+    --cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='30' viewBox='-3 -3 66 94'%3E%3Cpath d='M0 0L0 76L20 57L34 88L48 82L34 51L60 49Z' fill='%23ff6a3d' stroke='%23fff' stroke-width='5' stroke-linejoin='round'/%3E%3C/svg%3E") 2 2, default;
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --frame: #1c1c1f; --frame2: #141416; --ink: #f2f1ee; --muted: #9b9a96; --line: #2c2c31; --indigo: #7c82ff; } }
+  :root[data-theme="dark"] { --frame: #1c1c1f; --frame2: #141416; --ink: #f2f1ee; --muted: #9b9a96; --line: #2c2c31; --indigo: #7c82ff; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body { background: var(--stage); color: var(--bar-ink); font: 400 15px/1.5 "Bricolage Grotesque", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased; cursor: var(--cursor); display: grid; grid-template-rows: auto minmax(0,1fr) auto; grid-template-columns: minmax(0,1fr); overflow: hidden;
+    padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0); }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  [hidden] { display: none !important; }
+  :focus-visible { outline: 2px solid var(--hot); outline-offset: 3px; border-radius: 6px; }
+  .mono { font-family: var(--mono); }
+
+  /* player bars */
+  .bar { display: flex; align-items: center; gap: 10px; padding: 10px 16px; background: var(--bar); border-bottom: 1px solid var(--bar-line); min-height: 52px; }
+  .bar .brand { display: flex; align-items: center; gap: 10px; }
+  .bar .brand img { height: 22px; width: auto; display: block; }
+  .bar .brand small { font: 500 11px var(--mono); color: var(--bar-muted); letter-spacing: .06em; text-transform: uppercase; padding-left: 10px; border-left: 1px solid var(--bar-line); }
+  .nav { margin: 0 auto; display: flex; align-items: center; gap: 4px; }
+  .nav button { width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center; color: var(--bar-ink); }
+  .nav button:hover:not(:disabled) { background: #3a3a3f; }
+  .nav button:disabled { opacity: .3; cursor: default; }
+  .nav svg, .tool svg { width: 16px; height: 16px; }
+  .nav .where { min-width: 150px; text-align: center; font-size: 13px; }
+  .nav .where b { font-weight: 600; }
+  .nav .where span { font-family: var(--mono); color: var(--bar-muted); font-size: 12px; margin-left: 8px; }
+  .tool { height: 32px; padding: 0 10px; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--bar-ink); }
+  .tool:hover { background: #3a3a3f; }
+  .hire { white-space: nowrap; height: 32px; padding: 0 14px; border-radius: 8px; background: var(--coral); color: #fff; font-weight: 600; font-size: 13px; }
+  .hire:hover { filter: brightness(1.06); }
+
+  .foot { display: flex; align-items: center; gap: 14px; padding: 10px 16px; font-size: 12px; color: var(--bar-muted); min-height: 44px; }
+  .foot .dots { display: flex; gap: 6px; margin: 0 auto; }
+  .foot .dots button { width: 8px; height: 8px; border-radius: 50%; background: #4a4a50; padding: 0; }
+  .foot .dots button.on { background: var(--bar-ink); width: 22px; border-radius: 4px; }
+  .foot .anim { font-family: var(--mono); opacity: 0; transition: opacity .2s; white-space: nowrap; }
+  .foot .anim.show { opacity: 1; }
+  .foot .anim b { color: var(--hot); font-weight: 500; }
+  .foot .hint { white-space: nowrap; }
+
+  /* stage + device */
+  .stage { display: grid; place-items: center; padding: 20px; min-height: 0; }
+  .device { position: relative; width: min(1240px, calc(100vw - 40px), calc((100dvh - 136px) * 1.6)); aspect-ratio: 16 / 10;
+    border-radius: 10px; overflow: hidden; background: var(--frame); color: var(--ink); container-type: size;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.06), 0 30px 80px rgba(0,0,0,.45); }
+  .screen { position: absolute; inset: 0; padding: 5.2cqw 6cqw; display: flex; flex-direction: column; overflow: hidden;
+    opacity: 0; visibility: hidden; transform: translateX(6%); transition: opacity .35s ease, transform .45s cubic-bezier(.2,.7,.2,1), visibility 0s .45s; }
+  .screen.on { opacity: 1; visibility: visible; transform: none; transition: opacity .35s ease, transform .45s cubic-bezier(.2,.7,.2,1); }
+  .screen.left { transform: translateX(-6%); }
+  @media (prefers-reduced-motion: reduce) { .screen, .screen.on { transition: opacity .15s; transform: none; } }
+
+  /* hotspots flash */
+  .device.flash [data-hot] { box-shadow: 0 0 0 2px var(--hot), 0 0 0 9999px transparent; background-color: rgba(13,153,255,.18) !important; }
+  .device.flash [data-hot] { animation: hot .9s ease; }
+  @keyframes hot { 0%,60% { box-shadow: 0 0 0 2px var(--hot); } 100% { box-shadow: 0 0 0 2px transparent; } }
+
+  /* frame type, scales with the frame like a prototype in "fit" mode */
+  .kick { font: 500 max(11px, .95cqw)/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .kick b { color: var(--coral); font-weight: 500; }
+  h1, h2, h3 { font-weight: 800; letter-spacing: -.03em; line-height: 1.02; text-wrap: balance; }
+  h2 { font-size: max(28px, 4.2cqw); }
+  h2 em { font-style: normal; color: var(--coral); }
+  .lead { font-size: max(15px, 1.55cqw); line-height: 1.45; color: var(--muted); max-width: 46ch; }
+  .btns { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; height: max(42px, 3.6cqw); padding: 0 max(16px, 1.6cqw); border-radius: 12px;
+    font-weight: 600; font-size: max(14px, 1.2cqw); border: 1.5px solid var(--line); background: var(--frame); transition: transform .15s; }
+  .btn:hover { transform: translateY(-1px); border-color: var(--ink); }
+  .btn.solid { background: var(--ink); color: var(--frame); border-color: var(--ink); }
+  .btn svg { width: 1.1em; height: 1.1em; }
+  .pill { font: 500 max(11px, .9cqw)/1 var(--mono); padding: .75em 1em; border-radius: 999px; background: var(--frame2); color: var(--muted); letter-spacing: .03em; }
+  .pill.live { color: #1f9d55; }
+  .pill.live::before { content: ""; display: inline-block; width: .6em; height: .6em; border-radius: 50%; background: #22c55e; margin-right: .5em; vertical-align: .05em; }
+  .next { margin-top: auto; align-self: flex-end; font: 500 max(12px, .95cqw) var(--mono); color: var(--muted); padding: .5em .8em; border-radius: 8px; letter-spacing: .04em; }
+  .next:hover { color: var(--ink); }
+
+  /* 1 hello */
+  .s-hello { display: grid; grid-template-columns: 1.05fr 1fr; gap: 5cqw; align-items: center; }
+  .s-hello .logo { width: 100%; max-width: 44cqw; }
+  .s-hello .logo img { width: 100%; display: block; }
+  .s-hello .logo .d { display: none; }
+  .s-hello .txt { display: grid; gap: max(16px, 2cqw); }
+  .s-hello h1 { font-size: max(26px, 3.3cqw); }
+  .s-hello .meta { display: flex; flex-wrap: wrap; gap: 8px; }
+  .s-hello .press { position: absolute; left: 6cqw; bottom: 4.4cqw; }
+
+  /* 2 work */
+  .s-work { gap: max(16px, 2.4cqw); }
+  .s-work .top { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8cqw; flex: 1; min-height: 0; }
+  .card { display: flex; flex-direction: column; border-radius: 14px; overflow: hidden; background: var(--frame2); border: 1px solid var(--line); transition: transform .2s, border-color .2s; min-height: 0; }
+  .card:hover { transform: translateY(-3px); border-color: var(--ink); }
+  .card .shot { flex: 1; min-height: 80px; background: var(--frame2) center / cover no-repeat; }
+  .card .cap { padding: 1.4cqw 1.5cqw 1.6cqw; display: grid; gap: .5cqw; }
+  .card .cap span { font: 500 max(10px, .8cqw)/1 var(--mono); letter-spacing: .06em; color: var(--muted); }
+  .card .cap b { font-weight: 800; font-size: max(17px, 1.7cqw); line-height: 1.1; letter-spacing: -.02em; }
+  .soon { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .soon button { font: 600 max(12px, 1cqw) "Bricolage Grotesque", sans-serif; padding: .55em 1em; border-radius: 999px; background: var(--frame2); border: 1px dashed var(--line); color: var(--muted); }
+  .soon .kick { margin-right: 6px; }
+
+  /* 3 about */
+  .s-about { display: grid; grid-template-columns: 30cqw 1fr; gap: 5cqw; align-items: center; }
+  .photo { aspect-ratio: 4 / 5; border-radius: 18px; background: var(--frame2); overflow: hidden; display: grid; place-items: center; font: 800 6cqw "Bricolage Grotesque"; color: var(--muted); position: relative; }
+  .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .s-about .txt { display: grid; gap: max(14px, 1.8cqw); }
+  .props { display: grid; grid-template-columns: auto 1fr; gap: .7cqw 2.4cqw; font-size: max(13px, 1.1cqw); }
+  .props span:nth-child(odd) { font: 500 max(11px, .85cqw)/1.9 var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+  .note { display: flex; gap: 12px; align-items: flex-start; background: var(--frame2); border-radius: 14px; padding: 1.4cqw 1.6cqw; font-size: max(14px, 1.25cqw); max-width: 52ch; }
+  .note .dot { flex: none; width: 2.2em; height: 2.2em; border-radius: 50%; background: var(--coral); color: #fff; font-weight: 800; display: grid; place-items: center; font-size: .8em; }
+
+  /* 4 experience */
+  .s-exp { gap: max(14px, 2cqw); }
+  .s-exp .top { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; }
+  .jobs { display: grid; grid-template-columns: 1fr 1fr; gap: 0 4cqw; flex: 1; align-content: start; }
+  .job { display: grid; grid-template-columns: 1fr auto; gap: 0 12px; padding: .95cqw 0; border-bottom: 1px solid var(--line); font-size: max(13px, 1.1cqw); }
+  .job b { font-weight: 700; }
+  .job em { font: 400 max(11px, .85cqw)/1.8 var(--mono); font-style: normal; color: var(--muted); }
+  .job span { grid-column: 1 / -1; color: var(--muted); font-size: .9em; }
+  .job .pt { color: var(--coral); }
+  .job.cur b::after { content: "Latest"; font: 500 max(9px, .7cqw) var(--mono); color: #fff; background: var(--coral); padding: .25em .6em; border-radius: 6px; margin-left: 8px; vertical-align: .2em; text-transform: uppercase; letter-spacing: .05em; }
+
+  /* 5 contact */
+  .s-contact { justify-content: center; gap: max(18px, 2.4cqw); background: var(--deep); color: #f2f1ee; }
+  .s-contact h2 { font-size: max(34px, 6cqw); max-width: 14ch; }
+  .s-contact .lead { color: #b6aee0; }
+  .s-contact .kick { color: #b6aee0; }
+  .s-contact .btn { background: transparent; color: #f2f1ee; border-color: #4b3c86; }
+  .s-contact .btn:hover { border-color: #f2f1ee; }
+  .s-contact .btn.solid { background: var(--coral); border-color: var(--coral); color: #fff; }
+  .say { position: absolute; right: 8cqw; top: 14cqw; width: 18cqw; pointer-events: none; }
+  .say svg { width: 100%; height: auto; overflow: visible; }
+  .say .clk { transform-origin: 30% 30%; animation: clk 2.4s ease-in-out infinite; }
+  @keyframes clk { 0%,70%,100% { transform: none; } 80% { transform: scale(.9) translate(2%,2%); } }
+  @media (prefers-reduced-motion: reduce) { .say .clk { animation: none; } }
+
+  .toast { position: fixed; left: 50%; bottom: 64px; transform: translate(-50%, 20px); background: #f2f1ee; color: #18181a; padding: 10px 16px; border-radius: 10px; font-size: 14px; opacity: 0; transition: .25s; pointer-events: none; z-index: 10; }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  /* small screens: the frame fills the stage and scrolls inside, like a prototype on a phone */
+  @media (max-width: 760px), (max-height: 520px) {
+    .bar { padding: 8px 12px; gap: 6px; }
+    .bar .brand small, .tool .lbl, .foot .hint, .foot .anim, #restart { display: none; }
+    .bar .brand img { height: 18px; }
+    .nav { gap: 0; } .nav button { width: 28px; }
+    .hire { padding: 0 10px; }
+    .nav .where { min-width: 0; white-space: nowrap; } .nav .where span { display: none; } .bar .tool { padding: 0 6px; }
+    .stage { padding: 10px; }
+    .device { width: 100%; height: 100%; aspect-ratio: auto; container-type: inline-size; }
+    .screen { padding: 28px 22px 24px; overflow-y: auto; gap: 18px; }
+    .s-hello, .s-about { grid-template-columns: 1fr; align-content: start; gap: 22px; }
+    .s-hello .logo { max-width: 260px; }
+    .s-hello .press { position: static; }
+    .cards { grid-template-columns: 1fr; flex: none; gap: 14px; }
+    .card .shot { flex: none; aspect-ratio: 16 / 9; }
+    .card .cap { padding: 14px 16px 16px; gap: 6px; }
+    .s-about .photo { max-width: 180px; }
+    .jobs { grid-template-columns: 1fr; }
+    .job { padding: 10px 0; }
+    .note, .props { padding: 14px; } .props { padding: 0; gap: 6px 18px; }
+    .s-work .top, .s-exp .top { flex-direction: column; align-items: flex-start; }
+    .say { width: 90px; top: 24px; right: 22px; }
+    .s-contact { justify-content: flex-start; padding-top: 120px; }
+    .next { margin-top: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <a class="brand" href="./" aria-label="Yehia Mourad, restart"><img src="assets/logo-header-dark.svg" alt=""><small>Prototype</small></a>
+  <nav class="nav" aria-label="Frames">
+    <button id="prev" aria-label="Previous frame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <div class="where" aria-live="polite"><b id="name">Hello</b><span id="count">1 / 5</span></div>
+    <button id="next" aria-label="Next frame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+  </nav>
+  <button class="tool" id="theme" aria-label="Switch frame theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+  <button class="tool" id="restart" aria-label="Restart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg><span class="lbl">Restart</span></button>
+  <button class="hire" data-copy>Hire me</button>
+</header>
+
+<main class="stage">
+  <div class="device" id="device">
+
+    <section class="screen s-hello" data-name="Hello" id="hello" aria-label="Hello">
+      <div class="logo"><img class="l" src="assets/logo-stacked.svg" alt="Yehia Mourad, Product Designer"><img class="d" src="assets/logo-stacked-dark.svg" alt="Yehia Mourad, Product Designer"></div>
+      <div class="txt">
+        <span class="kick"><b>●</b> Senior Product Designer · Cairo</span>
+        <h1>I design B2B and AI products people don't have to think about.</h1>
+        <div class="meta"><span class="pill live">Open to new roles</span><span class="pill">8+ years</span><span class="pill">Arabic &amp; English</span></div>
+        <div class="btns">
+          <button class="btn solid" data-hot data-go="work">See my work <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <button class="btn" data-hot data-go="about">About me</button>
+        </div>
+      </div>
+      <span class="kick press">Click empty space to see what's clickable</span>
+    </section>
+
+    <section class="screen s-work" data-name="Work" id="work" aria-label="Work">
+      <div class="top"><div><span class="kick"><b>●</b> Case studies</span><h2>Selected work<em>.</em></h2></div>
+        <div class="soon"><span class="kick">In progress</span><button data-hot data-soon="Benaa">Benaa</button><button data-hot data-soon="Fahs">Fahs</button><button data-hot data-soon="Reach Link">Reach Link</button><button data-hot data-soon="Muzain">Muzain</button></div></div>
+      <div class="cards">
+        <a class="card" data-hot href="pos-system.html"><div class="shot" style="background-image:url(assets/pos-canvas.webp)"></div><div class="cap"><span>B2B · PRIMEX POS</span><b>Design a full POS system</b></div></a>
+        <a class="card" data-hot href="twentytoo.html"><div class="shot" style="background-image:url(assets/twentytoo-cover.webp);background-position:left center"></div><div class="cap"><span>AI-SAAS · TWENTYTOO</span><b>Designing trust into an AI platform</b></div></a>
+        <a class="card" data-hot href="pleny.html"><div class="shot" style="background-image:url(assets/pleny-canvas.webp)"></div><div class="cap"><span>DESIGN SYSTEM · PLENY</span><b>Rebuilding a food app's design system</b></div></a>
+      </div>
+      <button class="next" data-hot data-go="about">Next: About →</button>
+    </section>
+
+    <section class="screen s-about" data-name="About" id="about" aria-label="About">
+      <div class="photo"><img src="assets/me.png" alt="Yehia Mourad" onerror="this.remove()">YM</div>
+      <div class="txt">
+        <span class="kick"><b>●</b> About</span>
+        <h2>8+ years in product design<em>.</em></h2>
+        <p class="lead">The last 5 on complex B2B. I lead from discovery to handoff, build design systems, and design in Arabic and English from day one.</p>
+        <div class="props">
+          <span>Focus</span><span>AI-SaaS · B2B · B2B2C</span>
+          <span>Workflow</span><span>Figma · Claude + Figma MCP</span>
+          <span>Based in</span><span>Cairo, GMT+3</span>
+        </div>
+        <div class="note"><span class="dot">Y</span><p>My best work is the stuff nobody notices. Terrible for a portfolio. Great for the people using it.</p></div>
+        <button class="next" data-hot data-go="experience" style="align-self:flex-start">Next: Experience →</button>
+      </div>
+    </section>
+
+    <section class="screen s-exp" data-name="Experience" id="experience" aria-label="Experience">
+      <div class="top"><div><span class="kick"><b>●</b> 2014 → 2026</span><h2>Where I've worked<em>.</em></h2></div>
+        <a class="btn" data-hot href="assets/Yehia-Mourad-Resume.pdf" target="_blank">Full resume ↗</a></div>
+      <div class="jobs">
+        <div class="job cur"><b>Pleny</b><em>2026</em><span>Senior Product Designer · <i class="pt">Part-time</i></span></div>
+        <div class="job"><b>Talentera (bayt.com)</b><em>2025</em><span>Product Designer · UAE, project-based</span></div>
+        <div class="job"><b>TwentyToo</b><em>2023–26</em><span>Senior Product Designer · AI-SaaS</span></div>
+        <div class="job"><b>Automated Systems Co.</b><em>2022–23</em><span>UI/UX Designer · Kuwait Airlines</span></div>
+        <div class="job"><b>Reach Link</b><em>2023–25</em><span>Senior UI/UX Designer · Kuwait</span></div>
+        <div class="job"><b>Medica Healthy</b><em>2021</em><span>Product Owner &amp; UI/UX Designer</span></div>
+        <div class="job"><b>Geeks</b><em>2022–25</em><span>UI/UX Designer · Jordan · <i class="pt">Part-time</i></span></div>
+        <div class="job"><b>The Tailors Dev</b><em>2019–21</em><span>UI/UX Designer</span></div>
+        <div class="job"><b>TAS ERP</b><em>2022–25</em><span>UI/UX Designer · ERP · <i class="pt">Part-time</i></span></div>
+        <div class="job"><b>Spree · OMNAS</b><em>2014–18</em><span>UI Designer · Web Designer. Where it started.</span></div>
+      </div>
+      <button class="next" data-hot data-go="contact">Next: Contact →</button>
+    </section>
+
+    <section class="screen s-contact" data-name="Contact" id="contact" aria-label="Contact">
+      <div class="say" aria-hidden="true"><svg viewBox="-30 -30 200 170"><g stroke="#ff6a3d" stroke-width="7" stroke-linecap="round"><path d="M-14 -6 L-34 -13"/><path d="M-6 -16 L-14 -36"/><path d="M6 -18 L12 -38"/></g><g class="clk"><path d="M0 0L0 76L20 57L34 88L48 82L34 51L60 49Z" fill="#ff6a3d" stroke="#2b1d55" stroke-width="5" stroke-linejoin="round"/><rect x="46" y="88" width="88" height="34" rx="10" fill="#ff6a3d"/><text x="90" y="111" text-anchor="middle" fill="#fff" font-family="Bricolage Grotesque, sans-serif" font-weight="700" font-size="18">Say hi</text></g></svg></div>
+      <span class="kick"><b>●</b> Contact</span>
+      <h2>Hiring a product designer? Let's talk.</h2>
+      <p class="lead">Usually reply within a day.</p>
+      <div class="btns">
+        <button class="btn solid" data-hot data-copy>Copy email</button>
+        <a class="btn" data-hot href="https://www.linkedin.com/in/yehia-mourad" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn" data-hot href="assets/Yehia-Mourad-Resume.pdf" target="_blank">Resume ↗</a>
+      </div>
+      <button class="next" data-hot data-go="hello" style="color:#b6aee0">⟲ Back to start</button>
+    </section>
+
+  </div>
+</main>
+
+<footer class="foot">
+  <span class="anim" id="anim">Navigate to <b id="anim-to">Work</b> · Smart animate · 450ms</span>
+  <div class="dots" id="dots" role="tablist" aria-label="Frames"></div>
+  <span class="hint">← → to move · R to restart</span>
+</footer>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(() => {
+  const EMAIL = "yehia.mourad@outlook.com";
+  const root = document.documentElement;
+  const device = document.getElementById("device");
+  const screens = [...device.querySelectorAll(".screen")];
+  const ids = screens.map(s => s.id);
+  const nameEl = document.getElementById("name"), countEl = document.getElementById("count");
+  const prev = document.getElementById("prev"), next = document.getElementById("next");
+  const dots = document.getElementById("dots"), anim = document.getElementById("anim"), animTo = document.getElementById("anim-to");
+  let cur = -1;
+
+  // theme (frames only; the player stays dark)
+  try { const t = localStorage.getItem("theme"); if (t) root.dataset.theme = t; } catch (e) {}
+  const isDark = () => root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  const syncLogo = () => { const d = isDark(); document.querySelectorAll(".s-hello .logo .l").forEach(i => i.style.display = d ? "none" : "block"); document.querySelectorAll(".s-hello .logo .d").forEach(i => i.style.display = d ? "block" : "none"); };
+  document.getElementById("theme").onclick = () => { root.dataset.theme = isDark() ? "light" : "dark"; try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {} syncLogo(); };
+  syncLogo();
+
+  // dots
+  screens.forEach((s, i) => { const b = document.createElement("button"); b.setAttribute("aria-label", s.dataset.name); b.onclick = () => go(i); dots.appendChild(b); });
+
+  function go(i, quiet) {
+    i = Math.max(0, Math.min(screens.length - 1, i));
+    if (i === cur) return;
+    screens.forEach((s, j) => { s.classList.toggle("on", j === i); s.classList.toggle("left", j < i); s.setAttribute("aria-hidden", j !== i); s.inert = j !== i; });
+    cur = i;
+    nameEl.textContent = screens[i].dataset.name; countEl.textContent = (i + 1) + " / " + screens.length;
+    prev.disabled = i === 0; next.disabled = i === screens.length - 1;
+    [...dots.children].forEach((d, j) => d.classList.toggle("on", j === i));
+    try { history.replaceState(null, "", i ? "#" + ids[i] : location.pathname); } catch (e) {}
+    screens[i].scrollTop = 0;
+    if (!quiet) { animTo.textContent = screens[i].dataset.name; anim.classList.add("show"); clearTimeout(go.t); go.t = setTimeout(() => anim.classList.remove("show"), 1400); }
+  }
+  const byId = id => Math.max(0, ids.indexOf(id));
+  go(location.hash ? byId(location.hash.slice(1)) : 0, true);
+  addEventListener("hashchange", () => go(byId(location.hash.slice(1))));
+
+  prev.onclick = () => go(cur - 1);
+  next.onclick = () => go(cur + 1);
+  document.getElementById("restart").onclick = () => go(0);
+  document.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", e => { e.stopPropagation(); go(byId(b.dataset.go)); }));
+
+  addEventListener("keydown", e => {
+    if (e.target.closest("input, textarea")) return;
+    if (e.key === "ArrowRight" || e.key === "PageDown") go(cur + 1);
+    else if (e.key === "ArrowLeft" || e.key === "PageUp") go(cur - 1);
+    else if (e.key === "r" || e.key === "R") go(0);
+  });
+
+  // swipe on touch screens
+  let sx = null, sy = null;
+  device.addEventListener("touchstart", e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+  device.addEventListener("touchend", e => {
+    if (sx === null) return;
+    const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) go(cur + (dx < 0 ? 1 : -1));
+    sx = null;
+  });
+
+  // click empty space: flash the hotspots, like Figma's prototype player
+  device.addEventListener("click", e => {
+    if (e.target.closest("[data-hot], a, button")) return;
+    device.classList.remove("flash"); void device.offsetWidth; device.classList.add("flash");
+    clearTimeout(device.t); device.t = setTimeout(() => device.classList.remove("flash"), 900);
+  });
+
+  // toast + copy email
+  const toast = document.getElementById("toast");
+  const say = t => { toast.textContent = t; toast.classList.add("show"); clearTimeout(say.t); say.t = setTimeout(() => toast.classList.remove("show"), 2200); };
+  document.querySelectorAll("[data-copy]").forEach(b => b.addEventListener("click", async e => {
+    e.stopPropagation();
+    try { await navigator.clipboard.writeText(EMAIL); say("Email copied: " + EMAIL); }
+    catch (err) { location.href = "mailto:" + EMAIL; }
+  }));
+  document.querySelectorAll("[data-soon]").forEach(b => b.addEventListener("click", e => { e.stopPropagation(); say(b.dataset.soon + ": case study coming soon"); }));
+})();
+</script>
+</body>
+</html>
