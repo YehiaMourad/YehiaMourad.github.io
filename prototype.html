@@ -44,6 +44,15 @@
   .bar .brand { display: flex; align-items: center; gap: 10px; }
   .bar .brand img { height: 22px; width: auto; display: block; }
   .bar .brand small { font: 500 11px var(--mono); color: var(--bar-muted); letter-spacing: .06em; text-transform: uppercase; padding-left: 10px; border-left: 1px solid var(--bar-line); }
+  :root { --seg-bg: #1f1f22; --seg-ink: var(--bar-muted); --seg-on: #3a3a3f; --seg-on-ink: #fff; }
+  /* view switch: canvas homepage <-> prototype homepage */
+  .mode { display: inline-flex; gap: 2px; padding: 3px; border-radius: 10px; background: var(--seg-bg); flex: none; }
+  .mode a { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 7px; font-size: 13px; font-weight: 600; color: var(--seg-ink); white-space: nowrap; }
+  .mode a svg { width: 14px; height: 14px; }
+  .mode a:hover { color: var(--seg-on-ink); }
+  .mode a.on { background: var(--seg-on); color: var(--seg-on-ink); box-shadow: 0 1px 2px rgba(0,0,0,.12); }
+  @media (max-width: 640px) { .mode a { padding: 0 8px; font-size: 12px; } .mode a svg { display: none; } .bar .nav { display: none; } .mode { margin-right: auto; } }
+  @media (max-width: 380px) { .bar .hire { display: none; } }
   .nav { margin: 0 auto; display: flex; align-items: center; gap: 4px; }
   .nav button { width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center; color: var(--bar-ink); }
   .nav button:hover:not(:disabled) { background: #3a3a3f; }
@@ -194,7 +203,8 @@
 <body>
 
 <header class="bar">
-  <a class="brand" href="./" aria-label="Yehia Mourad, restart"><img src="assets/logo-header-dark.svg" alt=""><small>Prototype</small></a>
+  <a class="brand" href="prototype.html" aria-label="Yehia Mourad, restart"><img src="assets/logo-header-dark.svg" alt=""></a>
+  <nav class="mode" aria-label="Homepage view"><a href="./?view=canvas" data-mode="canvas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Canvas</a><a href="prototype.html" data-mode="prototype" class="on" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7z"/></svg>Prototype</a></nav>
   <nav class="nav" aria-label="Frames">
     <button id="prev" aria-label="Previous frame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
     <div class="where" aria-live="polite"><b id="name">Hello</b><span id="count">1 / 5</span></div>
@@ -309,6 +319,10 @@
   const syncLogo = () => { const d = isDark(); document.querySelectorAll(".s-hello .logo .l").forEach(i => i.style.display = d ? "none" : "block"); document.querySelectorAll(".s-hello .logo .d").forEach(i => i.style.display = d ? "block" : "none"); };
   document.getElementById("theme").onclick = () => { root.dataset.theme = isDark() ? "light" : "dark"; try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {} syncLogo(); };
   syncLogo();
+
+
+  // remember which homepage view the visitor picked
+  document.querySelectorAll(".mode a").forEach(a => a.addEventListener("click", () => { try { localStorage.setItem("home", a.dataset.mode); } catch (e) {} }));
 
   // dots
   screens.forEach((s, i) => { const b = document.createElement("button"); b.setAttribute("aria-label", s.dataset.name); b.onclick = () => go(i); dots.appendChild(b); });
