@@ -1,33 +1,23 @@
 /* =========================================================
    Yehia Mourad — portfolio
-   Brand: coral + indigo strokes meet in a deep stem.
+   Brand: Tech look, near-black + lime, pen tool logo.
    ========================================================= */
 
 /* ---------- Tokens ---------- */
 :root {
-  --bg: #efece6;
-  --surface: #faf9f6;
-  --ink: #18181a;
-  --muted: #6f6d68;
-  --line: #dedad2;
-  --coral: #ff6a3d;
-  --accent: #4f56d6;          /* logo indigo */
-  --deep: #2b1d55;            /* where coral + indigo overlap */
-  --shadow: 0 1px 2px rgba(0,0,0,.04), 0 10px 30px rgba(0,0,0,.05);
-  --radius: 28px;
-  --max: 1160px;
+  /* Tech look: dark by default, light on toggle */
+  --bg: #0e1116; --surface: #161b22; --ink: #f2f2ee; --muted: #8b93a1; --line: #262d37;
+  --lime: #c8ff3d; --on-lime: #0e1116;
+  --coral: #c8ff3d; --accent: #c8ff3d; --deep: #2b3442;
+  --shadow: 0 0 0 1px #20262f, 0 10px 30px rgba(0,0,0,.3);
+  --radius: 28px; --max: 1160px;
   --font-en: "Bricolage Grotesque", system-ui, sans-serif;
-  color-scheme: light;
+  color-scheme: dark;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #111112; --surface: #1b1b1e; --ink: #f2f1ee; --muted: #9b9a96; --line: #2a2a2e;
-    --accent: #7c82ff; --deep: #9b5de5; --shadow: 0 1px 2px rgba(0,0,0,.3); color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #111112; --surface: #1b1b1e; --ink: #f2f1ee; --muted: #9b9a96; --line: #2a2a2e;
-  --accent: #7c82ff; --deep: #9b5de5; --shadow: 0 1px 2px rgba(0,0,0,.3); color-scheme: dark;
+:root[data-theme="light"] {
+  --bg: #eceee8; --surface: #fbfbf8; --ink: #0e1116; --muted: #5e6570; --line: #dfe2da;
+  --coral: #4d6b00; --accent: #4d6b00; --deep: #0e1116;
+  --shadow: 0 1px 2px rgba(0,0,0,.04), 0 10px 30px rgba(0,0,0,.05); color-scheme: light;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,7 +25,7 @@ html { scroll-behavior: smooth; }
 body { background: var(--bg); color: var(--ink); font: 400 16px/1.6 var(--font-en); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
-::selection { background: var(--coral); color: #fff; }
+::selection { background: var(--lime); color: var(--on-lime); }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
 
 /* ---------- Shared bits ---------- */
@@ -308,7 +298,7 @@ body:not([data-mode="tldr"]) .tldr { display: none; }
 .steps li.done { color: var(--ink); }
 .steps li.done::before { content: "✓"; background: #2f9e6a; border-color: #2f9e6a; color: #fff; }
 .steps li.now { color: var(--ink); box-shadow: 0 0 0 2px var(--accent), var(--shadow); }
-.steps li.now::before { background: var(--accent); border-color: var(--accent); color: #fff; }
+.steps li.now::before { background: var(--lime); border-color: var(--lime); color: var(--on-lime); }
 
 @media (max-width: 760px) {
   .cards3, .compare, .steps { grid-template-columns: 1fr; }
