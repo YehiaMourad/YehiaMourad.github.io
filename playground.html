@@ -226,8 +226,8 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
 /* ---------- Paper sections below the world ---------- */
 .paper { position: relative; background: var(--paper); margin-top: -2px; z-index: 5; }
 .tear { position: absolute; left: 0; right: 0; top: -38px; height: 40px; width: 100%; display: block; }
-.wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
-.sec { padding: 88px 0 24px; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left)); padding-right: max(20px, env(safe-area-inset-right)); }
+.sec { padding-top: 88px; padding-bottom: 24px; }
 .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .sec h2 { font-size: clamp(32px, 4vw, 52px); letter-spacing: -.035em; line-height: 1.05; margin-top: 10px; font-weight: 800; }
 .sec h2 .hand { font-weight: 600; color: var(--coral); letter-spacing: 0; font-size: 1.1em; }
@@ -281,7 +281,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
 .stamps { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
 .stamps span { font-size: 14px; padding: 7px 14px; border-radius: 999px; border: 1.5px dashed var(--rule); }
 
-.contact { text-align: center; padding: 110px 0 150px; }
+.contact { text-align: center; padding-top: 110px; padding-bottom: 150px; }
 .contact h2 { margin: 10px auto 0; max-width: 15ch; }
 .contact .row { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 30px; }
 .foot { text-align: center; color: var(--muted); font-size: 13px; padding-bottom: 96px; }
