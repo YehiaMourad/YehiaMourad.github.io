@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html dir="ltr" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Benaa — Yehia Mourad</title>
+<meta content="Designing an engineering learning platform across desktop, mobile and web, starting with an offline-first desktop app for engineers on construction sites." name="description"/>
+<meta content="Benaa — Yehia Mourad" property="og:title"/>
+<meta content="Designing an engineering learning platform across desktop, mobile and web, starting with an offline-first desktop app for engineers on construction sites." property="og:description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&amp;display=swap" rel="stylesheet"/>
+<link href="favicon.ico" rel="icon" sizes="32x32"/>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="site.webmanifest" rel="manifest"/>
+<meta content="#efece6" name="theme-color"/>
+<meta content="https://yehiamourad.github.io/assets/og-image.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="style.css" rel="stylesheet"/>
+<script src="theme.js"></script>
+<script defer="" src="i18n.js"></script>
+<script defer="" src="case.js"></script>
+</head>
+<body class="cs">
+<!--
+  Same structure as pleny.html.
+  - class="detail" hides in TL;DR mode, class="tldr" shows only in TL;DR mode.
+  - Cover: assets/benaa-cover.webp, landscape (class "cover cover-wide"). Homepage tile uses assets/benaa-canvas.webp.
+  - Screens: assets/benaa-*.webp. If a file is missing, its figure hides itself.
+-->
+<a aria-label="Yehia Mourad, home" class="mark cs-mark" href="./"><img alt="" class="logo-l" src="assets/logo-header.svg"/><img alt="" class="logo-d" src="assets/logo-header-dark.svg"/></a>
+<div class="cs-tools">
+
+<button aria-label="Switch light or dark" class="chip theme-toggle" type="button">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+</button>
+<a aria-label="Close and go back" class="chip close" href="./#work">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"></path></svg>
+</a>
+</div>
+<main class="cs-page">
+<div class="cover cover-wide" style="view-transition-name: benaa-cover; background-image:url(assets/benaa-cover.webp)"></div>
+<div aria-label="Reading mode" class="seg" role="tablist">
+<button class="on" data-mode="detailed" role="tab">Detailed</button>
+<button data-mode="tldr" role="tab">TL;DR</button>
+</div>
+<article class="col">
+<span class="kicker">Case study · Benaa</span>
+<h1>
+From one desktop app to a full learning platform
+
+</h1>
+<p class="lead">
+Benaa teaches civil engineers across Egypt and the Gulf. I was hired to design a desktop app for engineers on construction sites. The client liked it, and the project grew into the mobile app and the website too.
+
+</p>
+<dl class="meta-row">
+<div><dt>Role</dt><dd>Product Designer, freelance</dd></div>
+<div><dt>Platforms</dt><dd>Windows · macOS · iOS · Android · Web</dd></div>
+<div><dt>Scope</dt><dd>Product design, UX &amp; UI</dd></div>
+<div><dt>Language</dt><dd>Arabic RTL · English</dd></div>
+</dl>
+<!-- ===== TL;DR ===== -->
+<section class="tldr">
+<h2>The short version</h2>
+<ul>
+<li>Started with a <b>desktop app</b> for engineers who learn on construction sites with weak or no internet.</li>
+<li>The client was happy with it, so the scope grew to a <b>mobile app and website</b> in the same direction.</li>
+<li>Built offline in from the start: an <b>Offline Library</b>, download status on every lesson, and full-course download as a selling point.</li>
+<li>Grouped courses into <b>career paths</b>, so new learners get a plan instead of a catalog.</li>
+<li>Designed <b>course pages that sell</b>: preview, key facts, syllabus and a pinned buy button.</li>
+<li>Arabic-first on mobile and web, bilingual on desktop. Shipped on all three platforms.</li>
+</ul>
+
+</section>
+<!-- ===== 01 Context ===== -->
+<section class="detail">
+<span class="num">01 / Context</span>
+<h2>Twelve years of teaching engineers</h2>
+<p>Benaa started as an offline academy for civil engineers. Over 12 years it grew into an online platform used by thousands of engineers in Egypt and the Gulf, with courses on structural design, site engineering, finishing works and software like SAP2000, AutoCAD and Revit.</p>
+
+<p>Its learners range from fresh graduates to senior engineers. Many of them spend their days on construction sites, not at a desk.</p>
+
+</section>
+<!-- ===== 02 How it started ===== -->
+<section class="detail">
+<span class="num">02 / How it started</span>
+<h2>A narrow brief that kept growing</h2>
+<p>The first brief was one product: a desktop app for engineers who work on site, where the internet is unreliable or missing. They needed to download courses and keep learning offline.</p>
+
+<p>Once the client was happy with the desktop design, they asked me to redesign the mobile app and the website in the same direction. One app became three platforms that had to feel like one product.</p>
+
+<ol class="steps">
+<li class="done">Desktop app</li>
+<li class="done">Mobile app</li>
+<li class="done">Website</li>
+</ol>
+</section>
+<!-- ===== 03 Problems ===== -->
+<section class="detail">
+<span class="num">03 / What we set out to solve</span>
+<h2>Discovery through the people who teach</h2>
+<p>There was no formal user research. The brief came from working sessions with Benaa's team and their instructors, practicing engineers who teach these learners every day. These problems kept coming up:</p>
+
+<div class="cards3">
+<div><b>No internet on site</b><p>Learning had to work where the signal doesn't.</p></div>
+<div><b>Where do I start?</b><p>50+ courses is a lot when you're early in your career.</p></div>
+<div><b>Is it worth it?</b><p>Course pages had to answer that fast.</p></div>
+</div>
+<p>And learners move between the site, home and their phone, so progress had to follow them across devices.</p>
+
+</section>
+<!-- ===== 04 Desktop ===== -->
+<section class="detail">
+<span class="num">04 / Desktop</span>
+<h2>Design for the site, not the desk</h2>
+<span class="pill">4A · Offline</span>
+<h3>Offline is a place, not a setting</h3>
+<p>The Offline Library has its own spot in the sidebar, separate from browsing, so downloaded content is always one click away. Each lesson shows whether it's downloaded, so you know what will play before you lose signal. And full-course download is sold on the course page itself: "Access offline anytime."</p>
+
+<span class="pill">4B · Discover</span>
+<h3>Start with your progress, not the catalog</h3>
+<p>Discover opens with what you've done: courses in progress, certificates earned and total learning time. A "Continue" card shows how far you are and how much time is left. Certificates download right from the home screen, which matters for engineers who need them for a CV or an employer.</p>
+
+</section>
+<figure class="wide detail">
+<img alt="Benaa desktop Discover screen with progress stats, a continue-learning card, categories, recommendations and certificates" class="shot-img" onerror="this.closest('figure').remove()" src="assets/benaa-discover.webp"/>
+<figcaption>Discover: progress first, then categories, recommendations and certificates. Offline Library sits in the sidebar.</figcaption>
+</figure>
+<section class="detail">
+<span class="pill">4C · Player</span>
+<h3>A focused place to watch</h3>
+<p>While you watch, the sidebar collapses to icons and the course content sits beside the video, with download status on each lesson. Notes and reviews live in tabs under the player.</p>
+
+</section>
+<figure class="wide detail">
+<img alt="Benaa desktop course player with collapsed sidebar, video, and course content panel showing a downloaded lesson" class="shot-img" onerror="this.closest('figure').remove()" src="assets/benaa-player.webp"/>
+<figcaption>The player: collapsed navigation, course content on the side, and a "Downloaded" tag on lessons available offline.</figcaption>
+</figure>
+<figure class="wide detail">
+<img alt="Benaa desktop course details page with key facts, syllabus and a buy panel" class="shot-img" onerror="this.closest('figure').remove()" src="assets/benaa-course.webp"/>
+<figcaption>Course details: hours, full-course download and lifetime access up front, with price and actions pinned on the side.</figcaption>
+</figure>
+<!-- ===== 05 Mobile & web ===== -->
+<section class="detail">
+<span class="num">05 / Mobile &amp; web</span>
+<h2>Same product, Arabic-first</h2>
+<span class="pill">5A · Paths</span>
+<h3>A career plan instead of a pile of courses</h3>
+<p>Engineers don't want "a course". They want to become a site engineer or a steel structure designer. So courses are grouped into paths. Each path card shows the instructors, total hours, number of courses, the software you'll learn, and the bundle price against buying courses one by one.</p>
+
+<span class="pill">5B · Course page</span>
+<h3>Answer the buying questions fast</h3>
+<p>Video preview at the top. Videos, hours and certificate in one strip, then the instructor and their background. Overview and course content are split into tabs, so people who want the syllabus don't scroll past marketing copy. Price and the buy button stay pinned at the bottom.</p>
+
+<span class="pill">5C · Navigation</span>
+<h3>Three tabs around the learner</h3>
+<p>Discover, Courses and My Learning Journey. The home screen greets you by name and moves from overview to categories, recommendations and paths.</p>
+
+</section>
+<figure class="wide detail">
+<img alt="Three Benaa mobile screens in Arabic: home, career paths and course details" class="shot-img" onerror="this.closest('figure').remove()" src="assets/benaa-mobile.webp"/>
+<figcaption>Mobile: home, paths and course details. Designed RTL-first, not mirrored from English.</figcaption>
+</figure>
+<section class="detail">
+<span class="pill">5D · Human help</span>
+<h3>Keep the classroom</h3>
+<p>Benaa started in a classroom, and that's a big part of why people trust it. "Ask an expert" shows up across mobile, web and desktop as a direct line to a senior engineer.</p>
+
+<span class="pill">5E · Website</span>
+<h3>Sell the platform, and the apps</h3>
+<p>The website does marketing and learning. Paths, reviews, video success stories and corporate partners build trust, and every entry point, including sign-in, points to the mobile and desktop apps.</p>
+
+</section>
+<figure class="wide detail">
+<img alt="Benaa website home in Arabic with hero, features and featured courses" class="shot-img" onerror="this.closest('figure').remove()" src="assets/benaa-web.webp"/>
+<figcaption>Website home: hero, what Benaa offers, and featured courses.</figcaption>
+</figure>
+<figure class="wide detail">
+<img alt="Benaa sign-in screen with brand panel showing all platforms and download links" class="shot-img" onerror="this.closest('figure').remove()" src="assets/benaa-signin.webp"/>
+<figcaption>Sign-in doubles as a showcase for all three platforms.</figcaption>
+</figure>
+<!-- ===== 06 Brand ===== -->
+<section class="detail">
+<span class="num">06 / One brand, three platforms</span>
+<h2>One visual language, three layouts</h2>
+<p>I built on Benaa's identity: the blue-to-magenta gradient and a pattern made from the logo's strokes. Primary actions, course covers and the "Ask an expert" card use it on every platform, while each layout fits its device: a sidebar on desktop, bottom tabs on mobile, long scrolling sections on the web.</p>
+
+</section>
+<!-- ===== 07 Outcome ===== -->
+<section class="detail">
+<span class="num">07 / Outcome</span>
+<h2>Shipped on all three</h2>
+<p>The desktop app shipped on Windows and macOS, the mobile app on iOS and Android, and the website went live. It was a freelance project, so I don't have usage data after launch. What I can point to is that a one-app brief turned into the whole product because the first piece of work earned it.</p>
+
+</section>
+<section class="detail">
+<span class="num">08 / What I'd do differently</span>
+<h2>Two things I'd fix next time</h2>
+<ul>
+<li><b>Talk to learners directly.</b> The instructors gave strong insight, but a few interviews with site engineers would have tested our assumptions about offline use.</li>
+<li><b>Build a design system early.</b> I designed desktop first, then mobile and web. Shared components from day one would have made scaling faster and kept the platforms tighter.</li>
+</ul>
+
+</section>
+</article>
+<a class="next-proj" href="./#work">
+<span class="small">Back to all work</span>
+<span class="go"><svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24" width="16"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</a>
+</main>
+</body>
+</html>
