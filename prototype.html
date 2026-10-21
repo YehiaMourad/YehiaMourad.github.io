@@ -154,10 +154,10 @@
   /* 2 work */
   .s-work { gap: max(16px, 2.4cqw); }
   .s-work .top { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; }
-  .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.6cqw; align-content: start; min-height: 0; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 1fr; gap: 1.6cqw; flex: 1; min-height: 0; }
   .card { display: flex; flex-direction: column; border-radius: 14px; overflow: hidden; background: var(--frame2); border: 1px solid var(--line); transition: transform .2s, border-color .2s; min-height: 0; }
   .card:hover { transform: translateY(-3px); border-color: var(--ink); }
-  .card .shot { flex: none; aspect-ratio: 8 / 7; background: var(--frame2) center / cover no-repeat; }
+  .card .shot { flex: 1; min-height: 60px; background: var(--frame2) var(--w) center / cover no-repeat; }
   .card .cap { padding: 1.4cqw 1.5cqw 1.6cqw; display: grid; gap: .5cqw; }
   .card .cap span { font: 500 max(10px, .8cqw)/1 var(--mono); letter-spacing: .06em; color: var(--muted); }
   .card .cap b { font-weight: 800; font-size: max(17px, 1.7cqw); line-height: 1.1; letter-spacing: -.02em; }
@@ -232,7 +232,7 @@
     .s-hello, .s-about { grid-template-columns: 1fr; align-content: start; gap: 22px; }
     .s-hello .logo { max-width: 260px; }
     .cards { grid-template-columns: 1fr; flex: none; gap: 14px; }
-    .card .shot { flex: none; aspect-ratio: 8 / 7; }
+    .card .shot { flex: none; aspect-ratio: 8 / 7; background-image: var(--t); background-position: var(--tp, center); } .cards { grid-auto-rows: auto; }
     .card .cap { padding: 14px 16px 16px; gap: 6px; }
     .s-about .photo { max-width: 180px; }
     .jcards { grid-template-columns: 1fr; } .s-exp .top .lead { text-align: left; } .scrollcue { display: none; }
@@ -276,10 +276,10 @@
       <div class="top"><div><span class="kick"><b>●</b> Case studies</span><h2>Selected work<em>.</em></h2></div>
         <div class="soon"><span class="kick">In progress</span><button data-hot data-soon="Fahs">Fahs</button><button data-hot data-soon="Reach Link">Reach Link</button><button data-hot data-soon="Muzain">Muzain</button></div></div>
       <div class="cards">
-        <a class="card" data-hot href="pos-system.html"><div class="shot" style="background-image:url(assets/pos-canvas.webp)"></div><div class="cap"><span>B2B · PRIMEX POS · PASSWORD</span><b>Design a full POS system</b></div></a>
-        <a class="card" data-hot href="benaa.html"><div class="shot" style="background-image:url(assets/benaa-canvas.webp)"></div><div class="cap"><span>EDTECH · BENAA</span><b>From one desktop app to a full learning platform</b></div></a>
-        <a class="card" data-hot href="twentytoo.html"><div class="shot" style="background-image:url(assets/twentytoo-cover.webp);background-position:left center"></div><div class="cap"><span>AI-SAAS · TWENTYTOO</span><b>Designing trust into an AI platform</b></div></a>
-        <a class="card" data-hot href="pleny.html"><div class="shot" style="background-image:url(assets/pleny-canvas.webp)"></div><div class="cap"><span>DESIGN SYSTEM · PLENY</span><b>Rebuilding a food app's design system</b></div></a>
+        <a class="card" data-hot href="pos-system.html"><div class="shot" style="--w:url(assets/pos-wide.webp);--t:url(assets/pos-canvas.webp)"></div><div class="cap"><span>B2B · PRIMEX POS · PASSWORD</span><b>Design a full POS system</b></div></a>
+        <a class="card" data-hot href="benaa.html"><div class="shot" style="--w:url(assets/benaa-wide.webp);--t:url(assets/benaa-canvas.webp)"></div><div class="cap"><span>EDTECH · BENAA</span><b>From one desktop app to a full learning platform</b></div></a>
+        <a class="card" data-hot href="twentytoo.html"><div class="shot" style="--w:url(assets/twentytoo-wide.webp);--t:url(assets/twentytoo-cover.webp);--tp:left center"></div><div class="cap"><span>AI-SAAS · TWENTYTOO</span><b>Designing trust into an AI platform</b></div></a>
+        <a class="card" data-hot href="pleny.html"><div class="shot" style="--w:url(assets/pleny-wide.webp);--t:url(assets/pleny-canvas.webp)"></div><div class="cap"><span>DESIGN SYSTEM · PLENY</span><b>Rebuilding a food app's design system</b></div></a>
       </div>
       <button class="next" data-hot data-go="about">Next: About →</button>
     </section>
