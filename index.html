@@ -85,13 +85,12 @@
   .board { position: fixed; top: 76px; left: 12px; right: 12px; bottom: 12px; padding: 30px 12px 4px;
     display: grid; gap: 34px 22px;
     grid-template-columns: 1.15fr 1fr 1fr .95fr;
-    grid-template-rows: 1fr .62fr .38fr;
+    grid-template-rows: 1fr 1fr;
     grid-template-areas:
       "hello pos   tt    exp"
-      "about pleny benaa contact"
-      "about pleny benaa soon"; }
+      "about benaa soon  contact"; }
   .f-hello { grid-area: hello; } .f-pos { grid-area: pos; } .f-tt { grid-area: tt; } .f-exp { grid-area: exp; }
-  .f-about { grid-area: about; } .f-pleny { grid-area: pleny; } .f-soon { grid-area: soon; } .f-benaa { grid-area: benaa; } .f-contact { grid-area: contact; }
+  .f-about { grid-area: about; } .f-soon { grid-area: soon; } .f-benaa { grid-area: benaa; } .f-contact { grid-area: contact; }
 
   /* ---------- Frames (Figma-style) ---------- */
   .frame { position: relative; min-width: 0; min-height: 0; cursor: pointer; display: block; }
@@ -134,8 +133,8 @@
 
   /* coming soon */
   .f-soon { cursor: default; }
-  .f-soon .frame-body { background: color-mix(in srgb, var(--accent) 6%, transparent); box-shadow: none; outline: 1.5px dashed color-mix(in srgb, var(--accent) 40%, transparent); outline-offset: -1.5px;
-    padding: 10px; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr; gap: 8px; }
+  .f-soon .frame-body { background: var(--panel);
+    padding: 10px; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 8px; }
   .f-soon::after, .f-soon .h { display: none; }
   .mini { border-radius: 4px; position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 9px; color: #fff; cursor: pointer; border: 0; text-align: left; box-shadow: var(--shadow); }
   .mini b { font-size: 13.5px; font-weight: 600; line-height: 1.15; }
@@ -247,10 +246,10 @@
     .hint { display: none; }
     .board { position: static; padding: 104px 14px 40px; gap: 46px 16px;
       grid-template-columns: 1fr 1fr; grid-template-rows: none; grid-auto-rows: auto;
-      grid-template-areas: "hello hello" "pos tt" "pleny benaa" "exp about" "contact contact" "soon soon"; }
+      grid-template-areas: "hello hello" "pos tt" "benaa soon" "exp about" "contact contact"; }
     .frame-body { min-height: 300px; }
     .proj .frame-body { aspect-ratio: 4 / 3.4; min-height: 0; height: auto; }
-    .f-soon .frame-body { aspect-ratio: auto; min-height: 0; height: 150px; }
+    .f-soon .frame-body { aspect-ratio: 4 / 3.4; min-height: 0; height: auto; }
     .f-hello .frame-body { padding: 30px 26px; }
     .f-hello h1 { font-size: 52px; margin-top: 30px; }
     .f-hello p { font-size: 16px; }
@@ -259,7 +258,7 @@
   @media (max-width: 640px) {
     .brand .role { display: none; }
     .brand img { height: 20px; }
-    .board { grid-template-columns: 1fr; grid-template-areas: "hello" "pos" "tt" "pleny" "benaa" "soon" "exp" "about" "contact"; }
+    .board { grid-template-columns: 1fr; grid-template-areas: "hello" "pos" "tt" "benaa" "soon" "exp" "about" "contact"; }
     .f-hello h1 { font-size: 44px; }
     .f-about .frame-body { grid-template-columns: 1fr; }
     .photo { aspect-ratio: 4 / 3; }
@@ -340,29 +339,21 @@
     <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
   </section>
 
-  <a class="frame proj f-pleny" href="pleny.html">
-    <div class="frame-label"><span>Pleny design system</span><span class="mono">Case study</span><span class="size">Open ↗</span></div>
-    <div class="frame-body">
-      <div class="shot" style="background-image:url(assets/pleny-canvas.webp)"></div>
-      <div class="cap"><div><span class="tag">DESIGN SYSTEM · PLENY</span><h3>Rebuilding a food app's design system</h3></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
-    </div>
-    <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
-  </a>
-
   <a class="frame proj f-benaa" href="benaa.html">
     <div class="frame-label"><span>Benaa</span><span class="mono">Case study</span><span class="size">Open ↗</span></div>
     <div class="frame-body">
-      <div class="shot" style="background-image:url(assets/benaa-canvas.webp)"></div>
+      <div class="shot" style="background-image:url(assets/benaa-canvas.webp); background-position:left center"></div>
       <div class="cap"><div><span class="tag">EDTECH · BENAA</span><h3>From one desktop app to a full learning platform</h3></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
     </div>
     <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
   </a>
 
   <section class="frame f-soon">
-    <div class="frame-label"><span>In progress</span><span class="mono">3 projects</span></div>
+    <div class="frame-label"><span>More case studies</span><span class="mono">1 live · 3 soon</span></div>
     <div class="frame-body">
+      <a class="mini" href="pleny.html" style="background:url(assets/pleny-canvas.webp) center / cover"><small style="background:rgba(10,10,40,.6)">Case study</small><b>Pleny</b></a>
       <button class="mini" style="background:linear-gradient(140deg,#2b1d55,#4f56d6)" data-soon="Fahs"><i></i><small>Soon</small><b>Fahs</b></button>
-      <button class="mini" style="background:linear-gradient(140deg,#ff6a3d,#ff9a6b)" data-soon="Reach Link"><i></i><small>Soon</small><b>Reach Link</b></button>
+      <button class="mini" style="background:linear-gradient(140deg,#ff6a3d,#ff9a6b)" data-soon="Reach Link"><i class="wide"></i><small>Soon</small><b>Reach Link</b></button>
       <button class="mini" style="background:linear-gradient(140deg,#4f56d6,#9b5de5)" data-soon="Muzain"><i></i><small>Soon</small><b>Muzain</b></button>
     </div>
   </section>
