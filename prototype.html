@@ -154,10 +154,10 @@
   /* 2 work */
   .s-work { gap: max(16px, 2.4cqw); }
   .s-work .top { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; }
-  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8cqw; flex: 1; min-height: 0; }
+  .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.6cqw; align-content: start; min-height: 0; }
   .card { display: flex; flex-direction: column; border-radius: 14px; overflow: hidden; background: var(--frame2); border: 1px solid var(--line); transition: transform .2s, border-color .2s; min-height: 0; }
   .card:hover { transform: translateY(-3px); border-color: var(--ink); }
-  .card .shot { flex: 1; min-height: 80px; background: var(--frame2) center / cover no-repeat; }
+  .card .shot { flex: none; aspect-ratio: 8 / 7; background: var(--frame2) center / cover no-repeat; }
   .card .cap { padding: 1.4cqw 1.5cqw 1.6cqw; display: grid; gap: .5cqw; }
   .card .cap span { font: 500 max(10px, .8cqw)/1 var(--mono); letter-spacing: .06em; color: var(--muted); }
   .card .cap b { font-weight: 800; font-size: max(17px, 1.7cqw); line-height: 1.1; letter-spacing: -.02em; }
@@ -232,7 +232,7 @@
     .s-hello, .s-about { grid-template-columns: 1fr; align-content: start; gap: 22px; }
     .s-hello .logo { max-width: 260px; }
     .cards { grid-template-columns: 1fr; flex: none; gap: 14px; }
-    .card .shot { flex: none; aspect-ratio: 16 / 9; }
+    .card .shot { flex: none; aspect-ratio: 8 / 7; }
     .card .cap { padding: 14px 16px 16px; gap: 6px; }
     .s-about .photo { max-width: 180px; }
     .jcards { grid-template-columns: 1fr; } .s-exp .top .lead { text-align: left; } .scrollcue { display: none; }
