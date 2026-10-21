@@ -71,9 +71,11 @@
   .mode a svg { width: 14px; height: 14px; }
   .mode a:hover { color: var(--seg-on-ink); }
   .mode a.on { background: var(--seg-on); color: var(--seg-on-ink); box-shadow: 0 1px 2px rgba(0,0,0,.12); }
-  @media (max-width: 640px) { .mode a { padding: 0 9px; font-size: 12px; } .mode a:not(.on) .t { display: none; } }
+  @media (max-width: 640px) { .mode a { padding: 0 9px; font-size: 12px; gap: 0; } .mode a svg { display: none; } }
+  @media (max-width: 380px) { .toolbar { gap: 4px; padding: 0 6px; } .mode a { padding: 0 6px; font-size: 11px; } .toolbar .brand { padding: 0 4px; } }
+  @media (max-width: 480px) { .mode { margin-left: auto; } .mode a { padding: 0 7px; font-size: 11.5px; gap: 0; } .mode a svg { display: none; } }
   @media (max-width: 480px) { .toolbar .share { display: none; } }
-  @media (max-width: 480px) { #t-theme { display: none; } .toolbar { gap: 6px; } .toolbar .brand img { height: 16px; } .share { height: 32px; padding: 0 10px; font-size: 13px; } }
+  @media (max-width: 480px) { #t-theme { display: none; } .toolbar { gap: 6px; } .toolbar .brand img { height: 15px; } .share { height: 32px; padding: 0 10px; font-size: 13px; } }
 
   .hint { font-size: 12.5px; color: var(--muted); white-space: nowrap; }
   .share { height: 36px; padding: 0 16px; border-radius: 10px; border: 0; background: var(--accent); color: #fff; font-weight: 600; cursor: pointer; white-space: nowrap; }
