@@ -81,7 +81,7 @@ svg * { transition: fill .8s ease, stop-color .8s ease, opacity .8s ease; }
 .world {
   position: absolute; left: 50%; bottom: 0;
   width: max(100vw, calc(100svh * 16 / 9)); aspect-ratio: 16 / 9;
-  transform: translateX(-50%) scale(var(--fly, 1)); transform-origin: 26% 70%;
+  transform: translateX(calc(-50% + var(--cam, 0px))) scale(var(--fly, 1)); transform-origin: var(--ox, 26%) 70%;
   will-change: transform;
 }
 .world > svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
@@ -193,10 +193,151 @@ svg * { transition: fill .8s ease, stop-color .8s ease, opacity .8s ease; }
 .top .logo { width: 40px; height: 40px; border-radius: 12px; overflow: hidden; position: fixed; left: 16px; top: 16px; box-shadow: 0 6px 20px rgba(20,10,40,.15); }
 .top .logo img { width: 100%; height: 100%; }
 
-.fly-hint { position: absolute; z-index: 4; left: 50%; bottom: 104px; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; padding: 8px 16px 8px 10px; border-radius: 999px; background: var(--glass); color: var(--glass-ink); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: inset 0 0 0 1px var(--glass-line); transition: opacity .3s; }
+.fly-hint { position: absolute; z-index: 4; right: 24px; bottom: 24px; display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; padding: 8px 16px 8px 10px; border-radius: 999px; background: var(--glass); color: var(--glass-ink); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: inset 0 0 0 1px var(--glass-line); transition: opacity .3s; }
 .mouse { width: 18px; height: 28px; border-radius: 10px; border: 2px solid currentColor; position: relative; }
 .mouse::after { content: ""; position: absolute; left: 50%; top: 5px; width: 3px; height: 6px; margin-left: -1.5px; border-radius: 3px; background: currentColor; animation: wheel 1.6s infinite; }
 @keyframes wheel { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(8px); } }
+
+/* ---------- Game: the walker, the passport, the controls ---------- */
+.player { position: absolute; z-index: 4; left: calc(var(--px, 470) / 1600 * 100%); top: calc(var(--py, 806) / 900 * 100%); width: calc(46 / 1600 * 100%); margin-left: calc(-23 / 1600 * 100%); pointer-events: none; }
+.p-in { position: absolute; left: 0; bottom: 0; width: 100%; transform-origin: 50% 100%; transition: transform .45s cubic-bezier(.5,0,.75,0), opacity .45s; }
+.p-in.entering { transform: translateY(-14%) scale(.5); opacity: 0; }
+.p-in.no-anim { transition: none; }
+.p-in > svg { display: block; width: 100%; height: auto; overflow: visible; }
+.p-in.flip > svg { transform: scaleX(-1); }
+.p-in .leg, .p-in .arm { transform-box: fill-box; transform-origin: 50% 0; }
+.walking .leg-a { animation: stride .34s ease-in-out infinite alternate; }
+.walking .leg-b, .walking .arm { animation: stride .34s ease-in-out infinite alternate-reverse; }
+.walking .torso { animation: hop .17s ease-in-out infinite alternate; }
+.climbing .leg-a { animation: stride .22s ease-in-out infinite alternate; }
+.climbing .leg-b, .climbing .arm { animation: stride .22s ease-in-out infinite alternate-reverse; }
+.climbing .face { opacity: 0; }
+.p-in .arm-f { opacity: 0; transform-box: fill-box; transform-origin: 50% 8%; transition: opacity .15s; }
+.p-in .leg, .p-in .torso, .p-in .pencil { transition: transform .25s, opacity .15s; }
+.wave .arm-f, .eat .arm-f { opacity: 1; }
+.wave .pencil, .eat .pencil { opacity: 0; }
+.wave .arm-f { animation: wave-arm .32s ease-in-out infinite alternate; }
+.eat .arm-f { animation: eat-arm .4s ease-in-out infinite alternate; }
+@keyframes wave-arm { from { transform: rotate(-115deg); } to { transform: rotate(-165deg); } }
+@keyframes eat-arm { from { transform: rotate(-95deg); } to { transform: rotate(-135deg); } }
+.sit .leg { transform: rotate(-80deg); }
+.look .torso { transform: rotate(-9deg); transform-box: fill-box; transform-origin: 50% 90%; }
+.prop { position: absolute; z-index: 1; font-size: 18px; line-height: 1; pointer-events: none; }
+.prop.hand { left: 72%; top: 38%; }
+.prop.over { left: 50%; top: -34%; transform: translateX(-50%); }
+.prop.bite { left: 62%; top: 16%; animation: bite .4s ease-in-out infinite alternate; }
+.prop.snip { animation: snip .18s ease-in-out infinite alternate; }
+.prop.scan { animation: scan .55s ease-in-out infinite alternate; }
+@keyframes bite { to { transform: translate(-3px, 3px); } }
+@keyframes snip { from { transform: translateX(-50%) rotate(-18deg); } to { transform: translateX(-50%) rotate(18deg); } }
+@keyframes scan { from { transform: translate(-130%, 20%); } to { transform: translate(30%, 40%); } }
+.wfx { position: absolute; z-index: 5; font-size: clamp(16px, 1.6vw, 28px); line-height: 1; pointer-events: none; animation: wfx 1.4s ease-out forwards; }
+@keyframes wfx { 0% { opacity: 0; transform: translate(-50%, -50%) scale(.4); } 20% { opacity: 1; transform: translate(-50%, -80%) scale(1.15); } 100% { opacity: 0; transform: translate(-50%, -260%); } }
+.wfx.lift { width: calc(12 / 1600 * 100%); aspect-ratio: 3 / 4; border-radius: 3px; background: #ffd27a; box-shadow: 0 0 14px 4px rgba(255,210,122,.8); transform: translate(-50%, -50%); animation: none; }
+#felucca { transition: transform 2s ease-in-out; }
+#felucca.sail { transform: translateX(160px); }
+@media (prefers-reduced-motion: reduce) { #felucca { transition: none; } }
+@keyframes stride { from { transform: rotate(-24deg); } to { transform: rotate(24deg); } }
+@keyframes hop { from { transform: translateY(0); } to { transform: translateY(-1.5px); } }
+.say { position: absolute; left: 50%; bottom: calc(100% + 12px); transform: translateX(-50%) translateY(6px); opacity: 0; pointer-events: none; white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px 7px 8px; border-radius: 12px; border: 0;
+  background: var(--glass); color: var(--glass-ink); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 6px 20px rgba(20,10,40,.18), inset 0 0 0 1px var(--glass-line); font-size: 14px; font-weight: 600;
+  transition: opacity .2s, transform .25s cubic-bezier(.3,1.5,.5,1); }
+.say::after { content: ""; position: absolute; left: 50%; top: 100%; margin-left: -6px; border: 6px solid transparent; border-top-color: var(--glass); }
+.say.show { opacity: 1; transform: translateX(-50%); pointer-events: auto; }
+.say .tap { font-size: 12px; font-weight: 700; color: #fff; background: var(--coral); padding: 3px 8px; border-radius: 7px; }
+kbd { font: 700 12px/1 "Bricolage Grotesque", system-ui, sans-serif; min-width: 22px; height: 22px; padding: 0 6px; display: inline-grid; place-items: center; border-radius: 6px;
+  background: var(--glass); color: var(--glass-ink); box-shadow: inset 0 0 0 1px var(--glass-line), 0 2px 0 rgba(0,0,0,.18); }
+.say kbd { background: var(--ink); color: var(--paper); box-shadow: 0 2px 0 rgba(0,0,0,.25); }
+.pop { position: absolute; left: 50%; bottom: 100%; font-weight: 800; font-size: 15px; color: var(--coral); white-space: nowrap; pointer-events: none; animation: pop 1.1s ease-out forwards; }
+@keyframes pop { 0% { opacity: 0; transform: translate(-50%, 0) scale(.6); } 20% { opacity: 1; transform: translate(-50%, -14px) scale(1.1); } 100% { opacity: 0; transform: translate(-50%, -56px); } }
+.copy .ctl-hint { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin-top: 18px; font-size: 14px; }
+.ctl-hint span { margin: 0 6px 0 2px; }
+
+/* pins react to the walker */
+.pin.found .dot { background: #22a35a; border-color: #fff; animation: none; }
+.pin.found .chip::after { content: "✓"; width: 20px; height: 20px; border-radius: 50%; background: #22a35a; color: #fff; display: grid; place-items: center; font-size: 11px; font-weight: 800; flex: none; }
+.pin.near .chip { box-shadow: 0 6px 20px rgba(20,10,40,.18), 0 0 0 3px var(--coral); }
+
+/* passport HUD */
+.hud { position: fixed; z-index: 25; top: 76px; right: 12px; transition: opacity .3s; }
+body.past .hud, body.past .pad { opacity: 0; pointer-events: none; }
+body.past .pad button { pointer-events: none; }
+.hud-btn { display: flex; align-items: center; gap: 10px; height: 46px; padding: 0 14px 0 7px; border: 0; border-radius: 14px; background: var(--panel); color: var(--ink); box-shadow: var(--shadow); font-size: 14px; font-weight: 700; }
+.hud-btn .ico { width: 32px; height: 32px; border-radius: 10px; background: var(--coral); color: #fff; display: grid; place-items: center; flex: none; }
+.hud-btn .ico svg { width: 18px; height: 18px; }
+.hud-btn .lvl { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.1; }
+.hud-btn .lvl small { font-size: 11px; font-weight: 600; color: var(--muted); }
+.hud-btn b { font-variant-numeric: tabular-nums; }
+.bar { width: 90px; height: 8px; border-radius: 99px; background: rgba(127,127,127,.2); overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; border-radius: inherit; background: linear-gradient(90deg, var(--coral), #ffb36b); transition: width .6s cubic-bezier(.2,.8,.2,1); }
+.hud.bump .hud-btn { animation: bump .5s; }
+@keyframes bump { 30% { transform: scale(1.08); } }
+.hud-panel { position: absolute; right: 0; top: calc(100% + 8px); width: 300px; padding: 16px; border-radius: 18px; background: var(--panel); color: var(--ink); box-shadow: var(--shadow); }
+.hud-panel[hidden] { display: none; }
+.hud-panel h4 { font-size: 17px; letter-spacing: -.01em; }
+.hud-panel p { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.hud-panel ul { list-style: none; display: grid; gap: 2px; margin-top: 12px; }
+.hud-panel li button { width: 100%; display: flex; align-items: center; gap: 10px; padding: 6px 8px 6px 6px; border: 0; border-radius: 10px; background: transparent; text-align: left; font-size: 14px; font-weight: 600; }
+.hud-panel li button:hover { background: rgba(127,127,127,.12); }
+.hud-panel .lg { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-size: 12px; font-weight: 800; overflow: hidden; flex: none; background: #2b1d55; filter: grayscale(1); opacity: .45; }
+.hud-panel .lg img { width: 100%; height: 100%; object-fit: cover; }
+.hud-panel .nm { flex: 1; color: var(--muted); }
+.hud-panel .st { font-size: 12px; color: var(--muted); }
+.hud-panel .got .lg { filter: none; opacity: 1; }
+.hud-panel .got .nm { color: var(--ink); }
+.hud-panel .got .st { width: 20px; height: 20px; border-radius: 50%; background: #22a35a; color: #fff; display: grid; place-items: center; font-size: 11px; font-weight: 800; }
+.hp-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--rule); font-size: 13px; font-weight: 600; }
+.hp-foot button { border: 0; background: none; color: var(--muted); font-size: 13px; text-decoration: underline; }
+
+/* touch controls */
+.pad { display: none; position: fixed; z-index: 25; left: 12px; right: 12px; bottom: 76px; justify-content: space-between; pointer-events: none; transition: opacity .3s; }
+.pad > div { display: flex; gap: 8px; }
+.pad button { pointer-events: auto; width: 52px; height: 52px; border-radius: 16px; border: 0; display: grid; place-items: center;
+  background: var(--glass); color: var(--glass-ink); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 6px 20px rgba(20,10,40,.18), inset 0 0 0 1px var(--glass-line); touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; transition: transform .1s; }
+.pad button svg { width: 22px; height: 22px; }
+.pad button.held { transform: scale(.92); }
+.pad .act { width: auto; padding: 0 20px; font-weight: 700; background: var(--coral); color: #fff; }
+.pad .act:disabled { opacity: .5; background: var(--glass); color: var(--glass-ink); }
+@media (pointer: coarse), (max-width: 760px) { .pad { display: flex; } .ctl-hint { display: none !important; } }
+
+/* circle wipe into a project page */
+.iris { position: fixed; inset: 0; z-index: 70; display: grid; place-items: center; background: #18181a;
+  -webkit-mask: radial-gradient(circle at var(--ix, 50%) var(--iy, 50%), transparent var(--ir, 0px), #000 calc(var(--ir, 0px) + 1px));
+  mask: radial-gradient(circle at var(--ix, 50%) var(--iy, 50%), transparent var(--ir, 0px), #000 calc(var(--ir, 0px) + 1px)); }
+.iris[hidden] { display: none; }
+.iris span { color: #fff; font-size: 22px; font-weight: 700; letter-spacing: -.01em; opacity: 0; transition: opacity .3s .5s; }
+.iris.closed span { opacity: 1; }
+
+/* the choice box at a project's door */
+.choice { position: absolute; left: 50%; z-index: 6; width: 300px; max-width: calc(100vw - 24px); padding: 14px 14px 12px; border-radius: 16px;
+  background: var(--panel); color: var(--ink); border: 2px solid var(--ink); box-shadow: 5px 5px 0 var(--ink), 0 20px 50px rgba(20,10,40,.25);
+  transform: translate(calc(-50% + var(--nudge, 0px)), 10px) scale(.96); opacity: 0; pointer-events: none;
+  transition: opacity .18s, transform .3s cubic-bezier(.3,1.5,.5,1); }
+.choice.show { opacity: 1; transform: translate(calc(-50% + var(--nudge, 0px)), 0); pointer-events: auto; }
+.choice[hidden] { display: none; }
+.choice.below { bottom: auto; top: 16px; }
+.choice::after { content: ""; position: absolute; top: 100%; left: calc(50% - var(--nudge, 0px)); margin-left: -9px; border: 9px solid transparent; border-top-color: var(--ink); }
+.choice.below::after { top: auto; bottom: 100%; border-top-color: transparent; border-bottom-color: var(--ink); }
+.choice .k { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--coral); }
+.choice h5 { font-size: 18px; line-height: 1.2; letter-spacing: -.01em; margin-top: 3px; min-height: 1.2em; }
+.choice h5::after { content: "▌"; color: var(--coral); animation: caret 1s steps(1) infinite; margin-left: 1px; }
+@keyframes caret { 50% { opacity: 0; } }
+.choice .opts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.choice .opt { height: 36px; padding: 0 12px; border-radius: 10px; border: 2px solid var(--ink); background: transparent; color: var(--ink); font-size: 13px; font-weight: 700; white-space: nowrap; }
+.choice .opt.main { background: var(--coral); border-color: var(--coral); color: #fff; }
+.choice .opt:hover { transform: translateY(-1px); }
+.choice .opt:focus { outline: 3px solid var(--accent); outline-offset: 2px; }
+.choice .opt:focus::before { content: "▶ "; }
+.choice .keys { display: flex; align-items: center; gap: 4px; margin-top: 10px; font-size: 12px; color: var(--muted); }
+.choice .keys kbd { min-width: 18px; height: 18px; font-size: 10px; background: var(--bg); color: var(--ink); box-shadow: 0 1px 0 rgba(0,0,0,.2); }
+.choice .keys kbd + kbd { margin-left: 2px; }
+
+.confetti { position: fixed; inset: 0; z-index: 60; pointer-events: none; overflow: hidden; }
+.confetti i { position: absolute; top: -16px; width: 8px; height: 14px; border-radius: 2px; animation: fall linear forwards; }
+@keyframes fall { to { transform: translate(var(--dx), 110vh) rotate(var(--r)); } }
 
 /* ---------- Bottom nav ---------- */
 .nav { position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 30; display: flex; align-items: center; gap: 2px; padding: 6px; border-radius: 999px; background: var(--nav-bg); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 10px 30px rgba(20,10,40,.18), inset 0 0 0 1px var(--nav-line); }
@@ -318,6 +459,14 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
   .polaroid { max-width: 280px; }
   .sheet { bottom: 10px; }
   .sheet .img { height: 160px; }
+  /* the street sits above the touch pad; the strip under it is grass */
+  .world { bottom: 128px; height: 56svh; width: calc(56svh * 16 / 9); }
+  .scroller { background: linear-gradient(to top, var(--grass-d) 130px, transparent 130px); }
+  .player { width: calc(70 / 1600 * 100%); margin-left: calc(-35 / 1600 * 100%); }
+  .hud { top: calc(44svh - 128px + 12px); }
+  .hud-btn .lvl { display: none; }
+  .bar { width: 56px; }
+  .hud-panel { width: min(300px, calc(100vw - 24px)); }
 }
 </style>
 </head>
@@ -335,11 +484,12 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
   <div class="stage">
     <div class="copy">
       <div class="hey-row"><span class="hey">👋 hey, I'm Yehia</span>
-      <span class="hint hand">click a place
+      <span class="hint hand">go explore
         <svg viewBox="0 0 64 30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" style="transform:rotate(28deg)"><path d="M4 18 C20 6 40 8 56 16"/><path d="M48 9 L57 16 L47 22"/></svg>
       </span></div>
       <h1>Designing so users never <span class="strike">file a ticket.</span></h1>
       <p>Senior product designer in Cairo. I turn complex B2B and AI products into flows people actually get.</p>
+      <p class="ctl-hint"><kbd>←</kbd><kbd>→</kbd><span>walk</span><kbd>E</kbd><span>open a place</span>· or click the street</p>
     </div>
 
     <div class="scroller" id="scroller">
@@ -490,7 +640,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           <g class="boat" style="animation-duration:90s;animation-delay:-20s"><g transform="translate(0 652)"><path d="M-26 0 L26 0 L18 9 L-18 9 Z" fill="#5b3a29"/><path d="M0 0 L0 -54 L24 -2 Z" fill="#fff8ee"/><path d="M-2 -2 L-2 -40 L-20 -2 Z" fill="#ffe6d6"/></g></g>
           <g class="boat" style="animation-duration:120s;animation-delay:-75s"><g transform="translate(0 700) scale(.8)"><path d="M-26 0 L26 0 L18 9 L-18 9 Z" fill="#5b3a29"/><path d="M0 0 L0 -54 L24 -2 Z" fill="#fff8ee"/></g></g>
           <!-- the contact felucca (bobs in place) -->
-          <g transform="translate(560 690)"><g class="bob"><path d="M-40 0 L40 0 L28 14 L-28 14 Z" fill="#5b3a29"/><path d="M0 0 L0 -86 L40 -4 Z" fill="#fff8ee"/><path d="M-3 -4 L-3 -62 L-30 -4 Z" fill="#ff6a3d"/><path d="M0 -86 L0 -98 L14 -92 Z" fill="#4f56d6"/></g></g>
+          <g id="felucca"><g transform="translate(560 690)"><g class="bob"><path d="M-40 0 L40 0 L28 14 L-28 14 Z" fill="#5b3a29"/><path d="M0 0 L0 -86 L40 -4 Z" fill="#fff8ee"/><path d="M-3 -4 L-3 -62 L-30 -4 Z" fill="#ff6a3d"/><path d="M0 -86 L0 -98 L14 -92 Z" fill="#4f56d6"/></g></g></g>
 
           </g>
           </g>
@@ -504,6 +654,11 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           </g>
           </g>
           <g class="layer" data-depth="0.9">
+          <!-- Benaa: the ladder up to the crane -->
+          <g stroke="#ffb347" stroke-linecap="round" fill="none">
+            <path d="M1491 612 V806 M1509 612 V806" stroke-width="3.5"/>
+            <path d="M1491 626 H1509 M1491 644 H1509 M1491 662 H1509 M1491 680 H1509 M1491 698 H1509 M1491 716 H1509 M1491 734 H1509 M1491 752 H1509 M1491 770 H1509 M1491 788 H1509" stroke-width="2.5" opacity=".9"/>
+          </g>
           <!-- contact shadows: ground the buildings -->
           <g fill="url(#shadow)">
             <ellipse cx="390" cy="770" rx="175" ry="12"/><ellipse cx="114" cy="772" rx="110" ry="10"/><ellipse cx="860" cy="772" rx="90" ry="8"/>
@@ -663,6 +818,32 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
         <div class="pin" data-depth="0.9" style="--x:660; --y:750"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="ahwa"><span class="lg" style="background:#4f56d6">☕</span>The ahwa<span class="yr">How I start</span></button></div>
 
+        <!-- ======================= THE WALKER ======================= -->
+        <div class="player" id="player" data-depth="0.9">
+          <div class="choice" id="choice" role="dialog" aria-label="What next?" hidden></div>
+          <div class="p-in">
+            <button class="say" id="say" tabindex="-1"></button>
+            <svg viewBox="0 0 46 72" aria-hidden="true">
+              <ellipse cx="23" cy="70" rx="14" ry="3" fill="#1a1030" opacity=".25"/>
+              <rect class="leg leg-a" x="15" y="50" width="7" height="19" rx="3.5" fill="#2b1d55"/>
+              <rect class="leg leg-b" x="24" y="50" width="7" height="19" rx="3.5" fill="#2b1d55"/>
+              <g class="torso">
+                <rect class="arm" x="14" y="31" width="6" height="18" rx="3" fill="#3d3fa8"/>
+                <rect x="11" y="28" width="24" height="26" rx="9" fill="#4f56d6"/>
+                <path d="M17 29 L23 37 L29 29" fill="none" stroke="#fff4e6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect class="pencil" x="30" y="34" width="4" height="13" rx="1" fill="#ffd27a" transform="rotate(-20 32 40)"/>
+                <circle cx="23" cy="17" r="11" fill="#f2c29b"/>
+                <path d="M12 16 C12 6 34 6 34 16 Z" fill="#ff6a3d"/>
+                <rect x="11" y="14" width="24" height="4" rx="2" fill="#c9643d"/>
+                <circle cx="23" cy="5" r="3.4" fill="#fff4e6"/>
+                <circle class="face" cx="28" cy="20" r="1.6" fill="#18181a"/>
+                <path class="face" d="M26 25 Q29 26.5 31 24" fill="none" stroke="#18181a" stroke-width="1.3" stroke-linecap="round"/>
+                <g class="arm-f"><rect x="27" y="31" width="6" height="17" rx="3" fill="#5a61e0"/><circle cx="30" cy="47" r="3.2" fill="#f2c29b"/></g>
+              </g>
+            </svg>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -757,6 +938,31 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
   <a class="cta" href="assets/Yehia-Mourad-Resume.pdf" target="_blank">Resume ↗</a>
 </nav>
 
+<!-- passport: one stamp per place -->
+<div class="hud" id="hud">
+  <button class="hud-btn" id="hud-btn" aria-expanded="false" aria-controls="hud-panel" aria-label="Cairo passport">
+    <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2.5" width="14" height="19" rx="2"/><circle cx="12" cy="10" r="3.2"/><path d="M9 16.5h6"/></svg></span>
+    <span class="lvl" id="hud-lvl"></span>
+    <span class="bar"><i id="hud-bar"></i></span>
+    <b id="hud-n"></b>
+  </button>
+  <div class="hud-panel" id="hud-panel" hidden>
+    <h4>Cairo passport</h4>
+    <p>Walk the street and open every place to collect its stamp.</p>
+    <ul id="hud-list"></ul>
+    <div class="hp-foot"><span id="hud-next"></span><button id="hud-reset">Reset</button></div>
+  </div>
+</div>
+
+<!-- touch controls -->
+<div class="pad" id="pad">
+  <div>
+    <button data-dir="-1" aria-label="Walk left"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <button data-dir="1" aria-label="Walk right"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+  </div>
+  <button class="act" id="act" disabled>Open</button>
+</div>
+
 <!-- place sheet -->
 <div class="scrim" id="scrim"></div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="s-title">
@@ -771,6 +977,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
 </div>
 
 <div class="toast" id="toast" role="status"></div>
+<div class="iris" id="iris" hidden><span></span></div>
 
 <script>
 (() => {
@@ -820,13 +1027,17 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
       text: "Hiring a product designer, or want to talk design systems and AI? My inbox is open.", copy: true },
     ahwa: { kicker: "How I start · Cairo", title: "The ahwa ☕", grad: "linear-gradient(140deg,#4f56d6,#c9643d)",
       text: "Before Figma opens, there's a shot of espresso and a notebook. I sketch the flow on paper first, rough and fast, so the hard questions show up early.",
-      list: ["Sketch the flow before the screens", "Talk to the people who'll use it", "Then build it properly, in Arabic and English"] }
+      list: ["Sketch the flow before the screens", "Talk to the people who'll use it", "Then build it properly, in Arabic and English"] },
+    // the reward for a full passport (not a stamp itself)
+    complete: { kicker: "Achievement unlocked · Cairene", title: "You've seen all of Cairo 🏆", grad: "linear-gradient(140deg,#ff6a3d,#ffd27a)",
+      text: "Every stamp collected. Thanks for exploring every corner of my work. Now let's build something together.", copy: true }
   };
 
   const $ = id => document.getElementById(id);
   let lastFocus = null;
   function open(key) {
     const p = places[key]; if (!p) return;
+    if (choose) choose("opened");
     lastFocus = document.activeElement;
     $("s-kicker").textContent = p.kicker; $("s-title").textContent = p.title; $("s-text").textContent = p.text;
     $("s-list").innerHTML = (p.list || []).map(l => `<li>${l}</li>`).join("");
@@ -844,8 +1055,14 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     $("s-row").querySelectorAll('a[href^="#"]').forEach(a => a.onclick = close);
     document.body.classList.add("sheet-open");
     $("s-close").focus();
+    discover(key);
   }
-  function close() { document.body.classList.remove("sheet-open"); lastFocus && lastFocus.focus && lastFocus.focus(); }
+  function close() {
+    if (!document.body.classList.contains("sheet-open")) return;
+    document.body.classList.remove("sheet-open"); lastFocus && lastFocus.focus && lastFocus.focus();
+    stepOut();
+    if (pendingWin) { pendingWin = false; setTimeout(win, 350); }
+  }
   document.querySelectorAll("[data-place]").forEach(b => b.addEventListener("click", () => open(b.dataset.place)));
   document.querySelectorAll("[data-open]").forEach(b => {
     b.addEventListener("click", () => open(b.dataset.open));
@@ -856,8 +1073,10 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
 
   /* ---------- Copy email ---------- */
   const toast = $("toast");
+  let toastT = 0;
+  function flash(msg) { toast.textContent = msg; toast.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(() => toast.classList.remove("show"), 2200); }
   async function copy() {
-    try { await navigator.clipboard.writeText(EMAIL); toast.textContent = "Email copied: " + EMAIL; toast.classList.add("show"); setTimeout(() => toast.classList.remove("show"), 2200); }
+    try { await navigator.clipboard.writeText(EMAIL); flash("Email copied: " + EMAIL); }
     catch (e) { location.href = "mailto:" + EMAIL; }
   }
   document.querySelectorAll("[data-copy]").forEach(b => b.onclick = copy);
@@ -883,7 +1102,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
   onScroll();
 
   /* ---------- Depth: layers move at different speeds with the mouse ---------- */
-  const layers = [...world.querySelectorAll("svg .layer")], pinsD = [...world.querySelectorAll(".pin[data-depth]")];
+  const layers = [...world.querySelectorAll("svg .layer")], pinsD = [...world.querySelectorAll(".pin[data-depth], .player")];
   let tx = 0, ty = 0, cx = 0, cy = 0, raf = 0;
   function depth() {
     raf = 0; cx += (tx - cx) * .07; cy += (ty - cy) * .07;
@@ -901,6 +1120,417 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     const sc = $("scroller");
     requestAnimationFrame(() => { sc.scrollLeft = world.offsetWidth * (300 / 1600) - 24; });
   }
+
+  /* ---------- Game: walk the street, collect a stamp at every place ---------- */
+  // x is where you stand on the street (in the 1600-wide world) to open each place; door is where you walk in
+  const spots = [
+    { k: "muzain", x: 114, door: 152, name: "Muzain", verb: "Step into the salon" },
+    { k: "pos", x: 390, door: 360, name: "Primex POS", verb: "Enter the market" },
+    { k: "contact", x: 548, door: 530, name: "Say hi", verb: "Board the felucca" },
+    { k: "ahwa", x: 640, door: 619, name: "The ahwa", verb: "Sit at the ahwa" },
+    { k: "reach", x: 860, door: 860, name: "Reach Link", verb: "Read the billboard" },
+    { k: "journey", x: 950, door: 950, name: "My journey", verb: "Wave at the plane" },
+    { k: "fahs", x: 1030, door: 1052, name: "Fahs", verb: "Visit the kiosk" },
+    { k: "about", x: 1092, door: 1080, name: "That's me", verb: "Climb Cairo Tower" },
+    { k: "pleny", x: 1172, door: 1162, name: "Pleny", verb: "Grab a bite" },
+    { k: "twentytoo", x: 1255, door: 1250, name: "TwentyToo", verb: "Enter the AI tower" },
+    { k: "benaa", x: 1500, door: 1500, climb: 318, name: "Benaa", verb: "Climb the crane" }
+  ];
+  const ranks = [[0, "Tourist"], [3, "Explorer"], [6, "Local"], [9, "Insider"], [11, "Cairene"]];
+  const KEY = "playground-stamps", SPEED = 280, REACH = 46;
+  const level = n => ranks.filter(r => n >= r[0]).length;
+  const pinOf = k => document.querySelector(`.chip[data-place="${k}"]`).closest(".pin");
+  let found = new Set(), pendingWin = false;
+  try { found = new Set(JSON.parse(localStorage.getItem(KEY) || "[]").filter(k => spots.some(s => s.k === k))); } catch (e) {}
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify([...found])); } catch (e) {} };
+
+  const hud = $("hud"), hudBtn = $("hud-btn"), panel = $("hud-panel");
+  function renderHud() {
+    const n = found.size, lv = level(n), next = ranks[lv];
+    $("hud-n").textContent = `${n}/${spots.length}`;
+    $("hud-bar").style.width = n / spots.length * 100 + "%";
+    $("hud-lvl").innerHTML = `<small>Level ${lv}</small>${ranks[lv - 1][1]}`;
+    $("hud-next").textContent = next ? `${next[0] - n} more to ${next[1]}` : "Passport complete 🏆";
+    $("hud-list").innerHTML = spots.map(s => {
+      const lg = document.querySelector(`.chip[data-place="${s.k}"] .lg`), got = found.has(s.k);
+      return `<li><button data-go="${s.k}" class="${got ? "got" : ""}"><span class="lg" style="${lg.getAttribute("style") || ""}">${lg.innerHTML}</span><span class="nm">${s.name}</span><span class="st">${got ? "✓" : "Go →"}</span></button></li>`;
+    }).join("");
+    spots.forEach(s => pinOf(s.k).classList.toggle("found", found.has(s.k)));
+  }
+  function discover(k) {
+    if (!spots.some(s => s.k === k) || found.has(k)) return;
+    const before = level(found.size);
+    found.add(k); save(); renderHud();
+    hud.classList.remove("bump"); void hud.offsetWidth; hud.classList.add("bump");
+    pop("+1 stamp");
+    const lv = level(found.size);
+    if (found.size === spots.length) pendingWin = true;
+    else if (lv > before) flash(`Level up! You're now a ${ranks[lv - 1][1]} ⭐`);
+  }
+  function win() {
+    flash("Passport complete. You're officially a Cairene 🏆");
+    confetti(); open("complete");
+  }
+  function confetti() {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const c = document.createElement("div"), cols = ["#ff6a3d", "#4f56d6", "#ffd27a", "#22a35a", "#9b5de5"];
+    c.className = "confetti";
+    for (let n = 0; n < 90; n++) {
+      const i = document.createElement("i");
+      i.style.cssText = `left:${Math.random() * 100}%;background:${cols[n % 5]};--dx:${((Math.random() - .5) * 240).toFixed(0)}px;--r:${(Math.random() * 900).toFixed(0)}deg;animation-duration:${(2 + Math.random() * 1.6).toFixed(2)}s;animation-delay:${(Math.random() * .5).toFixed(2)}s`;
+      c.appendChild(i);
+    }
+    document.body.appendChild(c); setTimeout(() => c.remove(), 4500);
+  }
+
+  hudBtn.onclick = () => { panel.hidden = !panel.hidden; hudBtn.setAttribute("aria-expanded", !panel.hidden); };
+  const closePanel = () => { panel.hidden = true; hudBtn.setAttribute("aria-expanded", false); };
+  document.addEventListener("click", e => { if (!hud.contains(e.target)) closePanel(); });
+  $("hud-list").addEventListener("click", e => {
+    const b = e.target.closest("[data-go]"); if (!b) return;
+    closePanel();
+    if (found.has(b.dataset.go)) open(b.dataset.go);
+    else walkTo(spots.find(s => s.k === b.dataset.go).x);
+  });
+  $("hud-reset").onclick = () => { found.clear(); save(); renderHud(); flash("Passport reset. Happy exploring!"); };
+
+  /* the walker */
+  const player = $("player"), pIn = player.querySelector(".p-in"), say = $("say"), act = $("act"), sc = $("scroller");
+  const touch = matchMedia("(pointer: coarse)").matches;
+  let px = 470, dir = 0, target = null, onArrive = null, near, moved = false, cam = 0, ox = 470, loop = 0, last = 0;
+
+  function pop(text) { const s = document.createElement("span"); s.className = "pop"; s.textContent = text; pIn.appendChild(s); setTimeout(() => s.remove(), 1200); }
+  function updateNear() {
+    let s = null, best = REACH;
+    spots.forEach(p => { const d = Math.abs(p.x - px); if (d < best) { best = d; s = p; } });
+    if (s === near) return;
+    near && pinOf(near.k).classList.remove("near");
+    near = s;
+    act.disabled = !s;
+    act.setAttribute("aria-label", s ? `${s.verb}: ${s.name}` : "Nothing to open here");
+    if (s) {
+      pinOf(s.k).classList.add("near");
+      say.innerHTML = touch ? `${s.verb} <span class="tap">Tap</span>` : `<kbd>E</kbd>${s.verb}`;
+      say.classList.add("show");
+    } else say.classList.remove("show");
+  }
+  function camera(snap) {
+    const W = world.offsetWidth;
+    if (phone()) {
+      const want = px / 1600 * W - innerWidth / 2;
+      sc.scrollLeft = snap ? want : sc.scrollLeft + (want - sc.scrollLeft) * .15;
+      return true;
+    }
+    // keep the walker in view without ever showing past the world's edges
+    const E = Math.max(0, W - innerWidth), want = Math.max(-E / 2, Math.min(E / 2, W / 2 - px / 1600 * W));
+    cam = snap ? want : cam + (want - cam) * .12;
+    ox = snap ? px : ox + (px - ox) * .12;
+    world.style.setProperty("--cam", cam.toFixed(1) + "px");
+    world.style.setProperty("--ox", (ox / 16).toFixed(2) + "%");
+    return Math.abs(want - cam) < .5 && Math.abs(px - ox) < .5;
+  }
+  function step(t) {
+    loop = 0;
+    const dt = last ? Math.min(.05, (t - last) / 1000) : 0; last = t;
+    let v = dir;
+    if (!v && target != null) v = Math.abs(target - px) < 2 ? (target = null, 0) : Math.sign(target - px);
+    if (v) {
+      if (!moved) { moved = true; say.classList.remove("show"); }
+      px = Math.max(30, Math.min(1570, px + v * SPEED * dt));
+      if (target != null && Math.sign(target - px) !== v) { px = target; target = null; }
+      pIn.classList.toggle("flip", v < 0);
+      player.style.setProperty("--px", px.toFixed(1));
+      updateNear();
+    }
+    pIn.classList.toggle("walking", !!v);
+    if (target == null && onArrive) { const f = onArrive; onArrive = null; f(); }
+    // phones: follow only while walking, so a swipe through the panorama isn't fought
+    const settled = phone() ? (v && camera(), true) : camera();
+    if (v || target != null || !settled) loop = requestAnimationFrame(step); else last = 0;
+  }
+  const go = () => { if (!loop) loop = requestAnimationFrame(step); };
+  function walkTo(x, then) { target = Math.max(30, Math.min(1570, x)); dir = 0; onArrive = then || null; go(); }
+
+  /* entering a place: walk to the door, step inside, then open its page (or its card) */
+  const irisEl = $("iris"), reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const pageOf = k => { const c = places[k].cta; return c && c[1][0] !== "#" ? c[1] : null; };
+  let busy = false, inside = false;
+  const STREET = 806;
+  function iris(open, label, then) {
+    const r = pIn.getBoundingClientRect(), R = Math.hypot(innerWidth, innerHeight), ms = reduce ? 1 : 750, t0 = performance.now();
+    irisEl.style.setProperty("--ix", r.left + r.width / 2 + "px");
+    irisEl.style.setProperty("--iy", r.top + r.height * .55 + "px");
+    irisEl.querySelector("span").textContent = label || "";
+    irisEl.classList.toggle("closed", !open);
+    irisEl.hidden = false;
+    (function f(t) {
+      const k = Math.min(1, (t - t0) / ms), e = open ? 1 - Math.pow(1 - k, 3) : k * k * k;
+      irisEl.style.setProperty("--ir", (open ? e : 1 - e) * R + "px");
+      if (k < 1) requestAnimationFrame(f);
+      else { if (open) irisEl.hidden = true; then && then(); }
+    })(t0);
+  }
+  /* little tools the actions are made of */
+  let py = STREET, undo = null;
+  const wait = ms => new Promise(r => setTimeout(r, reduce ? 0 : ms));
+  const ease = k => k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+  const unit = () => phone() ? 70 / 46 : 1; // the walker is drawn bigger on phones
+  function tween(ms, fn) {
+    return new Promise(done => {
+      if (reduce) { fn(1); return done(); }
+      const t0 = performance.now();
+      (function f(t) { const k = Math.min(1, (t - t0) / ms); fn(k); k < 1 ? requestAnimationFrame(f) : done(); })(t0);
+    });
+  }
+  function setPos(x, y, sc) {
+    if (x != null) { px = x; player.style.setProperty("--px", x.toFixed(1)); camera(true); }
+    if (y != null) { py = y; player.style.setProperty("--py", y.toFixed(1)); }
+    if (sc != null) pIn.style.transform = sc === 1 ? "" : `scale(${sc.toFixed(3)})`;
+  }
+  const pose = (name, on = true) => pIn.classList.toggle(name, on);
+  function prop(text, cls) { const s = document.createElement("span"); s.className = "prop " + cls; s.textContent = text; pIn.appendChild(s); return s; }
+  // an effect drawn at a spot in the 1600×900 world
+  function fx(x, y, text, cls = "", ms = 1400) {
+    const s = document.createElement("span");
+    s.className = "wfx " + cls; s.textContent = text;
+    s.style.left = x / 16 + "%"; s.style.top = y / 9 + "%";
+    world.appendChild(s);
+    if (ms) setTimeout(() => s.remove(), ms);
+    return s;
+  }
+  // a jump along an arc, shrinking or growing with the distance
+  async function hop(x2, y2, sc2) {
+    const x1 = px, y1 = py, sc1 = parseFloat((pIn.style.transform.match(/[\d.]+/) || [1])[0]);
+    pIn.classList.add("no-anim");
+    await tween(550, k => setPos(x1 + (x2 - x1) * k, y1 + (y2 - y1) * k - Math.sin(Math.PI * k) * 46, sc1 + (sc2 - sc1) * k));
+  }
+  async function goIn() { pIn.classList.remove("no-anim"); pIn.classList.add("entering"); await wait(450); }
+  // up or down a ladder: he shrinks a little as he climbs into the distance
+  async function climb(from, to) {
+    const top = 318;
+    pIn.classList.remove("flip", "entering");
+    pIn.classList.add("climbing", "no-anim");
+    await tween(Math.abs(to - from) * 4, k => { const y = from + (to - from) * ease(k); setPos(null, y, 1 - (STREET - y) / (STREET - top) * .3); });
+    pIn.classList.remove("climbing");
+  }
+
+  /* every prompt acts itself out; places with a card set undo so he can come back out */
+  const actions = {
+    muzain: async () => {
+      const p = prop("✂️", "over snip"); await wait(1100); p.remove();
+      pop("✨ Fresh cut"); await wait(500);
+    },
+    pos: async () => {
+      prop("🛍️", "hand"); pop("beep!"); await wait(900);
+    },
+    contact: async () => {
+      const boat = $("felucca");
+      await hop(536, 690, .85);
+      boat.classList.add("sail");
+      await tween(2000, k => setPos(536 + 168 * ease(k)));
+      undo = async () => {
+        boat.classList.remove("sail");
+        await tween(2000, k => setPos(704 - 168 * ease(k)));
+        await hop(530, STREET, 1);
+      };
+    },
+    ahwa: async () => {
+      pose("sit"); setPos(null, 766 + 22 * unit());
+      prop("☕", "hand"); await wait(300);
+      pose("eat"); await wait(1300); pose("eat", false);
+      undo = async () => { pose("sit", false); setPos(null, STREET); await wait(250); };
+    },
+    reach: async () => {
+      pose("look");
+      ["❤️", "👍", "❤️", "⭐", "💬", "❤️"].forEach((e, i) => setTimeout(() => fx(820 + Math.random() * 80, 590 + Math.random() * 30, e), reduce ? 0 : i * 170));
+      await wait(1400);
+      undo = async () => { pose("look", false); await wait(200); };
+    },
+    journey: async () => {
+      pose("look"); pose("wave"); await wait(500);
+      fx(930, 225, "👋"); await wait(900);
+      undo = async () => { pose("wave", false); pose("look", false); await wait(200); };
+    },
+    fahs: async () => {
+      const p = prop("🔍", "over scan"); await wait(1300); p.remove();
+      pop("✅ Passed"); await wait(600);
+    },
+    about: async () => {
+      await goIn();
+      const lift = fx(1080, 630, "", "lift", 0);
+      await tween(1300, k => { lift.style.top = (630 - 372 * ease(k)) / 9 + "%"; });
+      lift.remove();
+      pIn.classList.add("no-anim"); setPos(1080, 252, .6);
+      void pIn.offsetWidth; pIn.classList.remove("no-anim", "entering");
+      await wait(300); pose("wave"); pop("👋 That's me!"); await wait(1000);
+      undo = async () => {
+        pose("wave", false); pIn.classList.add("entering"); await wait(450);
+        pIn.classList.add("no-anim"); setPos(1080, STREET, 1);
+      };
+    },
+    pleny: async () => {
+      const p = prop("🍔", "bite"); pose("eat");
+      pop("nom"); await wait(700); pop("nom nom"); await wait(900);
+      pose("eat", false); p.remove();
+    },
+    twentytoo: async () => {
+      fx(1250, 384, "✨", "", 1200);
+      [[-30, -40], [30, -60], [0, -90], [-40, -80], [40, -30]].forEach(([dx, dy], i) => setTimeout(() => fx(px + dx, STREET + dy, "✨"), reduce ? 0 : i * 140));
+      await wait(1000);
+    },
+    benaa: async s => { await climb(STREET, s.climb); await wait(250); undo = () => climb(s.climb, STREET); }
+  };
+
+  function enter(s) {
+    if (busy || !s) return;
+    busy = true; dir = 0;
+    walkTo(s.door, async () => {
+      pIn.classList.remove("flip", "walking");
+      say.classList.remove("show");
+      inside = true;
+      await wait(120);
+      await (actions[s.k] ? actions[s.k](s) : goIn());
+      // the action earns the stamp; what happens next is the player's choice
+      discover(s.k);
+      const c = await ask(s);
+      if (c === "enter") { if (!s.climb) await goIn(); leave(s); }
+      else if (c === "peek") open(s.k);
+      else if (c === "stay") stepOut();
+      // "opened": a pin opened the card meanwhile, and closing it steps him out
+    });
+  }
+
+  /* the choice box: enter the project, peek at its card, or keep playing */
+  const choice = $("choice");
+  let choose = null;
+  const readMore = { contact: "Get in touch", journey: "See my journey", about: "Meet me", ahwa: "How I start" };
+  function ask(s) {
+    const p = places[s.k];
+    const opts = pageOf(s.k)
+      ? `<button class="opt main" data-c="enter">Enter project</button><button class="opt" data-c="peek">Peek inside</button>`
+      : `<button class="opt main" data-c="peek">${readMore[s.k] || "See the project"}</button>`;
+    choice.innerHTML = `<div class="k">${p.kicker}</div><h5></h5>
+      <div class="opts">${opts}<button class="opt" data-c="stay">Keep exploring</button></div>
+      ${touch ? "" : `<div class="keys"><kbd>←</kbd><kbd>→</kbd> choose <kbd>E</kbd> select <kbd>Esc</kbd> stay</div>`}`;
+    choice.classList.remove("below");
+    choice.style.setProperty("--nudge", "0px");
+    choice.style.bottom = pIn.getBoundingClientRect().height + 14 + "px";
+    choice.hidden = false;
+    // keep it on screen: slide sideways near the edges, drop below him near the top
+    const r = choice.getBoundingClientRect();
+    if (r.top < 72) { choice.classList.add("below"); choice.style.bottom = ""; }
+    const nudge = r.left < 12 ? 12 - r.left : r.right > innerWidth - 12 ? innerWidth - 12 - r.right : 0;
+    choice.style.setProperty("--nudge", nudge + "px");
+    requestAnimationFrame(() => choice.classList.add("show"));
+    // type the title out, like a game dialog
+    const h = choice.querySelector("h5"), text = p.title;
+    let i = reduce ? text.length : 0;
+    h.textContent = text.slice(0, i);
+    const typer = setInterval(() => { h.textContent = text.slice(0, ++i); if (i >= text.length) clearInterval(typer); }, 22);
+    choice.querySelector(".main").focus({ preventScroll: true });
+    return new Promise(done => {
+      choose = c => { choose = null; clearInterval(typer); choice.classList.remove("show"); setTimeout(() => { choice.hidden = true; }, 200); done(c); };
+    });
+  }
+  choice.addEventListener("click", e => { e.stopPropagation(); const b = e.target.closest("[data-c]"); if (b && choose) choose(b.dataset.c); });
+  // after the action: a card for places without a page, a circle wipe into the page for the rest
+  function leave(s) {
+    const page = pageOf(s.k);
+    if (!page) { open(s.k); return; }
+    undo = null;
+    discover(s.k);
+    try {
+      sessionStorage.setItem("playground-return", JSON.stringify({ px: s.door, climb: s.climb }));
+      if (pendingWin) { pendingWin = false; sessionStorage.setItem("playground-win", "1"); }
+    } catch (e) {}
+    iris(false, `${s.climb ? "Climbing up to" : "Entering"} ${s.name}…`, () => setTimeout(() => { location.href = page; }, 250));
+  }
+  async function stepOut() {
+    if (!inside) return;
+    inside = false;
+    const u = undo; undo = null;
+    if (u) await u();
+    pIn.querySelectorAll(".prop").forEach(p => p.remove());
+    pIn.classList.remove("entering", "no-anim", "wave", "eat", "sit", "look");
+    setPos(null, STREET, 1);
+    await wait(450);
+    busy = false; near = undefined; updateNear();
+    if (pendingWin) { pendingWin = false; setTimeout(win, 300); }
+  }
+  // back from a project page: open the circle on the door and walk out of it
+  function comeBack() {
+    let r = null;
+    try { r = JSON.parse(sessionStorage.getItem("playground-return")); sessionStorage.removeItem("playground-return"); } catch (e) {}
+    if (!r) { if (inside) { irisEl.hidden = true; stepOut(); } return; }
+    busy = true; inside = true; moved = true; px = r.px;
+    player.style.setProperty("--px", px);
+    if (!phone()) camera(true); else requestAnimationFrame(() => camera(true));
+    if (r.climb) {
+      pIn.classList.add("no-anim"); setPos(null, r.climb, .7);
+      requestAnimationFrame(() => iris(true, "", () => climb(r.climb, STREET).then(stepOut)));
+    } else {
+      pIn.classList.add("no-anim", "entering");
+      void pIn.offsetWidth; pIn.classList.remove("no-anim");
+      requestAnimationFrame(() => iris(true, "", stepOut));
+    }
+    let won = false;
+    try { won = sessionStorage.getItem("playground-win"); sessionStorage.removeItem("playground-win"); } catch (e) {}
+    if (won) setTimeout(win, 1300);
+  }
+  addEventListener("pageshow", e => { if (e.persisted) comeBack(); });
+
+  // keyboard: only while the street is on screen and no place is open
+  const typing = el => /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName) || el.isContentEditable;
+  const onStreet = () => hero.getBoundingClientRect().bottom > innerHeight * .6;
+  addEventListener("keydown", e => {
+    if (choose) {
+      const k = e.key.toLowerCase(), opts = [...choice.querySelectorAll(".opt")], at = opts.indexOf(document.activeElement);
+      if (k === "escape") { e.preventDefault(); choose("stay"); }
+      else if (k === "arrowleft" || k === "a" || k === "arrowright" || k === "d") {
+        e.preventDefault();
+        const step = k === "arrowleft" || k === "a" ? -1 : 1;
+        opts[(Math.max(0, at) + step + opts.length) % opts.length].focus({ preventScroll: true });
+      }
+      else if (k === "e") { e.preventDefault(); choose((opts[at] || opts[0]).dataset.c); }
+      else if (opts[+k - 1]) { e.preventDefault(); choose(opts[+k - 1].dataset.c); }
+      return;
+    }
+    if (busy || document.body.classList.contains("sheet-open") || e.metaKey || e.ctrlKey || e.altKey || typing(e.target) || !onStreet()) return;
+    const k = e.key.toLowerCase(), onControl = /^(BUTTON|A)$/.test(e.target.tagName);
+    if (k === "arrowleft" || k === "a") { e.preventDefault(); dir = -1; target = null; onArrive = null; go(); }
+    else if (k === "arrowright" || k === "d") { e.preventDefault(); dir = 1; target = null; onArrive = null; go(); }
+    else if (near && (k === "e" || k === "arrowup" || k === "w" || (!onControl && (k === "enter" || k === " ")))) { e.preventDefault(); enter(near); }
+  });
+  addEventListener("keyup", e => {
+    const k = e.key.toLowerCase();
+    if (((k === "arrowleft" || k === "a") && dir < 0) || ((k === "arrowright" || k === "d") && dir > 0)) dir = 0;
+  });
+  addEventListener("blur", () => { dir = 0; });
+
+  // click or tap the street to walk there
+  world.addEventListener("click", e => {
+    if (busy || e.target.closest(".chip, .say")) return;
+    const r = world.getBoundingClientRect();
+    walkTo((e.clientX - r.left) / r.width * 1600);
+  });
+  say.addEventListener("click", e => { e.stopPropagation(); enter(near); });
+
+  // touch pad: hold an arrow to walk
+  document.querySelectorAll("[data-dir]").forEach(b => {
+    const d = +b.dataset.dir;
+    b.addEventListener("pointerdown", e => { e.preventDefault(); if (busy) return; b.setPointerCapture && b.setPointerCapture(e.pointerId); dir = d; target = null; onArrive = null; b.classList.add("held"); go(); });
+    ["pointerup", "pointercancel", "lostpointercapture"].forEach(ev => b.addEventListener(ev, () => { if (dir === d) dir = 0; b.classList.remove("held"); }));
+    b.addEventListener("contextmenu", e => e.preventDefault());
+  });
+  act.onclick = () => enter(near);
+
+  renderHud();
+  player.style.setProperty("--px", px);
+  if (!phone()) camera(true);
+  addEventListener("resize", () => { if (!phone()) camera(true); });
+  say.innerHTML = touch ? `Hold <kbd>◀</kbd><kbd>▶</kbd> to walk` : `<kbd>←</kbd><kbd>→</kbd> walk around`;
+  comeBack();
+  setTimeout(() => { if (!moved) say.classList.add("show"); }, 1200);
 })();
 </script>
 </body>
