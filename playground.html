@@ -873,21 +873,29 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           <div class="p-in">
             <button class="say" id="say" tabindex="-1"></button>
             <svg viewBox="0 0 46 72" aria-hidden="true">
-              <ellipse cx="23" cy="70" rx="14" ry="3" fill="#1a1030" opacity=".25"/>
-              <rect class="leg leg-a" x="15" y="50" width="7" height="19" rx="3.5" fill="#2b1d55"/>
-              <rect class="leg leg-b" x="24" y="50" width="7" height="19" rx="3.5" fill="#2b1d55"/>
+              <ellipse cx="23" cy="70" rx="13" ry="2.8" fill="#1a1030" opacity=".25"/>
+              <!-- Yehia, chibi: salt-and-pepper hair, in the site colours: indigo half-zip, cream trousers, coral sneakers -->
+              <g class="leg leg-a"><rect x="16.6" y="55" width="5.8" height="12.6" rx="2.9" fill="#efece6" stroke="#cfc9c0" stroke-width=".6"/><rect x="15.4" y="65" width="8.4" height="4.4" rx="2.2" fill="#ff6a3d"/></g>
+              <g class="leg leg-b"><rect x="23.6" y="55" width="5.8" height="12.6" rx="2.9" fill="#e6e2da" stroke="#cfc9c0" stroke-width=".6"/><rect x="23" y="65" width="8.4" height="4.4" rx="2.2" fill="#e85a30"/></g>
               <g class="torso">
-                <rect class="arm" x="14" y="31" width="6" height="18" rx="3" fill="#3d3fa8"/>
-                <rect x="11" y="28" width="24" height="26" rx="9" fill="#4f56d6"/>
-                <path d="M17 29 L23 37 L29 29" fill="none" stroke="#fff4e6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-                <rect class="pencil" x="30" y="34" width="4" height="13" rx="1" fill="#ffd27a" transform="rotate(-20 32 40)"/>
-                <circle cx="23" cy="17" r="11" fill="#f2c29b"/>
-                <path d="M12 16 C12 6 34 6 34 16 Z" fill="#ff6a3d"/>
-                <rect x="11" y="14" width="24" height="4" rx="2" fill="#c9643d"/>
-                <circle cx="23" cy="5" r="3.4" fill="#fff4e6"/>
-                <circle class="face" cx="28" cy="20" r="1.6" fill="#18181a"/>
-                <path class="face" d="M26 25 Q29 26.5 31 24" fill="none" stroke="#18181a" stroke-width="1.3" stroke-linecap="round"/>
-                <g class="arm-f"><rect x="27" y="31" width="6" height="17" rx="3" fill="#5a61e0"/><circle cx="30" cy="47" r="3.2" fill="#f2c29b"/></g>
+                <g class="arm"><rect x="10.2" y="39.6" width="5.8" height="13" rx="2.9" fill="#2b1d55"/><rect x="10.6" y="50" width="5" height="2.2" rx=".8" fill="#ff6a3d"/><circle cx="13.1" cy="54" r="2.6" fill="#e0aa86"/></g>
+                <path d="M15.6 38.4 Q23 36.6 30.4 38.4 Q33.6 39.2 33.2 42.4 L31.2 54.4 Q30.8 56.4 28.8 56.4 H17.2 Q15.2 56.4 14.8 54.4 L12.8 42.4 Q12.4 39.2 15.6 38.4 Z" fill="#4f56d6" stroke="#3d3fa8" stroke-width=".7"/>
+                <path d="M18.6 36 H27.4 L28 39.8 Q23 41.6 18 39.8 Z" fill="#2b1d55"/>
+                <path d="M23 37.4 V45.4" stroke="#efece6" stroke-width=".8" stroke-linecap="round"/><rect x="22.3" y="44.4" width="1.4" height="1.8" rx=".5" fill="#efece6"/>
+                <rect class="pencil" x="29.6" y="41.6" width="3.6" height="11" rx="1" fill="#ff6a3d" transform="rotate(-20 31.4 47)"/>
+                <circle cx="23" cy="21.6" r="14.6" fill="#e0aa86"/>
+                <ellipse cx="9" cy="23.6" rx="2.4" ry="3.2" fill="#d39a76"/>
+                <path d="M8.2 22.4 C6.4 10.6 13.4 3.4 23.4 3.6 C33 3.2 39.4 9.4 38.2 17.2 C36.6 16.2 34.8 16.2 33.2 17 C31 14.6 27.6 14.4 25 15.6 C22.2 14.4 18.4 14.8 16.2 17 C14.4 18.8 13.6 21.4 13 24.6 L9.6 25.6 Z" fill="#4f4a45"/>
+                <g fill="#5f5a54"><circle cx="12.6" cy="10.2" r="4.2"/><circle cx="19" cy="5.6" r="4.4"/><circle cx="26.6" cy="5" r="4.2"/><circle cx="33.4" cy="8.6" r="3.9"/><circle cx="37" cy="13.6" r="3"/></g>
+                <path d="M11 11.6 C12.8 9.6 15.4 9.4 16.8 11 M20.4 6.6 C22.4 5.4 24.8 5.6 26 7.2 M29.4 7.6 C31.4 7.8 32.8 9.2 33.2 11 M10.2 16.6 C11.4 15.6 12.8 15.6 13.6 16.4" fill="none" stroke="#c4beb5" stroke-width="1" stroke-linecap="round"/>
+                <g class="face">
+                  <path d="M21.4 20.2 Q23.4 19 25.4 20 M28.6 19.8 Q30.6 18.8 32.4 19.8" fill="none" stroke="#4f4a45" stroke-width="1.1" stroke-linecap="round"/>
+                  <ellipse cx="23.6" cy="23.8" rx="1.5" ry="1.9" fill="#18181a"/><ellipse cx="30.6" cy="23.6" rx="1.5" ry="1.9" fill="#18181a"/>
+                  <circle cx="24.1" cy="23.1" r=".5" fill="#fff"/><circle cx="31.1" cy="22.9" r=".5" fill="#fff"/>
+                  <ellipse cx="20.6" cy="27.8" rx="2.2" ry="1.3" fill="#ff6a3d" opacity=".45"/><ellipse cx="34" cy="27.4" rx="1.8" ry="1.2" fill="#ff6a3d" opacity=".45"/>
+                  <path d="M24.4 28.6 Q27.4 31.6 30.6 28.4" fill="none" stroke="#18181a" stroke-width="1.2" stroke-linecap="round"/>
+                </g>
+                <g class="arm-f"><rect x="29.6" y="39.6" width="5.8" height="12.4" rx="2.9" fill="#2b1d55"/><circle cx="32.5" cy="53" r="2.6" fill="#e0aa86"/></g>
               </g>
             </svg>
           </div>
