@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 400" width="1040" height="400">
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2a63"/><stop offset="1" stop-color="#5b3b78"/></linearGradient>
+    <radialGradient id="lamp" cx=".5" cy=".3" r=".6"><stop offset="0" stop-color="#ffd27a" stop-opacity=".55"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1040" height="400" fill="url(#wall)"/>
+  <rect width="1040" height="400" fill="url(#lamp)"/>
+  <!-- string lights -->
+  <path d="M0 40 Q260 90 520 46 Q780 90 1040 40" fill="none" stroke="#1d1640" stroke-width="2"/>
+  <g fill="#ffd27a"><circle cx="90" cy="56" r="6"/><circle cx="200" cy="68" r="6"/><circle cx="320" cy="66" r="6"/><circle cx="430" cy="54" r="6"/><circle cx="610" cy="54" r="6"/><circle cx="720" cy="66" r="6"/><circle cx="840" cy="68" r="6"/><circle cx="950" cy="56" r="6"/></g>
+  <!-- arched doorway -->
+  <path d="M80 400 V230 A70 70 0 0 1 220 230 V400 Z" fill="#2b1d55"/>
+  <path d="M820 400 V230 A70 70 0 0 1 960 230 V400 Z" fill="#2b1d55"/>
+  <!-- table top -->
+  <path d="M240 300 L800 300 L840 400 L200 400 Z" fill="#c9643d"/>
+  <path d="M240 300 L800 300 L804 312 L236 312 Z" fill="#e2875c"/>
+  <!-- notebook with a sketched flow -->
+  <g transform="translate(330 214) rotate(-6)">
+    <rect width="250" height="150" rx="8" fill="#fff8ee"/>
+    <rect x="124" width="2" height="150" fill="#e3c49e"/>
+    <g fill="none" stroke="#4f56d6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="18" y="20" width="44" height="30" rx="4"/><rect x="18" y="86" width="44" height="30" rx="4"/>
+      <path d="M40 52 V84"/><path d="M34 76 L40 84 L46 76"/>
+      <rect x="146" y="20" width="84" height="50" rx="5"/><path d="M156 34 H210 M156 46 H196"/>
+      <rect x="146" y="88" width="38" height="16" rx="8" stroke="#ff6a3d"/>
+    </g>
+    <path d="M66 36 C96 30 116 40 140 44" fill="none" stroke="#ff6a3d" stroke-width="2.4" stroke-dasharray="4 6" stroke-linecap="round"/>
+  </g>
+  <!-- pencil -->
+  <g transform="translate(600 300) rotate(-28)"><rect width="120" height="12" rx="3" fill="#ffb347"/><path d="M120 0 L138 6 L120 12 Z" fill="#f4dfc3"/><path d="M132 4 L138 6 L132 8 Z" fill="#18181a"/><rect width="14" height="12" rx="3" fill="#ff6a3d"/></g>
+  <!-- espresso cup on a saucer -->
+  <g transform="translate(700 250)">
+    <ellipse cx="0" cy="44" rx="62" ry="13" fill="#fff8ee"/>
+    <ellipse cx="0" cy="42" rx="40" ry="7" fill="#e3c49e"/>
+    <path d="M-36 -10 H36 L30 30 Q28 40 0 40 Q-28 40 -30 30 Z" fill="#fff"/>
+    <path d="M36 -2 Q58 -2 56 14 Q54 28 32 24" fill="none" stroke="#fff" stroke-width="7"/>
+    <ellipse cx="0" cy="-10" rx="36" ry="7" fill="#5b3a29"/>
+    <ellipse cx="-4" cy="-11" rx="20" ry="3.5" fill="#c9915e"/>
+    <g fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="4" stroke-linecap="round">
+      <path d="M-10 -24 C-18 -38 -2 -48 -10 -64"/><path d="M10 -24 C2 -38 18 -48 10 -64"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 400" width="1040" height="400">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b1d55"/><stop offset=".6" stop-color="#7a4b9a"/><stop offset="1" stop-color="#ff9a6b"/></linearGradient>
+    <linearGradient id="nile" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3c4fb8"/><stop offset="1" stop-color="#1d2f63"/></linearGradient>
+  </defs>
+  <rect width="1040" height="400" fill="url(#sky)"/>
+  <circle cx="300" cy="250" r="70" fill="#ffd27a" opacity=".9"/>
+  <!-- far bank -->
+  <g fill="#3b2d5e"><rect x="560" y="226" width="40" height="44"/><path d="M610 270 V236 A26 26 0 0 1 662 236 V270 Z"/><rect x="633" y="194" width="6" height="22"/><rect x="680" y="214" width="12" height="56"/><path d="M676 214 L686 186 L696 214 Z"/><rect x="710" y="240" width="60" height="30"/><rect x="790" y="230" width="44" height="40"/></g>
+  <path d="M0 270 H1040 V400 H0 Z" fill="url(#nile)"/>
+  <g stroke="#ffd2a8" stroke-opacity=".55" stroke-width="3" stroke-linecap="round"><path d="M240 296 H360"/><path d="M262 316 H340"/><path d="M276 336 H326"/><path d="M60 360 H220"/><path d="M640 330 H820"/><path d="M700 368 H960"/></g>
+  <!-- felucca -->
+  <g transform="translate(470 300)">
+    <path d="M-70 0 L70 0 L52 22 L-52 22 Z" fill="#5b3a29"/>
+    <path d="M0 0 L0 -170 L76 -6 Z" fill="#fff8ee"/>
+    <path d="M-6 -6 L-6 -124 L-62 -6 Z" fill="#ff6a3d"/>
+    <path d="M0 -170 L0 -188 L22 -179 Z" fill="#4f56d6"/>
+  </g>
+  <!-- the cursor saying hi -->
+  <g transform="translate(700 92)">
+    <g stroke="#ff6a3d" stroke-width="7" stroke-linecap="round"><path d="M-14 -6 L-36 -14"/><path d="M-6 -16 L-14 -38"/><path d="M8 -18 L14 -40"/></g>
+    <g transform="translate(0 3)" opacity=".25"><path d="M0 0L18 87L35 48L76 38Z" fill="#000" stroke="#000" stroke-width="24" stroke-linejoin="round"/></g>
+    <path d="M0 0L18 87L35 48L76 38Z" fill="#fff" stroke="#fff" stroke-width="22" stroke-linejoin="round"/>
+    <path d="M0 0L18 87L35 48L76 38Z" fill="#ff6a3d" stroke="#ff6a3d" stroke-width="12" stroke-linejoin="round"/>
+    <rect x="60" y="74" width="132" height="46" rx="14" fill="#ff6a3d"/>
+    <text x="126" y="105" text-anchor="middle" font-family="Bricolage Grotesque, -apple-system, Segoe UI, sans-serif" font-weight="800" font-size="24" fill="#fff">Say hi</text>
+  </g>
+</svg>
