@@ -100,6 +100,11 @@
   .foot .dots { display: flex; gap: 6px; }
   .foot .dots button { width: 8px; height: 8px; border-radius: 50%; background: var(--dot); padding: 0; }
   .foot .dots button.on { background: var(--ink); width: 22px; border-radius: 4px; }
+  /* auto-play: the active dot fills up until the next frame */
+  .foot .dots.auto button.on { position: relative; overflow: hidden; background: var(--dot); }
+  .foot .dots.auto button.on::after { content: ""; position: absolute; inset: 0; background: var(--ink); transform-origin: left; animation: dotfill var(--dur, 6s) linear forwards; }
+  @keyframes dotfill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  #play .i-play { display: none; } #play.paused .i-play { display: block; } #play.paused .i-pause { display: none; }
   .foot .anim { font-family: var(--mono); opacity: 0; transition: opacity .2s; white-space: nowrap; }
   .foot .anim.show { opacity: 1; }
   .foot .anim b { color: var(--hot); font-weight: 500; }
@@ -372,6 +377,7 @@
     <button id="next" aria-label="Next frame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
   </nav>
   <span class="sep"></span><div class="dots" id="dots" role="tablist" aria-label="Frames"></div><span class="sep"></span>
+<button class="ptool" id="play" aria-label="Pause auto-play" aria-pressed="true"><svg class="i-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1.2"/><rect x="14" y="5" width="4" height="14" rx="1.2"/></svg><svg class="i-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg></button>
 <button class="ptool" id="restart" aria-label="Restart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg><span class="lbl">Restart</span></button>
   </div>
   <div></div>
@@ -430,6 +436,36 @@
   next.onclick = () => go(cur + 1);
   document.getElementById("restart").onclick = () => go(0);
   document.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", e => { e.stopPropagation(); go(byId(b.dataset.go)); }));
+
+  // auto-play: frames move on by themselves until the visitor clicks, taps, scrolls or presses a key
+  const playBtn = document.getElementById("play");
+  const DUR = { hello: 5000, about: 6500, work: 7000, experience: 8000, contact: 0 };
+  let autoT = 0, playing = false;
+  function schedule() {
+    clearTimeout(autoT);
+    const ms = DUR[ids[cur]] ?? 6000;
+    dots.classList.remove("auto"); void dots.offsetWidth;
+    if (!playing || !ms || cur >= screens.length - 1) { if (cur >= screens.length - 1) setPlaying(false); return; }
+    dots.style.setProperty("--dur", ms + "ms"); dots.classList.add("auto");
+    autoT = setTimeout(() => { go(cur + 1); schedule(); }, ms);
+  }
+  function setPlaying(on) {
+    playing = on;
+    playBtn.classList.toggle("paused", !on);
+    playBtn.setAttribute("aria-pressed", on);
+    playBtn.setAttribute("aria-label", on ? "Pause auto-play" : "Play frames automatically");
+    if (!on) { clearTimeout(autoT); dots.classList.remove("auto"); }
+  }
+  playBtn.addEventListener("click", e => {
+    e.stopPropagation();
+    if (playing) { setPlaying(false); return; }
+    if (cur >= screens.length - 1) go(0);
+    setPlaying(true); schedule();
+  });
+  const stopAuto = e => { if (playing && !(e && e.target && e.target.closest && e.target.closest("#play"))) setPlaying(false); };
+  ["pointerdown", "keydown", "wheel", "touchstart"].forEach(t => addEventListener(t, stopAuto, { capture: true, passive: true }));
+  if (!location.hash && !matchMedia("(prefers-reduced-motion: reduce)").matches) { setPlaying(true); schedule(); }
+  else setPlaying(false);
 
   addEventListener("keydown", e => {
     if (e.target.closest("input, textarea")) return;
