@@ -87,8 +87,8 @@
     grid-template-columns: 1.15fr 1fr 1fr .95fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas:
-      "hello pos   tt    exp"
-      "about benaa soon  contact"; }
+      "hello tt    benaa exp"
+      "about pos   soon  contact"; }
   .f-hello { grid-area: hello; } .f-pos { grid-area: pos; } .f-tt { grid-area: tt; } .f-exp { grid-area: exp; }
   .f-about { grid-area: about; } .f-soon { grid-area: soon; } .f-benaa { grid-area: benaa; } .f-contact { grid-area: contact; }
 
@@ -246,7 +246,7 @@
     .hint { display: none; }
     .board { position: static; padding: 104px 14px 40px; gap: 46px 16px;
       grid-template-columns: 1fr 1fr; grid-template-rows: none; grid-auto-rows: auto;
-      grid-template-areas: "hello hello" "pos tt" "benaa soon" "exp about" "contact contact"; }
+      grid-template-areas: "hello hello" "tt benaa" "pos soon" "exp about" "contact contact"; }
     .frame-body { min-height: 300px; }
     .proj .frame-body { aspect-ratio: 4 / 3.4; min-height: 0; height: auto; }
     .f-soon .frame-body { aspect-ratio: 4 / 3.4; min-height: 0; height: auto; }
@@ -258,7 +258,7 @@
   @media (max-width: 640px) {
     .brand .role { display: none; }
     .brand img { height: 20px; }
-    .board { grid-template-columns: 1fr; grid-template-areas: "hello" "pos" "tt" "benaa" "soon" "exp" "about" "contact"; }
+    .board { grid-template-columns: 1fr; grid-template-areas: "hello" "tt" "benaa" "pos" "soon" "exp" "about" "contact"; }
     .f-hello h1 { font-size: 44px; }
     .f-about .frame-body { grid-template-columns: 1fr; }
     .photo { aspect-ratio: 4 / 3; }
@@ -294,14 +294,6 @@
     <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
   </section>
 
-  <a class="frame proj f-pos" href="pos-system.html">
-    <div class="frame-label"><span>POS system</span><span class="mono">Case study · Password</span><span class="size">Open ↗</span></div>
-    <div class="frame-body">
-      <div class="shot" style="background-image:url(assets/pos-canvas.webp); view-transition-name: pos-cover"></div>
-      <div class="cap"><div><span class="tag">B2B · PRIMEX POS</span><h3>Design a full POS system</h3></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
-    </div>
-    <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
-  </a>
 
   <a class="frame proj f-tt" href="twentytoo.html">
     <div class="frame-label"><span>TwentyToo</span><span class="mono">Case study</span><span class="size">Open ↗</span></div>
@@ -344,6 +336,15 @@
     <div class="frame-body">
       <div class="shot" style="background-image:url(assets/benaa-canvas.webp); background-position:left center"></div>
       <div class="cap"><div><span class="tag">EDTECH · BENAA</span><h3>From one desktop app to a full learning platform</h3></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
+    </div>
+    <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
+  </a>
+
+  <a class="frame proj f-pos" href="pos-system.html">
+    <div class="frame-label"><span>POS system</span><span class="mono">Case study · Password</span><span class="size">Open ↗</span></div>
+    <div class="frame-body">
+      <div class="shot" style="background-image:url(assets/pos-canvas.webp); view-transition-name: pos-cover"></div>
+      <div class="cap"><div><span class="tag">B2B · PRIMEX POS</span><h3>Design a full POS system</h3></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
     </div>
     <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
   </a>
