@@ -1611,6 +1611,16 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     const ramp = (t, a, b) => Math.max(0, Math.min(1, (t - a) / (b - a)));
     // the sun's path: rises behind the city, arcs over it (clear of the intro text), ends where the moon sits
     const A = [740, 560], C = [960, -100], B = [1430, 150];
+    // keep the sun/moon clear of the header: on wide screens the top of the world is cropped
+    function fitPath() {
+      const k = world.offsetWidth / 1600, cropped = world.offsetHeight - stage.offsetHeight;
+      const head = (document.querySelector(".toolbar")?.getBoundingClientRect().bottom || 64) + 18 + 50 * k; // header + gap + moon radius
+      const minY = (head + Math.max(0, cropped)) / k;
+      const d = Math.max(0, Math.min(320, minY - 150));
+      C[1] = -100 + d; B[1] = 150 + d;
+    }
+    fitPath();
+    addEventListener("resize", () => { fitPath(); scene(T); });
     const at = t => [0, 1].map(i => (1 - t) * (1 - t) * A[i] + 2 * (1 - t) * t * C[i] + t * t * B[i]);
     const tFromX = x => { let lo = 0, hi = 1; for (let i = 0; i < 24; i++) { const m = (lo + hi) / 2; at(m)[0] < x ? lo = m : hi = m; } return (lo + hi) / 2; };
     const steps = [[2014.6, "OMNAS · first websites"], [2016.7, "Spree · UI designer"], [2019.9, "The Tailors Dev"], [2021.3, "Medica Healthy"], [2022.0, "Kuwait Airlines ✈"],
