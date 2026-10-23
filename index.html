@@ -87,8 +87,8 @@
     grid-template-columns: 1.15fr 1fr 1fr .95fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas:
-      "hello tt    benaa exp"
-      "about pos   soon  contact"; }
+      "hello about tt   benaa"
+      "exp   pos   soon contact"; }
   .f-hello { grid-area: hello; } .f-pos { grid-area: pos; } .f-tt { grid-area: tt; } .f-exp { grid-area: exp; }
   .f-about { grid-area: about; } .f-soon { grid-area: soon; } .f-benaa { grid-area: benaa; } .f-contact { grid-area: contact; }
 
@@ -246,7 +246,7 @@
     .hint { display: none; }
     .board { position: static; padding: 104px 14px 40px; gap: 46px 16px;
       grid-template-columns: 1fr 1fr; grid-template-rows: none; grid-auto-rows: auto;
-      grid-template-areas: "hello hello" "tt benaa" "pos soon" "exp about" "contact contact"; }
+      grid-template-areas: "hello hello" "about about" "tt benaa" "pos soon" "exp exp" "contact contact"; }
     .frame-body { min-height: 300px; }
     .proj .frame-body { aspect-ratio: 4 / 3.4; min-height: 0; height: auto; }
     .f-soon .frame-body { aspect-ratio: 4 / 3.4; min-height: 0; height: auto; }
@@ -258,7 +258,7 @@
   @media (max-width: 640px) {
     .brand .role { display: none; }
     .brand img { height: 20px; }
-    .board { grid-template-columns: 1fr; grid-template-areas: "hello" "tt" "benaa" "pos" "soon" "exp" "about" "contact"; }
+    .board { grid-template-columns: 1fr; grid-template-areas: "hello" "about" "tt" "benaa" "pos" "soon" "exp" "contact"; }
     .f-hello h1 { font-size: 44px; }
     .f-about .frame-body { grid-template-columns: 1fr; }
     .photo { aspect-ratio: 4 / 3; }
@@ -294,6 +294,19 @@
     <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
   </section>
 
+  <section class="frame f-about" tabindex="0" role="button" data-open="about" aria-label="Open about">
+    <div class="frame-label"><span>About</span><span class="size">Open ↗</span></div>
+    <div class="frame-body">
+      <div class="photo"><img src="assets/me.png" alt="Yehia Mourad" onerror="this.remove()">YM</div>
+      <div class="about-text">
+        <h2>8+ years in product design<span>.</span></h2>
+        <p data-drop="1">The last 5 on complex B2B. I lead from discovery to handoff and build design systems.</p>
+        <div class="note"><span class="dot">Y</span><p>My best work is the stuff nobody notices. Terrible for a portfolio. Great for the people using it.</p></div>
+      </div>
+    </div>
+    <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
+  </section>
+
 
   <a class="frame proj f-tt" href="twentytoo.html">
     <div class="frame-label"><span>TwentyToo</span><span class="mono">Case study</span><span class="size">Open ↗</span></div>
@@ -318,18 +331,6 @@
     <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
   </section>
 
-  <section class="frame f-about" tabindex="0" role="button" data-open="about" aria-label="Open about">
-    <div class="frame-label"><span>About</span><span class="size">Open ↗</span></div>
-    <div class="frame-body">
-      <div class="photo"><img src="assets/me.png" alt="Yehia Mourad" onerror="this.remove()">YM</div>
-      <div class="about-text">
-        <h2>8+ years in product design<span>.</span></h2>
-        <p data-drop="1">The last 5 on complex B2B. I lead from discovery to handoff and build design systems.</p>
-        <div class="note"><span class="dot">Y</span><p>My best work is the stuff nobody notices. Terrible for a portfolio. Great for the people using it.</p></div>
-      </div>
-    </div>
-    <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
-  </section>
 
   <a class="frame proj f-benaa" href="benaa.html">
     <div class="frame-label"><span>Benaa</span><span class="mono">Case study</span><span class="size">Open ↗</span></div>
