@@ -502,6 +502,8 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
 
 /* phones: About comes right after the scene */
 @media (max-width: 760px) { .paper { display: flex; flex-direction: column; } .paper > .wrap, .paper > .foot { width: 100%; box-sizing: border-box; } .paper > #about { order: -1; } }
+.sheet .img.portrait { height: 300px; }
+@media (max-width: 760px) { .sheet .img.portrait { height: 240px; } }
 </style>
 </head>
 <body>
@@ -1106,7 +1108,8 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     $("s-list").style.display = p.list ? "" : "none";
     const img = $("s-img");
     img.style.backgroundImage = p.img ? `url(${p.img})${p.grad ? ", " + p.grad : ""}` : p.grad;
-    img.style.backgroundPosition = key === "about" ? "center 20%" : "center";
+    img.style.backgroundPosition = key === "about" ? "center 39%" : "center";
+    img.classList.toggle("portrait", key === "about");
     let row = "";
     if (p.cta) row += `<a class="btn solid" href="${p.cta[1]}">${p.cta[0]} →</a>`;
     if (p.soon) row += `<span class="btn ghost">${p.kicker.startsWith("Visual") ? "Visuals" : "Case study"} coming soon</span>`;
