@@ -87,10 +87,10 @@
     grid-template-columns: 1.15fr 1fr 1fr .95fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas:
-      "hello tt    benaa exp"
-      "about pos   soon  contact"; }
-  .f-hello { grid-area: hello; } .f-pos { grid-area: pos; } .f-tt { grid-area: tt; } .f-exp { grid-area: exp; }
-  .f-about { grid-area: about; } .f-soon { grid-area: soon; } .f-benaa { grid-area: benaa; } .f-contact { grid-area: contact; }
+      "hello benaa pleny exp"
+      "about tt    pos   contact"; }
+  .f-hello { grid-area: hello; } .f-pos { grid-area: pos; } .f-tt { grid-area: tt; } .f-exp { grid-area: exp; } .f-pleny { grid-area: pleny; }
+  .f-about { grid-area: about; } .f-benaa { grid-area: benaa; } .f-contact { grid-area: contact; }
 
   /* ---------- Frames (Figma-style) ---------- */
   .frame { position: relative; min-width: 0; min-height: 0; cursor: pointer; display: block; }
@@ -131,17 +131,10 @@
   .go svg { width: 15px; height: 15px; }
   .proj:hover .go { transform: translate(2px, -2px); }
 
-  /* coming soon */
-  .f-soon { cursor: default; }
-  .f-soon .frame-body { background: var(--panel);
-    padding: 10px; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 8px; }
-  .f-soon::after, .f-soon .h { display: none; }
-  .mini { border-radius: 4px; position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 9px; color: #fff; cursor: pointer; border: 0; text-align: left; box-shadow: var(--shadow); }
-  .mini b { font-size: 13.5px; font-weight: 600; line-height: 1.15; }
-  .mini small { position: absolute; top: 8px; right: 8px; font-family: var(--mono); font-size: 9.5px; padding: 2px 6px; border-radius: 999px; background: rgba(255,255,255,.22); }
-  .mini i { position: absolute; left: 50%; top: 42%; transform: translate(-50%, -50%); width: 40%; aspect-ratio: 9/16; border-radius: 8px; background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.3); }
-  .mini i.wide { width: 62%; aspect-ratio: 16/10; }
-  .mini:hover { filter: brightness(1.06); }
+  /* in progress chips */
+  .wip { margin-top: 1.4vh; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
+  .wip button { font: inherit; font-size: 12px; padding: 4px 10px; border-radius: 999px; border: 1px dashed var(--line); background: transparent; color: var(--ink); cursor: pointer; }
+  .wip button:hover { border-color: var(--accent); color: var(--accent); }
 
   /* experience */
   .f-exp .frame-body { padding: clamp(14px, 2.2vh, 20px) clamp(14px, 1.4vw, 20px); display: flex; flex-direction: column; }
@@ -246,10 +239,9 @@
     .hint { display: none; }
     .board { position: static; padding: 104px 14px 40px; gap: 46px 16px;
       grid-template-columns: 1fr 1fr; grid-template-rows: none; grid-auto-rows: auto;
-      grid-template-areas: "hello hello" "about about" "tt benaa" "pos soon" "exp exp" "contact contact"; }
+      grid-template-areas: "hello hello" "about about" "benaa pleny" "tt pos" "exp exp" "contact contact"; }
     .frame-body { min-height: 300px; }
     .proj .frame-body { aspect-ratio: 4 / 3.4; min-height: 0; height: auto; }
-    .f-soon .frame-body { aspect-ratio: 4 / 3.4; min-height: 0; height: auto; }
     .f-hello .frame-body { padding: 30px 26px; }
     .f-hello h1 { font-size: 52px; margin-top: 30px; }
     .f-hello p { font-size: 16px; }
@@ -258,7 +250,7 @@
   @media (max-width: 640px) {
     .brand .role { display: none; }
     .brand img { height: 20px; }
-    .board { grid-template-columns: 1fr; grid-template-areas: "hello" "about" "tt" "benaa" "pos" "soon" "exp" "contact"; }
+    .board { grid-template-columns: 1fr; grid-template-areas: "hello" "about" "benaa" "pleny" "tt" "pos" "exp" "contact"; }
     .f-hello h1 { font-size: 44px; }
     .f-about .frame-body { grid-template-columns: 1fr; }
     .photo { aspect-ratio: 4 / 3; }
@@ -290,6 +282,7 @@
       <h1>Hi, I'm Yehia. <em>Product designer.</em></h1>
       <p>I design B2B and AI products at the point where two things meet: what the system can do, and what people actually need.</p>
       <div class="meta"><span class="pill live">Open to new roles</span><span class="pill" data-drop="2">Cairo · GMT+3</span><span class="pill" data-drop="1">8+ years</span></div>
+      <div class="wip" data-drop="0"><span>Coming soon</span><button data-soon="Fahs">Fahs</button><button data-soon="Reach Link">Reach Link</button><button data-soon="Muzain">Muzain</button></div>
     </div>
     <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
   </section>
@@ -308,11 +301,38 @@
   </section>
 
 
+  <a class="frame proj f-benaa" href="benaa.html">
+    <div class="frame-label"><span>Benaa</span><span class="mono">Case study</span><span class="size">Open ↗</span></div>
+    <div class="frame-body">
+      <div class="shot" style="background-image:url(assets/benaa-canvas.webp); background-position:left center"></div>
+      <div class="cap"><div><span class="tag">EDTECH · BENAA</span><h3>From one desktop app to a full learning platform</h3></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
+    </div>
+    <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
+  </a>
+
+  <a class="frame proj f-pleny" href="pleny.html">
+    <div class="frame-label"><span>Pleny</span><span class="mono">Case study</span><span class="size">Open ↗</span></div>
+    <div class="frame-body">
+      <div class="shot" style="background-image:url(assets/pleny-canvas.webp)"></div>
+      <div class="cap"><div><span class="tag">DESIGN SYSTEM · PLENY</span><h3>Rebuilding a food app's design system</h3></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
+    </div>
+    <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
+  </a>
+
   <a class="frame proj f-tt" href="twentytoo.html">
     <div class="frame-label"><span>TwentyToo</span><span class="mono">Case study</span><span class="size">Open ↗</span></div>
     <div class="frame-body">
       <div class="shot" style="background-image:url(assets/twentytoo-cover.webp); background-position:left center"></div>
       <div class="cap"><div><span class="tag">AI-SAAS · TWENTYTOO</span><h3>Designing trust into an AI platform</h3></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
+    </div>
+    <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
+  </a>
+
+  <a class="frame proj f-pos" href="pos-system.html">
+    <div class="frame-label"><span>POS system</span><span class="mono">Case study · Password</span><span class="size">Open ↗</span></div>
+    <div class="frame-body">
+      <div class="shot" style="background-image:url(assets/pos-canvas.webp); view-transition-name: pos-cover"></div>
+      <div class="cap"><div><span class="tag">B2B · PRIMEX POS</span><h3>Design a full POS system</h3></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
     </div>
     <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
   </a>
@@ -331,34 +351,6 @@
     <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
   </section>
 
-
-  <a class="frame proj f-benaa" href="benaa.html">
-    <div class="frame-label"><span>Benaa</span><span class="mono">Case study</span><span class="size">Open ↗</span></div>
-    <div class="frame-body">
-      <div class="shot" style="background-image:url(assets/benaa-canvas.webp); background-position:left center"></div>
-      <div class="cap"><div><span class="tag">EDTECH · BENAA</span><h3>From one desktop app to a full learning platform</h3></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
-    </div>
-    <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
-  </a>
-
-  <a class="frame proj f-pos" href="pos-system.html">
-    <div class="frame-label"><span>POS system</span><span class="mono">Case study · Password</span><span class="size">Open ↗</span></div>
-    <div class="frame-body">
-      <div class="shot" style="background-image:url(assets/pos-canvas.webp); view-transition-name: pos-cover"></div>
-      <div class="cap"><div><span class="tag">B2B · PRIMEX POS</span><h3>Design a full POS system</h3></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
-    </div>
-    <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
-  </a>
-
-  <section class="frame f-soon">
-    <div class="frame-label"><span>More case studies</span><span class="mono">1 live · 3 soon</span></div>
-    <div class="frame-body">
-      <a class="mini" href="pleny.html" style="background:url(assets/pleny-canvas.webp) center / cover"><small style="background:rgba(10,10,40,.6)">Case study</small><b>Pleny</b></a>
-      <button class="mini" style="background:linear-gradient(140deg,#2b1d55,#4f56d6)" data-soon="Fahs"><i></i><small>Soon</small><b>Fahs</b></button>
-      <button class="mini" style="background:linear-gradient(140deg,#ff6a3d,#ff9a6b)" data-soon="Reach Link"><i class="wide"></i><small>Soon</small><b>Reach Link</b></button>
-      <button class="mini" style="background:linear-gradient(140deg,#4f56d6,#9b5de5)" data-soon="Muzain"><i></i><small>Soon</small><b>Muzain</b></button>
-    </div>
-  </section>
 
   <section class="frame f-contact" id="contact">
     <div class="frame-label"><span>Contact</span></div>
