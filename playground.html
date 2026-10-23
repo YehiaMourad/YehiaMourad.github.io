@@ -233,7 +233,7 @@ svg * { transition: fill .8s ease, stop-color .8s ease, opacity .8s ease; }
 @keyframes wfx { 0% { opacity: 0; transform: translate(-50%, -50%) scale(.4); } 20% { opacity: 1; transform: translate(-50%, -80%) scale(1.15); } 100% { opacity: 0; transform: translate(-50%, -260%); } }
 .wfx.lift { width: calc(12 / 1600 * 100%); aspect-ratio: 3 / 4; border-radius: 3px; background: #ffd27a; box-shadow: 0 0 14px 4px rgba(255,210,122,.8); transform: translate(-50%, -50%); animation: none; }
 #felucca { transition: transform 2s ease-in-out; }
-#felucca.sail { transform: translateX(160px); }
+#felucca.sail { transform: translateX(40px); }
 @media (prefers-reduced-motion: reduce) { #felucca { transition: none; } }
 @keyframes stride { from { transform: rotate(-24deg); } to { transform: rotate(24deg); } }
 @keyframes hop { from { transform: translateY(0); } to { transform: translateY(-1.5px); } }
@@ -702,8 +702,8 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           <!-- drifting feluccas -->
           <g class="boat" style="animation-duration:90s;animation-delay:-20s"><g transform="translate(0 652)"><path d="M-26 0 L26 0 L18 9 L-18 9 Z" fill="#5b3a29"/><path d="M0 0 L0 -54 L24 -2 Z" fill="#fff8ee"/><path d="M-2 -2 L-2 -40 L-20 -2 Z" fill="#ffe6d6"/></g></g>
           <g class="boat" style="animation-duration:120s;animation-delay:-75s"><g transform="translate(0 700) scale(.8)"><path d="M-26 0 L26 0 L18 9 L-18 9 Z" fill="#5b3a29"/><path d="M0 0 L0 -54 L24 -2 Z" fill="#fff8ee"/></g></g>
-          <!-- the contact felucca (bobs in place) -->
-          <g class="sail-in" data-year="2026.75"><g id="felucca"><g transform="translate(560 690)"><g class="bob"><path d="M-40 0 L40 0 L28 14 L-28 14 Z" fill="#5b3a29"/><path d="M0 0 L0 -86 L40 -4 Z" fill="#fff8ee"/><path d="M-3 -4 L-3 -62 L-30 -4 Z" fill="#ff6a3d"/><path d="M0 -86 L0 -98 L14 -92 Z" fill="#4f56d6"/></g></g></g></g>
+          <!-- the contact felucca (bobs in place, in open water past TwentyToo) -->
+          <g class="sail-in" data-year="2026.75"><g id="felucca"><g transform="translate(1355 690)"><g class="bob"><path d="M-40 0 L40 0 L28 14 L-28 14 Z" fill="#5b3a29"/><path d="M0 0 L0 -86 L40 -4 Z" fill="#fff8ee"/><path d="M-3 -4 L-3 -62 L-30 -4 Z" fill="#ff6a3d"/><path d="M0 -86 L0 -98 L14 -92 Z" fill="#4f56d6"/></g></g></g></g>
 
           </g>
           </g>
@@ -876,7 +876,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           <button class="chip" data-place="journey"><span class="lg" style="background:#18181a">✈</span>My journey<span class="yr">EG · KW · UAE · JO</span></button></div>
         <div class="pin" id="pin-me" data-depth="0.5" style="--x:1063; --y:360"><span class="stem"></span><span class="dot"></span>
           <button class="chip left" data-place="about"><span class="lg"><img src="assets/me.png" alt="" onerror="this.parentElement.textContent='Y';this.parentElement.style.background='#2b1d55'"></span>That's me 👋</button></div>
-        <div class="pin" data-year="2026.75" data-depth="0.6" style="--x:560; --y:600"><span class="stem"></span><span class="dot"></span>
+        <div class="pin" data-year="2026.75" data-depth="0.6" style="--x:1355; --y:600"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="contact"><span class="lg" style="background:#ff6a3d">✉</span>Say hi</button></div>
         <div class="pin" data-depth="0.9" style="--x:660; --y:750"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="ahwa"><span class="lg" style="background:#4f56d6">☕</span>The ahwa<span class="yr">How I start</span></button></div>
@@ -1203,7 +1203,6 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
   const spots = [
     { k: "muzain", x: 114, door: 152, name: "Muzain", verb: "Step into the salon" },
     { k: "pos", x: 390, door: 360, name: "Primex POS", verb: "Enter the market" },
-    { k: "contact", x: 548, door: 530, name: "Say hi", verb: "Board the felucca" },
     { k: "ahwa", x: 640, door: 619, name: "The ahwa", verb: "Sit at the ahwa" },
     { k: "reach", x: 860, door: 860, name: "Reach Link", verb: "Read the billboard" },
     { k: "journey", x: 950, door: 950, name: "My journey", verb: "Wave at the plane" },
@@ -1211,6 +1210,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     { k: "about", x: 1092, door: 1080, name: "That's me", verb: "Climb Cairo Tower" },
     { k: "pleny", x: 1172, door: 1162, name: "Pleny", verb: "Grab a bite" },
     { k: "twentytoo", x: 1255, door: 1250, name: "TwentyToo", verb: "Enter the AI tower" },
+    { k: "contact", x: 1345, door: 1335, name: "Say hi", verb: "Board the felucca" },
     { k: "benaa", x: 1500, door: 1500, climb: 318, name: "Benaa", verb: "Climb the crane" }
   ];
   const KEY = "playground-stamps", SPEED = 280, REACH = 46;
@@ -1403,13 +1403,13 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     },
     contact: async () => {
       const boat = $("felucca");
-      await hop(536, 690, .85);
+      await hop(1331, 690, .85);
       boat.classList.add("sail");
-      await tween(2000, k => setPos(536 + 168 * ease(k)));
+      await tween(2000, k => setPos(1331 + 40 * ease(k)));
       undo = async () => {
         boat.classList.remove("sail");
-        await tween(2000, k => setPos(704 - 168 * ease(k)));
-        await hop(530, STREET, 1);
+        await tween(2000, k => setPos(1371 - 40 * ease(k)));
+        await hop(1335, STREET, 1);
       };
     },
     ahwa: async () => {
