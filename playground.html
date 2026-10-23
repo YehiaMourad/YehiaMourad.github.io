@@ -233,7 +233,7 @@ svg * { transition: fill .8s ease, stop-color .8s ease, opacity .8s ease; }
 @keyframes wfx { 0% { opacity: 0; transform: translate(-50%, -50%) scale(.4); } 20% { opacity: 1; transform: translate(-50%, -80%) scale(1.15); } 100% { opacity: 0; transform: translate(-50%, -260%); } }
 .wfx.lift { width: calc(12 / 1600 * 100%); aspect-ratio: 3 / 4; border-radius: 3px; background: #ffd27a; box-shadow: 0 0 14px 4px rgba(255,210,122,.8); transform: translate(-50%, -50%); animation: none; }
 #felucca { transition: transform 2s ease-in-out; }
-#felucca.sail { transform: translateX(40px); }
+#felucca.sail { transform: translateX(15px); }
 @media (prefers-reduced-motion: reduce) { #felucca { transition: none; } }
 @keyframes stride { from { transform: rotate(-24deg); } to { transform: rotate(24deg); } }
 @keyframes hop { from { transform: translateY(0); } to { transform: translateY(-1.5px); } }
@@ -584,7 +584,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           </g>
           <g class="layer" data-depth="0.2">
           <!-- plane: Kuwait Airlines -->
-          <g class="fly-in" data-year="2022.0"><g transform="translate(900 250)">
+          <g class="fly-in" data-year="2022.0"><g transform="translate(950 250)">
             <path d="M-260 14 C-180 10 -100 6 -30 4" stroke="#fff" stroke-opacity=".55" stroke-width="5" stroke-linecap="round" fill="none" stroke-dasharray="2 14"/>
             <g class="plane">
               <path d="M-40 0 C-20 -8 40 -8 62 -3 C72 0 72 6 62 8 C40 12 -20 12 -40 6 Z" fill="#fff"/>
@@ -661,7 +661,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           </g></g>
 
           <!-- Cairo Tower: About (a lotus: slender lattice shaft, flared crown, round decks, mast) -->
-          <g>
+          <g transform="translate(50 0)">
             <!-- shaft: wider at the base, slim waist, opening up again under the crown -->
             <path d="M1058 622 C1062 520 1066 470 1066 430 C1066 380 1062 330 1062 292 L1098 292 C1098 330 1094 380 1094 430 C1094 470 1098 520 1102 622 Z" fill="var(--tower)"/>
             <path d="M1058 622 C1062 520 1066 470 1066 430 C1066 380 1062 330 1062 292 L1098 292 C1098 330 1094 380 1094 430 C1094 470 1098 520 1102 622 Z" fill="url(#lattice2)"/>
@@ -702,8 +702,8 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           <!-- drifting feluccas -->
           <g class="boat" style="animation-duration:90s;animation-delay:-20s"><g transform="translate(0 652)"><path d="M-26 0 L26 0 L18 9 L-18 9 Z" fill="#5b3a29"/><path d="M0 0 L0 -54 L24 -2 Z" fill="#fff8ee"/><path d="M-2 -2 L-2 -40 L-20 -2 Z" fill="#ffe6d6"/></g></g>
           <g class="boat" style="animation-duration:120s;animation-delay:-75s"><g transform="translate(0 700) scale(.8)"><path d="M-26 0 L26 0 L18 9 L-18 9 Z" fill="#5b3a29"/><path d="M0 0 L0 -54 L24 -2 Z" fill="#fff8ee"/></g></g>
-          <!-- the contact felucca (bobs in place, in open water past TwentyToo) -->
-          <g class="sail-in" data-year="2026.75"><g id="felucca"><g transform="translate(1355 690)"><g class="bob"><path d="M-40 0 L40 0 L28 14 L-28 14 Z" fill="#5b3a29"/><path d="M0 0 L0 -86 L40 -4 Z" fill="#fff8ee"/><path d="M-3 -4 L-3 -62 L-30 -4 Z" fill="#ff6a3d"/><path d="M0 -86 L0 -98 L14 -92 Z" fill="#4f56d6"/></g></g></g></g>
+          <!-- the contact felucca (bobs in place, in open water past the salon) -->
+          <g class="sail-in" data-year="2026.75"><g id="felucca"><g transform="translate(738 690)"><g class="bob"><path d="M-40 0 L40 0 L28 14 L-28 14 Z" fill="#5b3a29"/><path d="M0 0 L0 -86 L40 -4 Z" fill="#fff8ee"/><path d="M-3 -4 L-3 -62 L-30 -4 Z" fill="#ff6a3d"/><path d="M0 -86 L0 -98 L14 -92 Z" fill="#4f56d6"/></g></g></g></g>
 
           </g>
           </g>
@@ -724,12 +724,12 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           </g></g>
           <!-- contact shadows: ground the buildings -->
           <g fill="url(#shadow)">
-            <ellipse cx="390" cy="770" rx="175" ry="12" class="grow" data-year="2024.5"/><ellipse cx="114" cy="772" rx="110" ry="10" class="grow" data-year="2026.6"/><ellipse cx="860" cy="772" rx="90" ry="8" class="grow" data-year="2023.0"/>
-            <ellipse cx="1250" cy="772" rx="105" ry="12" class="grow" data-year="2023.9"/><ellipse cx="1052" cy="772" rx="70" ry="9" class="grow" data-year="2026.6"/><ellipse cx="1187" cy="878" rx="100" ry="10" class="grow" data-year="2026.3"/>
-            <ellipse cx="668" cy="792" rx="70" ry="8"/><ellipse cx="632" cy="774" rx="34" ry="6"/><ellipse cx="1442" cy="770" rx="40" ry="7"/><ellipse cx="1534" cy="792" rx="30" ry="6"/>
+            <ellipse cx="325" cy="770" rx="175" ry="12" class="grow" data-year="2024.5"/><ellipse cx="584" cy="772" rx="110" ry="10" class="grow" data-year="2026.6"/><ellipse cx="910" cy="772" rx="90" ry="8" class="grow" data-year="2023.0"/>
+            <ellipse cx="1300" cy="772" rx="105" ry="12" class="grow" data-year="2023.9"/><ellipse cx="1102" cy="772" rx="70" ry="9" class="grow" data-year="2026.6"/><ellipse cx="1237" cy="878" rx="100" ry="10" class="grow" data-year="2026.3"/>
+            <ellipse cx="90" cy="792" rx="70" ry="8"/><ellipse cx="54" cy="774" rx="34" ry="6"/><ellipse cx="1442" cy="770" rx="40" ry="7"/><ellipse cx="1534" cy="792" rx="30" ry="6"/>
           </g>
           <!-- POS: market shop -->
-          <g class="grow" data-year="2024.5"><g>
+          <g class="grow" data-year="2024.5"><g transform="translate(-65 0)">
             <rect x="250" y="600" width="280" height="168" fill="var(--wall)"/>
             <rect x="250" y="600" width="280" height="14" fill="var(--wall-d)"/>
             <rect x="486" y="614" width="44" height="154" fill="#000" opacity=".07"/>
@@ -748,7 +748,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           </g></g>
 
           <!-- Reach Link: billboard -->
-          <g class="grow" data-year="2023.0"><g>
+          <g class="grow" data-year="2023.0"><g transform="translate(50 0)">
             <rect x="790" y="660" width="8" height="110" fill="#5b4636"/><rect x="922" y="660" width="8" height="110" fill="#5b4636"/>
             <rect x="760" y="560" width="200" height="110" rx="10" fill="url(#board)"/>
             <rect x="760" y="560" width="200" height="110" rx="10" fill="none" stroke="#fff" stroke-width="4"/>
@@ -759,7 +759,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           </g></g>
 
           <!-- TwentyToo: glass AI tower -->
-          <g class="grow" data-year="2023.9"><g>
+          <g class="grow" data-year="2023.9"><g transform="translate(50 0)">
             <path d="M1180 770 L1180 440 L1250 404 L1320 440 L1320 770 Z" fill="url(#glass)"/>
             <path d="M1250 404 L1320 440 L1320 770 L1250 770 Z" fill="#000" opacity=".14"/>
             <g fill="var(--glass-win)" opacity=".75">
@@ -778,7 +778,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           </g></g>
 
           <!-- Muzain: salon -->
-          <g class="grow" data-year="2026.6"><g>
+          <g class="grow" data-year="2026.6"><g transform="translate(470 0)">
             <rect x="26" y="648" width="176" height="122" fill="var(--wall)"/>
             <rect x="26" y="648" width="176" height="12" fill="var(--wall-d)"/>
             <rect x="172" y="660" width="30" height="110" fill="#000" opacity=".07"/>
@@ -801,13 +801,13 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
 
           <!-- palms -->
           <g>
-            <g transform="translate(640 772) scale(.85)"><path d="M0 0 C-4 -40 0 -86 -10 -122" stroke="var(--trunk)" stroke-width="9" fill="none" stroke-linecap="round"/><g transform="translate(-10 -124)" fill="var(--palm)"><path d="M0 0 C-30 -18 -60 -8 -74 10 C-50 -2 -26 -2 0 4 Z"/><path d="M0 0 C30 -20 62 -10 76 8 C50 -4 26 -2 0 4 Z"/><path d="M0 0 C-36 4 -54 26 -56 42 C-40 22 -24 12 0 4 Z" fill="var(--palm-d)"/><path d="M0 0 C34 2 54 22 58 40 C40 20 24 10 0 4 Z" fill="var(--palm-d)"/></g></g>
+            <g transform="translate(62 772) scale(.85)"><path d="M0 0 C-4 -40 0 -86 -10 -122" stroke="var(--trunk)" stroke-width="9" fill="none" stroke-linecap="round"/><g transform="translate(-10 -124)" fill="var(--palm)"><path d="M0 0 C-30 -18 -60 -8 -74 10 C-50 -2 -26 -2 0 4 Z"/><path d="M0 0 C30 -20 62 -10 76 8 C50 -4 26 -2 0 4 Z"/><path d="M0 0 C-36 4 -54 26 -56 42 C-40 22 -24 12 0 4 Z" fill="var(--palm-d)"/><path d="M0 0 C34 2 54 22 58 40 C40 20 24 10 0 4 Z" fill="var(--palm-d)"/></g></g>
             <g transform="translate(1440 768)"><path d="M0 0 C4 -40 2 -90 14 -130" stroke="var(--trunk)" stroke-width="10" fill="none" stroke-linecap="round"/><g transform="translate(14 -132)" fill="var(--palm)"><path d="M0 0 C-30 -18 -60 -8 -74 10 C-50 -2 -26 -2 0 4 Z"/><path d="M0 0 C30 -20 62 -10 76 8 C50 -4 26 -2 0 4 Z"/><path d="M0 0 C-14 -30 -6 -54 6 -64 C2 -40 6 -22 4 2 Z" fill="var(--palm-d)"/><path d="M0 0 C-36 4 -54 26 -56 42 C-40 22 -24 12 0 4 Z" fill="var(--palm-d)"/><path d="M0 0 C34 2 54 22 58 40 C40 20 24 10 0 4 Z" fill="var(--palm-d)"/></g></g>
             <g transform="translate(1540 790) scale(.7)"><path d="M0 0 C-4 -40 0 -86 -10 -122" stroke="var(--trunk)" stroke-width="9" fill="none" stroke-linecap="round"/><g transform="translate(-10 -124)" fill="var(--palm)"><path d="M0 0 C-30 -18 -60 -8 -74 10 C-50 -2 -26 -2 0 4 Z"/><path d="M0 0 C30 -20 62 -10 76 8 C50 -4 26 -2 0 4 Z"/><path d="M0 0 C-36 4 -54 26 -56 42 C-40 22 -24 12 0 4 Z" fill="var(--palm-d)"/></g></g>
           </g>
 
           <!-- Fahs: inspection kiosk -->
-          <g class="grow" data-year="2026.6"><g>
+          <g class="grow" data-year="2026.6"><g transform="translate(50 0)">
             <rect x="1004" y="690" width="96" height="80" rx="6" fill="#fff8ee"/>
             <path d="M996 690 L1108 690 L1100 672 L1004 672 Z" fill="#2b1d55"/>
             <rect x="1016" y="704" width="72" height="34" rx="4" fill="var(--glass-1)"/>
@@ -819,7 +819,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           </g></g>
 
           <!-- Pleny: food truck -->
-          <g class="grow" data-year="2026.3"><g transform="translate(268 58)">
+          <g class="grow" data-year="2026.3"><g transform="translate(318 58)">
             <rect x="842" y="742" width="132" height="62" rx="10" fill="#fff8ee"/>
             <path d="M944 742 L974 742 Q986 742 990 756 L996 782 L996 804 L944 804 Z" fill="#fff8ee"/>
             <path d="M950 750 L976 750 Q982 750 984 758 L988 774 L950 774 Z" fill="var(--glass-1)"/>
@@ -836,7 +836,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           </g></g>
 
           <!-- the ahwa: a street café, where projects start -->
-          <g transform="translate(668 792)">
+          <g transform="translate(90 792)">
             <path d="M0 -6 V-92" stroke="#5b4636" stroke-width="4" stroke-linecap="round"/>
             <path d="M-58 -78 Q0 -118 58 -78 Z" fill="#4f56d6"/>
             <path d="M-58 -78 Q-29 -70 -19 -78 Q0 -70 19 -78 Q29 -70 58 -78" fill="none" stroke="#fff4e6" stroke-width="5" stroke-linejoin="round"/>
@@ -856,30 +856,30 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
 
         <!-- ======================= PINS ======================= -->
         <!-- case studies -->
-        <div class="pin" data-year="2024.5" data-depth="0.9" style="--x:390; --y:566"><span class="stem"></span><span class="dot"></span>
+        <div class="pin" data-year="2024.5" data-depth="0.9" style="--x:325; --y:566"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="pos"><span class="lg" style="background:#2b1d55">P</span>Primex POS<span class="yr">Case study</span></button></div>
-        <div class="pin" data-year="2023.9" data-depth="0.9" style="--x:1250; --y:352"><span class="stem"></span><span class="dot"></span>
+        <div class="pin" data-year="2023.9" data-depth="0.9" style="--x:1300; --y:352"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="twentytoo"><span class="lg" style="background:#4f56d6">T</span>TwentyToo<span class="yr">Case study</span></button></div>
         <div class="pin" data-year="2025.6" data-depth="0.5" style="--x:1500; --y:256"><span class="stem"></span><span class="dot"></span>
           <button class="chip left" data-place="benaa"><span class="lg" style="background:#ffb347">B</span>Benaa<span class="yr">Case study</span></button></div>
-        <div class="pin" data-year="2026.6" data-depth="0.9" style="--x:1052; --y:622"><span class="stem"></span><span class="dot"></span>
+        <div class="pin" data-year="2026.6" data-depth="0.9" style="--x:1102; --y:622"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="fahs"><span class="lg" style="background:#4f56d6">F</span>Fahs<span class="yr">Mobile</span></button></div>
-        <div class="pin" data-year="2026.3" data-depth="0.9" style="--x:1162; --y:754"><span class="stem"></span><span class="dot"></span>
+        <div class="pin" data-year="2026.3" data-depth="0.9" style="--x:1212; --y:754"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="pleny"><span class="lg" style="background:#ff6a3d">P</span>Pleny<span class="yr">Case study</span></button></div>
         <!-- visual projects -->
-        <div class="pin" data-year="2023.0" data-depth="0.9" style="--x:860; --y:552"><span class="stem"></span><span class="dot"></span>
+        <div class="pin" data-year="2023.0" data-depth="0.9" style="--x:910; --y:552"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="reach"><span class="lg" style="background:#ff6a3d">R</span>Reach Link<span class="yr">Visual</span></button></div>
-        <div class="pin" data-year="2026.6" data-depth="0.9" style="--x:114; --y:630"><span class="stem"></span><span class="dot"></span>
-          <button class="chip right" data-place="muzain"><span class="lg" style="background:#2b1d55">M</span>Muzain<span class="yr">Visual</span></button></div>
+        <div class="pin" data-year="2026.6" data-depth="0.9" style="--x:584; --y:630"><span class="stem"></span><span class="dot"></span>
+          <button class="chip" data-place="muzain"><span class="lg" style="background:#2b1d55">M</span>Muzain<span class="yr">Visual</span></button></div>
         <!-- me -->
-        <div class="pin" data-year="2022.0" data-depth="0.2" style="--x:900; --y:230"><span class="stem"></span><span class="dot"></span>
+        <div class="pin" data-year="2022.0" data-depth="0.2" style="--x:950; --y:230"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="journey"><span class="lg" style="background:#18181a">✈</span>My journey<span class="yr">EG · KW · UAE · JO</span></button></div>
-        <div class="pin" id="pin-me" data-depth="0.5" style="--x:1063; --y:360"><span class="stem"></span><span class="dot"></span>
+        <div class="pin" id="pin-me" data-depth="0.5" style="--x:1113; --y:360"><span class="stem"></span><span class="dot"></span>
           <button class="chip left" data-place="about"><span class="lg"><img src="assets/me.png" alt="" onerror="this.parentElement.textContent='Y';this.parentElement.style.background='#2b1d55'"></span>That's me 👋</button></div>
-        <div class="pin" data-year="2026.75" data-depth="0.6" style="--x:1355; --y:600"><span class="stem"></span><span class="dot"></span>
+        <div class="pin" data-year="2026.75" data-depth="0.6" style="--x:735; --y:600"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="contact"><span class="lg" style="background:#ff6a3d">✉</span>Say hi</button></div>
-        <div class="pin" data-depth="0.9" style="--x:660; --y:750"><span class="stem"></span><span class="dot"></span>
-          <button class="chip" data-place="ahwa"><span class="lg" style="background:#4f56d6">☕</span>The ahwa<span class="yr">How I start</span></button></div>
+        <div class="pin" data-depth="0.9" style="--x:82; --y:750"><span class="stem"></span><span class="dot"></span>
+          <button class="chip right" data-place="ahwa"><span class="lg" style="background:#4f56d6">☕</span>The ahwa<span class="yr">How I start</span></button></div>
 
         <!-- ======================= THE WALKER ======================= -->
         <button class="sun-handle" id="sun-handle" type="button" role="slider" aria-label="Drag the sun through the years" aria-valuemin="2014" aria-valuemax="2026" aria-valuenow="2014"></button>
@@ -1192,25 +1192,25 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
   placePins();
   addEventListener("resize", placePins);
 
-  /* ---------- Phones: start the panorama on the market ---------- */
+  /* ---------- Phones: start the panorama at the ahwa, the first place on the street ---------- */
   if (phone()) {
     const sc = $("scroller");
-    requestAnimationFrame(() => { sc.scrollLeft = world.offsetWidth * (300 / 1600) - 24; });
+    requestAnimationFrame(() => { sc.scrollLeft = 0; });
   }
 
   /* ---------- Game: walk the street, collect a stamp at every place ---------- */
   // x is where you stand on the street (in the 1600-wide world) to open each place; door is where you walk in
   const spots = [
-    { k: "muzain", x: 114, door: 152, name: "Muzain", verb: "Step into the salon" },
-    { k: "pos", x: 390, door: 360, name: "Primex POS", verb: "Enter the market" },
-    { k: "ahwa", x: 640, door: 619, name: "The ahwa", verb: "Sit at the ahwa" },
-    { k: "reach", x: 860, door: 860, name: "Reach Link", verb: "Read the billboard" },
-    { k: "journey", x: 950, door: 950, name: "My journey", verb: "Wave at the plane" },
-    { k: "fahs", x: 1030, door: 1052, name: "Fahs", verb: "Visit the kiosk" },
-    { k: "about", x: 1092, door: 1080, name: "That's me", verb: "Climb Cairo Tower" },
-    { k: "pleny", x: 1172, door: 1162, name: "Pleny", verb: "Grab a bite" },
-    { k: "twentytoo", x: 1255, door: 1250, name: "TwentyToo", verb: "Enter the AI tower" },
-    { k: "contact", x: 1345, door: 1335, name: "Say hi", verb: "Board the felucca" },
+    { k: "ahwa", x: 62, door: 41, name: "The ahwa", verb: "Sit at the ahwa" },
+    { k: "pos", x: 325, door: 295, name: "Primex POS", verb: "Enter the market" },
+    { k: "muzain", x: 584, door: 622, name: "Muzain", verb: "Step into the salon" },
+    { k: "contact", x: 725, door: 712, name: "Say hi", verb: "Board the felucca" },
+    { k: "reach", x: 910, door: 910, name: "Reach Link", verb: "Read the billboard" },
+    { k: "journey", x: 1000, door: 1000, name: "My journey", verb: "Wave at the plane" },
+    { k: "fahs", x: 1080, door: 1102, name: "Fahs", verb: "Visit the kiosk" },
+    { k: "about", x: 1142, door: 1130, name: "That's me", verb: "Climb Cairo Tower" },
+    { k: "pleny", x: 1222, door: 1212, name: "Pleny", verb: "Grab a bite" },
+    { k: "twentytoo", x: 1305, door: 1300, name: "TwentyToo", verb: "Enter the AI tower" },
     { k: "benaa", x: 1500, door: 1500, climb: 318, name: "Benaa", verb: "Climb the crane" }
   ];
   const KEY = "playground-stamps", SPEED = 280, REACH = 46;
@@ -1403,13 +1403,13 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     },
     contact: async () => {
       const boat = $("felucca");
-      await hop(1331, 690, .85);
+      await hop(711, 690, .85);
       boat.classList.add("sail");
-      await tween(2000, k => setPos(1331 + 40 * ease(k)));
+      await tween(2000, k => setPos(711 + 15 * ease(k)));
       undo = async () => {
         boat.classList.remove("sail");
-        await tween(2000, k => setPos(1371 - 40 * ease(k)));
-        await hop(1335, STREET, 1);
+        await tween(2000, k => setPos(726 - 15 * ease(k)));
+        await hop(712, STREET, 1);
       };
     },
     ahwa: async () => {
@@ -1420,13 +1420,13 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     },
     reach: async () => {
       pose("look");
-      ["❤️", "👍", "❤️", "⭐", "💬", "❤️"].forEach((e, i) => setTimeout(() => fx(820 + Math.random() * 80, 590 + Math.random() * 30, e), reduce ? 0 : i * 170));
+      ["❤️", "👍", "❤️", "⭐", "💬", "❤️"].forEach((e, i) => setTimeout(() => fx(870 + Math.random() * 80, 590 + Math.random() * 30, e), reduce ? 0 : i * 170));
       await wait(1400);
       undo = async () => { pose("look", false); await wait(200); };
     },
     journey: async () => {
       pose("look"); pose("wave"); await wait(500);
-      fx(930, 225, "👋"); await wait(900);
+      fx(980, 225, "👋"); await wait(900);
       undo = async () => { pose("wave", false); pose("look", false); await wait(200); };
     },
     fahs: async () => {
@@ -1436,15 +1436,15 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     about: async () => {
       await goIn();
       // ride to the deck, or as high as the screen shows on very wide screens
-      const deck = Math.max(252, Math.min(560, topY() + 70)), lift = fx(1080, 630, "", "lift", 0);
+      const deck = Math.max(252, Math.min(560, topY() + 70)), lift = fx(1130, 630, "", "lift", 0);
       await tween(1300, k => { lift.style.top = (630 - (630 - deck - 6) * ease(k)) / 9 + "%"; });
       lift.remove();
-      pIn.classList.add("no-anim"); setPos(1080, deck, .6);
+      pIn.classList.add("no-anim"); setPos(1130, deck, .6);
       void pIn.offsetWidth; pIn.classList.remove("no-anim", "entering");
       await wait(300); pose("wave"); pop("👋 That's me!"); await wait(1000);
       undo = async () => {
         pose("wave", false); pIn.classList.add("entering"); await wait(450);
-        pIn.classList.add("no-anim"); setPos(1080, STREET, 1);
+        pIn.classList.add("no-anim"); setPos(1130, STREET, 1);
       };
     },
     pleny: async () => {
@@ -1453,7 +1453,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
       pose("eat", false); p.remove();
     },
     twentytoo: async () => {
-      fx(1250, 384, "✨", "", 1200);
+      fx(1300, 384, "✨", "", 1200);
       [[-30, -40], [30, -60], [0, -90], [-40, -80], [40, -30]].forEach(([dx, dy], i) => setTimeout(() => fx(px + dx, STREET + dy, "✨"), reduce ? 0 : i * 140));
       await wait(1000);
     },
