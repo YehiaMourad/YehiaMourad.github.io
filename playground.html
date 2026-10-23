@@ -559,6 +559,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
             <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--glass-1)"/><stop offset="1" style="stop-color:var(--glass-2)"/></linearGradient>
             <linearGradient id="board" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff6a3d"/><stop offset="1" stop-color="#ff9f6b"/></linearGradient>
             <pattern id="awning" width="28" height="40" patternUnits="userSpaceOnUse"><rect width="14" height="40" fill="#ff6a3d"/><rect x="14" width="14" height="40" fill="#fff4e6"/></pattern>
+            <pattern id="lattice2" width="10" height="12" patternUnits="userSpaceOnUse"><path d="M0 0 L10 12 M10 0 L0 12" stroke="var(--tower-d)" stroke-width="1.4" opacity=".75"/></pattern>
             <pattern id="lattice" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0 10 L10 0 M-2 2 L2 -2 M8 12 L12 8" stroke="var(--tower-d)" stroke-width="1.6"/></pattern>
           </defs>
 
@@ -663,16 +664,33 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
             <g class="bob" style="animation-duration:4s"><path d="M1392 302 V410" stroke="#5b4636" stroke-width="2"/><rect x="1376" y="410" width="34" height="18" rx="2" fill="#ff6a3d"/></g>
           </g></g>
 
-          <!-- Cairo Tower: About -->
+          <!-- Cairo Tower: About (a lotus: slender lattice shaft, flared crown, round decks, mast) -->
           <g>
-            <rect x="1062" y="250" width="36" height="372" fill="url(#lattice)"/>
-            <rect x="1062" y="250" width="36" height="372" fill="var(--tower)" opacity=".55"/>
-            <path d="M1058 622 L1102 622 L1110 640 L1050 640 Z" fill="var(--tower-d)"/>
-            <path d="M1046 250 C1046 214 1060 196 1080 186 C1100 196 1114 214 1114 250 Z" fill="var(--tower)"/><path d="M1080 186 C1100 196 1114 214 1114 250 L1080 250 Z" fill="#000" opacity=".1"/>
-            <path d="M1046 250 L1114 250 L1110 262 L1050 262 Z" fill="var(--tower-d)"/>
-            <rect x="1056" y="222" width="48" height="8" fill="var(--tower-d)" opacity=".7"/>
-            <rect x="1078" y="140" width="4" height="48" fill="var(--tower-d)"/>
-            <circle class="beacon" cx="1080" cy="138" r="5" fill="#ff6a3d"/>
+            <!-- shaft: wider at the base, slim waist, opening up again under the crown -->
+            <path d="M1058 622 C1062 520 1066 470 1066 430 C1066 380 1062 330 1062 292 L1098 292 C1098 330 1094 380 1094 430 C1094 470 1098 520 1102 622 Z" fill="var(--tower)"/>
+            <path d="M1058 622 C1062 520 1066 470 1066 430 C1066 380 1062 330 1062 292 L1098 292 C1098 330 1094 380 1094 430 C1094 470 1098 520 1102 622 Z" fill="url(#lattice2)"/>
+            <path d="M1080 292 L1098 292 C1098 330 1094 380 1094 430 C1094 470 1098 520 1102 622 L1080 622 Z" fill="#000" opacity=".12"/>
+            <!-- base -->
+            <path d="M1048 622 L1112 622 L1118 640 L1042 640 Z" fill="var(--tower-d)"/>
+            <rect x="1072" y="606" width="16" height="16" rx="2" fill="var(--tower-d)"/>
+            <!-- lotus crown: petals opening out under the decks -->
+            <path d="M1062 292 L1098 292 L1112 266 L1048 266 Z" fill="var(--tower)"/>
+            <path d="M1062 292 L1048 266 M1070 292 L1062 266 M1080 292 L1080 266 M1090 292 L1098 266 M1098 292 L1112 266" stroke="var(--tower-d)" stroke-width="2"/>
+            <path d="M1080 292 L1098 292 L1112 266 L1080 266 Z" fill="#000" opacity=".1"/>
+            <!-- main round deck with windows -->
+            <rect x="1046" y="236" width="68" height="30" rx="3" fill="var(--tower-d)"/>
+            <g fill="var(--win)" class="lit"><rect x="1052" y="242" width="5" height="16" rx="1"/><rect x="1061" y="242" width="5" height="16" rx="1"/><rect x="1070" y="242" width="5" height="16" rx="1"/><rect x="1079" y="242" width="5" height="16" rx="1"/><rect x="1088" y="242" width="5" height="16" rx="1"/><rect x="1097" y="242" width="5" height="16" rx="1"/><rect x="1106" y="242" width="4" height="16" rx="1"/></g>
+            <path d="M1052 242 V258 M1061 242 V258 M1070 242 V258 M1079 242 V258 M1088 242 V258 M1097 242 V258 M1106 242 V258" stroke="var(--tower)" stroke-width="3" opacity=".55"/>
+            <rect x="1042" y="232" width="76" height="6" rx="2" fill="var(--tower)"/>
+            <!-- upper deck and cap -->
+            <rect x="1056" y="214" width="48" height="18" rx="3" fill="var(--tower-d)"/>
+            <rect x="1052" y="210" width="56" height="5" rx="2" fill="var(--tower)"/>
+            <path d="M1062 210 L1068 198 H1092 L1098 210 Z" fill="var(--tower)"/>
+            <rect x="1080" y="214" width="24" height="18" fill="#000" opacity=".1"/>
+            <!-- mast -->
+            <rect x="1078.5" y="150" width="3" height="48" fill="var(--tower-d)"/>
+            <rect x="1076" y="176" width="8" height="3" rx="1" fill="var(--tower-d)"/>
+            <circle class="beacon" cx="1080" cy="148" r="5" fill="#ff6a3d"/>
           </g>
 
           </g>
