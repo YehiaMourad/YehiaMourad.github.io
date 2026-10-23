@@ -909,10 +909,22 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
 </section>
 
 <!-- ======================= PAPER ======================= -->
-<main class="paper" id="work">
+<main class="paper">
   <svg class="tear" viewBox="0 0 1600 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 L0 22 L40 26 L70 14 L110 24 L150 12 L190 22 L230 16 L270 26 L320 10 L360 22 L410 14 L450 24 L500 12 L540 22 L590 16 L630 26 L680 12 L720 22 L770 14 L810 24 L860 10 L900 22 L950 16 L990 26 L1040 12 L1080 22 L1130 14 L1170 24 L1220 12 L1260 22 L1310 16 L1350 26 L1400 12 L1440 22 L1490 14 L1530 24 L1570 16 L1600 22 L1600 40 Z" fill="var(--paper)"/></svg>
 
-  <div class="wrap sec">
+  <div class="wrap sec" id="about">
+    <div class="eyebrow">About</div>
+    <div class="about">
+      <div class="polaroid"><div class="ph"><img src="assets/me.png" alt="Yehia Mourad" onerror="this.remove()">YM</div><span class="cap hand">Cairo, 2026</span></div>
+      <div class="txt">
+        <p>8+ years in digital product design, 5+ on complex B2B and B2B2C products. <span>I lead from discovery and information architecture through prototyping, design systems and handoff.</span></p>
+        <p>Right now I'm focused on AI-SaaS: <span>turning complex model capabilities into clear workflows, and building design systems that help teams ship faster. Most of my work ships in Arabic and English, so right-to-left is the default.</span></p>
+        <div class="stamps"><span>AI-SaaS UX</span><span>Design systems</span><span>Interaction design</span><span>Product discovery</span><span>Arabic RTL</span><span>Claude + Figma MCP</span><span>Figma</span><span>JIRA</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap sec" id="work">
     <div class="eyebrow">Case studies</div>
     <h2>Places I've built <span class="hand">things for</span></h2>
     <div class="work">
@@ -961,17 +973,6 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     <p class="certs">Google UX Design Foundations · Designing Web & Mobile Interfaces</p>
   </div>
 
-  <div class="wrap sec" id="about">
-    <div class="eyebrow">About</div>
-    <div class="about">
-      <div class="polaroid"><div class="ph"><img src="assets/me.png" alt="Yehia Mourad" onerror="this.remove()">YM</div><span class="cap hand">Cairo, 2026</span></div>
-      <div class="txt">
-        <p>8+ years in digital product design, 5+ on complex B2B and B2B2C products. <span>I lead from discovery and information architecture through prototyping, design systems and handoff.</span></p>
-        <p>Right now I'm focused on AI-SaaS: <span>turning complex model capabilities into clear workflows, and building design systems that help teams ship faster. Most of my work ships in Arabic and English, so right-to-left is the default.</span></p>
-        <div class="stamps"><span>AI-SaaS UX</span><span>Design systems</span><span>Interaction design</span><span>Product discovery</span><span>Arabic RTL</span><span>Claude + Figma MCP</span><span>Figma</span><span>JIRA</span></div>
-      </div>
-    </div>
-  </div>
 
   <div class="wrap contact" id="contact">
     <div class="eyebrow">Contact</div>
@@ -988,9 +989,9 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
 <!-- bottom nav -->
 <nav class="nav" aria-label="Main">
   <a class="on" href="#top"><img src="assets/me.png" alt="" onerror="this.remove()">Home</a>
+  <a class="hide-sm" href="#about">About</a>
   <a href="#work">Work</a>
   <a class="hide-sm" href="#journey">Journey</a>
-  <a class="hide-sm" href="#about">About</a>
   <a href="#contact">Contact</a>
   <a class="cta" href="assets/Yehia-Mourad-Resume.pdf" target="_blank">Resume ↗</a>
 </nav>
@@ -1128,7 +1129,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
   const phone = () => matchMedia("(max-width: 760px)").matches;
   function onScroll() {
     const navLinks = document.querySelectorAll(".nav a:not(.cta)");
-    const sections = ["top", "work", "journey", "about", "contact"].map(id => document.getElementById(id));
+    const sections = ["top", "about", "work", "journey", "contact"].map(id => document.getElementById(id));
     let cur = 0; sections.forEach((s, i) => { if (s.getBoundingClientRect().top < innerHeight * .45) cur = i; });
     navLinks.forEach((a, i) => a.classList.toggle("on", i === cur));
     document.body.classList.toggle("past", scrollY > innerHeight * .4);
