@@ -353,3 +353,43 @@ body:not([data-mode="tldr"]) .tldr { display: none; }
   .layers3 .arr::after { inset-inline-end: auto; left: -4px; top: auto; bottom: -1px; border: 5px solid transparent; border-top: 7px solid var(--muted); border-bottom: 0; }
 }
 .wide.narrow .shot-img { max-width: 560px; margin: 0 auto; }
+
+/* ---------- Gallery: a short, captioned story of screens (case.js builds the controls) ----------
+   <section class="gallery" aria-label="..."><span class="num">At a glance</span><h2>...</h2>
+     <figure data-title="Short title"><img src="..." alt="..."><figcaption>One line on what it proves.</figcaption></figure>
+   </section>
+   Optional on a figure: data-fit="cover" (fill the frame) or data-fit="top" (fill, anchored to the top). */
+.gallery { width: min(880px, calc(100vw - 32px)); margin: 56px 0 0 50% !important; transform: translateX(-50%); outline: none; }
+.gallery > .num, .gallery > h2 { display: block; max-width: 640px; margin-inline: auto; }
+.g-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; border-radius: 24px; box-shadow: var(--shadow); background: var(--surface); direction: ltr; overscroll-behavior-x: contain; }
+.g-track::-webkit-scrollbar { display: none; }
+.g-slide { flex: 0 0 100%; scroll-snap-align: center; scroll-snap-stop: always; margin: 0; aspect-ratio: 16 / 10; position: relative; overflow: hidden; }
+.g-slide img { position: absolute; inset: 4%; width: 92%; height: 92%; object-fit: contain; display: block; }
+.g-slide[data-fit] img { inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.g-slide[data-fit="top"] img { object-position: top; }
+.g-slide figcaption { display: none; }
+.g-cap { max-width: 640px; margin: 18px auto 0; min-height: 3.4em; }
+.g-cap h3 { font-size: 17px !important; font-weight: 600; margin: 0 !important; }
+.g-cap p { font-size: 15px !important; line-height: 1.5 !important; color: var(--muted); margin-top: 3px; }
+.g-bar { display: flex; align-items: center; gap: 14px; max-width: 640px; margin: 14px auto 0; }
+.g-count { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; min-width: 3.2em; }
+.g-thumbs { display: flex; gap: 8px; flex: 1; justify-content: center; }
+.g-thumb { width: 64px; aspect-ratio: 16 / 10; padding: 0; border: 2px solid transparent; border-radius: 8px; background: var(--surface); box-shadow: var(--shadow); cursor: pointer; overflow: hidden; opacity: .55; transition: opacity .2s, border-color .2s; }
+.g-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.g-thumb:hover { opacity: .85; }
+.g-thumb[aria-current="true"] { opacity: 1; border-color: var(--accent); }
+.g-arrows { display: flex; gap: 6px; }
+.g-arrow { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; display: grid; place-items: center; transition: opacity .2s; }
+.g-arrow svg { width: 18px; height: 18px; }
+.g-arrow:disabled { opacity: .35; cursor: default; }
+.g-arrow:not(:disabled):hover { border-color: var(--ink); }
+.gallery:focus-visible .g-track, .g-thumb:focus-visible, .g-arrow:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+@media (max-width: 640px) {
+  .g-track { border-radius: 18px; }
+  .g-thumbs { gap: 6px; }
+  .g-thumb { width: 8px; height: 8px; aspect-ratio: auto; border: 0; border-radius: 50%; background: var(--line); box-shadow: none; opacity: 1; }
+  .g-thumb img { display: none; }
+  .g-thumb[aria-current="true"] { width: 22px; border-radius: 999px; background: var(--accent); }
+  .g-arrow { width: 36px; height: 36px; }
+}
+@media (prefers-reduced-motion: reduce) { .g-track { scroll-behavior: auto; } }
