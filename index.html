@@ -84,13 +84,24 @@
   /* ---------- Board: everything on one screen ---------- */
   .board { position: fixed; top: 76px; left: 12px; right: 12px; bottom: 12px; padding: 30px 12px 4px;
     display: grid; gap: 34px 22px;
-    grid-template-columns: 1.15fr 1fr 1fr .95fr;
+    grid-template-columns: 1.15fr 1fr 1fr .42fr .95fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas:
-      "hello benaa pleny exp"
-      "about tt    pos   contact"; }
+      "hello benaa pleny soon exp"
+      "about tt    pos   soon contact"; }
   .f-hello { grid-area: hello; } .f-pos { grid-area: pos; } .f-tt { grid-area: tt; } .f-exp { grid-area: exp; } .f-pleny { grid-area: pleny; }
-  .f-about { grid-area: about; } .f-benaa { grid-area: benaa; } .f-contact { grid-area: contact; }
+  .f-about { grid-area: about; } .f-benaa { grid-area: benaa; } .f-contact { grid-area: contact; } .f-soon { grid-area: soon; }
+
+  /* in progress */
+  .f-soon { cursor: default; }
+  .f-soon .frame-body { background: var(--panel); padding: 10px; display: grid; grid-template-rows: repeat(3, 1fr); gap: 8px; }
+  .f-soon::after, .f-soon .h { display: none; }
+  .mini { border-radius: 4px; position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 9px; color: #fff; cursor: pointer; border: 0; text-align: left; box-shadow: var(--shadow); min-height: 0; }
+  .mini b { font-size: 13.5px; font-weight: 600; line-height: 1.15; }
+  .mini small { position: absolute; top: 8px; right: 8px; font-family: var(--mono); font-size: 9.5px; padding: 2px 6px; border-radius: 999px; background: rgba(255,255,255,.22); }
+  .mini i { position: absolute; left: 50%; top: 44%; transform: translate(-50%, -50%); height: 56%; aspect-ratio: 9/16; border-radius: 8px; background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.3); }
+  .mini i.wide { height: auto; width: 72%; aspect-ratio: 16/10; }
+  .mini:hover { filter: brightness(1.06); }
 
   /* ---------- Frames (Figma-style) ---------- */
   .frame { position: relative; min-width: 0; min-height: 0; cursor: pointer; display: block; }
@@ -132,16 +143,6 @@
   .proj:hover .go { transform: translate(2px, -2px); }
 
   /* in progress chips */
-  .wip { margin: auto 0 clamp(12px, 2vh, 20px); padding-top: 12px; display: grid; gap: 6px; }
-  .wip + .crow { margin-top: 0; }
-  .wip-k { display: flex; justify-content: space-between; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.6); font-weight: 600; }
-  .wip-k i { font-style: normal; letter-spacing: 0; text-transform: none; font-weight: 400; }
-  .wip button { display: flex; align-items: center; gap: 10px; width: 100%; padding: clamp(5px, .8vh, 8px) 10px; border-radius: 10px; border: 1px dashed rgba(255,255,255,.22); background: rgba(255,255,255,.05); color: #fff; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; text-align: left; }
-  .wip button b { width: 22px; height: 22px; border-radius: 6px; flex: none; }
-  .wip button small { margin-left: auto; font-weight: 400; font-size: 12px; color: rgba(255,255,255,.55); }
-  .wip button small::after { content: " · soon"; }
-  .wip button:hover { border-color: rgba(255,255,255,.5); background: rgba(255,255,255,.09); }
-
   /* experience */
   .f-exp .frame-body { padding: clamp(14px, 2.2vh, 20px) clamp(14px, 1.4vw, 20px); display: flex; flex-direction: column; }
   .f-exp h2, .f-about h2 { font-size: clamp(17px, 2.4vh, 22px); font-weight: 700; letter-spacing: -.02em; }
@@ -171,8 +172,8 @@
   .f-contact p { color: rgba(255,255,255,.7); font-size: 13px; margin-top: .8vh; }
   .crow { margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px; }
   .cbtn { height: 34px; padding: 0 12px; border-radius: 9px; border: 1px solid rgba(255,255,255,.3); background: transparent; color: #fff; font-weight: 500; font-size: 13px; cursor: pointer; display: inline-flex; align-items: center; }
-  @media (min-width: 1101px) { .crow { flex-wrap: nowrap; } .cbtn { padding: 0 10px; white-space: nowrap; } .f-contact h2 { font-size: clamp(20px, 3.1vh, 32px); } }
-  @media (min-width: 1101px) and (max-height: 800px) { .f-contact p { display: none; } .wip { padding-top: 6px; gap: 4px; margin-bottom: 10px; } .wip button { padding: 4px 10px; } }
+  @media (min-width: 1101px) { .cbtn { padding: 0 10px; white-space: nowrap; } .f-contact h2 { font-size: clamp(20px, 3.1vh, 32px); } }
+  @media (min-width: 1101px) and (max-height: 800px) { .f-contact p { display: none; } }
   .cbtn.solid { background: #fff; color: var(--deep); border-color: #fff; font-weight: 600; }
   .cbtn:hover { border-color: #fff; }
 
@@ -245,7 +246,9 @@
     .hint { display: none; }
     .board { position: static; padding: 104px 14px 40px; gap: 46px 16px;
       grid-template-columns: 1fr 1fr; grid-template-rows: none; grid-auto-rows: auto;
-      grid-template-areas: "hello hello" "about about" "benaa pleny" "tt pos" "exp exp" "contact contact"; }
+      grid-template-areas: "hello hello" "about about" "benaa pleny" "tt pos" "soon soon" "exp exp" "contact contact"; }
+    .f-soon .frame-body { grid-template-rows: none; grid-template-columns: repeat(3, 1fr); min-height: 0; }
+    .mini { aspect-ratio: 4 / 3.4; }
     .frame-body { min-height: 300px; }
     .proj .frame-body { aspect-ratio: 4 / 3.4; min-height: 0; height: auto; }
     .f-hello .frame-body { padding: 30px 26px; }
@@ -256,7 +259,8 @@
   @media (max-width: 640px) {
     .brand .role { display: none; }
     .brand img { height: 20px; }
-    .board { grid-template-columns: 1fr; grid-template-areas: "hello" "about" "benaa" "pleny" "tt" "pos" "exp" "contact"; }
+    .board { grid-template-columns: 1fr; grid-template-areas: "hello" "about" "benaa" "pleny" "tt" "pos" "soon" "exp" "contact"; }
+    .mini { aspect-ratio: 3 / 4; padding: 8px; } .mini b { font-size: 12.5px; }
     .f-hello h1 { font-size: 44px; }
     .f-about .frame-body { grid-template-columns: 1fr; }
     .photo { aspect-ratio: 4 / 3; }
@@ -357,17 +361,20 @@
   </section>
 
 
+  <section class="frame f-soon">
+    <div class="frame-label"><span>In progress</span><span class="mono">3</span></div>
+    <div class="frame-body">
+      <button class="mini" style="background:linear-gradient(140deg,#2b1d55,#4f56d6)" data-soon="Fahs"><i></i><small>Soon</small><b>Fahs</b></button>
+      <button class="mini" style="background:linear-gradient(140deg,#ff6a3d,#ff9a6b)" data-soon="Reach Link"><i class="wide"></i><small>Soon</small><b>Reach Link</b></button>
+      <button class="mini" style="background:linear-gradient(140deg,#4f56d6,#9b5de5)" data-soon="Muzain"><i></i><small>Soon</small><b>Muzain</b></button>
+    </div>
+  </section>
+
   <section class="frame f-contact" id="contact">
     <div class="frame-label"><span>Contact</span></div>
     <div class="frame-body">
       <h2>Hiring a product designer? Let's talk.</h2>
       <p>Usually reply within a day.</p>
-      <div class="wip">
-        <span class="wip-k">In progress <i>3 case studies</i></span>
-        <button data-soon="Fahs"><b style="background:linear-gradient(140deg,#4f56d6,#9aa2ff)"></b>Fahs<small>Mobile</small></button>
-        <button data-soon="Reach Link"><b style="background:linear-gradient(140deg,#ff6a3d,#ff9a6b)"></b>Reach Link<small>Visual</small></button>
-        <button data-soon="Muzain"><b style="background:linear-gradient(140deg,#9b5de5,#c9a7ff)"></b>Muzain<small>Visual</small></button>
-      </div>
       <div class="crow">
         <button class="cbtn solid" data-copy>Copy email</button>
         <a class="cbtn" href="https://www.linkedin.com/in/yehia-mourad" target="_blank" rel="noopener">LinkedIn</a>
