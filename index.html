@@ -84,16 +84,17 @@
   /* ---------- Board: everything on one screen ---------- */
   .board { position: fixed; top: 76px; left: 12px; right: 12px; bottom: 12px; padding: 30px 12px 4px;
     display: grid; gap: 34px 22px;
-    grid-template-columns: 1.15fr 1fr 1fr .42fr .95fr;
+    grid-template-columns: 1.15fr 1fr 1fr .95fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas:
-      "hello benaa pleny soon exp"
-      "about tt    pos   soon contact"; }
+      "hello benaa pleny exp"
+      "about tt    pos   contact"; }
   .f-hello { grid-area: hello; } .f-pos { grid-area: pos; } .f-tt { grid-area: tt; } .f-exp { grid-area: exp; } .f-pleny { grid-area: pleny; }
   .f-about { grid-area: about; } .f-benaa { grid-area: benaa; } .f-contact { grid-area: contact; } .f-soon { grid-area: soon; }
 
   /* in progress */
   .f-soon { cursor: default; }
+  .frame.f-soon { display: none; } /* phones only */
   .f-soon .frame-body { background: var(--panel); padding: 10px; display: grid; grid-template-rows: repeat(3, 1fr); gap: 8px; }
   .f-soon::after, .f-soon .h { display: none; }
   .mini { border-radius: 4px; position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 9px; color: #fff; cursor: pointer; border: 0; text-align: left; box-shadow: var(--shadow); min-height: 0; }
@@ -172,7 +173,7 @@
   .f-contact p { color: rgba(255,255,255,.7); font-size: 13px; margin-top: .8vh; }
   .crow { margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px; }
   .cbtn { height: 34px; padding: 0 12px; border-radius: 9px; border: 1px solid rgba(255,255,255,.3); background: transparent; color: #fff; font-weight: 500; font-size: 13px; cursor: pointer; display: inline-flex; align-items: center; }
-  @media (min-width: 1101px) { .cbtn { padding: 0 10px; white-space: nowrap; } .f-contact h2 { font-size: clamp(20px, 3.1vh, 32px); } }
+  @media (min-width: 1101px) { .crow { flex-wrap: nowrap; } .cbtn { padding: 0 10px; white-space: nowrap; } .f-contact h2 { font-size: clamp(20px, 3.1vh, 32px); } }
   @media (min-width: 1101px) and (max-height: 800px) { .f-contact p { display: none; } }
   .cbtn.solid { background: #fff; color: var(--deep); border-color: #fff; font-weight: 600; }
   .cbtn:hover { border-color: #fff; }
@@ -246,7 +247,7 @@
     .hint { display: none; }
     .board { position: static; padding: 104px 14px 40px; gap: 46px 16px;
       grid-template-columns: 1fr 1fr; grid-template-rows: none; grid-auto-rows: auto;
-      grid-template-areas: "hello hello" "about about" "benaa pleny" "tt pos" "soon soon" "exp exp" "contact contact"; }
+      grid-template-areas: "hello hello" "about about" "benaa pleny" "tt pos" "exp exp" "contact contact"; }
     .f-soon .frame-body { grid-template-rows: none; grid-template-columns: repeat(3, 1fr); min-height: 0; }
     .mini { aspect-ratio: 4 / 3.4; }
     .frame-body { min-height: 300px; }
@@ -260,6 +261,7 @@
     .brand .role { display: none; }
     .brand img { height: 20px; }
     .board { grid-template-columns: 1fr; grid-template-areas: "hello" "about" "benaa" "pleny" "tt" "pos" "soon" "exp" "contact"; }
+    .frame.f-soon { display: block; }
     .mini { aspect-ratio: 3 / 4; padding: 8px; } .mini b { font-size: 12.5px; }
     .f-hello h1 { font-size: 44px; }
     .f-about .frame-body { grid-template-columns: 1fr; }
