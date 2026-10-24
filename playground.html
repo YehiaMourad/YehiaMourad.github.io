@@ -1360,6 +1360,17 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     if (y != null) { py = y; player.style.setProperty("--py", y.toFixed(1)); }
     if (sc != null) pIn.style.transform = sc === 1 ? "" : `scale(${sc.toFixed(3)})`;
   }
+  // a copy of the walker drawn into the felucca (water layer is scaled 1.05× wide around x 800)
+  function boardBoat(boat, x, sc) {
+    const bob = boat.querySelector(".bob"), src = pIn.querySelector("svg");
+    const w = 46 * unit() * sc / 1.05, h = 72 * unit() * sc, lx = (x - 800) / 1.05 + 800 - 738;
+    const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    g.setAttribute("transform", `translate(${lx.toFixed(1)} 0)${pIn.classList.contains("flip") ? " scale(-1 1)" : ""}`);
+    g.innerHTML = `<svg x="${(-w / 2).toFixed(1)}" y="${(-h + 2).toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}" viewBox="0 0 46 72" overflow="visible">${src.innerHTML}</svg>`;
+    bob.appendChild(g);
+    src.style.visibility = "hidden"; // the choice box and speech bubble stay on the player
+    return g;
+  }
   const pose = (name, on = true) => pIn.classList.toggle(name, on);
   function prop(text, cls) { const s = document.createElement("span"); s.className = "prop " + cls; s.textContent = text; pIn.appendChild(s); return s; }
   // an effect drawn at a spot in the 1600×900 world
@@ -1402,9 +1413,12 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
       // the water layer is drawn 1.05× wide, so the boat moves d / 1.05 to keep pace with him
       const sail = d => { boat.style.transform = `translateX(${(d / 1.05).toFixed(1)}px)`; setPos(711 + d); };
       await hop(711, 690, .85);
+      // once aboard he rides inside the boat's own layer, so he passes behind the buildings with it
+      const rider = boardBoat(boat, 711, .85);
       await tween(4500, k => sail(820 * ease(k)));
       undo = async () => {
         await tween(4500, k => sail(820 * (1 - ease(k))));
+        rider.remove(); pIn.querySelector("svg").style.visibility = "";
         await hop(712, STREET, 1);
       };
     },
