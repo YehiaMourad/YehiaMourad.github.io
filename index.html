@@ -132,9 +132,15 @@
   .proj:hover .go { transform: translate(2px, -2px); }
 
   /* in progress chips */
-  .wip { margin-top: 1.4vh; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
-  .wip button { font: inherit; font-size: 12px; padding: 4px 10px; border-radius: 999px; border: 1px dashed var(--line); background: transparent; color: var(--ink); cursor: pointer; }
-  .wip button:hover { border-color: var(--accent); color: var(--accent); }
+  .wip { margin: auto 0 clamp(12px, 2vh, 20px); padding-top: 12px; display: grid; gap: 6px; }
+  .wip + .crow { margin-top: 0; }
+  .wip-k { display: flex; justify-content: space-between; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.6); font-weight: 600; }
+  .wip-k i { font-style: normal; letter-spacing: 0; text-transform: none; font-weight: 400; }
+  .wip button { display: flex; align-items: center; gap: 10px; width: 100%; padding: clamp(5px, .8vh, 8px) 10px; border-radius: 10px; border: 1px dashed rgba(255,255,255,.22); background: rgba(255,255,255,.05); color: #fff; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; text-align: left; }
+  .wip button b { width: 22px; height: 22px; border-radius: 6px; flex: none; }
+  .wip button small { margin-left: auto; font-weight: 400; font-size: 12px; color: rgba(255,255,255,.55); }
+  .wip button small::after { content: " · soon"; }
+  .wip button:hover { border-color: rgba(255,255,255,.5); background: rgba(255,255,255,.09); }
 
   /* experience */
   .f-exp .frame-body { padding: clamp(14px, 2.2vh, 20px) clamp(14px, 1.4vw, 20px); display: flex; flex-direction: column; }
@@ -166,7 +172,7 @@
   .crow { margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px; }
   .cbtn { height: 34px; padding: 0 12px; border-radius: 9px; border: 1px solid rgba(255,255,255,.3); background: transparent; color: #fff; font-weight: 500; font-size: 13px; cursor: pointer; display: inline-flex; align-items: center; }
   @media (min-width: 1101px) { .crow { flex-wrap: nowrap; } .cbtn { padding: 0 10px; white-space: nowrap; } .f-contact h2 { font-size: clamp(20px, 3.1vh, 32px); } }
-  @media (min-width: 1101px) and (max-height: 800px) { .f-contact p { display: none; } }
+  @media (min-width: 1101px) and (max-height: 800px) { .f-contact p { display: none; } .wip { padding-top: 6px; gap: 4px; margin-bottom: 10px; } .wip button { padding: 4px 10px; } }
   .cbtn.solid { background: #fff; color: var(--deep); border-color: #fff; font-weight: 600; }
   .cbtn:hover { border-color: #fff; }
 
@@ -282,7 +288,6 @@
       <h1>Hi, I'm Yehia. <em>Product designer.</em></h1>
       <p>I design B2B and AI products at the point where two things meet: what the system can do, and what people actually need.</p>
       <div class="meta"><span class="pill live">Open to new roles</span><span class="pill" data-drop="2">Cairo · GMT+3</span><span class="pill" data-drop="1">8+ years</span></div>
-      <div class="wip" data-drop="0"><span>Coming soon</span><button data-soon="Fahs">Fahs</button><button data-soon="Reach Link">Reach Link</button><button data-soon="Muzain">Muzain</button></div>
     </div>
     <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
   </section>
@@ -357,6 +362,12 @@
     <div class="frame-body">
       <h2>Hiring a product designer? Let's talk.</h2>
       <p>Usually reply within a day.</p>
+      <div class="wip">
+        <span class="wip-k">In progress <i>3 case studies</i></span>
+        <button data-soon="Fahs"><b style="background:linear-gradient(140deg,#4f56d6,#9aa2ff)"></b>Fahs<small>Mobile</small></button>
+        <button data-soon="Reach Link"><b style="background:linear-gradient(140deg,#ff6a3d,#ff9a6b)"></b>Reach Link<small>Visual</small></button>
+        <button data-soon="Muzain"><b style="background:linear-gradient(140deg,#9b5de5,#c9a7ff)"></b>Muzain<small>Visual</small></button>
+      </div>
       <div class="crow">
         <button class="cbtn solid" data-copy>Copy email</button>
         <a class="cbtn" href="https://www.linkedin.com/in/yehia-mourad" target="_blank" rel="noopener">LinkedIn</a>
