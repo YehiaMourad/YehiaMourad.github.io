@@ -232,8 +232,9 @@ svg * { transition: fill .8s ease, stop-color .8s ease, opacity .8s ease; }
 .wfx { position: absolute; z-index: 5; font-size: clamp(16px, 1.6vw, 28px); line-height: 1; pointer-events: none; animation: wfx 1.4s ease-out forwards; }
 @keyframes wfx { 0% { opacity: 0; transform: translate(-50%, -50%) scale(.4); } 20% { opacity: 1; transform: translate(-50%, -80%) scale(1.15); } 100% { opacity: 0; transform: translate(-50%, -260%); } }
 .wfx.lift { width: calc(12 / 1600 * 100%); aspect-ratio: 3 / 4; border-radius: 3px; background: #ffd27a; box-shadow: 0 0 14px 4px rgba(255,210,122,.8); transform: translate(-50%, -50%); animation: none; }
-#felucca { transition: transform 2s ease-in-out; }
-#felucca.sail { transform: translateX(15px); }
+#felucca { transition: transform 2s ease-in-out; transform-box: fill-box; transform-origin: 50% 100%; }
+/* boarding: no open water to either side, so she sails off up the Nile (up and smaller) and comes back */
+#felucca.sail { transform: translate(10px, -40px) scale(.8); }
 @media (prefers-reduced-motion: reduce) { #felucca { transition: none; } }
 @keyframes stride { from { transform: rotate(-24deg); } to { transform: rotate(24deg); } }
 @keyframes hop { from { transform: translateY(0); } to { transform: translateY(-1.5px); } }
@@ -1405,10 +1406,11 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
       const boat = $("felucca");
       await hop(711, 690, .85);
       boat.classList.add("sail");
-      await tween(2000, k => setPos(711 + 15 * ease(k)));
+      // ride along with the boat: same shift and shrink as #felucca.sail
+      await tween(2000, k => { const e = ease(k); setPos(711 + 15.4 * e, 690 - 37.2 * e, .85 - .17 * e); });
       undo = async () => {
         boat.classList.remove("sail");
-        await tween(2000, k => setPos(726 - 15 * ease(k)));
+        await tween(2000, k => { const e = ease(k); setPos(726.4 - 15.4 * e, 652.8 + 37.2 * e, .68 + .17 * e); });
         await hop(712, STREET, 1);
       };
     },
