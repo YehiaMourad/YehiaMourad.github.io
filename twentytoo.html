@@ -78,6 +78,7 @@ I lead product design at TwentyToo, a B2B AI-SaaS platform that gives retail tea
 <li>Made uncertainty visible with <b>confidence badges</b>, <b>ranges</b> instead of single numbers, and clear alerts when data isn't live yet.</li>
 <li>Gave users control with <b>three response modes</b> that trade speed against source breadth.</li>
 <li>Built a <b>style guide and a 96-component library</b> with one visual language for charts and insight cards.</li>
+<li>Designed <b>shared sessions</b>: share a chat with specific colleagues or the whole organization, <b>view only</b>, revocable by the owner.</li>
 <li>Early-stage product, so no formal metrics yet. The signal came from <b>PM and stakeholder feedback</b>.</li>
 </ul>
 
@@ -124,12 +125,18 @@ I lead product design at TwentyToo, a B2B AI-SaaS platform that gives retail tea
 
 <cite>Design principle · TwentyToo</cite>
 </blockquote>
+<p style="margin-top:22px">That principle turned into three rules every answer had to follow. They made later decisions faster and gave engineering a shared reference.</p>
+<div class="cards3">
+<div><b>Say how sure you are</b><p>Every result carries its confidence. Certainty is part of the answer, not a footnote.</p></div>
+<div><b>Never fake precision</b><p>Unsure means a range. Can't answer means saying so, then pointing somewhere useful.</p></div>
+<div><b>Hand over the trade-off</b><p>Speed versus depth is the user's call. Name it and let them choose.</p></div>
+</div>
 </section>
 <!-- ===== 04 Design decisions ===== -->
 <section class="detail">
 <span class="num">04 / Design decisions</span>
 <h2>Make the uncertainty visible, then let people choose</h2>
-<p>Three ideas drove the interface: a clear starting point, visible uncertainty, and a choice over depth. A design system underneath keeps it consistent.</p>
+<p>Three ideas drove the interface: a clear starting point, visible uncertainty, and a choice over depth. A design system underneath keeps it consistent, and shared sessions carry answers to the rest of the team.</p>
 
 <span class="pill">4A · A clear starting point</span>
 <h3>Start from a question, not a blank box</h3>
@@ -153,8 +160,44 @@ I lead product design at TwentyToo, a B2B AI-SaaS platform that gives retail tea
 <li>Ranges instead of a single exact number when confidence is lower</li>
 <li>Clear alerts when data is missing, or a region or category isn't live yet</li>
 </ul>
-
+<p style="margin-top:14px">Try it: the same kind of question, answered honestly at each level.</p>
 </section>
+<div class="demo detail" data-demo="">
+<div class="demo-tabs" role="group" aria-label="Confidence level">
+<button class="on" data-v="a" type="button">High confidence</button>
+<button data-v="b" type="button">Lower confidence</button>
+<button data-v="c" type="button">Not covered yet</button>
+</div>
+<div class="demo-stage">
+<div class="dv" data-v="a">
+<p class="tt-q">Asked: <b>Average discount on women's dresses in the UAE this week?</b></p>
+<div class="tt-card">
+<div class="tt-head"><span>Avg. discount · Women's dresses · UAE</span><span class="tt-badge hi">High</span></div>
+<div class="tt-big">32%</div>
+<div class="tt-foot">Strong coverage in this market, so a single figure.</div>
+</div>
+</div>
+<div class="dv" data-v="b">
+<p class="tt-q">Asked: <b>Average discount on women's dresses in the UAE this week?</b></p>
+<div class="tt-card">
+<div class="tt-head"><span>Avg. discount · Women's dresses · UAE</span><span class="tt-badge md">Medium</span></div>
+<div class="tt-big">28–36%</div>
+<div class="tt-range"><i></i></div>
+<div class="tt-scale"><span>0%</span><span>Likely range</span><span>60%</span></div>
+<div class="tt-foot">Fewer data points, so a range replaces the single number.</div>
+</div>
+</div>
+<div class="dv" data-v="c">
+<p class="tt-q">Asked: <b>Forecast denim sell-through in EMEA next quarter.</b></p>
+<div class="tt-card">
+<div class="tt-head"><span>Outside current coverage</span><span class="tt-badge lo">Not live yet</span></div>
+<p style="font-size:15px">Fashion is covered in Saudi Arabia and the UAE today, and sell-through forecasting isn't available yet. Here's what I can answer:</p>
+<div class="tt-chips"><span>Denim price trends in KSA</span><span>Denim discounts in the UAE</span></div>
+</div>
+</div>
+</div>
+<p class="tt-note">Illustrative values, recreated to show the pattern.</p>
+</div>
 <figure class="wide detail">
 <img alt="TwentyToo chat: a request for a denim sell-through forecast in EMEA gets an answer that explains what isn't covered yet" class="shot-img" loading="lazy" onerror="this.closest('figure').remove()" src="assets/twentytoo-limits.webp"/>
 <figcaption>Asked for a denim sell-through forecast in EMEA, the answer says what isn't covered yet, then points to what is.</figcaption>
@@ -177,6 +220,34 @@ I lead product design at TwentyToo, a B2B AI-SaaS platform that gives retail tea
 <img alt="TwentyToo mode selector listing Core Insights, Expanded Insights and Fast Expanded Insights with their data sources" class="shot-img" loading="lazy" onerror="this.closest('figure').remove()" src="assets/twentytoo-modes.webp"/>
 <figcaption>The mode selector: each option says where its answer comes from.</figcaption>
 </figure>
+<div class="demo detail" data-demo="">
+<div class="demo-tabs" role="group" aria-label="Response mode">
+<button class="on" data-v="a" type="button">Core</button>
+<button data-v="b" type="button">Fast Expanded</button>
+<button data-v="c" type="button">Expanded</button>
+</div>
+<div class="demo-stage">
+<div class="dv" data-v="a"><div class="tt-card">
+<div class="tt-meter"><span>Speed</span><div><i style="width:95%"></i></div></div>
+<div class="tt-meter"><span>Breadth</span><div><i style="width:30%"></i></div></div>
+<div class="tt-src"><span class="on">TwentyToo database</span><span>Rapid web signals</span><span>Internet search</span></div>
+<p class="tt-foot">Quick checks on tracked markets, from verified data only.</p>
+</div></div>
+<div class="dv" data-v="b"><div class="tt-card">
+<div class="tt-meter"><span>Speed</span><div><i style="width:70%"></i></div></div>
+<div class="tt-meter"><span>Breadth</span><div><i style="width:60%"></i></div></div>
+<div class="tt-src"><span class="on">TwentyToo database</span><span class="on">Rapid web signals</span><span>Internet search</span></div>
+<p class="tt-foot">The middle ground for most daily questions.</p>
+</div></div>
+<div class="dv" data-v="c"><div class="tt-card">
+<div class="tt-meter"><span>Speed</span><div><i style="width:35%"></i></div></div>
+<div class="tt-meter"><span>Breadth</span><div><i style="width:95%"></i></div></div>
+<div class="tt-src"><span class="on">TwentyToo database</span><span class="on">Rapid web signals</span><span class="on">Internet search</span></div>
+<p class="tt-foot">A wider picture, worth the wait for bigger calls.</p>
+</div></div>
+</div>
+<p class="tt-note">Relative comparison of the three modes.</p>
+</div>
 <section class="detail">
 <span class="pill">4D · One visual language for data</span>
 <h3>A style guide the team can build on</h3>
@@ -190,21 +261,120 @@ I lead product design at TwentyToo, a B2B AI-SaaS platform that gives retail tea
 <img alt="TwentyToo chat: a question about trending fashion in Saudi Arabia answered with ranked trends, three product cards with prices, highlights and style tips" class="shot-img" loading="lazy" onerror="this.closest('figure').remove()" src="assets/twentytoo-answer.webp"/>
 <figcaption>A trend question answered in one reply: ranked trends, product cards with current and original prices, highlights and style tips. Screenshot tidied: duplicate lines and price labels corrected.</figcaption>
 </figure>
+<section class="detail">
+<span class="pill">4E · Sharing, without losing control</span>
+<h3>Shared sessions: insight that travels, view only</h3>
+<p>Pricing calls are rarely made alone. Users asked for a way to send a session to a manager or teammate instead of screenshotting answers into other tools. Shared sessions let a business member share a full chat with specific colleagues or the whole organization.</p>
+<p>The key call was <b>view only</b>. A shared session is evidence for a decision, so it has to stay exactly as the owner saw it. If recipients could keep asking questions in the same thread, the context the owner relied on would shift under them. Sharing stays inside the organization, and the owner can revoke access at any time.</p>
+<ul class="after-p">
+<li>Share with specific members or the entire organization</li>
+<li>Permission stated up front in the share dialog, before anything is sent</li>
+<li>A "Shared with me" inbox with an unread count, plus a banner naming who shared and the access level</li>
+</ul>
+</section>
+<div class="demo detail" data-demo="">
+<div class="demo-tabs" role="group" aria-label="Shared sessions">
+<button class="on" data-v="a" type="button">Owner shares</button>
+<button data-v="b" type="button">Recipient inbox</button>
+<button data-v="c" type="button">Recipient view</button>
+</div>
+<div class="demo-stage">
+<div class="dv" data-v="a"><div class="tt-card tt-modal">
+<h4>Share Chat Session</h4>
+<p class="sub">Share this conversation with members of your organization</p>
+<p class="tt-label">Session name</p>
+<div class="tt-field">Dress pricing review</div>
+<p class="tt-label">Share with</p>
+<div class="tt-opt"><i class="on"></i>Specific members</div>
+<div class="tt-opt"><i></i>Entire organization (6 members)</div>
+<div style="margin-top:10px">
+<div class="tt-member"><i class="on"></i><span>Sara Ahmed<small>Category Manager</small></span></div>
+<div class="tt-member"><i></i><span>Omar Khaled<small>Pricing Lead · Admin</small></span></div>
+</div>
+<div class="tt-perm"><b>Permission</b>View only. Recipients see the entire conversation history.</div>
+<div class="tt-btns"><span>Cancel</span><span class="go">Share</span></div>
+</div></div>
+<div class="dv" data-v="b"><div class="tt-card">
+<p style="font-weight:600;margin-bottom:6px">Shared with me<span class="tt-count">2</span></p>
+<div class="tt-row"><span>Dress pricing review<small>Shared by Sara Ahmed · 7m ago</small></span><span class="tt-dot" aria-label="Unread"></span></div>
+<div class="tt-row"><span>Trending fashion KSA<small>Shared by Omar Khaled · 2d ago</small></span></div>
+</div></div>
+<div class="dv" data-v="c"><div class="tt-card">
+<div class="tt-banner">This session was shared with you by Sara Ahmed<small>Access level: <em>View only</em></small></div>
+<div class="tt-bubble">Average discount on women's dresses in the UAE this week?</div>
+<p style="font-size:14px;color:var(--muted)">The full answer, confidence and sources appear exactly as the owner saw them.</p>
+<div class="tt-lock">View only. Start a new chat to ask your own questions.</div>
+</div></div>
+</div>
+<p class="tt-note">Recreated from the shipped flow. Names are placeholders.</p>
+</div>
+<section class="detail">
+<h3>Where sharing goes next</h3>
+<p>Proposed follow-ups that keep view only intact while removing its friction:</p>
+<ul class="after-p">
+<li><b>Continue in my own chat.</b> Recipients fork a copy to ask follow-ups, so the original stays untouched.</li>
+<li><b>Data-as-of stamp.</b> Shared answers show when they were generated, so nobody acts on last month's prices thinking they're live.</li>
+<li><b>Who has access.</b> One place for owners to see recipients and revoke one person at a time.</li>
+<li><b>Share a single answer.</b> Send one insight instead of a long session when that's all the point needs.</li>
+</ul>
+</section>
+<!-- ===== 05 Decision log ===== -->
+<section class="detail">
+<span class="num">05 / Decision log</span>
+<h2>What I chose, and what I set aside</h2>
+<p>The options I didn't ship say as much as the ones I did.</p>
+<table class="spec log">
+<thead><tr><th>Considered</th><th>Chose</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td>A blank input box</td><td>Suggested questions written as real tasks</td><td>A first-time user learns what the product can do before typing.</td></tr>
+<tr><td>One precise number for every result</td><td>A figure, a range or an alert, based on confidence</td><td>A confident wrong number hurts trust more than an honest range.</td></tr>
+<tr><td>A best guess for uncovered questions</td><td>Say what isn't covered, then point to what is</td><td>Users learn the product's limits instead of hitting silent failures.</td></tr>
+<tr><td>One fixed speed for everyone</td><td>Three named modes, user's choice</td><td>Needs change by task. Naming the trade-off makes waiting feel intentional.</td></tr>
+<tr><td>Public share links</td><td>Sharing inside the organization only</td><td>Pricing data is sensitive. It shouldn't leave the company by accident.</td></tr>
+<tr><td>Recipients continue the shared chat</td><td>View only, revocable by the owner</td><td>A shared session is a record. It should stay as the owner saw it.</td></tr>
+</tbody>
+</table>
+</section>
+<!-- ===== 06 Edge cases ===== -->
+<section class="detail">
+<span class="num">06 / Designing the edges</span>
+<h2>Where a QA background pays off</h2>
+<p>I started in QA, and it shows most here. AI products fail in more ways than a typical dashboard, so I mapped the unhappy paths before polishing the happy one.</p>
+<div class="cards3">
+<div><b>Not live yet</b><p>A region or category isn't covered. Say so, then redirect to what is.</p></div>
+<div><b>Lower confidence</b><p>Show a range with its badge, never a single exact figure.</p></div>
+<div><b>Data missing</b><p>Flag the gap clearly instead of filling it with a guess.</p></div>
+</div>
+</section>
 <!-- ===== 05 Data & engineering ===== -->
 <section class="detail">
-<span class="num">05 / Working with data &amp; engineering</span>
+<span class="num">07 / Working with data &amp; engineering</span>
 <h2>Design starts with the model's limits</h2>
 <p>Honest uncertainty design starts before the interface. I worked closely with engineering and data to understand what the model can and can't do today, like no sell-through forecasting yet and partial regional coverage, then designed the interface to reflect those limits instead of hiding them.</p>
 
 </section>
 <!-- ===== 06 Status ===== -->
 <section class="detail">
-<span class="num">06 / Where it stands</span>
+<span class="num">08 / Where it stands</span>
 <h2>Early product, qualitative signal</h2>
 <p>The product is early and doesn't have mature analytics yet, so I don't have metrics to report. The signal I worked from was direct feedback from the PM and stakeholders, who sit close to how category managers use the tool.</p>
 
-<p>Next, I'd add one simple measure from day one: how often each response mode gets used. It would turn the qualitative loop into something measurable.</p>
-
+<p>The qualitative loop worked, but it doesn't scale. These are the signals I'd add first, each tied to a decision above:</p>
+<ul class="tt-metrics">
+<li>Mode usage split<span>Which depth people actually choose, and whether the default should change.</span></li>
+<li>Follow-up after a "not covered" answer<span>Do users take the suggested question, or leave?</span></li>
+<li>Ranges vs. single figures<span>Do people act on a range as readily as on one number?</span></li>
+<li>Sessions shared and opened<span>How often insight travels across a team, and whether recipients open it.</span></li>
+</ul>
+</section>
+<section class="detail">
+<span class="num">09 / What I learned</span>
+<h2>Honesty is a feature</h2>
+<ul>
+<li>In AI products, admitting what the system doesn't know builds more trust than a polished guess.</li>
+<li>The design work starts with the model's limits, not in Figma.</li>
+<li>Measurement should ship with v1, even if it's one simple event.</li>
+</ul>
 </section>
 </article>
 <a class="next-proj" href="./#work">

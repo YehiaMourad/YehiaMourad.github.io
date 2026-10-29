@@ -393,3 +393,72 @@ body:not([data-mode="tldr"]) .tldr { display: none; }
   .g-arrow { width: 36px; height: 36px; }
 }
 @media (prefers-reduced-motion: reduce) { .g-track { scroll-behavior: auto; } }
+
+/* ---------- TwentyToo extras (twentytoo.html) ----------
+   Demos reuse .demo / .demo-tabs / .demo-note (case.js sets data-variant).
+   Each panel: <div class="dv" data-v="a">…</div> */
+.dv { display: none; width: 100%; max-width: 520px; }
+.demo[data-variant="a"] .dv[data-v="a"],
+.demo[data-variant="b"] .dv[data-v="b"],
+.demo[data-variant="c"] .dv[data-v="c"] { display: block; animation: dvIn .3s ease; }
+@keyframes dvIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .dv { animation: none !important; } }
+
+.tt-card { background: var(--surface); border-radius: 18px; padding: 18px 20px; box-shadow: var(--shadow); font-size: 15px; line-height: 1.5; }
+.tt-q { font-size: 14px; color: var(--muted); margin-bottom: 12px; text-align: start; }
+.tt-q b { color: var(--ink); font-weight: 500; }
+.tt-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 13.5px; color: var(--muted); }
+.tt-badge { font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+.tt-badge.hi { color: #2f9e6a; background: color-mix(in srgb, #2f9e6a 14%, transparent); }
+.tt-badge.md { color: var(--coral); background: color-mix(in srgb, var(--coral) 14%, transparent); }
+.tt-badge.lo { color: var(--accent); background: color-mix(in srgb, var(--accent) 14%, transparent); }
+.tt-big { font-size: 40px; font-weight: 700; letter-spacing: -.03em; line-height: 1.1; }
+.tt-range { position: relative; height: 8px; border-radius: 4px; background: var(--bg); margin: 14px 0 6px; }
+.tt-range i { position: absolute; inset-block: 0; left: 46%; width: 14%; border-radius: 4px; background: color-mix(in srgb, var(--coral) 45%, transparent); }
+.tt-scale { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
+.tt-foot { font-size: 13px; color: var(--muted); margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--line); }
+.tt-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.tt-chips span { font-size: 13px; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line); }
+
+.tt-meter { display: grid; grid-template-columns: 70px 1fr; gap: 12px; align-items: center; font-size: 13.5px; color: var(--muted); }
+.tt-meter + .tt-meter { margin-top: 12px; }
+.tt-meter div { height: 8px; border-radius: 4px; background: var(--bg); overflow: hidden; }
+.tt-meter i { display: block; height: 100%; border-radius: 4px; background: var(--accent); }
+.tt-src { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+.tt-src span { font-size: 12.5px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+.tt-src span.on { border-color: var(--accent); color: var(--accent); font-weight: 600; background: color-mix(in srgb, var(--accent) 10%, var(--surface)); }
+
+.tt-modal h4 { font-size: 16px; font-weight: 600; }
+.tt-modal .sub { font-size: 13px; color: var(--muted); margin: 2px 0 14px; }
+.tt-label { font-size: 12.5px; font-weight: 600; margin-bottom: 6px; }
+.tt-field { background: var(--bg); border-radius: 10px; padding: 8px 12px; font-size: 14px; margin-bottom: 14px; }
+.tt-opt { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+.tt-opt + .tt-opt { margin-top: 4px; }
+.tt-opt i { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid var(--muted); flex: none; }
+.tt-opt i.on { border: 4px solid var(--ink); }
+.tt-member { display: flex; gap: 10px; align-items: center; padding: 8px 0; font-size: 14px; border-top: 1px solid var(--line); }
+.tt-member small { display: block; font-size: 12px; color: var(--muted); }
+.tt-member i { width: 14px; height: 14px; border-radius: 4px; border: 1.5px solid var(--muted); flex: none; }
+.tt-member i.on { background: var(--ink); border-color: var(--ink); }
+.tt-perm { margin-top: 12px; border-radius: 12px; padding: 10px 12px; font-size: 13px; color: var(--muted); background: color-mix(in srgb, #2f9e6a 10%, transparent); border: 1px solid color-mix(in srgb, #2f9e6a 30%, transparent); }
+.tt-perm b { display: block; color: var(--ink); }
+.tt-btns { display: flex; justify-content: flex-end; gap: 8px; margin-top: 14px; }
+.tt-btns span { font-size: 13px; padding: 6px 16px; border-radius: 999px; border: 1px solid var(--line); }
+.tt-btns span.go { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.tt-row { display: flex; justify-content: space-between; gap: 10px; padding: 12px 0; border-top: 1px solid var(--line); }
+.tt-row:first-of-type { border-top: 0; }
+.tt-row small { display: block; font-size: 12.5px; color: var(--muted); }
+.tt-dot { width: 8px; height: 8px; border-radius: 50%; background: #2f9e6a; margin-top: 6px; flex: none; }
+.tt-count { font-size: 11px; font-weight: 600; color: #fff; background: #2f9e6a; border-radius: 5px; padding: 1px 6px; margin-inline-start: 6px; }
+.tt-banner { border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; font-size: 14px; margin-bottom: 14px; }
+.tt-banner small { display: block; font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+.tt-banner em { font-style: normal; color: #2f9e6a; border: 1px solid #2f9e6a; border-radius: 6px; padding: 0 6px; }
+.tt-bubble { margin-inline-start: auto; width: fit-content; max-width: 85%; background: var(--bg); border-radius: 14px; padding: 8px 14px; font-size: 14px; margin-bottom: 10px; }
+.tt-lock { margin-top: 12px; border: 1px dashed var(--line); border-radius: 12px; padding: 8px 12px; font-size: 13px; color: var(--muted); }
+
+.spec.log td:nth-child(2) { white-space: normal; }
+.spec.log td:first-child { color: var(--muted); }
+.tt-metrics { list-style: none; padding: 0 !important; gap: 0 !important; margin-top: 18px; border-top: 1px solid var(--line); }
+.tt-metrics li { padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 16px; }
+.tt-metrics li span { display: block; font-size: 14.5px; color: var(--muted); }
+.tt-note { text-align: center; color: var(--muted); font-size: 14px; margin-top: 12px; }
