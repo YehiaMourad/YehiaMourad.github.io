@@ -197,7 +197,7 @@ svg * { transition: fill .8s ease, stop-color .8s ease, opacity .8s ease; }
 @keyframes wheel { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(8px); } }
 
 /* ---------- Game: the walker, the passport, the controls ---------- */
-.player { position: absolute; z-index: 4; left: calc(var(--px, 470) / 1600 * 100%); top: calc(var(--py, 806) / 900 * 100%); width: calc(46 / 1600 * 100%); margin-left: calc(-23 / 1600 * 100%); pointer-events: none; }
+.player { position: absolute; z-index: 4; left: calc(var(--px, 40) / 1600 * 100%); top: calc(var(--py, 806) / 900 * 100%); width: calc(46 / 1600 * 100%); margin-left: calc(-23 / 1600 * 100%); pointer-events: none; }
 .p-in { position: absolute; left: 0; bottom: 0; width: 100%; transform-origin: 50% 100%; transition: transform .45s cubic-bezier(.5,0,.75,0), opacity .45s; }
 .p-in.entering { transform: translateY(-14%) scale(.5); opacity: 0; }
 .p-in.no-anim { transition: none; }
@@ -241,6 +241,20 @@ svg * { transition: fill .8s ease, stop-color .8s ease, opacity .8s ease; }
   transition: opacity .2s, transform .25s cubic-bezier(.3,1.5,.5,1); }
 .say::after { content: ""; position: absolute; left: 50%; top: 100%; margin-left: -6px; border: 6px solid transparent; border-top-color: var(--glass); }
 .say.show { opacity: 1; transform: translateX(-50%); pointer-events: auto; }
+/* the first bubble starts at the left edge of the street, so it opens to the right */
+.say.start { left: 0; transform: translateY(6px); }
+.say.start.show { transform: none; }
+.say.start::after { left: 22px; }
+/* first-visit guide: footprints to the first door, and a key above it */
+.trail { position: absolute; inset: 0; z-index: 2; pointer-events: none; transition: opacity .6s; }
+.trail.gone { opacity: 0; }
+.trail i { position: absolute; width: 9px; height: 13px; margin: -6px 0 0 -4px; border-radius: 50% 50% 45% 45%; background: var(--glass-ink); opacity: 0; transform: rotate(90deg); animation: print 2.4s infinite; }
+.trail i.r { margin-top: 2px; }
+@keyframes print { 0% { opacity: 0; } 15% { opacity: .35; } 60% { opacity: .35; } 100% { opacity: 0; } }
+.trail .door-key { position: absolute; transform: translate(-50%, -100%); animation: bob 1.4s ease-in-out infinite; }
+.trail .door-key kbd { min-width: 30px; height: 30px; font-size: 15px; background: var(--coral); color: #fff; box-shadow: 0 3px 0 rgba(0,0,0,.2); }
+@keyframes bob { 50% { transform: translate(-50%, calc(-100% - 6px)); } }
+@media (prefers-reduced-motion: reduce) { .trail i { animation: none; opacity: .3; } .trail .door-key { animation: none; } }
 .say .tap { font-size: 12px; font-weight: 700; color: #fff; background: var(--coral); padding: 3px 8px; border-radius: 7px; }
 kbd { font: 700 12px/1 "Bricolage Grotesque", system-ui, sans-serif; min-width: 22px; height: 22px; padding: 0 6px; display: inline-grid; place-items: center; border-radius: 6px;
   background: var(--glass); color: var(--glass-ink); box-shadow: inset 0 0 0 1px var(--glass-line), 0 2px 0 rgba(0,0,0,.18); }
@@ -1190,7 +1204,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
   function renderHud() { spots.forEach(s => pinOf(s.k).classList.toggle("found", found.has(s.k))); }
   // one hint at a time: walk first, then (after a find) rewind the years, then scroll for more
   function nudge() {
-    if (found.size >= 2) flyHint.classList.add("show");
+    if (found.size >= 1) flyHint.classList.add("show");
   }
   function discover(k) {
     if (!spots.some(s => s.k === k) || found.has(k)) return;
@@ -1215,7 +1229,37 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
   /* the walker */
   const player = $("player"), pIn = player.querySelector(".p-in"), say = $("say"), act = $("act"), sc = $("scroller");
   const touch = matchMedia("(pointer: coarse)").matches;
-  let px = 470, dir = 0, target = null, onArrive = null, near, moved = false, cam = 0, ox = 470, loop = 0, last = 0;
+  let px = 40, dir = 0, target = null, onArrive = null, near, moved = false, cam = 0, ox = 40, loop = 0, last = 0;
+
+  /* first-visit guide: the walker explains, one bubble at a time */
+  const GUIDE = "playground-guide";
+  let guide = {};
+  try { guide = JSON.parse(localStorage.getItem(GUIDE) || "{}"); } catch (e) {}
+  const learnt = k => { guide[k] = 1; try { localStorage.setItem(GUIDE, JSON.stringify(guide)); } catch (e) {} };
+  const first = spots[0];
+  let trail = null;
+  function drawTrail() {
+    if (guide.enter || trail) return;
+    trail = document.createElement("div");
+    trail.className = "trail"; trail.dataset.depth = "0.9"; trail.setAttribute("aria-hidden", "true");
+    const from = Math.min(px, first.door) + 26, to = Math.max(px, first.door) - 26, dirL = first.door < px;
+    let html = "", n = 0;
+    for (let x = dirL ? to : from; dirL ? x > from : x < to; x += dirL ? -22 : 22, n++)
+      html += `<i class="${n % 2 ? "r" : ""}" style="left:${(x / 16).toFixed(2)}%;top:${((STREET - 8) / 9).toFixed(2)}%;transform:rotate(${dirL ? -90 : 90}deg);animation-delay:${(n * .14).toFixed(2)}s"></i>`;
+    if (!touch) html += `<span class="door-key" style="left:${first.door / 16}%;top:${(STREET - 120) / 9}%"><kbd>E</kbd></span>`;
+    trail.innerHTML = html;
+    world.appendChild(trail);
+    pinsD.push(trail);
+  }
+  const clearTrail = () => { if (trail) { trail.classList.add("gone"); setTimeout(() => trail && trail.remove(), 700); } };
+  let scrollTold = false;
+  function tellScroll() {
+    if (guide.scroll || scrollTold || !found.size) return;
+    scrollTold = true; learnt("scroll");
+    say.innerHTML = phone() ? "Scroll down to see my work 👇" : "Scroll down to fly over the city 👇";
+    say.classList.add("show");
+    setTimeout(() => { if (!near) say.classList.remove("show"); }, 4200);
+  }
 
   function pop(text) { const s = document.createElement("span"); s.className = "pop"; s.textContent = text; pIn.appendChild(s); setTimeout(() => s.remove(), 1200); }
   function updateNear() {
@@ -1228,9 +1272,11 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     act.setAttribute("aria-label", s ? `${s.verb}: ${s.name}` : "Nothing to open here");
     if (s) {
       pinOf(s.k).classList.add("near");
-      say.innerHTML = touch ? `${s.verb} <span class="tap">Tap</span>` : `<kbd>E</kbd>${s.verb}`;
+      say.innerHTML = guide.enter
+        ? (touch ? `${s.verb} <span class="tap">Tap</span>` : `<kbd>E</kbd>${s.verb}`)
+        : (touch ? `Tap <b>Open</b> to go in` : `Press <kbd>E</kbd> to go in`);
       say.classList.add("show");
-    } else say.classList.remove("show");
+    } else { say.classList.remove("show"); tellScroll(); }
   }
   function camera(snap) {
     const W = world.offsetWidth;
@@ -1253,7 +1299,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     let v = dir;
     if (!v && target != null) v = Math.abs(target - px) < 2 ? (target = null, 0) : Math.sign(target - px);
     if (v) {
-      if (!moved) { moved = true; say.classList.remove("show"); }
+      if (!moved) { moved = true; say.classList.remove("show"); learnt("walk"); setTimeout(() => say.classList.remove("start"), 300); }
       px = Math.max(30, Math.min(1570, px + v * SPEED * dt));
       if (target != null && Math.sign(target - px) !== v) { px = target; target = null; }
       pIn.classList.toggle("flip", v < 0);
@@ -1421,6 +1467,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     walkTo(s.door, async () => {
       pIn.classList.remove("flip", "walking");
       say.classList.remove("show");
+      if (!guide.enter) { learnt("enter"); clearTrail(); }
       inside = true;
       await wait(120);
       await (actions[s.k] ? actions[s.k](s) : goIn());
@@ -1562,9 +1609,11 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
   player.style.setProperty("--px", px);
   if (!phone()) camera(true);
   addEventListener("resize", () => { if (!phone()) camera(true); });
-  say.innerHTML = touch ? `Hold <kbd>◀</kbd><kbd>▶</kbd> to walk` : `<kbd>←</kbd><kbd>→</kbd> walk around`;
+  say.innerHTML = touch ? `Hi! Hold <kbd>◀</kbd><kbd>▶</kbd> to walk with me` : `Hey! Use <kbd>←</kbd><kbd>→</kbd> to walk with me`;
+  say.classList.add("start");
   comeBack();
-  setTimeout(() => { if (!moved) say.classList.add("show"); }, 1200);
+  setTimeout(() => { if (!moved && !guide.walk) say.classList.add("show"); }, 1200);
+  setTimeout(drawTrail, 1500);
   /* ---------- The sky: day in light mode, night in dark mode ---------- */
   (() => {
     const stage = document.querySelector(".stage");
