@@ -506,21 +506,6 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
   <nav class="mode" aria-label="Homepage view"><a href="./?view=canvas" data-mode="canvas" title="Canvas" aria-label="Canvas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span class="t">Canvas</span></a><a href="prototype.html" data-mode="prototype" title="Prototype" aria-label="Prototype"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7z"/></svg><span class="t">Prototype</span></a><a href="playground.html" data-mode="playground" title="Playground" aria-label="Playground" class="on" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="17" cy="7" r="2.5"/><path d="M2 20l7-10 4 6 2.5-3L22 20z"/></svg><span class="t">Playground</span></a></nav>
   <button class="tool" id="t-theme" title="Light / dark" aria-label="Switch light or dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
   <div class="spacer"></div>
-  <!-- projects found: one per place -->
-  <div class="hud" id="hud">
-    <button class="hud-btn" id="hud-btn" aria-expanded="false" aria-controls="hud-panel" aria-label="Projects found">
-      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2.5" width="14" height="19" rx="2"/><circle cx="12" cy="10" r="3.2"/><path d="M9 16.5h6"/></svg></span>
-      <span class="lvl" id="hud-lvl"></span>
-      <span class="bar"><i id="hud-bar"></i></span>
-      <b id="hud-n"></b>
-    </button>
-    <div class="hud-panel" id="hud-panel" hidden>
-      <h4>My projects</h4>
-      <p>Every place on the street is a project. Pick one to walk there.</p>
-      <ul id="hud-list"></ul>
-      <div class="hp-foot"><span id="hud-next"></span><button id="hud-reset">Reset</button></div>
-    </div>
-  </div>
   <button class="share" data-copy>Hire me</button>
 </header>
 
@@ -856,29 +841,15 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           <button class="chip" data-place="twentytoo"><span class="lg" style="background:#4f56d6">T</span>TwentyToo<span class="yr">Case study</span></button></div>
         <div class="pin" data-year="2025.6" data-depth="0.5" style="--x:1500; --y:256"><span class="stem"></span><span class="dot"></span>
           <button class="chip left" data-place="benaa"><span class="lg" style="background:#ffb347">B</span>Benaa<span class="yr">Case study</span></button></div>
-        <div class="pin" data-year="2026.6" data-depth="0.9" style="--x:1102; --y:622"><span class="stem"></span><span class="dot"></span>
-          <button class="chip" data-place="fahs"><span class="lg" style="background:#4f56d6">F</span>Fahs<span class="yr">Mobile</span></button></div>
         <div class="pin" data-year="2026.3" data-depth="0.9" style="--x:1212; --y:754"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="pleny"><span class="lg" style="background:#ff6a3d">P</span>Pleny<span class="yr">Case study</span></button></div>
-        <!-- visual projects -->
-        <div class="pin" data-year="2023.0" data-depth="0.9" style="--x:910; --y:552"><span class="stem"></span><span class="dot"></span>
-          <button class="chip" data-place="reach"><span class="lg" style="background:#ff6a3d">R</span>Reach Link<span class="yr">Visual</span></button></div>
-        <div class="pin" data-year="2026.6" data-depth="0.9" style="--x:584; --y:630"><span class="stem"></span><span class="dot"></span>
-          <button class="chip" data-place="muzain"><span class="lg" style="background:#2b1d55">M</span>Muzain<span class="yr">Visual</span></button></div>
         <!-- me -->
-        <div class="pin" data-year="2022.0" data-depth="0.2" style="--x:950; --y:230"><span class="stem"></span><span class="dot"></span>
-          <button class="chip" data-place="journey"><span class="lg" style="background:#18181a">✈</span>My journey<span class="yr">EG · KW · UAE · JO</span></button></div>
         <div class="pin" id="pin-me" data-depth="0.5" style="--x:1113; --y:360"><span class="stem"></span><span class="dot"></span>
           <button class="chip left" data-place="about"><span class="lg"><img src="assets/me.png" alt="" onerror="this.parentElement.textContent='Y';this.parentElement.style.background='#2b1d55'"></span>That's me 👋</button></div>
         <div class="pin" data-year="2026.75" data-depth="0.6" style="--x:735; --y:600"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="contact"><span class="lg" style="background:#ff6a3d">✉</span>Say hi</button></div>
-        <div class="pin" data-depth="0.9" style="--x:82; --y:750"><span class="stem"></span><span class="dot"></span>
-          <button class="chip right" data-place="ahwa"><span class="lg" style="background:#4f56d6">☕</span>The ahwa<span class="yr">How I start</span></button></div>
 
         <!-- ======================= THE WALKER ======================= -->
-        <button class="sun-handle" id="sun-handle" type="button" role="slider" aria-label="Drag the sun through the years" aria-valuemin="2014" aria-valuemax="2026" aria-valuenow="2014"></button>
-        <div class="year-tag" id="year-tag" aria-hidden="true"><b id="year-n">2014</b><span id="year-l">Cairo, before it all</span></div>
-        <div class="sun-hint hand" id="sun-hint" aria-hidden="true"><svg viewBox="0 0 64 30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M60 18 C44 6 24 8 8 16"/><path d="M16 9 L7 16 L17 22"/></svg>drag the moon back to 2014</div>
         <div class="player" id="player" data-depth="0.9">
           <div class="choice" id="choice" role="dialog" aria-label="What next?" hidden></div>
           <div class="p-in">
@@ -1195,13 +1166,8 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
   /* ---------- Game: walk the street, collect a stamp at every place ---------- */
   // x is where you stand on the street (in the 1600-wide world) to open each place; door is where you walk in
   const spots = [
-    { k: "ahwa", x: 62, door: 41, name: "The ahwa", verb: "Sit at the ahwa" },
     { k: "pos", x: 325, door: 295, name: "Primex POS", verb: "Enter the market" },
-    { k: "muzain", x: 584, door: 622, name: "Muzain", verb: "Step into the salon" },
     { k: "contact", x: 725, door: 712, name: "Say hi", verb: "Board the felucca" },
-    { k: "reach", x: 910, door: 910, name: "Reach Link", verb: "Read the billboard" },
-    { k: "journey", x: 1000, door: 1000, name: "My journey", verb: "Wave at the plane" },
-    { k: "fahs", x: 1080, door: 1102, name: "Fahs", verb: "Visit the kiosk" },
     { k: "about", x: 1142, door: 1130, name: "That's me", verb: "Climb Cairo Tower" },
     { k: "pleny", x: 1222, door: 1212, name: "Pleny", verb: "Grab a bite" },
     { k: "twentytoo", x: 1305, door: 1300, name: "TwentyToo", verb: "Enter the AI tower" },
@@ -1213,31 +1179,15 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
   try { found = new Set(JSON.parse(localStorage.getItem(KEY) || "[]").filter(k => spots.some(s => s.k === k))); } catch (e) {}
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify([...found])); } catch (e) {} };
 
-  const hud = $("hud"), hudBtn = $("hud-btn"), panel = $("hud-panel");
-  function renderHud() {
-    const n = found.size;
-    $("hud-n").textContent = `${n}/${spots.length}`;
-    $("hud-bar").style.width = n / spots.length * 100 + "%";
-    $("hud-lvl").innerHTML = `<small>Find my work</small>Projects found`;
-    $("hud-next").textContent = n < spots.length ? `${spots.length - n} left to find` : "All found 🏆";
-    $("hud-list").innerHTML = spots.map(s => {
-      const lg = document.querySelector(`.chip[data-place="${s.k}"] .lg`), got = found.has(s.k);
-      return `<li><button data-go="${s.k}" class="${got ? "got" : ""}"><span class="lg" style="${lg.getAttribute("style") || ""}">${lg.innerHTML}</span><span class="nm">${s.name}</span><span class="st">${got ? "✓" : "Go →"}</span></button></li>`;
-    }).join("");
-    spots.forEach(s => pinOf(s.k).classList.toggle("found", found.has(s.k)));
-  }
+  // no score: a place just gets a check once you've visited it
+  function renderHud() { spots.forEach(s => pinOf(s.k).classList.toggle("found", found.has(s.k))); }
   // one hint at a time: walk first, then (after a find) rewind the years, then scroll for more
-  let showRewind = () => {};
   function nudge() {
-    if (found.size >= 1) showRewind();
     if (found.size >= 2) flyHint.classList.add("show");
   }
   function discover(k) {
     if (!spots.some(s => s.k === k) || found.has(k)) return;
     found.add(k); save(); renderHud(); nudge();
-    hud.classList.remove("bump"); void hud.offsetWidth; hud.classList.add("bump");
-    pop("+1 found");
-    if (found.size === spots.length) pendingWin = true;
   }
   function win() {
     flash("You found every project 🏆");
@@ -1254,17 +1204,6 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     }
     document.body.appendChild(c); setTimeout(() => c.remove(), 4500);
   }
-
-  hudBtn.onclick = () => { panel.hidden = !panel.hidden; hudBtn.setAttribute("aria-expanded", !panel.hidden); };
-  const closePanel = () => { panel.hidden = true; hudBtn.setAttribute("aria-expanded", false); };
-  document.addEventListener("click", e => { if (!hud.contains(e.target)) closePanel(); });
-  $("hud-list").addEventListener("click", e => {
-    const b = e.target.closest("[data-go]"); if (!b) return;
-    closePanel();
-    if (found.has(b.dataset.go)) open(b.dataset.go);
-    else walkTo(spots.find(s => s.k === b.dataset.go).x);
-  });
-  $("hud-reset").onclick = () => { found.clear(); save(); renderHud(); flash("Progress reset. Happy exploring!"); };
 
   /* the walker */
   const player = $("player"), pIn = player.querySelector(".p-in"), say = $("say"), act = $("act"), sc = $("scroller");
@@ -1619,9 +1558,9 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
   say.innerHTML = touch ? `Hold <kbd>◀</kbd><kbd>▶</kbd> to walk` : `<kbd>←</kbd><kbd>→</kbd> walk around`;
   comeBack();
   setTimeout(() => { if (!moved) say.classList.add("show"); }, 1200);
-  /* ---------- Drag the sun: 2014 -> today, the city grows as the years pass ---------- */
+  /* ---------- The sky: day in light mode, night in dark mode ---------- */
   (() => {
-    const stage = document.querySelector(".stage"), handle = $("sun-handle"), tag = $("year-tag"), hint = $("sun-hint");
+    const stage = document.querySelector(".stage");
     const sunG = $("sky-sun"), moonG = $("sky-moon");
     const Y0 = 2014, Y1 = 2026.8;
     // sky palettes for dawn, day, dusk and night; t is the position of the sun (0..1)
@@ -1646,18 +1585,15 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
       C[1] = -100 + d; B[1] = 150 + d;
     }
     fitPath();
-    addEventListener("resize", () => { fitPath(); scene(T); });
+    addEventListener("resize", () => { fitPath(); sky(); });
     const at = t => [0, 1].map(i => (1 - t) * (1 - t) * A[i] + 2 * (1 - t) * t * C[i] + t * t * B[i]);
     const tFromX = x => { let lo = 0, hi = 1; for (let i = 0; i < 24; i++) { const m = (lo + hi) / 2; at(m)[0] < x ? lo = m : hi = m; } return (lo + hi) / 2; };
-    const steps = [[2014.6, "OMNAS · first websites"], [2016.7, "Spree · UI designer"], [2019.9, "The Tailors Dev"], [2021.3, "Medica Healthy"], [2022.0, "Kuwait Airlines ✈"],
-      [2022.9, "Geeks · TAS ERP"], [2023.0, "Reach Link"], [2023.9, "TwentyToo"], [2024.5, "Primex POS"], [2025.2, "Talentera"], [2025.6, "Benaa"], [2026.3, "Pleny"],
-      [2026.6, "Next: Fahs, Muzain"], [2026.75, "Today · say hi 👋"]];
     const growers = [...world.querySelectorAll("svg [data-year]")], pinsY = [...world.querySelectorAll(".pin[data-year]")];
     let T = 1;
 
     function scene(t) {
       T = t;
-      const Y = Y0 + t * (Y1 - Y0);
+      const Y = Y1; // every project stands
       // sky colours
       let i = 0; while (i < KF.length - 2 && t > KF[i + 1][0]) i++;
       const [ta, pa] = KF[i], [tb, pb] = KF[i + 1], k = tb > ta ? ramp(t, ta, tb) : 0;
@@ -1678,42 +1614,22 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
       const [x, y] = at(t);
       sunG.setAttribute("transform", `translate(${x.toFixed(1)} ${y.toFixed(1)})`);
       moonG.setAttribute("transform", `translate(${x.toFixed(1)} ${y.toFixed(1)})`);
-      handle.style.left = x / 16 + "%"; handle.style.top = y / 9 + "%";
-      tag.style.left = x / 16 + "%"; tag.style.top = y / 9 + "%";
-      hint.style.left = x / 16 + "%"; hint.style.top = y / 9 + "%"; hint.classList.toggle("flip", x > 1100);
       // the city: everything built by year Y stands
       growers.forEach(g => g.classList.toggle("off", +g.dataset.year > Y));
       pinsY.forEach(p => p.classList.toggle("off", +p.dataset.year > Y));
-      const st = steps.filter(s => s[0] <= Y).pop();
-      $("year-n").textContent = Math.min(2026, Math.floor(Y));
-      $("year-l").textContent = st ? st[1] : "Cairo, before it all";
-      handle.setAttribute("aria-valuenow", Math.min(2026, Math.floor(Y)));
-      handle.setAttribute("aria-valuetext", `${Math.min(2026, Math.floor(Y))}: ${st ? st[1] : "the start"}`);
       if (typeof near !== "undefined") { near = undefined; updateNear(); }
     }
 
-    // dragging
-    let dragging = false, auto = 0, touched = false;
-    const stopAuto = () => { if (auto) { cancelAnimationFrame(auto); auto = 0; } };
-    const fromEvent = e => { const r = world.getBoundingClientRect(); return tFromX((e.clientX - r.left) / r.width * 1600); };
-    handle.addEventListener("pointerdown", e => {
-      e.preventDefault(); stopAuto(); dragging = true; touched = true;
-      handle.setPointerCapture(e.pointerId); handle.classList.add("dragging"); hint.classList.remove("show"); tag.classList.remove("quiet");
-    });
-    handle.addEventListener("pointermove", e => { if (dragging) scene(fromEvent(e)); });
-    const end = () => { dragging = false; handle.classList.remove("dragging"); };
-    handle.addEventListener("pointerup", end); handle.addEventListener("pointercancel", end);
-    handle.addEventListener("click", e => e.stopPropagation());
-    handle.addEventListener("keydown", e => {
-      const d = { ArrowLeft: -1, ArrowDown: -1, ArrowRight: 1, ArrowUp: 1 }[e.key];
-      if (d) { e.preventDefault(); e.stopPropagation(); stopAuto(); touched = true; hint.classList.remove("show"); tag.classList.remove("quiet"); scene(Math.max(0, Math.min(1, T + d / 25))); }
-      if (e.key === "Home") { e.preventDefault(); scene(0); } if (e.key === "End") { e.preventDefault(); scene(1); }
-    });
-
-    // start today so every project is on the street; dragging the moon back rewinds to 2014
-    showRewind = () => { if (!touched) hint.classList.add("show"); };
-    tag.classList.add("quiet");
-    scene(1);
+    // no timeline: the whole city is built, and the sky follows light / dark
+    const isDark = () => document.documentElement.dataset.theme ? document.documentElement.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+    const sky = () => {
+      scene(isDark() ? 1 : .3);
+      // the day sun sits where the moon does, clear of the plane and the headline
+      const [x, y] = at(1); sunG.setAttribute("transform", `translate(${x.toFixed(1)} ${y.toFixed(1)})`);
+    };
+    new MutationObserver(sky).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => setTimeout(sky));
+    sky();
   })();
   nudge();
 
