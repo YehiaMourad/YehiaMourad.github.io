@@ -417,6 +417,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
 .about .txt p { font-size: clamp(19px, 1.8vw, 23px); line-height: 1.5; letter-spacing: -.01em; }
 .about .txt p + p { margin-top: 16px; }
 .about .txt p span { color: var(--muted); }
+.item[hidden], .vcard[hidden] { display: none !important; }
 .stamps { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
 .stamps span { font-size: 14px; padding: 7px 14px; border-radius: 999px; border: 1.5px dashed var(--rule); }
 
@@ -704,12 +705,12 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           </g></g>
           <!-- contact shadows: ground the buildings -->
           <g fill="url(#shadow)">
-            <ellipse cx="325" cy="770" rx="175" ry="12" class="grow" data-year="2024.5"/><ellipse cx="584" cy="772" rx="110" ry="10" class="grow" data-year="2026.6"/><ellipse cx="910" cy="772" rx="90" ry="8" class="grow" data-year="2023.0"/>
-            <ellipse cx="1300" cy="772" rx="105" ry="12" class="grow" data-year="2023.9"/><ellipse cx="1102" cy="772" rx="70" ry="9" class="grow" data-year="2026.6"/><ellipse cx="1237" cy="878" rx="100" ry="10" class="grow" data-year="2026.3"/>
-            <ellipse cx="90" cy="792" rx="70" ry="8"/><ellipse cx="54" cy="774" rx="34" ry="6"/><ellipse cx="1442" cy="770" rx="40" ry="7"/><ellipse cx="1534" cy="792" rx="30" ry="6"/>
+            <ellipse cx="180" cy="770" rx="175" ry="12" class="grow" data-year="2024.5"/><ellipse cx="584" cy="772" rx="110" ry="10" class="grow" data-year="2099"/><ellipse cx="910" cy="772" rx="90" ry="8" class="grow" data-year="2023.0"/>
+            <ellipse cx="1300" cy="772" rx="105" ry="12" class="grow" data-year="2023.9"/><ellipse cx="1102" cy="772" rx="70" ry="9" class="grow" data-year="2099"/><ellipse cx="600" cy="808" rx="100" ry="10" class="grow" data-year="2026.3"/>
+            <ellipse cx="420" cy="792" rx="70" ry="8"/><ellipse cx="357" cy="774" rx="34" ry="6"/><ellipse cx="1442" cy="770" rx="40" ry="7"/><ellipse cx="1534" cy="792" rx="30" ry="6"/>
           </g>
           <!-- POS: market shop -->
-          <g class="grow" data-year="2024.5"><g transform="translate(-65 0)">
+          <g class="grow" data-year="2024.5"><g transform="translate(-210 0)">
             <rect x="250" y="600" width="280" height="168" fill="var(--wall)"/>
             <rect x="250" y="600" width="280" height="14" fill="var(--wall-d)"/>
             <rect x="486" y="614" width="44" height="154" fill="#000" opacity=".07"/>
@@ -756,8 +757,8 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
             <text x="1250" y="742" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="15" fill="#fff" letter-spacing=".5">TWENTYTOO</text>
           </g></g>
 
-          <!-- Muzain: salon -->
-          <g class="grow" data-year="2026.6"><g transform="translate(470 0)">
+          <!-- Muzain: salon (hidden for now) -->
+          <g class="grow" data-year="2099"><g transform="translate(470 0)">
             <rect x="26" y="648" width="176" height="122" fill="var(--wall)"/>
             <rect x="26" y="648" width="176" height="12" fill="var(--wall-d)"/>
             <rect x="172" y="660" width="30" height="110" fill="#000" opacity=".07"/>
@@ -780,13 +781,13 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
 
           <!-- palms -->
           <g>
-            <g transform="translate(62 772) scale(.85)"><path d="M0 0 C-4 -40 0 -86 -10 -122" stroke="var(--trunk)" stroke-width="9" fill="none" stroke-linecap="round"/><g transform="translate(-10 -124)" fill="var(--palm)"><path d="M0 0 C-30 -18 -60 -8 -74 10 C-50 -2 -26 -2 0 4 Z"/><path d="M0 0 C30 -20 62 -10 76 8 C50 -4 26 -2 0 4 Z"/><path d="M0 0 C-36 4 -54 26 -56 42 C-40 22 -24 12 0 4 Z" fill="var(--palm-d)"/><path d="M0 0 C34 2 54 22 58 40 C40 20 24 10 0 4 Z" fill="var(--palm-d)"/></g></g>
+            <g transform="translate(365 772) scale(.85)"><path d="M0 0 C-4 -40 0 -86 -10 -122" stroke="var(--trunk)" stroke-width="9" fill="none" stroke-linecap="round"/><g transform="translate(-10 -124)" fill="var(--palm)"><path d="M0 0 C-30 -18 -60 -8 -74 10 C-50 -2 -26 -2 0 4 Z"/><path d="M0 0 C30 -20 62 -10 76 8 C50 -4 26 -2 0 4 Z"/><path d="M0 0 C-36 4 -54 26 -56 42 C-40 22 -24 12 0 4 Z" fill="var(--palm-d)"/><path d="M0 0 C34 2 54 22 58 40 C40 20 24 10 0 4 Z" fill="var(--palm-d)"/></g></g>
             <g transform="translate(1440 768)"><path d="M0 0 C4 -40 2 -90 14 -130" stroke="var(--trunk)" stroke-width="10" fill="none" stroke-linecap="round"/><g transform="translate(14 -132)" fill="var(--palm)"><path d="M0 0 C-30 -18 -60 -8 -74 10 C-50 -2 -26 -2 0 4 Z"/><path d="M0 0 C30 -20 62 -10 76 8 C50 -4 26 -2 0 4 Z"/><path d="M0 0 C-14 -30 -6 -54 6 -64 C2 -40 6 -22 4 2 Z" fill="var(--palm-d)"/><path d="M0 0 C-36 4 -54 26 -56 42 C-40 22 -24 12 0 4 Z" fill="var(--palm-d)"/><path d="M0 0 C34 2 54 22 58 40 C40 20 24 10 0 4 Z" fill="var(--palm-d)"/></g></g>
             <g transform="translate(1540 790) scale(.7)"><path d="M0 0 C-4 -40 0 -86 -10 -122" stroke="var(--trunk)" stroke-width="9" fill="none" stroke-linecap="round"/><g transform="translate(-10 -124)" fill="var(--palm)"><path d="M0 0 C-30 -18 -60 -8 -74 10 C-50 -2 -26 -2 0 4 Z"/><path d="M0 0 C30 -20 62 -10 76 8 C50 -4 26 -2 0 4 Z"/><path d="M0 0 C-36 4 -54 26 -56 42 C-40 22 -24 12 0 4 Z" fill="var(--palm-d)"/></g></g>
           </g>
 
-          <!-- Fahs: inspection kiosk -->
-          <g class="grow" data-year="2026.6"><g transform="translate(50 0)">
+          <!-- Fahs: inspection kiosk (hidden for now) -->
+          <g class="grow" data-year="2099"><g transform="translate(50 0)">
             <rect x="1004" y="690" width="96" height="80" rx="6" fill="#fff8ee"/>
             <path d="M996 690 L1108 690 L1100 672 L1004 672 Z" fill="#2b1d55"/>
             <rect x="1016" y="704" width="72" height="34" rx="4" fill="var(--glass-1)"/>
@@ -798,7 +799,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           </g></g>
 
           <!-- Pleny: food truck -->
-          <g class="grow" data-year="2026.3"><g transform="translate(318 58)">
+          <g class="grow" data-year="2026.3"><g transform="translate(-319 -12)">
             <rect x="842" y="742" width="132" height="62" rx="10" fill="#fff8ee"/>
             <path d="M944 742 L974 742 Q986 742 990 756 L996 782 L996 804 L944 804 Z" fill="#fff8ee"/>
             <path d="M950 750 L976 750 Q982 750 984 758 L988 774 L950 774 Z" fill="var(--glass-1)"/>
@@ -815,7 +816,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           </g></g>
 
           <!-- the ahwa: a street café, where projects start -->
-          <g transform="translate(90 792)">
+          <g transform="translate(420 792)">
             <path d="M0 -6 V-92" stroke="#5b4636" stroke-width="4" stroke-linecap="round"/>
             <path d="M-58 -78 Q0 -118 58 -78 Z" fill="#4f56d6"/>
             <path d="M-58 -78 Q-29 -70 -19 -78 Q0 -70 19 -78 Q29 -70 58 -78" fill="none" stroke="#fff4e6" stroke-width="5" stroke-linejoin="round"/>
@@ -835,15 +836,19 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
 
         <!-- ======================= PINS ======================= -->
         <!-- case studies -->
-        <div class="pin" data-year="2024.5" data-depth="0.9" style="--x:325; --y:566"><span class="stem"></span><span class="dot"></span>
+        <div class="pin" data-year="2024.5" data-depth="0.9" style="--x:180; --y:566"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="pos"><span class="lg" style="background:#2b1d55">P</span>Primex POS<span class="yr">Case study</span></button></div>
         <div class="pin" data-year="2023.9" data-depth="0.9" style="--x:1300; --y:352"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="twentytoo"><span class="lg" style="background:#4f56d6">T</span>TwentyToo<span class="yr">Case study</span></button></div>
         <div class="pin" data-year="2025.6" data-depth="0.5" style="--x:1500; --y:256"><span class="stem"></span><span class="dot"></span>
           <button class="chip left" data-place="benaa"><span class="lg" style="background:#ffb347">B</span>Benaa<span class="yr">Case study</span></button></div>
-        <div class="pin" data-year="2026.3" data-depth="0.9" style="--x:1212; --y:754"><span class="stem"></span><span class="dot"></span>
+        <div class="pin" data-year="2026.3" data-depth="0.9" style="--x:575; --y:690"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="pleny"><span class="lg" style="background:#ff6a3d">P</span>Pleny<span class="yr">Case study</span></button></div>
         <!-- me -->
+        <div class="pin" data-depth="0.9" style="--x:420; --y:676"><span class="stem"></span><span class="dot"></span>
+          <button class="chip left" data-place="ahwa"><span class="lg" style="background:#4f56d6">☕</span>The ahwa<span class="yr">How I start</span></button></div>
+        <div class="pin" data-year="2023.0" data-depth="0.9" style="--x:910; --y:552"><span class="stem"></span><span class="dot"></span>
+          <button class="chip" data-place="reach"><span class="lg" style="background:#ff6a3d">R</span>Reach Link<span class="yr">Visual</span></button></div>
         <div class="pin" id="pin-me" data-depth="0.5" style="--x:1113; --y:360"><span class="stem"></span><span class="dot"></span>
           <button class="chip left" data-place="about"><span class="lg"><img src="assets/me.png" alt="" onerror="this.parentElement.textContent='Y';this.parentElement.style.background='#2b1d55'"></span>That's me 👋</button></div>
         <div class="pin" data-year="2026.75" data-depth="0.6" style="--x:735; --y:600"><span class="stem"></span><span class="dot"></span>
@@ -902,7 +907,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
       <div class="item" data-open="benaa" role="button" tabindex="0"><span class="n">02</span><div><h3>From one desktop app to a full learning platform</h3><p>Benaa: desktop, mobile and web for engineers.</p></div><span class="tag">EdTech · Benaa</span><span class="thumb" style="background-image:url(assets/benaa-canvas.webp)"></span></div>
       <div class="item" data-open="pleny" role="button" tabindex="0"><span class="n">03</span><div><h3>Rebuilding a food app's design system</h3><p>Pleny's Android design system, restructured.</p></div><span class="tag">Design system · Pleny</span><span class="thumb" style="background-image:url(assets/pleny-canvas.webp)"></span></div>
       <div class="item" data-open="pos" role="button" tabindex="0"><span class="n">04</span><div><h3>Design a full POS system</h3><p>The Cashier POS, out of a full ERP and into its own product.</p></div><span class="tag">B2B · Password</span><span class="thumb" style="background-image:url(assets/pos-canvas.webp)"></span></div>
-      <div class="item" data-open="fahs" role="button" tabindex="0"><span class="n">05</span><div><h3>Fahs</h3><p>A mobile app. Case study on the way.</p></div><span class="tag">Mobile · Soon</span><span class="thumb tg-5"></span></div>
+      <div class="item" data-open="fahs" hidden role="button" tabindex="0"><span class="n">05</span><div><h3>Fahs</h3><p>A mobile app. Case study on the way.</p></div><span class="tag">Mobile · Soon</span><span class="thumb tg-5"></span></div>
     </div>
   </div>
 
@@ -911,7 +916,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     <h2>Next stops <span class="hand">on the map</span></h2>
     <div class="visuals">
       <div class="vcard" data-open="reach" role="button" tabindex="0"><span class="vimg tg-2"></span><div class="vmeta"><h3>Reach Link</h3><span class="tag">Marketplace · Soon</span></div></div>
-      <div class="vcard" data-open="muzain" role="button" tabindex="0"><span class="vimg tg-6"></span><div class="vmeta"><h3>Muzain app</h3><span class="tag">Mobile · Soon</span></div></div>
+      <div class="vcard" data-open="muzain" hidden role="button" tabindex="0"><span class="vimg tg-6"></span><div class="vmeta"><h3>Muzain app</h3><span class="tag">Mobile · Soon</span></div></div>
     </div>
   </div>
 
@@ -1166,10 +1171,12 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
   /* ---------- Game: walk the street, collect a stamp at every place ---------- */
   // x is where you stand on the street (in the 1600-wide world) to open each place; door is where you walk in
   const spots = [
-    { k: "pos", x: 325, door: 295, name: "Primex POS", verb: "Enter the market" },
+    { k: "pos", x: 180, door: 150, name: "Primex POS", verb: "Enter the market" },
+    { k: "ahwa", x: 420, door: 399, name: "The ahwa", verb: "Sit at the ahwa" },
+    { k: "pleny", x: 590, door: 575, name: "Pleny", verb: "Grab a bite" },
     { k: "contact", x: 725, door: 712, name: "Say hi", verb: "Board the felucca" },
+    { k: "reach", x: 910, door: 910, name: "Reach Link", verb: "Read the billboard" },
     { k: "about", x: 1142, door: 1130, name: "That's me", verb: "Climb Cairo Tower" },
-    { k: "pleny", x: 1222, door: 1212, name: "Pleny", verb: "Grab a bite" },
     { k: "twentytoo", x: 1305, door: 1300, name: "TwentyToo", verb: "Enter the AI tower" },
     { k: "benaa", x: 1500, door: 1500, climb: 318, name: "Benaa", verb: "Climb the crane" }
   ];
