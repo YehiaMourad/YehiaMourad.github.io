@@ -1514,6 +1514,12 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     });
   }
   choice.addEventListener("click", e => { e.stopPropagation(); const b = e.target.closest("[data-c]"); if (b && choose) choose(b.dataset.c); });
+  // a click anywhere else is "keep exploring"; on the street it only closes the box, links and menus still work
+  document.addEventListener("click", e => {
+    if (!choose || choice.contains(e.target)) return;
+    if (!e.target.closest("a, header, nav, .bnav")) { e.stopPropagation(); e.preventDefault(); }
+    choose("stay");
+  }, true);
   // after the action: a card for places without a page, a circle wipe into the page for the rest
   function leave(s) {
     const page = pageOf(s.k);
