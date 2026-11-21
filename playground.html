@@ -251,9 +251,9 @@ svg * { transition: fill .8s ease, stop-color .8s ease, opacity .8s ease; }
 .trail i { position: absolute; width: 9px; height: 13px; margin: -6px 0 0 -4px; border-radius: 50% 50% 45% 45%; background: var(--glass-ink); opacity: 0; transform: rotate(90deg); animation: print 2.4s infinite; }
 .trail i.r { margin-top: 2px; }
 @keyframes print { 0% { opacity: 0; } 15% { opacity: .35; } 60% { opacity: .35; } 100% { opacity: 0; } }
-.trail .door-key { position: absolute; transform: translate(-50%, -100%); animation: bob 1.4s ease-in-out infinite; }
+.trail .door-key { position: absolute; transform: translate(-50%, -100%); animation: key-bob 1.4s ease-in-out infinite; }
 .trail .door-key kbd { min-width: 30px; height: 30px; font-size: 15px; background: var(--coral); color: #fff; box-shadow: 0 3px 0 rgba(0,0,0,.2); }
-@keyframes bob { 50% { transform: translate(-50%, calc(-100% - 6px)); } }
+@keyframes key-bob { 50% { transform: translate(-50%, calc(-100% - 6px)); } }
 @media (prefers-reduced-motion: reduce) { .trail i { animation: none; opacity: .3; } .trail .door-key { animation: none; } }
 .say .tap { font-size: 12px; font-weight: 700; color: #fff; background: var(--coral); padding: 3px 8px; border-radius: 7px; }
 kbd { font: 700 12px/1 "Bricolage Grotesque", system-ui, sans-serif; min-width: 22px; height: 22px; padding: 0 6px; display: inline-grid; place-items: center; border-radius: 6px;
