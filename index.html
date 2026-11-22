@@ -14,8 +14,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script>
-  // open the prototype view if that's what this visitor picked last time
-  try { const v = localStorage.getItem("home"), to = { prototype: "prototype.html", playground: "playground.html" }[v];
+  // the Playground is the default homepage; a visitor who picked Canvas or Prototype gets that instead
+  try { const v = localStorage.getItem("home") || "playground", to = { prototype: "prototype.html", playground: "playground.html" }[v];
     if (to && !/view=canvas/.test(location.search)) location.replace(to + location.hash); } catch (e) {}
 </script>
 <script src="theme.js"></script>
@@ -366,7 +366,7 @@
   <section class="frame f-soon">
     <div class="frame-label"><span>In progress</span><span class="mono">3</span></div>
     <div class="frame-body">
-      <button class="mini" style="background:linear-gradient(140deg,#2b1d55,#4f56d6)" data-soon="Fahs"><i></i><small>Soon</small><b>Fahs</b></button>
+      <a class="mini" href="fahs.html" style="background:linear-gradient(140deg,#2b1d55,#4f56d6)"><i></i><small>New</small><b>Fahs</b></a>
       <button class="mini" style="background:linear-gradient(140deg,#ff6a3d,#ff9a6b)" data-soon="Reach Link"><i class="wide"></i><small>Soon</small><b>Reach Link</b></button>
       <button class="mini" style="background:linear-gradient(140deg,#4f56d6,#9b5de5)" data-soon="Muzain"><i></i><small>Soon</small><b>Muzain</b></button>
     </div>
