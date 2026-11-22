@@ -14,9 +14,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script>
-  // the Playground is the default homepage; a visitor who picked Canvas or Prototype gets that instead
-  try { const v = localStorage.getItem("home") || "playground", to = { prototype: "prototype.html", playground: "playground.html" }[v];
-    if (to && !/view=canvas/.test(location.search)) location.replace(to + location.hash); } catch (e) {}
+  // the Playground is always the homepage; Canvas opens only from its switcher link (./?view=canvas)
+  if (!/view=canvas/.test(location.search)) location.replace("playground.html" + location.hash);
 </script>
 <script src="theme.js"></script>
 <style>
@@ -469,7 +468,7 @@
 
   // remember which homepage view the visitor picked
   document.querySelectorAll(".mode a").forEach(a => a.addEventListener("click", () => { try { localStorage.setItem("home", a.dataset.mode); } catch (e) {} }));
-  if (/view=canvas/.test(location.search)) { try { localStorage.setItem("home", "canvas"); history.replaceState(null, "", location.pathname + location.hash); } catch (e) {} }
+
 
   // toast + copy email
   const toast = document.getElementById("toast");
