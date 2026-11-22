@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html dir="ltr" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Fahs — Yehia Mourad</title>
+<meta content="Designing a Saudi app that takes drivers from car inspection to ownership transfer in a few clear steps, Arabic-first." name="description"/>
+<meta content="Fahs — Yehia Mourad" property="og:title"/>
+<meta content="Designing a Saudi app that takes drivers from car inspection to ownership transfer in a few clear steps, Arabic-first." property="og:description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&amp;display=swap" rel="stylesheet"/>
+<link href="favicon.ico" rel="icon" sizes="32x32"/>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="site.webmanifest" rel="manifest"/>
+<meta content="#efece6" name="theme-color"/>
+<meta content="https://yehiamourad.github.io/assets/og-image.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="style.css" rel="stylesheet"/>
+<style>
+  /* Fahs only: a four-step tracker */
+  .steps.s4 { grid-template-columns: repeat(4, 1fr); }
+  .steps.s4 + p { margin-top: 22px; }
+  @media (max-width: 760px) { .steps.s4 { grid-template-columns: 1fr 1fr; } }
+</style>
+<script src="theme.js"></script>
+<script defer="" src="i18n.js"></script>
+<script defer="" src="case.js"></script>
+</head>
+<body class="cs">
+<!--
+  Same structure as benaa.html.
+  - class="detail" hides in TL;DR mode, class="tldr" shows only in TL;DR mode.
+  - Cover: assets/fahs-cover.webp, landscape (class "cover cover-wide").
+  - Screens: assets/fahs-*.webp, composed from the Figma file. Swap in the Behance exports with the same names if you prefer them.
+  - TODO before publishing: add one real number to 07 / Outcome, and check the "why" in 03–06 and the list in 08 are in your words.
+-->
+<a aria-label="Yehia Mourad, home" class="mark cs-mark" href="./"><img alt="" class="logo-l" src="assets/logo-header.svg"/><img alt="" class="logo-d" src="assets/logo-header-dark.svg"/></a>
+<div class="cs-tools">
+
+<button aria-label="Switch light or dark" class="chip theme-toggle" type="button">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+</button>
+<a aria-label="Close and go back" class="chip close" href="./#work">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"></path></svg>
+</a>
+</div>
+<main class="cs-page">
+<div class="cover cover-wide" style="view-transition-name: fahs-cover; background-image:url(assets/fahs-cover.webp)"></div>
+<div aria-label="Reading mode" class="seg" role="tablist">
+<button class="on" data-mode="detailed" role="tab">Detailed</button>
+<button data-mode="tldr" role="tab">TL;DR</button>
+</div>
+<article class="col">
+<span class="kicker">Case study · Fahs</span>
+<h1>
+From inspection to ownership, in a few clear steps
+
+</h1>
+<p class="lead">
+Fahs is a Saudi app for booking a car's technical inspection and transferring its ownership. You book, pay, follow the car through the center and get the report on your phone. I designed it as senior product designer, and it shipped.
+
+</p>
+<dl class="meta-row">
+<div><dt>Role</dt><dd>Senior Product Designer</dd></div>
+<div><dt>Client</dt><dd>Fahs, Saudi Arabia</dd></div>
+<div><dt>Scope</dt><dd>Product design, UX &amp; UI · 49 screens</dd></div>
+<div><dt>Language</dt><dd>Arabic RTL · English</dd></div>
+</dl>
+<!-- ===== TL;DR ===== -->
+<section class="tldr">
+<h2>The short version</h2>
+<ul>
+<li>Fahs books <b>car inspections and ownership transfers</b> in Saudi Arabia. Shipped.</li>
+<li>Booking is <b>one screen</b>: vehicle type and inspection type are one tap each, then make, year, color and plate.</li>
+<li>The plate input <b>mirrors the real Saudi plate</b>: Arabic letters with their Latin pair, and a live preview.</li>
+<li>Checkout offers <b>card, mada, wallet, Tamara and Tabby</b>, with the installment amount shown up front.</li>
+<li>A <b>4-step tracker</b> follows the car through the center and ends with photos and the final report.</li>
+<li>Designed Arabic-first, entirely in Figma.</li>
+</ul>
+
+</section>
+<!-- ===== Gallery ===== -->
+<section class="gallery" aria-label="Fahs at a glance">
+<span class="num">At a glance</span>
+<h2>The whole journey, end to end</h2>
+<figure data-title="Home, booking, tracking"><img alt="Fahs home, booking and tracking screens" loading="lazy" src="assets/fahs-wide.webp"/><figcaption>The core path: pick a service, book, then follow the car.</figcaption></figure>
+<figure data-title="Book in one screen"><img alt="Fahs brand search, booking form and checkout" loading="lazy" src="assets/fahs-book.webp"/><figcaption>Search the make, fill one form with a live plate preview, pay your way.</figcaption></figure>
+<figure data-title="Follow the car"><img alt="Fahs request details, inspection tracker and car photos" loading="lazy" src="assets/fahs-track.webp"/><figcaption>Request details, a 4-step tracker, and the photos and report at the end.</figcaption></figure>
+<figure data-title="Ownership and account"><img alt="Fahs ownership transfer, My FAHS and wallet" loading="lazy" src="assets/fahs-account.webp"/><figcaption>Transfer ownership from a saved vehicle, see what needs action, manage the wallet.</figcaption></figure>
+</section>
+<!-- ===== 01 Context ===== -->
+<section class="detail">
+<span class="num">01 / Context</span>
+<h2>An errand that usually takes a day</h2>
+<p>Buying or selling a used car usually means an inspection first, then an ownership transfer. Fahs puts both in one app: book the inspection at a nearby center, follow it, get the report, and start the transfer from the same request.</p>
+
+<p>The app serves two kinds of users from one sign-in screen: customers who book, and service providers who run the inspections.</p>
+
+</section>
+<!-- ===== 02 Problems ===== -->
+<section class="detail">
+<span class="num">02 / What we set out to solve</span>
+<h2>A physical service, on a phone</h2>
+<p>An inspection is not a form you submit. The car has to get to a center, and the owner often isn't the one driving it there. So the app had to make booking fast and make the hours in between visible.</p>
+
+<div class="cards3">
+<div><b>The car leaves your hands</b><p>People need to know where it is and what happens next.</p></div>
+<div><b>Plates are bilingual</b><p>Three Arabic letters, their Latin pair, and a number.</p></div>
+<div><b>People pay their way</b><p>mada and pay-later are as normal as Visa.</p></div>
+</div>
+</section>
+<!-- ===== 03 Booking ===== -->
+<section class="detail">
+<span class="num">03 / Booking</span>
+<h2>One screen, not a wizard</h2>
+<span class="pill">3A · Choices</span>
+<h3>The common answers are one tap each</h3>
+<p>Vehicle type (cars, trucks and equipment, motorcycles) and inspection type (full, body only, engine only) are chips at the top. Most bookings are the same few choices, so a multi-step wizard would only add screens. The whole request stays visible on one scroll.</p>
+
+<span class="pill">3B · Plate</span>
+<h3>Type the plate the way it looks on the car</h3>
+<p>People copy the plate off the car, not from memory. So the input mirrors it: three letter pickers that show each Arabic letter with its Latin pair, a number field, and a live preview drawn like the real plate. A mistake shows up before you submit.</p>
+
+<span class="pill">3C · Make and model</span>
+<h3>Search, don't scroll</h3>
+<p>Brands have Arabic and English spellings, and a dropdown of every model is long. A searchable list with brand logos gets there faster, with an empty state for when nothing matches.</p>
+
+</section>
+<figure class="wide detail">
+<img alt="Fahs brand search, the booking form with a live Saudi plate preview, and checkout" class="shot-img" onerror="this.closest('figure').remove()" src="assets/fahs-book.webp"/>
+<figcaption>Brand search, the booking form with its plate preview, and checkout.</figcaption>
+</figure>
+<!-- ===== 04 Checkout ===== -->
+<section class="detail">
+<span class="num">04 / Checkout</span>
+<h2>Pay the way people already pay</h2>
+<span class="pill">4A · Payment</span>
+<h3>Five options, one screen</h3>
+<p>Card, mada, wallet balance, Tamara and Tabby sit together, each with its logo. The pay-later options show the 4-installment amount right on the option, so the first question is answered before anyone taps.</p>
+
+<span class="pill">4B · Rules up front</span>
+<h3>Say it before it matters</h3>
+<p>Once a center starts the inspection, the request can't be cancelled. That rule sits right above the cancel button, not in a dialog after the tap.</p>
+
+</section>
+<!-- ===== 05 Tracking ===== -->
+<section class="detail">
+<span class="num">05 / Tracking &amp; report</span>
+<h2>Show where the car is</h2>
+<p>After booking, the car is out of the owner's hands for hours. A 4-step tracker says what's happening at each point and what, if anything, the owner needs to do:</p>
+
+<ol class="steps s4">
+<li class="done">Request received</li>
+<li class="done">Car at the center, being inspected</li>
+<li class="now">Inspection done, review the report</li>
+<li>Final report</li>
+</ol>
+<p>The request screen also carries the center's hours, rating and location, with chat, call and "send location" for the owner. The report comes with car photos to view or download, and a note that videos are deleted after 24 hours, stated where people will see it.</p>
+
+</section>
+<figure class="wide detail">
+<img alt="Fahs request details, the four-step inspection tracker, and the car photos screen" class="shot-img" onerror="this.closest('figure').remove()" src="assets/fahs-track.webp"/>
+<figcaption>Request details, the tracker, and the photos with the final report.</figcaption>
+</figure>
+<!-- ===== 06 Beyond booking ===== -->
+<section class="detail">
+<span class="num">06 / Beyond the booking</span>
+<h2>Ownership, account and wallet</h2>
+<span class="pill">6A · Transfer</span>
+<h3>Start from a car you already added</h3>
+<p>The ownership transfer request opens with your saved vehicles and their plates, so a car you already inspected doesn't need typing again. Adding a new one uses the same form as booking.</p>
+
+<span class="pill">6B · My FAHS</span>
+<h3>What's waiting on you comes first</h3>
+<p>My FAHS opens with "My actions": anything that needs a response from you. Wallet balance, requests and vehicles follow. The wallet handles top-ups, withdrawals to a bank account and a transaction history.</p>
+
+</section>
+<figure class="wide detail">
+<img alt="Fahs ownership transfer, My FAHS and wallet screens" class="shot-img" onerror="this.closest('figure').remove()" src="assets/fahs-account.webp"/>
+<figcaption>Ownership transfer, My FAHS, and the wallet.</figcaption>
+</figure>
+<!-- ===== 07 Outcome ===== -->
+<section class="detail">
+<span class="num">07 / Outcome</span>
+<h2>Shipped in Saudi Arabia</h2>
+<!-- TODO: add one real number here (bookings, completion rate, app rating). -->
+<p>The app shipped with 49 screens, from sign-in and booking to ownership transfer, wallet, support and notifications. Everything was designed in Figma, Arabic-first, with English as a switch in settings.</p>
+
+</section>
+<section class="detail">
+<span class="num">08 / What I'd do differently</span>
+<h2>Two things I'd try next time</h2>
+<ul>
+<li><b>Ask for the plate first.</b> It's the one thing every user has in front of them. With the right data, it could fill in make, model and year.</li>
+<li><b>Test the tracker against real waits.</b> Inspections take time. Push updates at each step need tuning to how long that really is.</li>
+</ul>
+
+</section>
+</article>
+<a class="next-proj" href="./#work">
+<span class="small">Back to all work</span>
+<span class="go"><svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24" width="16"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</a>
+</main>
+</body>
+</html>
