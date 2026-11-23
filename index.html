@@ -742,7 +742,31 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
 
           </g>
           </g>
-          <g class="layer" data-depth="0.9">
+          <g class="layer" data-depth="0.9" id="pad-layer">
+          <!-- Misbar: the launch pad, with the rocket standing on it -->
+          <g class="grow" data-year="2026.8">
+            <ellipse cx="845" cy="794" rx="44" ry="6" fill="url(#shadow)"/>
+            <!-- launch tower with its arm to the rocket -->
+            <g stroke="#6e6788" stroke-width="2.4" fill="none">
+              <path d="M806 790 V690 M820 790 V690 M806 690 H820"/>
+              <path d="M806 790 L820 770 L806 750 L820 730 L806 710 L820 690"/>
+            </g>
+            <path d="M820 716 H834" stroke="#6e6788" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="813" cy="684" r="3.5" fill="#ff6a3d" class="beacon"/>
+            <!-- concrete pad and its legs -->
+            <path d="M826 780 L822 792 M864 780 L868 792" stroke="#6e6788" stroke-width="4" stroke-linecap="round"/>
+            <rect x="816" y="776" width="58" height="8" rx="2" fill="#a59fb8"/>
+            <rect x="816" y="776" width="58" height="3" rx="1.5" fill="#fff" opacity=".35"/>
+            <path d="M822 784 H868" stroke="#ff6a3d" stroke-width="2" stroke-dasharray="5 4"/>
+            <!-- the rocket (hidden while it is flying) -->
+            <g id="pad-rocket" transform="translate(826 715.2) scale(1.2667)">
+              <path d="M6 33 L0 46 L6.5 44 Z M24 33 L30 46 L23.5 44 Z" fill="#ff6a3d"/>
+              <path d="M15 2 C24 12 25.5 27 24 44 H6 C4.5 27 6 12 15 2 Z" fill="#fff8ee"/>
+              <path d="M15 2 C19 6 21.4 10 22.6 15.5 H7.4 C8.6 10 11 6 15 2 Z" fill="#ff6a3d"/>
+              <circle cx="15" cy="25" r="5" fill="#6B7CE9" stroke="#2b1d55" stroke-width="2.2"/>
+              <rect x="8.5" y="44" width="13" height="4" rx="1.2" fill="#2b1d55"/>
+            </g>
+          </g>
           <!-- Benaa: the ladder up to the crane -->
           <g class="grow" data-year="2025.6"><g stroke="#ffb347" stroke-linecap="round" fill="none">
             <path d="M1491 612 V806 M1509 612 V806" stroke-width="3.5"/>
@@ -1480,6 +1504,9 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
       const probe = $("probe"), spin = $("probe-spin");
       const pY = +probe.getAttribute("transform").match(/translate\(810 ([\d.]+)\)/)[1];
       const x0 = px, x1 = 846, park = pY + 112; // rocket parks nose-up just under the probe
+      // the rocket waits on the launch pad (front layer, so add that layer's parallax shift)
+      const padRocket = $("pad-rocket"), lt = ($("pad-layer").getAttribute("transform") || "").match(/[-\d.]+/g) || [0, 0];
+      const PX = 845 + +lt[0], PY = 796 + +lt[1];
       const rk = document.createElement("span");
       rk.className = "rocket";
       rk.innerHTML = `<svg viewBox="0 0 30 64" aria-hidden="true">
@@ -1490,13 +1517,13 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
         <circle cx="15" cy="25" r="5" fill="#6B7CE9" stroke="#2b1d55" stroke-width="2.2"/>
         <rect x="8.5" y="44" width="13" height="4" rx="1.2" fill="#2b1d55"/></svg>`;
       const place = (x, y) => { rk.style.left = x / 16 + "%"; rk.style.top = y / 9 + "%"; };
-      place(x0 + 26, STREET); rk.classList.add("parked"); world.appendChild(rk);
-      await wait(250);
-      await hop(x0 + 26, STREET - 30, .5); pIn.classList.add("entering"); await wait(300); // climbs in
+      place(PX, PY); rk.classList.add("parked"); world.appendChild(rk); padRocket.style.visibility = "hidden";
+      await wait(150);
+      await hop(PX, PY - 44, .5); pIn.classList.add("entering"); await wait(300); // climbs in
       rk.classList.remove("parked"); pop("3… 2… 1…"); await wait(700);
       let n = 0;
       await tween(1700, k => {
-        const e = ease(k), x = x0 + 26 + (x1 - x0 - 26) * e, y = STREET + (park - STREET) * e;
+        const e = ease(k), x = PX + (x1 - PX) * e, y = PY + (park - PY) * e;
         place(x, y);
         if (++n % 4 === 0 && k < .95) fx(x + (Math.random() - .5) * 14, y + 18, "☁️", "", 900);
       });
@@ -1514,6 +1541,8 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
       const mPin = pinOfPlace("misbar"), ring = $("probe").querySelector(":scope > ellipse");
       mPin.style.transition = ring.style.transition = "opacity .3s"; mPin.style.opacity = "0"; ring.style.opacity = ".2";
       const lerp = (p, q, e) => p + (q - p) * e;
+      // he hops onto the probe and rides along
+      pose("wave", false); await hop(810, pY - 14, .5); pose("sit");
       await tween(5600, k => {
         let x, y, sc, o = 1, a = a0;
         if (k < .16) { // fly out
@@ -1530,8 +1559,10 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
         }
         spin.setAttribute("transform", `translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${sc.toFixed(3)}) rotate(${(-Math.cos(a) * 14).toFixed(1)})`);
         spin.style.opacity = o.toFixed(2);
+        setPos(810 + x, pY + y - 14 * sc, .5 * sc); pIn.style.opacity = o.toFixed(2); // sitting on top of the probe
       });
-      spin.style.opacity = ""; ring.style.opacity = "";
+      spin.style.opacity = ""; ring.style.opacity = ""; pIn.style.opacity = "";
+      pose("sit", false); await hop(x1 + 34, pY + 62, .5); pose("wave");
       mPin.style.opacity = "";
       spin.removeAttribute("transform");
       ["✨", "📡", "✨"].forEach((e, i) => setTimeout(() => fx(790 + Math.random() * 60, pY - 20 + Math.random() * 30, e), reduce ? 0 : i * 200));
@@ -1540,9 +1571,9 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
         pose("wave", false); pIn.classList.add("entering"); await wait(450);
         pIn.classList.add("no-anim"); setPos(x0, STREET, 1);
         rk.classList.remove("parked");
-        await tween(1300, k => { const e = ease(k); place(x1 + (x0 + 26 - x1) * e, park + (STREET - park) * e); });
-        rk.classList.add("parked"); await wait(200);
-        rk.style.transition = "opacity .3s"; rk.style.opacity = "0"; setTimeout(() => rk.remove(), 350);
+        await tween(1300, k => { const e = ease(k); place(x1 + (PX - x1) * e, park + (PY - park) * e); });
+        rk.classList.add("parked"); await wait(150);
+        padRocket.style.visibility = ""; rk.remove(); // back on the pad
       };
     },
     journey: async () => {
