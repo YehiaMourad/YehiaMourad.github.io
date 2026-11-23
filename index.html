@@ -1580,9 +1580,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
   const readMore = { contact: "Get in touch", journey: "See my journey", about: "Meet me", ahwa: "How I start" };
   function ask(s) {
     const p = places[s.k];
-    const opts = pageOf(s.k)
-      ? `<button class="opt main" data-c="enter">Enter project</button><button class="opt" data-c="peek">Peek inside</button>`
-      : `<button class="opt main" data-c="peek">${readMore[s.k] || "See the project"}</button>`;
+    const opts = `<button class="opt main" data-c="peek">${readMore[s.k] || (pageOf(s.k) ? "Peek inside" : "See the project")}</button>`;
     choice.innerHTML = `<div class="k">${p.kicker}</div><h5></h5>
       <div class="opts">${opts}<button class="opt" data-c="stay">Keep exploring</button></div>
       ${touch ? "" : `<div class="keys"><kbd>←</kbd><kbd>→</kbd> choose <kbd>E</kbd> select <kbd>Esc</kbd> stay</div>`}`;
