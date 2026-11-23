@@ -1573,10 +1573,10 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
       inside = true;
       await wait(120);
       await (actions[s.k] ? actions[s.k](s) : goIn());
-      // the action earns the stamp, then the place's card opens; closing it steps him back out
+      // the action earns the stamp, then he steps back out to keep walking (the card opens from the label)
       discover(s.k);
-      await wait(250);
-      if (!document.body.classList.contains("sheet-open")) open(s.k);
+      await wait(600);
+      if (!document.body.classList.contains("sheet-open")) stepOut();
     });
   }
 
