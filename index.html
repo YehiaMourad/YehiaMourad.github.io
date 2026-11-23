@@ -267,6 +267,10 @@ svg * { transition: fill .8s ease, stop-color .8s ease, opacity .8s ease; }
 .say.start { left: 0; transform: translateY(6px); }
 .say.start.show { transform: none; }
 .say.start::after { left: 22px; }
+/* near the right end of the street the bubble hangs to the left, so it never sticks out past the city */
+.say.end { left: auto; right: -10px; transform: translateY(6px); }
+.say.end.show { transform: none; }
+.say.end::after { left: auto; right: 22px; margin-left: 0; }
 /* first-visit guide: footprints to the first door, and a key above it */
 .trail { position: absolute; inset: 0; z-index: 2; pointer-events: none; transition: opacity .6s; }
 .trail.gone { opacity: 0; }
@@ -492,6 +496,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
   .sheet .img { height: 160px; }
   /* the street sits above the touch pad; the strip under it is grass */
   .world { bottom: 84px; height: 60svh; width: calc(60svh * 16 / 9); }
+  .world { overflow-x: clip; } /* nothing may poke past the ends of the city and widen the swipe */
   .scroller { background: linear-gradient(to top, var(--grass-d) 86px, transparent 86px); }
   .player { width: calc(70 / 1600 * 100%); margin-left: calc(-35 / 1600 * 100%); }
   .rocket { width: calc(56 / 1600 * 100%); }
@@ -1362,7 +1367,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     if (guide.scroll || scrollTold || !found.size) return;
     scrollTold = true; learnt("scroll");
     say.innerHTML = phone() ? "Scroll down to see my work 👇" : "Scroll down to fly over the city 👇";
-    say.classList.add("show");
+    say.classList.toggle("end", px > 1340); say.classList.add("show");
     setTimeout(() => { if (!near) say.classList.remove("show"); }, 4200);
   }
 
@@ -1379,8 +1384,8 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
       pinOf(s.k).classList.add("near");
       say.innerHTML = guide.enter
         ? (touch ? `${s.verb} <span class="tap">Tap</span>` : `<kbd>E</kbd>${s.verb}`)
-        : (touch ? `Tap <b>Open</b> to go in` : `Press <kbd>E</kbd> to go in`);
-      say.classList.add("show");
+        : (touch ? `<span class="tap">Tap</span> here to go in` : `Press <kbd>E</kbd> to go in`);
+      say.classList.toggle("end", px > 1340); say.classList.add("show");
     } else { say.classList.remove("show"); tellScroll(); }
   }
   function camera(snap) {
