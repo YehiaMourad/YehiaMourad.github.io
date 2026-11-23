@@ -329,7 +329,7 @@ body.past .pad button { pointer-events: none; }
 .pad button.held { transform: scale(.92); }
 .pad .act { width: auto; padding: 0 20px; font-weight: 700; background: var(--coral); color: #fff; }
 .pad .act:disabled { opacity: .5; background: var(--glass); color: var(--glass-ink); }
-@media (pointer: coarse), (max-width: 760px) { .pad { display: flex; } }
+/* the touch pad (arrows + Open) is off: on phones you swipe the street and tap a place */
 @media (max-width: 1040px) { .hud-btn .lvl { display: none; } }
 @media (max-width: 900px) { .hud-btn .bar { display: none; } }
 
@@ -491,8 +491,8 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
   .sheet { bottom: 10px; }
   .sheet .img { height: 160px; }
   /* the street sits above the touch pad; the strip under it is grass */
-  .world { bottom: 128px; height: 56svh; width: calc(56svh * 16 / 9); }
-  .scroller { background: linear-gradient(to top, var(--grass-d) 130px, transparent 130px); }
+  .world { bottom: 84px; height: 60svh; width: calc(60svh * 16 / 9); }
+  .scroller { background: linear-gradient(to top, var(--grass-d) 86px, transparent 86px); }
   .player { width: calc(70 / 1600 * 100%); margin-left: calc(-35 / 1600 * 100%); }
   .rocket { width: calc(56 / 1600 * 100%); }
   /* the passport joins the control row, between the arrows and Open */
@@ -806,7 +806,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           <!-- contact shadows: ground the buildings -->
           <g fill="url(#shadow)">
             <ellipse cx="180" cy="770" rx="175" ry="12" class="grow" data-year="2024.5"/><ellipse cx="584" cy="772" rx="110" ry="10" class="grow" data-year="2099"/><ellipse cx="910" cy="772" rx="90" ry="8" class="grow" data-year="2099"/>
-            <ellipse cx="1300" cy="772" rx="105" ry="12" class="grow" data-year="2023.9"/><ellipse cx="930" cy="772" rx="70" ry="9" class="grow" data-year="2024.8"/><ellipse cx="600" cy="808" rx="100" ry="10" class="grow" data-year="2026.3"/>
+            <ellipse cx="1300" cy="772" rx="105" ry="12" class="grow" data-year="2023.9"/><ellipse cx="980" cy="772" rx="70" ry="9" class="grow" data-year="2024.8"/><ellipse cx="600" cy="808" rx="100" ry="10" class="grow" data-year="2026.3"/>
             <ellipse cx="420" cy="792" rx="70" ry="8"/><ellipse cx="357" cy="774" rx="34" ry="6"/><ellipse cx="1442" cy="770" rx="40" ry="7"/><ellipse cx="1534" cy="792" rx="30" ry="6"/>
           </g>
           <!-- POS: market shop -->
@@ -887,7 +887,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           </g>
 
           <!-- Fahs: inspection kiosk -->
-          <g class="grow" data-year="2024.8"><g transform="translate(-122 0)">
+          <g class="grow" data-year="2024.8"><g transform="translate(-72 0)">
             <rect x="1004" y="690" width="96" height="80" rx="6" fill="#fff8ee"/>
             <path d="M996 690 L1108 690 L1100 672 L1004 672 Z" fill="#7237e9"/>
             <rect x="1016" y="704" width="72" height="34" rx="4" fill="var(--glass-1)"/>
@@ -946,7 +946,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           <button class="chip" data-place="pleny"><span class="lg" style="background:#ff6a3d">P</span>Pleny<span class="yr">Case study</span></button></div>
         <div class="pin side" data-year="2026.8" data-depth="0.2" style="--x:852; --y:158"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="misbar"><span class="lg" style="background:#2E3370">M</span>Misbar<span class="yr">Case study</span></button></div>
-        <div class="pin" data-year="2024.8" data-depth="0.9" style="--x:930; --y:612"><span class="stem"></span><span class="dot"></span>
+        <div class="pin" data-year="2024.8" data-depth="0.9" style="--x:980; --y:612"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="fahs"><span class="lg" style="background:#7237e9">F</span>Fahs<span class="yr">Case study</span></button></div>
         <!-- me -->
         <div class="pin" data-depth="0.9" style="--x:420; --y:676"><span class="stem"></span><span class="dot"></span>
@@ -1294,7 +1294,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     { k: "contact", x: 725, door: 712, name: "Say hi", verb: "Board the felucca" },
     { k: "misbar", x: 812, door: 812, name: "Misbar", verb: "Fly up to the probe" },
     // { k: "reach", x: 910, door: 910, name: "Reach Link", verb: "Read the billboard" },  (hidden for now)
-    { k: "fahs", x: 916, door: 928, name: "Fahs", verb: "Get the car inspected" },
+    { k: "fahs", x: 966, door: 978, name: "Fahs", verb: "Get the car inspected" },
     { k: "about", x: 1142, door: 1130, name: "That's me", verb: "Climb Cairo Tower" },
     { k: "twentytoo", x: 1305, door: 1300, name: "TwentyToo", verb: "Enter the AI tower" },
     { k: "benaa", x: 1500, door: 1500, climb: 318, name: "Benaa", verb: "Climb the crane" }
@@ -1794,7 +1794,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
   player.style.setProperty("--px", px);
   if (!phone()) camera(true);
   addEventListener("resize", () => { if (!phone()) camera(true); });
-  say.innerHTML = touch ? `Hi! Hold <kbd>◀</kbd><kbd>▶</kbd> to walk with me` : `Hey! Use <kbd>←</kbd><kbd>→</kbd> to walk with me`;
+  say.innerHTML = touch ? `Hi! Swipe to look around, tap a place 👆` : `Hey! Use <kbd>←</kbd><kbd>→</kbd> to walk with me`;
   say.classList.add("start");
   comeBack();
   setTimeout(() => { if (!moved && !guide.walk) say.classList.add("show"); }, 1200);
