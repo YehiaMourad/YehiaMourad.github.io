@@ -599,7 +599,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           </g>
           <g class="layer" data-depth="0.2">
           <!-- Misbar: a probe in orbit (مسبار = probe) -->
-          <g class="fly-in" data-year="2026.8"><g transform="translate(810 170)">
+          <g class="fly-in" data-year="2026.8"><g transform="translate(745 358) scale(1.15)">
             <ellipse rx="96" ry="22" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2.5" stroke-dasharray="2 11" stroke-linecap="round" transform="rotate(-12)"/>
             <g class="bob" style="animation-duration:5s"><g transform="rotate(-18)">
               <path d="M-34 0 H-24" stroke="#9aa2ff" stroke-width="3"/>
@@ -881,7 +881,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           <button class="chip left" data-place="benaa"><span class="lg" style="background:#ffb347">B</span>Benaa<span class="yr">Case study</span></button></div>
         <div class="pin" data-year="2026.3" data-depth="0.9" style="--x:575; --y:690"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="pleny"><span class="lg" style="background:#ff6a3d">P</span>Pleny<span class="yr">Case study</span></button></div>
-        <div class="pin" data-year="2026.8" data-depth="0.2" style="--x:812; --y:132"><span class="stem"></span><span class="dot"></span>
+        <div class="pin" data-year="2026.8" data-depth="0.2" style="--x:778; --y:318"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="misbar"><span class="lg" style="background:#2E3370">M</span>Misbar<span class="yr">Case study</span></button></div>
         <div class="pin" data-year="2024.8" data-depth="0.9" style="--x:1102; --y:612"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="fahs"><span class="lg" style="background:#7237e9">F</span>Fahs<span class="yr">Case study</span></button></div>
@@ -1462,7 +1462,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     },
     misbar: async () => {
       pose("look");
-      ["📡", "✨", "📡"].forEach((e, i) => setTimeout(() => fx(790 + Math.random() * 50, 200 + Math.random() * 30, e), reduce ? 0 : i * 250));
+      ["📡", "✨", "📡"].forEach((e, i) => setTimeout(() => fx(720 + Math.random() * 50, 375 + Math.random() * 30, e), reduce ? 0 : i * 250));
       await wait(1300);
       undo = async () => { pose("look", false); await wait(200); };
     },
