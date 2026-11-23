@@ -1505,7 +1505,16 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
       pIn.classList.add("no-anim"); setPos(x1 + 34, pY + 62, .5);
       void pIn.offsetWidth; pIn.classList.remove("no-anim", "entering");
       await wait(350); pose("wave");
-      await tween(1600, k => spin.setAttribute("transform", `rotate(${(720 * ease(k)).toFixed(1)})`));
+      // two laps along the dotted orbit (rx 96, ry 22, tilted -12°): bigger in front, smaller behind
+      const tilt = -12 * Math.PI / 180, ct = Math.cos(tilt), st = Math.sin(tilt);
+      const mPin = pinOfPlace("misbar"); mPin.style.transition = "opacity .3s"; mPin.style.opacity = "0"; // the label would hide the probe on the far side
+      await tween(3400, k => {
+        const a = Math.PI / 2 + k * 4 * Math.PI, r = Math.min(1, k * 6, (1 - k) * 6); // glide onto the orbit and back
+        const ex = 96 * Math.cos(a) * r, ey = 22 * Math.sin(a) * r;
+        const x = ex * ct - ey * st, y = ex * st + ey * ct, sc = 1 + .16 * Math.sin(a) * r;
+        spin.setAttribute("transform", `translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${sc.toFixed(3)}) rotate(${(-Math.cos(a) * 14 * r).toFixed(1)})`);
+      });
+      mPin.style.opacity = "";
       spin.removeAttribute("transform");
       ["✨", "📡", "✨"].forEach((e, i) => setTimeout(() => fx(790 + Math.random() * 60, pY - 20 + Math.random() * 30, e), reduce ? 0 : i * 200));
       pop("Misbar 🛰️"); await wait(900);
