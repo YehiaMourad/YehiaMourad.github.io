@@ -105,6 +105,15 @@ svg * { transition: fill .8s ease, stop-color .8s ease, opacity .8s ease; }
 .boat { animation: drift-slow linear infinite; }
 .bob { animation: bob 3.2s ease-in-out infinite; transform-box: fill-box; }
 .plane { animation: fly 6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+/* the plane enters past the intro text, crosses the sky in ~12s, then the sky is clear for ~14s */
+.flyby { animation: flyby 26s linear 3s infinite both; }
+@keyframes flyby {
+  0% { transform: translate(-300px, 70px); opacity: 0; }
+  3% { opacity: 1; }
+  44% { opacity: 1; }
+  46%, 100% { transform: translate(850px, -10px); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .flyby { animation: none; opacity: 0; } }
 .star { animation: twinkle 3s ease-in-out infinite; }
 .rip { stroke-dasharray: 18 42; animation: ripple 4s linear infinite; }
 .beacon { animation: blink 2.4s infinite; }
@@ -590,8 +599,8 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
 
           </g>
           <g class="layer" data-depth="0.2">
-          <!-- plane: Kuwait Airlines -->
-          <g class="fly-in" data-year="2022.0"><g transform="translate(950 250)">
+          <!-- plane: Kuwait Airlines. It crosses the sky now and then instead of parking near Misbar -->
+          <g class="fly-in" data-year="2022.0"><g id="plane-fly" class="flyby"><g transform="translate(950 250)">
             <path d="M-260 14 C-180 10 -100 6 -30 4" stroke="#fff" stroke-opacity=".55" stroke-width="5" stroke-linecap="round" fill="none" stroke-dasharray="2 14"/>
             <g class="plane">
               <path d="M-40 0 C-20 -8 40 -8 62 -3 C72 0 72 6 62 8 C40 12 -20 12 -40 6 Z" fill="#fff"/>
@@ -602,7 +611,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
               <g fill="#9aa2ff"><circle cx="34" cy="0" r="2.2"/><circle cx="24" cy="0" r="2.2"/><circle cx="14" cy="0" r="2.2"/><circle cx="4" cy="0" r="2.2"/><circle cx="-6" cy="0" r="2.2"/></g>
               <rect x="-26" y="-1" width="16" height="4" rx="2" fill="#ff6a3d"/>
             </g>
-          </g></g>
+          </g></g></g>
 
           </g>
           <g class="layer" data-depth="0.2">
@@ -1518,6 +1527,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
         <rect x="8.5" y="44" width="13" height="4" rx="1.2" fill="#2b1d55"/></svg>`;
       const place = (x, y) => { rk.style.left = x / 16 + "%"; rk.style.top = y / 9 + "%"; };
       place(PX, PY); rk.classList.add("parked"); world.appendChild(rk); padRocket.style.visibility = "hidden";
+      const plane = $("plane-fly"); plane.style.visibility = "hidden"; // a clear sky for the ride
       await wait(150);
       await hop(PX, PY - 44, .5); pIn.classList.add("entering"); await wait(300); // climbs in
       rk.classList.remove("parked"); pop("3… 2… 1…"); await wait(700);
@@ -1574,6 +1584,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
         await tween(1300, k => { const e = ease(k); place(x1 + (PX - x1) * e, park + (PY - park) * e); });
         rk.classList.add("parked"); await wait(150);
         padRocket.style.visibility = ""; rk.remove(); // back on the pad
+        plane.style.visibility = "";
       };
     },
     journey: async () => {
