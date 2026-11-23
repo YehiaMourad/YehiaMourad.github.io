@@ -77,20 +77,18 @@
   .share:hover { filter: brightness(1.08); }
 
   /* ---------- Board: everything on one screen ---------- */
-  .board { position: fixed; top: 76px; left: 12px; right: 12px; bottom: 12px; padding: 30px 12px 4px;
+  /* Hello + About on the left, Experience + Contact on the right, case studies fill the middle in page order.
+     Adding a case study: copy a .proj frame. When the middle is full, raise --work-cols by 1. */
+  .board { --work-cols: 3; position: fixed; top: 76px; left: 12px; right: 12px; bottom: 12px; padding: 30px 12px 4px;
     display: grid; gap: 34px 22px;
-    grid-template-columns: 1.15fr 1fr 1fr .95fr;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas:
-      "hello benaa pleny exp"
-      "about tt    pos   contact"; }
-  .f-hello { grid-area: hello; } .f-pos { grid-area: pos; } .f-tt { grid-area: tt; } .f-exp { grid-area: exp; } .f-pleny { grid-area: pleny; }
-  .f-about { grid-area: about; } .f-benaa { grid-area: benaa; } .f-contact { grid-area: contact; } .f-soon { grid-area: soon; }
+    grid-template-columns: 1.6fr repeat(var(--work-cols), .9fr) 1.05fr;
+    grid-template-rows: 1fr 1fr; }
+  .f-hello { grid-column: 1; grid-row: 1; } .f-about { grid-column: 1; grid-row: 2; }
+  .f-exp { grid-column: -2; grid-row: 1; } .f-contact { grid-column: -2; grid-row: 2; }
 
   /* in progress */
   .f-soon { cursor: default; }
-  .frame.f-soon { display: none; } /* phones only */
-  .f-soon .frame-body { background: var(--panel); padding: 10px; display: grid; grid-template-rows: repeat(3, 1fr); gap: 8px; }
+  .f-soon .frame-body { background: var(--panel); padding: 10px; display: grid; grid-auto-rows: 1fr; gap: 8px; }
   .f-soon::after, .f-soon .h { display: none; }
   .mini { border-radius: 4px; position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 9px; color: #fff; cursor: pointer; border: 0; text-align: left; box-shadow: var(--shadow); min-height: 0; }
   .mini b { font-size: 13.5px; font-weight: 600; line-height: 1.15; }
@@ -168,7 +166,7 @@
   .f-contact p { color: rgba(255,255,255,.7); font-size: 13px; margin-top: .8vh; }
   .crow { margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px; }
   .cbtn { height: 34px; padding: 0 12px; border-radius: 9px; border: 1px solid rgba(255,255,255,.3); background: transparent; color: #fff; font-weight: 500; font-size: 13px; cursor: pointer; display: inline-flex; align-items: center; }
-  @media (min-width: 1101px) { .crow { flex-wrap: nowrap; } .cbtn { padding: 0 10px; white-space: nowrap; } .f-contact h2 { font-size: clamp(20px, 3.1vh, 32px); } }
+  @media (min-width: 1101px) { .cbtn { padding: 0 10px; white-space: nowrap; } .f-contact h2 { font-size: clamp(20px, 3.1vh, 32px); } }
   @media (min-width: 1101px) and (max-height: 800px) { .f-contact p { display: none; } }
   .cbtn.solid { background: #fff; color: var(--deep); border-color: #fff; font-weight: 600; }
   .cbtn:hover { border-color: #fff; }
@@ -242,8 +240,9 @@
     .hint { display: none; }
     .board { position: static; padding: 104px 14px 40px; gap: 46px 16px;
       grid-template-columns: 1fr 1fr; grid-template-rows: none; grid-auto-rows: auto;
-      grid-template-areas: "hello hello" "about about" "benaa pleny" "tt pos" "exp exp" "contact contact"; }
-    .f-soon .frame-body { grid-template-rows: none; grid-template-columns: repeat(3, 1fr); min-height: 0; }
+      grid-auto-flow: row dense; }
+    .f-hello, .f-about, .f-exp, .f-contact { grid-column: 1 / -1; grid-row: auto; }
+    .f-soon .frame-body { grid-auto-rows: auto; grid-auto-flow: column; grid-auto-columns: 1fr; min-height: 0; }
     .mini { aspect-ratio: 4 / 3.4; }
     .frame-body { min-height: 300px; }
     .proj .frame-body { aspect-ratio: 4 / 3.4; min-height: 0; height: auto; }
@@ -255,8 +254,7 @@
   @media (max-width: 640px) {
     .brand .role { display: none; }
     .brand img { height: 20px; }
-    .board { grid-template-columns: 1fr; grid-template-areas: "hello" "about" "benaa" "pleny" "tt" "pos" "soon" "exp" "contact"; }
-    .frame.f-soon { display: block; }
+    .board { grid-template-columns: 1fr; }
     .mini { aspect-ratio: 3 / 4; padding: 8px; } .mini b { font-size: 12.5px; }
     .f-hello h1 { font-size: 44px; }
     .f-about .frame-body { grid-template-columns: 1fr; }
@@ -325,6 +323,15 @@
     <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
   </a>
 
+  <a class="frame proj f-fahs" href="fahs.html">
+    <div class="frame-label"><span>Fahs</span><span class="mono">Case study</span><span class="size">Open ↗</span></div>
+    <div class="frame-body">
+      <div class="shot" style="background-image:url(assets/fahs-cover.webp); background-position:left top"></div>
+      <div class="cap"><div><span class="tag">MOBILE · FAHS</span><h3>From inspection to ownership, in a few clear steps</h3></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
+    </div>
+    <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
+  </a>
+
   <a class="frame proj f-tt" href="twentytoo.html">
     <div class="frame-label"><span>TwentyToo</span><span class="mono">Case study</span><span class="size">Open ↗</span></div>
     <div class="frame-body">
@@ -359,9 +366,8 @@
 
 
   <section class="frame f-soon">
-    <div class="frame-label"><span>In progress</span><span class="mono">3</span></div>
+    <div class="frame-label"><span>In progress</span><span class="mono">2</span></div>
     <div class="frame-body">
-      <a class="mini" href="fahs.html" style="background:linear-gradient(140deg,#2b1d55,#4f56d6)"><i></i><small>New</small><b>Fahs</b></a>
       <button class="mini" style="background:linear-gradient(140deg,#ff6a3d,#ff9a6b)" data-soon="Reach Link"><i class="wide"></i><small>Soon</small><b>Reach Link</b></button>
       <button class="mini" style="background:linear-gradient(140deg,#4f56d6,#9b5de5)" data-soon="Muzain"><i></i><small>Soon</small><b>Muzain</b></button>
     </div>
