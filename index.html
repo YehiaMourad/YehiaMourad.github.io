@@ -1564,13 +1564,10 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
       inside = true;
       await wait(120);
       await (actions[s.k] ? actions[s.k](s) : goIn());
-      // the action earns the stamp; what happens next is the player's choice
+      // the action earns the stamp, then the place's card opens; closing it steps him back out
       discover(s.k);
-      const c = await ask(s);
-      if (c === "enter") { if (!s.climb) await goIn(); leave(s); }
-      else if (c === "peek") open(s.k);
-      else if (c === "stay") stepOut();
-      // "opened": a pin opened the card meanwhile, and closing it steps him out
+      await wait(250);
+      if (!document.body.classList.contains("sheet-open")) open(s.k);
     });
   }
 
