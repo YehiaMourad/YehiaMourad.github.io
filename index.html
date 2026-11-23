@@ -597,6 +597,25 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           </g></g>
 
           </g>
+          <g class="layer" data-depth="0.2">
+          <!-- Misbar: a probe in orbit (مسبار = probe) -->
+          <g class="fly-in" data-year="2026.8"><g transform="translate(810 170)">
+            <ellipse rx="96" ry="22" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2.5" stroke-dasharray="2 11" stroke-linecap="round" transform="rotate(-12)"/>
+            <g class="bob" style="animation-duration:5s"><g transform="rotate(-18)">
+              <path d="M-34 0 H-24" stroke="#9aa2ff" stroke-width="3"/>
+              <rect x="-96" y="-11" width="62" height="22" rx="2" fill="#4f56d6"/>
+              <path d="M-80.5 -11 V11 M-65 -11 V11 M-49.5 -11 V11 M-96 0 H-34" stroke="#9aa2ff" stroke-width="1.4"/>
+              <rect x="-24" y="-15" width="50" height="30" rx="9" fill="#2E3370"/>
+              <rect x="-18" y="-11" width="38" height="6" rx="3" fill="#fff" opacity=".18"/>
+              <path d="M-6 -15 V15 M8 -15 V15" stroke="#1d2150" stroke-width="2"/>
+              <ellipse cx="28" cy="0" rx="7" ry="16" fill="#6B7CE9"/>
+              <ellipse cx="29.5" cy="0" rx="3.5" ry="9" fill="#1d2150"/>
+              <path d="M2 -15 L6 -30" stroke="#2E3370" stroke-width="2.4" stroke-linecap="round"/>
+              <circle class="beacon" cx="6.5" cy="-32" r="3.6" fill="#EC902F"/>
+            </g></g>
+          </g></g>
+
+          </g>
           <g class="layer" data-depth="0.25">
 <g transform="translate(800 580) scale(1.05 1) translate(-800 -580)">
           <!-- far desert + pyramids -->
@@ -862,6 +881,8 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           <button class="chip left" data-place="benaa"><span class="lg" style="background:#ffb347">B</span>Benaa<span class="yr">Case study</span></button></div>
         <div class="pin" data-year="2026.3" data-depth="0.9" style="--x:575; --y:690"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="pleny"><span class="lg" style="background:#ff6a3d">P</span>Pleny<span class="yr">Case study</span></button></div>
+        <div class="pin" data-year="2026.8" data-depth="0.2" style="--x:812; --y:132"><span class="stem"></span><span class="dot"></span>
+          <button class="chip" data-place="misbar"><span class="lg" style="background:#2E3370">M</span>Misbar<span class="yr">Case study</span></button></div>
         <div class="pin" data-year="2024.8" data-depth="0.9" style="--x:1102; --y:612"><span class="stem"></span><span class="dot"></span>
           <button class="chip" data-place="fahs"><span class="lg" style="background:#7237e9">F</span>Fahs<span class="yr">Case study</span></button></div>
         <!-- me -->
@@ -929,6 +950,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
       <div class="item" data-open="pleny" role="button" tabindex="0"><span class="n">03</span><div><h3>Rebuilding a food app's design system</h3><p>Pleny's Android design system, restructured.</p></div><span class="tag">Design system · Pleny</span><span class="thumb" style="background-image:url(assets/pleny-canvas.webp)"></span></div>
       <div class="item" data-open="pos" role="button" tabindex="0"><span class="n">04</span><div><h3>Design a full POS system</h3><p>The Cashier POS, out of a full ERP and into its own product.</p></div><span class="tag">B2B · Password</span><span class="thumb" style="background-image:url(assets/pos-canvas.webp)"></span></div>
       <div class="item" data-open="fahs" role="button" tabindex="0"><span class="n">05</span><div><h3>From inspection to ownership, in a few clear steps</h3><p>Fahs: car inspection and ownership transfer in Saudi Arabia.</p></div><span class="tag">Mobile · Fahs</span><span class="thumb" style="background-image:url(assets/fahs-cover.webp)"></span></div>
+      <div class="item" data-open="misbar" role="button" tabindex="0"><span class="n">06</span><div><h3>A software company site that reads like an enterprise partner</h3><p>Misbar Alkawn: an Arabic-first corporate site and a stage for Primex ERP.</p></div><span class="tag">Web · Misbar</span><span class="thumb" style="background-image:url(assets/misbar-hero.webp);background-position:right center"></span></div>
     </div>
   </div>
 
@@ -1061,6 +1083,9 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     fahs: { kicker: "Case study · Mobile app · Saudi Arabia", title: "From inspection to ownership, in a few clear steps", img: "assets/fahs-cover.webp",
       text: "Fahs lets drivers book a car inspection, pay, follow the car through the center and get the report on their phone. Ownership transfer runs through the same app.",
       list: ["One booking screen with a live Saudi plate preview", "Card, mada, wallet, Tamara and Tabby at checkout", "A 4-step tracker from booking to final report"], cta: ["Read the case study", "fahs.html"] },
+    misbar: { kicker: "Case study · Website · Arabic-first", title: "A software company site that reads like an enterprise partner", img: "assets/misbar-hero.webp",
+      text: "An Arabic-first corporate site for Misbar Alkawn that gives its ERP product, Primex, a stage of its own. Homepage approved in five working days.",
+      list: ["Two brands on one site, one navy CTA for Primex", "Variants side by side, nothing ships without an explicit apply", "Every line of copy traced to two approved documents"], cta: ["Read the case study", "misbar.html"] },
     reach: { kicker: "Visual project · Marketplace", title: "Reach Link", grad: "linear-gradient(140deg,#ff6a3d,#ffb36b)",
       text: "A B2B2C influencer–brand marketplace and a link-in-bio platform. Visuals coming soon.",
       list: ["Two-sided campaign flows for creators and brands", "Used by 223 creators and 27 brands"], soon: true },
@@ -1197,6 +1222,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     { k: "ahwa", x: 420, door: 399, name: "The ahwa", verb: "Sit at the ahwa" },
     { k: "pleny", x: 590, door: 575, name: "Pleny", verb: "Grab a bite" },
     { k: "contact", x: 725, door: 712, name: "Say hi", verb: "Board the felucca" },
+    { k: "misbar", x: 812, door: 812, name: "Misbar", verb: "Look up at the probe" },
     { k: "reach", x: 910, door: 910, name: "Reach Link", verb: "Read the billboard" },
     { k: "fahs", x: 1088, door: 1100, name: "Fahs", verb: "Get the car inspected" },
     { k: "about", x: 1142, door: 1130, name: "That's me", verb: "Climb Cairo Tower" },
@@ -1432,6 +1458,12 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
       pose("look");
       ["❤️", "👍", "❤️", "⭐", "💬", "❤️"].forEach((e, i) => setTimeout(() => fx(870 + Math.random() * 80, 590 + Math.random() * 30, e), reduce ? 0 : i * 170));
       await wait(1400);
+      undo = async () => { pose("look", false); await wait(200); };
+    },
+    misbar: async () => {
+      pose("look");
+      ["📡", "✨", "📡"].forEach((e, i) => setTimeout(() => fx(790 + Math.random() * 50, 200 + Math.random() * 30, e), reduce ? 0 : i * 250));
+      await wait(1300);
       undo = async () => { pose("look", false); await wait(200); };
     },
     journey: async () => {

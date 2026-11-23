@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html dir="ltr" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Misbar Alkawn — Yehia Mourad</title>
+<meta content="Redesigning an Arabic-first corporate site for a software company and giving its ERP product a stage of its own, in five working days." name="description"/>
+<meta content="Misbar Alkawn — Yehia Mourad" property="og:title"/>
+<meta content="Redesigning an Arabic-first corporate site for a software company and giving its ERP product a stage of its own, in five working days." property="og:description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&amp;display=swap" rel="stylesheet"/>
+<link href="favicon.ico" rel="icon" sizes="32x32"/>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="site.webmanifest" rel="manifest"/>
+<meta content="#efece6" name="theme-color"/>
+<meta content="https://yehiamourad.github.io/assets/og-image.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="style.css" rel="stylesheet"/>
+<style>
+  /* Misbar only: four-step workflow, token swatches */
+  .steps.s4 { grid-template-columns: repeat(4, 1fr); }
+  .steps.s4 + p { margin-top: 22px; }
+  @media (max-width: 760px) { .steps.s4 { grid-template-columns: 1fr 1fr; } }
+  .sw { display: inline-block; width: 12px; height: 12px; border-radius: 4px; margin-inline-end: 8px; vertical-align: -1px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); }
+</style>
+<script src="theme.js"></script>
+<script defer="" src="i18n.js"></script>
+<script defer="" src="case.js"></script>
+</head>
+<body class="cs">
+<!--
+  Same structure as fahs.html.
+  - class="detail" hides in TL;DR mode, class="tldr" shows only in TL;DR mode.
+  - Cover: assets/misbar-hero.webp, landscape (class "cover cover-wide").
+  - Screens: assets/misbar-*.webp, from the case study PDF.
+  - TODO before publishing: confirm the Role line, and that Misbar is fine with a public case study and the preview link.
+-->
+<a aria-label="Yehia Mourad, home" class="mark cs-mark" href="./"><img alt="" class="logo-l" src="assets/logo-header.svg"/><img alt="" class="logo-d" src="assets/logo-header-dark.svg"/></a>
+<div class="cs-tools">
+
+<button aria-label="Switch light or dark" class="chip theme-toggle" type="button">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+</button>
+<a aria-label="Close and go back" class="chip close" href="./#work">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"></path></svg>
+</a>
+</div>
+<main class="cs-page">
+<div class="cover cover-wide" style="view-transition-name: misbar-cover; background-image:url(assets/misbar-hero.webp)"></div>
+<div aria-label="Reading mode" class="seg" role="tablist">
+<button class="on" data-mode="detailed" role="tab">Detailed</button>
+<button data-mode="tldr" role="tab">TL;DR</button>
+</div>
+<article class="col">
+<span class="kicker">Case study · Misbar Alkawn</span>
+<h1>
+A software company site that reads like an enterprise partner
+</h1>
+<p class="lead">
+Misbar Alkawn builds information systems, and its flagship product is Primex ERP. I redesigned their Arabic-first corporate website and gave Primex a stage of its own. The homepage was approved and four inner pages were ready for review in five working days.
+</p>
+<dl class="meta-row">
+<div><dt>Role</dt><dd>Senior Product Designer</dd></div>
+<div><dt>Client</dt><dd>Misbar Alkawn, Cairo · Dammam</dd></div>
+<div><dt>Scope</dt><dd>Homepage + 4 inner pages · design system</dd></div>
+<div><dt>Language</dt><dd>Arabic RTL · English planned</dd></div>
+</dl>
+<!-- ===== TL;DR ===== -->
+<section class="tldr">
+<h2>The short version</h2>
+<ul>
+<li>A corporate site for <b>Misbar Alkawn</b> and a stage for its product, <b>Primex ERP</b>. Homepage approved in <b>five working days</b>.</li>
+<li>Two brands on one site: <b>one navy CTA</b> for Primex, everything else in Misbar's voice.</li>
+<li>Every line of copy comes from <b>two approved documents</b>. No invented numbers or clients.</li>
+<li>Ideas live on a <b>separate canvas</b>, two to four variants side by side. Nothing reaches the approved page without an explicit «apply».</li>
+<li>The test that fixed the visuals: <b>related, not decorative</b>.</li>
+<li>Arabic-first RTL, checked at <b>six widths</b>, with reduced-motion and no-WebGL fallbacks.</li>
+</ul>
+</section>
+<!-- ===== Gallery ===== -->
+<section class="gallery" aria-label="Misbar Alkawn at a glance">
+<span class="num">At a glance</span>
+<h2>The homepage, section by section</h2>
+<figure data-title="Hero"><img alt="Misbar homepage hero with a navy metallic probe and floating glass navigation" loading="lazy" src="assets/misbar-hero.webp"/><figcaption>A realistic navy probe on the left, the message on the right, one navy Primex ERP button.</figcaption></figure>
+<figure data-title="Services"><img alt="Seven services on a blue gradient, each with a glass icon" loading="lazy" src="assets/misbar-services.webp"/><figcaption>Seven services, each with a glass icon that shows what it does.</figcaption></figure>
+<figure data-title="Capabilities"><img alt="Five colour-coded capability panels, one expanded" loading="lazy" src="assets/misbar-capabilities.webp"/><figcaption>Five colour-coded panels; the active one opens to show its details.</figcaption></figure>
+<figure data-title="Presence"><img alt="Countries and cities listed next to an orbit illustration" loading="lazy" src="assets/misbar-presence.webp"/><figcaption>Three countries and their cities, mirrored on the orbit illustration.</figcaption></figure>
+</section>
+<!-- ===== 01 Context ===== -->
+<section class="detail">
+<span class="num">01 / Context</span>
+<h2>Two brands, one site</h2>
+<p>Misbar Alkawn is a software and information-systems company with its head office in Cairo and a branch in Dammam. Its main product, Primex ERP, launched in 2024: eight connected modules, offline POS, Power BI, an AI assistant and Saudi e-invoicing.</p>
+<p>The audience is retail, wholesale and multi-branch businesses in Saudi Arabia, plus Arab and international markets. They're buying a long-term software partner, so the site has to feel like one.</p>
+</section>
+<!-- ===== 02 Problems ===== -->
+<section class="detail">
+<span class="num">02 / What we set out to solve</span>
+<h2>Enterprise, not a tech template</h2>
+<p>Early feedback was blunt: the first 3D shapes and icons didn't feel enterprise. From then on, every visual had to explain the text next to it.</p>
+<div class="cards3">
+<div><b>Two brands</b><p>Misbar is the company. Primex is a product brand credited as «<bdi lang="ar">Primex ERP من مسبار الكون</bdi>». Neither should drown the other.</p></div>
+<div><b>Facts only</b><p>All copy comes from the company and Primex profiles. Anything else, like form microcopy, is flagged.</p></div>
+<div><b>Arabic first</b><p>Layout, arrows, icons and reading order work natively right to left.</p></div>
+</div>
+</section>
+<!-- ===== 03 Process ===== -->
+<section class="detail">
+<span class="num">03 / How I worked</span>
+<h2>Explore freely, approve on purpose</h2>
+<p>I split the work into two spaces so exploring never put the approved design at risk. Each new direction got its own board on an Ideas canvas, usually two to four variants side by side. The homepage people review only changed when the lead said «apply».</p>
+<ol class="steps s4">
+<li class="done">Draft from the source documents</li>
+<li class="done">Two to four variants in Ideas</li>
+<li class="done">Lead says «apply»</li>
+<li class="now">QA at 5 widths, then publish</li>
+</ol>
+<p>Feedback like "not enterprise" or "too template-like" sent a section back for new variants instead of a patch. QA ran before every publish: screenshots at 1920, 1440, 1366, 1024 and 390 px, plus form and filter checks in a headless browser.</p>
+</section>
+<figure class="wide detail">
+<img alt="Flow: source documents, variants in Ideas, approved or revise from feedback, apply to Main, QA at five widths" class="shot-img" onerror="this.closest('figure').remove()" src="assets/misbar-workflow.webp"/>
+<figcaption>Ideas reach the approved design only after an explicit apply.</figcaption>
+</figure>
+<!-- ===== 04 Homepage ===== -->
+<section class="detail">
+<span class="num">04 / Homepage</span>
+<h2>Every section earned its final shape</h2>
+<span class="pill">4A · Hero</span>
+<h3>Keep the probe, make it real</h3>
+<p>I tried a centred probe, four alternatives, a 2D version and three heroes with no 3D at all. The feedback was to keep the original probe but make it more realistic. It became a navy metallic model on the left, with the drag-to-rotate WebGL motion carried over.</p>
+<span class="pill">4B · Navigation</span>
+<h3>Only one navy thing in the bar</h3>
+<p>A floating glass bar won over a bigger pill and a full-width bar. Then came "two primary colours in the top bar". So Contact moved into the links, the active link turned white, and the only navy element left is «<bdi lang="ar">استكشف Primex ERP</bdi>», with an external-link icon.</p>
+<span class="pill">4C · Services</span>
+<h3>Related, not decorative</h3>
+<p>Flat icons were out. Generic glass shapes got "concept good, but not related to the text". The final icons are still glass, but each one depicts its service, tuned for contrast on the dark blue.</p>
+</section>
+<figure class="wide detail">
+<img alt="Services section on the brand gradient with seven glass icons" class="shot-img" onerror="this.closest('figure').remove()" src="assets/misbar-services.webp"/>
+<figcaption>Seven services, each icon showing what the service does.</figcaption>
+</figure>
+<section class="detail">
+<span class="pill">4D · Capabilities</span>
+<h3>Eight layouts to find one</h3>
+<p>List, spec rows, bento, fan, isometric, layers, problem-to-capability and expanding panels. Most were "too similar to services" or "too template-like". Five colour-coded panels that open on hover, focus or tap shipped, with the content untouched.</p>
+<span class="pill">4E · Content discipline</span>
+<h3>If it's not in the files, it's not on the page</h3>
+<p>A standalone "who it's for" section wasn't in the source content, so it folded under Primex as «<bdi lang="ar">لمن صُمم Primex ERP</bdi>» with the eight sectors from the Primex profile. Office cards became a simple list of three countries and their cities, mirrored on the orbit illustration. The Primex name became its official logo.</p>
+</section>
+<figure class="wide detail">
+<img alt="Capabilities: five colour-coded panels with the first one expanded" class="shot-img" onerror="this.closest('figure').remove()" src="assets/misbar-capabilities.webp"/>
+<figcaption>Capabilities: the active panel expands to show its details.</figcaption>
+</figure>
+<figure class="wide narrow detail">
+<img alt="Mobile hero at 390 px and the open menu with the Primex CTA" class="shot-img" onerror="this.closest('figure').remove()" src="assets/misbar-mobile.webp"/>
+<figcaption>Mobile: the same hero at 390 px, and the menu with the Primex CTA at its foot.</figcaption>
+</figure>
+<!-- ===== 05 Inner pages ===== -->
+<section class="detail">
+<span class="num">05 / Inner pages</span>
+<h2>One build each, no new styling</h2>
+<p>About, Contact, Careers and Job details reuse the homepage's navigation, tokens, buttons and footer, so each page took a single build.</p>
+<span class="pill">5A · About</span>
+<h3>The company story, from the profile</h3>
+<p>A timeline from 2023 founding to the 2024 Primex launch and what's next, the meaning of the name as a calm "scan" visual, and the five values with the same glass icons as the homepage.</p>
+<span class="pill">5B · Contact</span>
+<h3>Turn interest into a conversation</h3>
+<p>Four direct channels beside a glass form where the seven services are selectable pills, with validation, a success state and both offices on a stylised map.</p>
+<span class="pill">5C · Careers</span>
+<h3>A list, filters and an apply form</h3>
+<p>Trimmed at the lead's request to just that. Team and city filters with an empty state; «<bdi lang="ar">قدّم الآن</bdi>» pre-fills the role and team. Job details started as a side drawer and became a short page with a sticky apply card. Sample jobs are marked as illustrative until HR sends real ones.</p>
+</section>
+<figure class="wide detail">
+<img alt="About page hero with the probe and the company line" class="shot-img" onerror="this.closest('figure').remove()" src="assets/misbar-about.webp"/>
+<figcaption>About: the probe hero opens the company story.</figcaption>
+</figure>
+<figure class="wide detail">
+<img alt="Contact page with direct channels and a glass form" class="shot-img" onerror="this.closest('figure').remove()" src="assets/misbar-contact.webp"/>
+<figcaption>Contact: direct channels on the right, the form with service pills on the left.</figcaption>
+</figure>
+<figure class="wide detail">
+<img alt="Careers page with team and city filters over a job list" class="shot-img" onerror="this.closest('figure').remove()" src="assets/misbar-careers.webp"/>
+<figcaption>Careers: filters over a scannable list, each role with details and apply.</figcaption>
+</figure>
+<!-- ===== 06 System ===== -->
+<section class="detail">
+<span class="num">06 / Design system &amp; accessibility</span>
+<h2>One set of tokens for every page</h2>
+<table class="spec">
+<thead><tr><th>Token</th><th>Value</th><th>Use</th></tr></thead>
+<tbody>
+<tr><td>Navy</td><td><span class="sw" style="background:#2E3370"></span>#2E3370</td><td>Text, buttons, active states</td></tr>
+<tr><td>Primex blue</td><td><span class="sw" style="background:#283F9C"></span>#283F9C</td><td>Primex ERP moments only</td></tr>
+<tr><td>Orange</td><td><span class="sw" style="background:#EC902F"></span>#EC902F</td><td>Dots, numbering, highlights (text uses #B45309)</td></tr>
+<tr><td>Mist</td><td><span class="sw" style="background:#F3F6FD"></span>#F3F6FD</td><td>Alternating section background</td></tr>
+<tr><td>Type</td><td>IBM Plex Sans Arabic</td><td>Light + bold pairs in every headline</td></tr>
+</tbody>
+</table>
+<p>Accessibility ran with every change, not at the end. Every page was checked at six widths from 1920 to 390 px. Reduced motion turns the floats off, and the 3D hero falls back to a still image without WebGL. Orange was rejected for the nav button at about 2.5:1 against white. Forms have labels and inline errors, the active link has <code>aria-current</code>, and links that open Primex in a new tab say so.</p>
+</section>
+<!-- ===== 07 Outcome ===== -->
+<section class="detail">
+<span class="num">07 / Outcome</span>
+<h2>Approved in five days</h2>
+<p>The homepage was approved and is live on the <a href="https://misbar-prepare.studioerp.com" rel="noopener" target="_blank">preview site</a>. About, Contact, Careers and Job details are designed on the same system and ready for review. More than 50 exploration boards stay on the Ideas canvas as a record of every decision.</p>
+<p>Still open: carry the new navigation to the inner pages, swap the Primex placeholders for real product shots, get real job listings from HR, and build the English version.</p>
+</section>
+<section class="detail">
+<span class="num">08 / What I learned</span>
+<h2>Three things I'd keep</h2>
+<ul>
+<li><b>Show variants side by side.</b> Two to four options at once got faster, clearer decisions than revising one design.</li>
+<li><b>"Related, not decorative."</b> That one test is what finally made the icons work.</li>
+<li><b>Tie copy to the source.</b> Every line traced back to the approved documents, so checking the site against them meant no rework.</li>
+</ul>
+</section>
+</article>
+<a class="next-proj" href="./#work">
+<span class="small">Back to all work</span>
+<span class="go"><svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24" width="16"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</a>
+</main>
+</body>
+</html>
