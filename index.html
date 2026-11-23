@@ -1572,7 +1572,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
       // the probe flies over to the moon (the sun by day: same spot in the sky), circles it twice and comes home
       const [bx, by] = $("sky-moon").getAttribute("transform").match(/[-\d.]+/g).map(Number);
       const night = parseFloat(getComputedStyle($("sky-moon")).opacity) > .5, R = night ? 46 : 58;
-      const dx = bx - 810, dy = by - pY, RX = R + 52, RY = R * .5, S = .5; // orbit size, probe shrinks to a satellite
+      const dx = bx - 810, dy = by - pY, RX = R + 84, RY = R * .5 + 12, S = .8; // orbit size; the probe stays big enough to read
       const tilt = -12 * Math.PI / 180, ct = Math.cos(tilt), st = Math.sin(tilt), a0 = Math.PI * .85;
       const orbitAt = a => { const ex = RX * Math.cos(a), ey = RY * Math.sin(a); return [dx + ex * ct - ey * st, dy + ex * st + ey * ct]; };
       const mPin = pinOfPlace("misbar"), ring = $("probe").querySelector(":scope > ellipse");
@@ -1589,14 +1589,14 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
           a = a0 + (k - .16) / .68 * 4 * Math.PI;
           [x, y] = orbitAt(a); sc = S * (1 + .18 * Math.sin(a));
           const ox = Math.abs(RX * Math.cos(a));
-          if (Math.sin(a) < 0) o = Math.min(1, Math.max(0, (ox - (R - 22)) / 26));
+          if (Math.sin(a) < 0) o = Math.min(1, Math.max(0, (ox - (R - 30)) / 40));
         } else { // fly home
           const e = ease((k - .84) / .16), [fx0, fy0] = orbitAt(a0);
           x = lerp(fx0, 0, e); y = lerp(fy0, 0, e) - Math.sin(Math.PI * e) * 40; sc = lerp(S, 1, e);
         }
         spin.setAttribute("transform", `translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${sc.toFixed(3)}) rotate(${(-Math.cos(a) * 14).toFixed(1)})`);
         spin.style.opacity = o.toFixed(2);
-        setPos(810 + x, pY + y - 14 * sc, .5 * sc); pIn.style.opacity = o.toFixed(2); // sitting on top of the probe
+        setPos(810 + x, pY + y - 14 * sc, .58 * sc); pIn.style.opacity = o.toFixed(2); // sitting on top of the probe
       });
       spin.style.opacity = ""; ring.style.opacity = ""; pIn.style.opacity = "";
       pose("sit", false); await hop(x1 + 34, pY + 62, .5); pose("wave");
