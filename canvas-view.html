@@ -77,19 +77,16 @@
   .share:hover { filter: brightness(1.08); }
 
   /* ---------- Board: everything on one screen ---------- */
-  /* Hello + About on the left, Experience + Contact on the right, case studies fill the middle in page order.
-     Adding a case study: copy a .proj frame. When the middle is full, raise --work-cols by 1.
-     "In progress" sits in its own narrow column, two rows tall. */
-  .board { --work-cols: 3; position: fixed; top: 76px; left: 12px; right: 12px; bottom: 12px; padding: 30px 12px 4px;
-    display: grid; gap: 34px 22px;
-    grid-template-columns: 1.6fr repeat(var(--work-cols), .9fr) .42fr 1.05fr;
-    grid-template-rows: 1fr 1fr; }
-  .f-hello { grid-column: 1; grid-row: 1; } .f-about { grid-column: 1; grid-row: 2; }
-  .f-exp { grid-column: -2; grid-row: 1; } .f-contact { grid-column: -2; grid-row: 2; }
+  /* Scrolling canvas: an intro row (Hello, About, Experience, Contact), then every case study,
+     three per row, in page order. Adding a case study: copy a .proj frame. Nothing else to change. */
+  .board { max-width: 1480px; margin: 0 auto; padding: 104px 24px 56px;
+    display: grid; gap: 46px 22px; grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .f-hello, .f-about, .f-exp, .f-contact { grid-column: span 3; height: clamp(400px, 52vh, 500px); }
+  .f-hello { order: 1; } .f-about { order: 2; } .f-exp { order: 3; } .f-contact { order: 4; }
+  .proj, .f-soon { order: 5; grid-column: span 4; aspect-ratio: 4 / 3; }
 
   /* in progress */
   .f-soon { cursor: default; }
-  .f-soon { grid-column: -3; grid-row: 1 / span 2; }
   .f-soon .frame-body { background: var(--panel); padding: 10px; display: grid; grid-auto-rows: 1fr; gap: 8px; }
   .f-soon::after, .f-soon .h { display: none; }
   .mini { border-radius: 4px; position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 9px; color: #fff; cursor: pointer; border: 0; text-align: left; box-shadow: var(--shadow); min-height: 0; }
@@ -238,17 +235,15 @@
   .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
   /* ---------- Small or short screens: same frames, stacked, page scrolls ---------- */
-  @media (max-width: 1100px), (max-height: 620px) {
+  @media (max-width: 1100px) {
     .hint { display: none; }
-    .board { position: static; padding: 104px 14px 40px; gap: 46px 16px;
-      grid-template-columns: 1fr 1fr; grid-template-rows: none; grid-auto-rows: auto;
-      grid-auto-flow: row dense; }
-    .f-hello, .f-about, .f-exp, .f-contact { grid-column: 1 / -1; grid-row: auto; }
-    .f-soon { grid-column: auto; grid-row: auto; }
+    .board { padding: 104px 14px 40px; gap: 46px 16px; grid-template-columns: 1fr 1fr; }
+    .f-hello, .f-about { grid-column: 1 / -1; height: auto; }
+    .f-exp, .f-contact { grid-column: span 1; height: auto; }
+    .proj, .f-soon { grid-column: span 1; }
     .f-soon .frame-body { grid-auto-rows: auto; grid-auto-flow: column; grid-auto-columns: 1fr; min-height: 0; }
     .mini { aspect-ratio: 4 / 3.4; }
     .frame-body { min-height: 300px; }
-    .proj .frame-body { aspect-ratio: 4 / 3.4; min-height: 0; height: auto; }
     .f-hello .frame-body { padding: 30px 26px; }
     .f-hello h1 { font-size: 52px; margin-top: 30px; }
     .f-hello p { font-size: 16px; }
@@ -258,6 +253,7 @@
     .brand .role { display: none; }
     .brand img { height: 20px; }
     .board { grid-template-columns: 1fr; }
+    .f-hello, .f-about, .f-exp, .f-contact, .proj, .f-soon { grid-column: 1 / -1; }
     .mini { aspect-ratio: 3 / 4; padding: 8px; } .mini b { font-size: 12.5px; }
     .f-hello h1 { font-size: 44px; }
     .f-about .frame-body { grid-template-columns: 1fr; }
