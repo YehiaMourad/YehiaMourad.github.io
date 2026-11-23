@@ -77,14 +77,17 @@
   .share:hover { filter: brightness(1.08); }
 
   /* ---------- Board: everything on one screen ---------- */
-  /* Scrolling canvas: an intro row (Hello, About, Experience), then every case study three per row
-     in page order, then Contact as a full-width closing row. Adding a case study: copy a .proj frame. */
+  /* Scrolling canvas: an intro row (Hello, a wide About), then every case study three per row in page
+     order, then Experience (beside In progress), then Contact as a full-width closing row.
+     Adding a case study: copy a .proj frame. */
   .board { max-width: 1480px; margin: 0 auto; padding: 104px 24px 56px;
     display: grid; gap: 46px 22px; grid-template-columns: repeat(12, minmax(0, 1fr)); }
-  .f-hello, .f-about, .f-exp { grid-column: span 4; height: clamp(420px, 54vh, 520px); }
-  .f-hello { order: 1; } .f-about { order: 2; } .f-exp { order: 3; }
-  .f-contact { order: 6; grid-column: 1 / -1; min-height: 280px; }
+  .f-hello, .f-about { height: clamp(440px, 58vh, 560px); }
+  .f-hello { order: 1; grid-column: span 5; } .f-about { order: 2; grid-column: span 7; }
+  .f-exp { order: 6; grid-column: span 8; height: clamp(420px, 54vh, 520px); }
+  .f-contact { order: 7; grid-column: 1 / -1; min-height: 280px; }
   .proj, .f-soon { order: 5; grid-column: span 4; aspect-ratio: 4 / 3; }
+  @media (min-width: 1101px) { .f-soon { aspect-ratio: auto; } } /* same height as Experience beside it */
 
   /* in progress */
   .f-soon { cursor: default; }
@@ -150,7 +153,8 @@
   .more { margin-top: auto; padding-top: 1vh; font-size: 13px; font-weight: 600; color: var(--accent); }
 
   /* about */
-  .f-about .frame-body { display: grid; grid-template-columns: minmax(0, .8fr) 1fr; }
+  .f-about .frame-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .photo img { object-position: center 30%; }
   .photo { background: linear-gradient(150deg, var(--deep), var(--accent)); position: relative; color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 34px; }
   .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .about-text { overflow: hidden; padding: clamp(14px, 2.2vh, 22px) clamp(14px, 1.4vw, 20px); display: flex; flex-direction: column; min-width: 0; }
