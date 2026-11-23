@@ -78,16 +78,18 @@
 
   /* ---------- Board: everything on one screen ---------- */
   /* Hello + About on the left, Experience + Contact on the right, case studies fill the middle in page order.
-     Adding a case study: copy a .proj frame. When the middle is full, raise --work-cols by 1. */
+     Adding a case study: copy a .proj frame. When the middle is full, raise --work-cols by 1.
+     "In progress" sits in its own narrow column, two rows tall. */
   .board { --work-cols: 3; position: fixed; top: 76px; left: 12px; right: 12px; bottom: 12px; padding: 30px 12px 4px;
     display: grid; gap: 34px 22px;
-    grid-template-columns: 1.6fr repeat(var(--work-cols), .9fr) 1.05fr;
+    grid-template-columns: 1.6fr repeat(var(--work-cols), .9fr) .42fr 1.05fr;
     grid-template-rows: 1fr 1fr; }
   .f-hello { grid-column: 1; grid-row: 1; } .f-about { grid-column: 1; grid-row: 2; }
   .f-exp { grid-column: -2; grid-row: 1; } .f-contact { grid-column: -2; grid-row: 2; }
 
   /* in progress */
   .f-soon { cursor: default; }
+  .f-soon { grid-column: -3; grid-row: 1 / span 2; }
   .f-soon .frame-body { background: var(--panel); padding: 10px; display: grid; grid-auto-rows: 1fr; gap: 8px; }
   .f-soon::after, .f-soon .h { display: none; }
   .mini { border-radius: 4px; position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 9px; color: #fff; cursor: pointer; border: 0; text-align: left; box-shadow: var(--shadow); min-height: 0; }
@@ -242,6 +244,7 @@
       grid-template-columns: 1fr 1fr; grid-template-rows: none; grid-auto-rows: auto;
       grid-auto-flow: row dense; }
     .f-hello, .f-about, .f-exp, .f-contact { grid-column: 1 / -1; grid-row: auto; }
+    .f-soon { grid-column: auto; grid-row: auto; }
     .f-soon .frame-body { grid-auto-rows: auto; grid-auto-flow: column; grid-auto-columns: 1fr; min-height: 0; }
     .mini { aspect-ratio: 4 / 3.4; }
     .frame-body { min-height: 300px; }
@@ -346,6 +349,15 @@
     <div class="frame-body">
       <div class="shot" style="background-image:url(assets/pos-canvas.webp); view-transition-name: pos-cover"></div>
       <div class="cap"><div><span class="tag">B2B · PRIMEX POS</span><h3>Design a full POS system</h3></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
+    </div>
+    <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
+  </a>
+
+  <a class="frame proj f-misbar" href="misbar.html">
+    <div class="frame-label"><span>Misbar</span><span class="mono">Case study</span><span class="size">Open ↗</span></div>
+    <div class="frame-body">
+      <div class="shot" style="background-image:url(assets/misbar-hero.webp); background-position:right center"></div>
+      <div class="cap"><div><span class="tag">WEB · MISBAR</span><h3>A software company site that reads like an enterprise partner</h3></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
     </div>
     <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
   </a>
