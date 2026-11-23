@@ -77,12 +77,13 @@
   .share:hover { filter: brightness(1.08); }
 
   /* ---------- Board: everything on one screen ---------- */
-  /* Scrolling canvas: an intro row (Hello, About, Experience, Contact), then every case study,
-     three per row, in page order. Adding a case study: copy a .proj frame. Nothing else to change. */
+  /* Scrolling canvas: an intro row (Hello, About, Experience), then every case study three per row
+     in page order, then Contact as a full-width closing row. Adding a case study: copy a .proj frame. */
   .board { max-width: 1480px; margin: 0 auto; padding: 104px 24px 56px;
     display: grid; gap: 46px 22px; grid-template-columns: repeat(12, minmax(0, 1fr)); }
-  .f-hello, .f-about, .f-exp, .f-contact { grid-column: span 3; height: clamp(400px, 52vh, 500px); }
-  .f-hello { order: 1; } .f-about { order: 2; } .f-exp { order: 3; } .f-contact { order: 4; }
+  .f-hello, .f-about, .f-exp { grid-column: span 4; height: clamp(420px, 54vh, 520px); }
+  .f-hello { order: 1; } .f-about { order: 2; } .f-exp { order: 3; }
+  .f-contact { order: 6; grid-column: 1 / -1; min-height: 280px; }
   .proj, .f-soon { order: 5; grid-column: span 4; aspect-ratio: 4 / 3; }
 
   /* in progress */
@@ -165,8 +166,14 @@
   .f-contact p { color: rgba(255,255,255,.7); font-size: 13px; margin-top: .8vh; }
   .crow { margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px; }
   .cbtn { height: 34px; padding: 0 12px; border-radius: 9px; border: 1px solid rgba(255,255,255,.3); background: transparent; color: #fff; font-weight: 500; font-size: 13px; cursor: pointer; display: inline-flex; align-items: center; }
-  @media (min-width: 1101px) { .cbtn { padding: 0 10px; white-space: nowrap; } .f-contact h2 { font-size: clamp(20px, 3.1vh, 32px); } }
-  @media (min-width: 1101px) and (max-height: 800px) { .f-contact p { display: none; } }
+  @media (min-width: 1101px) {
+    .f-contact .frame-body { padding: 44px 48px; display: grid; grid-template-columns: 1fr auto; align-content: center; column-gap: 40px; }
+    .f-contact .crow { grid-column: 2; grid-row: 1 / span 2; align-self: end; margin-top: 0; }
+    .f-hello h1 { font-size: clamp(40px, 4vw, 64px); }
+    .f-contact h2 { font-size: clamp(34px, 3.4vw, 52px); max-width: 16ch; }
+    .f-contact p { font-size: 15px; margin-top: 12px; }
+    .cbtn { height: 40px; padding: 0 16px; font-size: 14px; white-space: nowrap; }
+  }
   .cbtn.solid { background: #fff; color: var(--deep); border-color: #fff; font-weight: 600; }
   .cbtn:hover { border-color: #fff; }
 
@@ -238,8 +245,7 @@
   @media (max-width: 1100px) {
     .hint { display: none; }
     .board { padding: 104px 14px 40px; gap: 46px 16px; grid-template-columns: 1fr 1fr; }
-    .f-hello, .f-about { grid-column: 1 / -1; height: auto; }
-    .f-exp, .f-contact { grid-column: span 1; height: auto; }
+    .f-hello, .f-about, .f-exp, .f-contact { grid-column: 1 / -1; height: auto; }
     .proj, .f-soon { grid-column: span 1; }
     .f-soon .frame-body { grid-auto-rows: auto; grid-auto-flow: column; grid-auto-columns: 1fr; min-height: 0; }
     .mini { aspect-ratio: 4 / 3.4; }
