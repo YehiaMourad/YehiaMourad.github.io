@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html dir="ltr" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Tamoon design system — Yehia Mourad</title>
+<meta content="A white-label Figma library where a new retailer is a new set of values, not a new file: 196 variables in three layers, about 40 components and 194 Lucide icons." name="description"/>
+<meta content="Tamoon design system — Yehia Mourad" property="og:title"/>
+<meta content="A white-label Figma library where a new retailer is a new set of values, not a new file: 196 variables in three layers, about 40 components and 194 Lucide icons." property="og:description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&amp;family=IBM+Plex+Sans+Arabic:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="favicon.ico" rel="icon" sizes="32x32"/>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="site.webmanifest" rel="manifest"/>
+<meta content="#efece6" name="theme-color"/>
+<meta content="https://yehiamourad.github.io/assets/og-image.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="style.css" rel="stylesheet"/>
+<style>
+  /* Tamoon design system only: headline numbers, token layers, contrast demo */
+  .ds-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 22px; }
+  .ds-stats > div { background: var(--bg); border-radius: 18px; padding: 16px 18px; }
+  .ds-stats .k { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .ds-stats .v { display: block; font-size: 30px; font-weight: 700; letter-spacing: -.02em; margin-top: 4px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .col .ds-stats p { font-size: 13.5px; color: var(--muted); line-height: 1.45; margin-top: 4px; }
+  @media (max-width: 560px) { .ds-stats { grid-template-columns: 1fr; } }
+
+  .ds-layers { display: grid; gap: 10px; margin-top: 22px; }
+  .ds-layers > div { display: grid; grid-template-columns: 92px 1fr; gap: 16px; align-items: center; background: var(--surface); border-radius: 18px; padding: 16px 18px; box-shadow: var(--shadow); }
+  .ds-layers .n { font-size: 30px; font-weight: 700; letter-spacing: -.02em; line-height: 1; font-variant-numeric: tabular-nums; }
+  .ds-layers .n small { display: block; font-size: 12px; font-weight: 500; color: var(--muted); letter-spacing: 0; margin-top: 6px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .ds-layers b { display: block; font-size: 16px; }
+  .col .ds-layers p { font-size: 14.5px; line-height: 1.5; color: var(--muted); margin-top: 2px; }
+  .ds-layers > div:last-child { outline: 2px solid color-mix(in srgb, #2E7487 55%, transparent); outline-offset: -2px; }
+
+  .ds-card { width: min(360px, 100%); aspect-ratio: 1.6; border-radius: 16px; padding: 20px; color: #fff; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 18px 40px rgba(0,0,0,.16); }
+  .dv[data-v="a"] .ds-card { background: #388699; }
+  .dv[data-v="b"] .ds-card { background: #2E7487; }
+  .ds-card .top { display: flex; justify-content: space-between; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
+  .ds-card .pts { font-size: 34px; font-weight: 700; letter-spacing: -.02em; line-height: 1; font-variant-numeric: tabular-nums; }
+  .ds-card .pts small { display: block; font-size: 14px; font-weight: 500; letter-spacing: 0; margin-top: 6px; }
+  .ds-read { display: flex; justify-content: space-between; gap: 12px; width: min(360px, 100%); margin-top: 14px; font-size: 14px; }
+  .ds-read code { white-space: nowrap; }
+  .ds-read b { font-variant-numeric: tabular-nums; }
+  .ds-read .ok { color: #1f7a4d; }
+  .ds-read .no { color: #b4372c; }
+  :root[data-theme="dark"] .ds-read .ok { color: #5fd39a; }
+  :root[data-theme="dark"] .ds-read .no { color: #ff8a7a; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .ds-read .ok { color: #5fd39a; } :root:not([data-theme="light"]) .ds-read .no { color: #ff8a7a; } }
+
+  .col .spec td:nth-child(2) { white-space: normal; font-weight: 400; }
+  .col .spec td.c { text-align: end; font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+  @media (max-width: 560px) { .col .spec { font-size: 13.5px; } .col .spec th, .col .spec td { padding: 10px 10px; } }
+  .col .note { font-size: 14px; color: var(--muted); margin-top: 40px; }
+  .col a.inline { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+</style>
+<script src="theme.js"></script>
+<script defer="" src="i18n.js"></script>
+<script defer="" src="case.js"></script>
+</head>
+<body class="cs">
+<!--
+  Same structure as tamoon.html and fahs.html.
+  - class="detail" hides in TL;DR mode, class="tldr" shows only in TL;DR mode.
+  - Images are placeholders (assets/tamoon-ds-*.svg) until the Figma exports arrive.
+    Swap each for a 1920 px .webp with the same name and update its src here (cover, gallery and figures):
+      assets/tamoon-ds-brands.svg       ds-01  The same Home screen in Tamoon Light, Tamoon Dark, Core and Bunn
+      assets/tamoon-ds-tokens.svg       ds-02  Core, Brand and Color layers, with one colour followed through
+      assets/tamoon-ds-offer-card.svg   ds-03  Offer card: 16 variants, Badge × State
+      assets/tamoon-ds-adoption.svg     ds-04  Parts replaced with library instances
+      assets/tamoon-ds-rules.svg        ds-05  Rules sheet with live components
+-->
+<a aria-label="Yehia Mourad, home" class="mark cs-mark" href="./"><img alt="" class="logo-l" src="assets/logo-header.svg"/><img alt="" class="logo-d" src="assets/logo-header-dark.svg"/></a>
+<div class="cs-tools">
+
+<button aria-label="Switch light or dark" class="chip theme-toggle" type="button">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+</button>
+<a aria-label="Close and go back" class="chip close" href="./#work">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"></path></svg>
+</a>
+</div>
+<main class="cs-page">
+<div class="cover cover-wide" role="img" aria-label="The same Home screen in Tamoon Light, Tamoon Dark, Core and Bunn" style="view-transition-name: tamoonds-cover; aspect-ratio: 1.6; background-image:url(assets/tamoon-ds-brands.svg)"></div>
+<div aria-label="Reading mode" class="seg" role="tablist">
+<button class="on" data-mode="detailed" role="tab">Detailed</button>
+<button data-mode="tldr" role="tab">TL;DR</button>
+</div>
+<article class="col">
+<span class="kicker">Case study · Tamoon design system</span>
+<h1>Tamoon design system: one library, many brands</h1>
+<p class="lead">
+A white-label Figma library where a new retailer is a new set of values, not a new file. Design system for an Arabic-first grocery loyalty app, iOS and Android, pre-launch, 2026. It's the library behind the <a class="inline" href="tamoon.html">Tamoon app case study</a>.
+</p>
+<dl class="meta-row">
+<div><dt>My role</dt><dd>Senior Product Designer at Misbar Tech. Token architecture, components, rules and the rollout into the app files</dd></div>
+<div><dt>Team</dt><dd>Solo (just me)</dd></div>
+<div><dt>Timeline</dt><dd>Nov 2026</dd></div>
+<div><dt>Status</dt><dd>Ready for build. Not shipped in code yet</dd></div>
+<div><dt>Platform</dt><dd>iOS (iPhone 16 base, Liquid Glass on iOS 26) and Android (Material 3), RTL first</dd></div>
+<div><dt>Tools</dt><dd>Figma (variables, modes, library), Lucide, Claude (bulk Figma work)</dd></div>
+</dl>
+
+<!-- ===== TL;DR ===== -->
+<section class="tldr">
+<h2>The short version</h2>
+<p>The client wanted to sell the same loyalty app to other retailers. If every brand needed its own Figma file, every fix would have to be made three times and the files would drift apart within weeks.</p>
+<p>I built one library with <b>196 variables in three layers</b>, about <b>40 components</b> with their states, and <b>194 Lucide icons</b>. A client is a Brand mode. Switching the mode restyles every screen without touching a layer. Then I rolled it into the app files, replacing hand-built parts with library instances.</p>
+<div class="ds-stats">
+<div><span class="k">Variables</span><span class="v">196</span><p>In three layers: Core, Brand, Color.</p></div>
+<div><span class="k">Components</span><span class="v">~40</span><p>With the states a real screen needs.</p></div>
+<div><span class="k">Icons</span><span class="v">194</span><p>Lucide, at a 1.5 px stroke.</p></div>
+</div>
+</section>
+
+<!-- ===== Gallery ===== -->
+<section class="gallery" aria-label="Tamoon design system at a glance">
+<span class="num">At a glance</span>
+<h2>One library, every client</h2>
+<figure data-title="Four brands, one screen"><img alt="The same Home screen in Tamoon Light, Tamoon Dark, Core and Bunn" loading="lazy" src="assets/tamoon-ds-brands.svg"/><figcaption>A client is a Brand mode. Switching the mode restyles every screen without touching a layer.</figcaption></figure>
+<figure data-title="Three layers of tokens"><img alt="Core, Brand and Color layers, with one colour followed through" loading="lazy" src="assets/tamoon-ds-tokens.svg"/><figcaption>Components only ever use the Color layer, so changing a Brand value restyles everything at once.</figcaption></figure>
+<figure data-title="Offer card, 16 variants"><img alt="Offer card: 16 variants, Badge × State" loading="lazy" src="assets/tamoon-ds-offer-card.svg"/><figcaption>Badge × State: one label on the image, and ×2 points wins over a discount.</figcaption></figure>
+<figure data-title="Rolled into the app files"><img alt="Parts replaced with library instances" loading="lazy" src="assets/tamoon-ds-adoption.svg"/><figcaption>613 icons, 123 offer cards, 151 back buttons and 71 icon buttons replaced with library instances.</figcaption></figure>
+<figure data-title="Rules that stop drift"><img alt="Rules sheet with live components" loading="lazy" src="assets/tamoon-ds-rules.svg"/><figcaption>Touch targets, corners, colour meaning and contrast, written down next to live components.</figcaption></figure>
+</section>
+
+<!-- ===== 01 Problem ===== -->
+<section class="detail">
+<span class="num">01 / The problem</span>
+<h2>Three brands, one app</h2>
+<div class="cards3">
+<div><b>Three brands, one app</b><p>Tamoon, plus two sample clients (Core and Bunn) to prove the idea, each in Light and Dark.</p></div>
+<div><b>Arabic first</b><p>Every component is built RTL first; English is the adaptation.</p></div>
+<div><b>Hand-built screens</b><p>The first app file had icons, cards and badges drawn by hand, each slightly different.</p></div>
+</div>
+</section>
+
+<!-- ===== 02 Tokens ===== -->
+<section class="detail">
+<span class="num">02 / Three layers of tokens</span>
+<h2>Core → Brand → Color</h2>
+<div class="ds-layers">
+<div><span class="n">33<small>Core</small></span><div><b>Core</b><p>Values every client shares: status palette (warning orange, error red), spacing, radius</p></div></div>
+<div><span class="n">85<small>× 3 modes</small></span><div><b>Brand</b><p>One mode per client (Tamoon, Core, Bunn): the brand teal, card gradient, points colour, category tints</p></div></div>
+<div><span class="n">78<small>× Light / Dark</small></span><div><b>Color</b><p>Semantic names components use: <code>points/points</code>, <code>brand/card-from</code>, <code>status/warning-ink</code>, <code>surface/muted</code></p></div></div>
+</div>
+<p style="margin-top:22px"><b>The rule:</b> components only ever use the Color layer. Changing a Brand value, or adding a client, restyles every component and screen at once.</p>
+</section>
+<figure class="wide detail">
+<img alt="Core, Brand and Color layers, with one colour followed through" class="shot-img" loading="lazy" src="assets/tamoon-ds-tokens.svg"/>
+<figcaption>Core, Brand and Color layers, with one colour followed through.</figcaption>
+</figure>
+
+<!-- ===== 03 Decisions ===== -->
+<section class="detail">
+<span class="num">03 / Decisions that shaped the system</span>
+<h2>Small calls, made once</h2>
+
+<span class="pill">3A · Gold means points</span>
+<h3>Gold means points, and nothing else</h3>
+<p>Points have their own four tokens (solid, text on solid, soft, ink). Warnings moved from amber to orange so an expiry notice never reads as a reward. Text on gold is dark (7.32:1), never white (1.89:1).</p>
+
+<span class="pill">3B · Contrast at the token</span>
+<h3>Contrast fixed at the token, not the screen</h3>
+<p>White text on the brand card was 4.17:1. Darkening one Brand value (<code>#388699</code> → <code>#2E7487</code>) brought every brand card to 5.3:1.</p>
+<p style="margin-top:14px">Try it: the same card with the Brand value before and after.</p>
+</section>
+<div class="demo detail" data-demo="">
+<div class="demo-tabs" role="group" aria-label="Brand card value">
+<button class="on" data-v="a" type="button">Before · #388699</button>
+<button data-v="b" type="button">After · #2E7487</button>
+</div>
+<div class="demo-stage">
+<div class="dv" data-v="a">
+<div class="ds-card" role="img" aria-label="Brand card in #388699 with white text"><div class="top"><span>Tamoon</span><span>Member</span></div><div class="pts">Member card<small>White text on the brand card</small></div></div>
+<div class="ds-read"><span><code>brand/card-from</code></span><span>White text <b class="no">4.17:1</b></span></div>
+</div>
+<div class="dv" data-v="b">
+<div class="ds-card" role="img" aria-label="Brand card in #2E7487 with white text"><div class="top"><span>Tamoon</span><span>Member</span></div><div class="pts">Member card<small>White text on the brand card</small></div></div>
+<div class="ds-read"><span><code>brand/card-from</code></span><span>White text <b class="ok">5.3:1</b></span></div>
+</div>
+</div>
+<p class="tt-note">One Brand value changed. Every brand card in every file follows it.</p>
+</div>
+
+<section class="detail">
+<span class="pill">3C · Shapes</span>
+<h3>One radius for every button, one shape family per row</h3>
+<ul class="after-p">
+<li><b>One radius for every button.</b> Back and icon buttons take their corners from one <code>radius/button</code> token, so one value restyles them all.</li>
+<li><b>One shape family per row.</b> Inputs 14 pt, cards 16 pt, chips fully rounded. Buttons next to an input take its corners.</li>
+</ul>
+
+<span class="pill">3D · Arabic and heritage</span>
+<h3>Western digits, and the Al Sadu band used sparingly</h3>
+<ul class="after-p">
+<li><b>Western digits everywhere,</b> with the Riyal symbol as its own component, never "<span lang="ar" dir="rtl">ر.س</span>".</li>
+<li><b>Heritage used sparingly.</b> The Al Sadu band appears once per screen, on the main brand surface only.</li>
+</ul>
+</section>
+
+<!-- ===== 04 Components ===== -->
+<section class="detail">
+<span class="num">04 / Components</span>
+<h2>About 40 components, each with its states</h2>
+<p>About 40 components across Buttons, Inputs, Chips and controls, Navigation, Loyalty, Commerce, Patterns and Liquid Glass (iOS 26). Each one has the states a real screen needs, not just the default.</p>
+
+<span class="pill">Example · Offer card</span>
+<h3>16 variants, one job</h3>
+<p>16 variants (Badge: none, discount, double points, both × State: default, pressed, loading, image failed), with text and visibility properties. One label on the image, and ×2 points wins over a discount. No save heart and no points line, so the card does one job: showing the price.</p>
+</section>
+<figure class="wide detail">
+<img alt="Offer card: 16 variants, Badge × State" class="shot-img" loading="lazy" src="assets/tamoon-ds-offer-card.svg"/>
+<figcaption>Offer card: 16 variants, Badge × State.</figcaption>
+</figure>
+
+<section class="detail">
+<h3>Other components with states built in</h3>
+<ul class="after-p">
+<li><b>Icon button:</b> seven styles, including On dark and On media for the card and scanner screens, and a badge option for unread notifications.</li>
+<li><b>Status badge:</b> only for exceptions (pending, reversed, expiring soon), with fixed wording so it reads the same everywhere.</li>
+<li><b>Toast:</b> success, info and error, in the deep brand teal so it follows each client's brand.</li>
+<li><b>Category tile, Member card, Points progress, Voucher, Activity row, Input, Back button, Filter chip, Flyer hero</b> and more.</li>
+</ul>
+</section>
+
+<!-- ===== 05 Rollout ===== -->
+<section class="detail">
+<span class="num">05 / Rolling it out</span>
+<h2>A library only counts when the app files use it</h2>
+<table class="spec">
+<thead><tr><th>Replaced with library instances</th><th></th><th>Count</th></tr></thead>
+<tbody>
+<tr><td><b>Icons</b></td><td>Lucide, 1.5 px stroke</td><td class="c">613</td></tr>
+<tr><td><b>Offer cards</b></td><td></td><td class="c">123</td></tr>
+<tr><td><b>Back buttons</b></td><td></td><td class="c">151</td></tr>
+<tr><td><b>Icon buttons</b></td><td>Including 11 notification bells with badge</td><td class="c">71</td></tr>
+<tr><td><b>Status pills</b></td><td>Now the Status badge</td><td class="c">19</td></tr>
+<tr><td><b>Text layers</b></td><td>Converted to Western digits</td><td class="c">1,729</td></tr>
+</tbody>
+</table>
+<p style="margin-top:22px">A "Changelog &amp; usage" page in the library records each release and the do's and don'ts, so the app files can be updated with confidence.</p>
+</section>
+<figure class="wide detail">
+<img alt="Parts replaced with library instances" class="shot-img" loading="lazy" src="assets/tamoon-ds-adoption.svg"/>
+<figcaption>Parts replaced with library instances.</figcaption>
+</figure>
+
+<!-- ===== 06 Rules ===== -->
+<section class="detail">
+<span class="num">06 / Rules that stop drift</span>
+<h2>Written down, next to live components</h2>
+<ul>
+<li>Touch targets ≥ 44 pt · buttons 48 pt (40 inside cards) · inputs 48 pt</li>
+<li>Inputs 14 · cards 16 · chips fully rounded · one shape family per row</li>
+<li>Gold only for points · warnings orange · text on gold dark</li>
+<li>White on brand card ≥ 5.3:1 · every category ink ≥ 4.5:1 on its tint</li>
+<li>One Al Sadu band per screen · Western digits · Riyal symbol</li>
+</ul>
+</section>
+<figure class="wide detail">
+<img alt="Rules sheet with live components" class="shot-img" loading="lazy" src="assets/tamoon-ds-rules.svg"/>
+<figcaption>Rules sheet with live components.</figcaption>
+</figure>
+
+<!-- ===== 07 AI ===== -->
+<section class="detail">
+<span class="num">07 / How I worked with AI</span>
+<h2>Claude did the bulk work, the decisions were mine</h2>
+<p>Claude did the bulk Figma work: swapping hundreds of icons and cards to instances, binding hard-coded colours to tokens, converting digits. Every token decision, every rule and every trade-off was mine, and several AI suggestions were turned down (a rounded search bar just for the map, a heart and points line on every offer card, the Al Sadu trim on every card).</p>
+</section>
+
+<!-- ===== 08 Next ===== -->
+<section class="detail">
+<span class="num">08 / What's next</span>
+<h2>Finish the rollout, then a second brand</h2>
+<ul>
+<li><b>Finish the rollout.</b> 115 back buttons in the main app file are linked to the radius token but still need swapping to the component; 20 deprecated icons can then be deleted.</li>
+<li><b>Code Connect</b> to map components to the React Native code.</li>
+<li><b>Ship a second brand</b> to test the system for real, and test dark mode on real screens.</li>
+</ul>
+</section>
+
+<p class="note">Client name and details shared with permission.</p>
+</article>
+<a class="next-proj" href="tamoon.html">
+<span><span class="small">Companion case study</span><br/><b>Tamoon: a grocery loyalty app built around the till</b></span>
+<span class="go"><svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24" width="16"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</a>
+<a class="next-proj" href="./#work" style="margin-top:12px">
+<span class="small">Back to all work</span>
+<span class="go"><svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24" width="16"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</a>
+</main>
+</body>
+</html>
