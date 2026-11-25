@@ -1216,10 +1216,17 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     stepOut();
     if (pendingWin) { pendingWin = false; setTimeout(win, 350); }
   }
-  document.querySelectorAll("[data-place]").forEach(b => b.addEventListener("click", () => open(b.dataset.place)));
+  // A click on a published case study (work rows, map pins) opens its page directly.
+  // Everything else, and walking into a place in the street game, still opens the card.
+  function openOrGo(key) {
+    const p = places[key];
+    if (p && p.cta && /\.html$/.test(p.cta[1])) { discover(key); location.href = p.cta[1]; return; }
+    open(key);
+  }
+  document.querySelectorAll("[data-place]").forEach(b => b.addEventListener("click", () => openOrGo(b.dataset.place)));
   document.querySelectorAll("[data-open]").forEach(b => {
-    b.addEventListener("click", () => open(b.dataset.open));
-    b.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(b.dataset.open); } });
+    b.addEventListener("click", () => openOrGo(b.dataset.open));
+    b.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openOrGo(b.dataset.open); } });
   });
   $("scrim").onclick = close; $("s-close").onclick = close;
   addEventListener("keydown", e => { if (e.key === "Escape") close(); });
