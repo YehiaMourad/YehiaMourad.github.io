@@ -51,6 +51,17 @@
   :root[data-theme="dark"] .ds-read .no { color: #ff8a7a; }
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .ds-read .ok { color: #5fd39a; } :root:not([data-theme="light"]) .ds-read .no { color: #ff8a7a; } }
 
+  /* Meta grid: three long items on top, two short ones below, split evenly */
+  .meta-row.ds-meta { grid-template-columns: repeat(6, 1fr); gap: 0; padding: 0; }
+  .ds-meta > div { grid-column: span 2; padding: 18px 24px 18px 0; }
+  .ds-meta > div.short { grid-column: span 3; border-top: 1px solid var(--line); }
+  .ds-meta dd { line-height: 1.5; }
+  @media (max-width: 760px) {
+    .meta-row.ds-meta { grid-template-columns: 1fr 1fr; }
+    .ds-meta > div { grid-column: 1 / -1; padding: 14px 16px 14px 0; }
+    .ds-meta > div + div { border-top: 1px solid var(--line); }
+    .ds-meta > div.short { grid-column: span 1; }
+  }
   .col .spec td:nth-child(2) { white-space: normal; font-weight: 400; }
   .col .spec td.c { text-align: end; font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
   @media (max-width: 560px) { .col .spec { font-size: 13.5px; } .col .spec th, .col .spec td { padding: 10px 10px; } }
@@ -96,13 +107,12 @@
 <p class="lead">
 A white-label Figma library where a new retailer is a new set of values, not a new file. Design system for an Arabic-first grocery loyalty app, iOS and Android, pre-launch, 2026. It's the library behind the <a class="inline" href="tamoon.html">Tamoon app case study</a>.
 </p>
-<dl class="meta-row">
+<dl class="meta-row ds-meta">
 <div><dt>My role</dt><dd>Senior Product Designer at Misbar Tech. Token architecture, components, rules and the rollout into the app files</dd></div>
-<div><dt>Team</dt><dd>Solo (just me)</dd></div>
-<div><dt>Timeline</dt><dd>Nov 2026</dd></div>
-<div><dt>Status</dt><dd>Ready for build. Not shipped in code yet</dd></div>
 <div><dt>Platform</dt><dd>iOS (iPhone 16 base, Liquid Glass on iOS 26) and Android (Material 3), RTL first</dd></div>
 <div><dt>Tools</dt><dd>Figma (variables, modes, library), Lucide, Claude (bulk Figma work)</dd></div>
+<div class="short"><dt>Timeline</dt><dd>Nov 2026</dd></div>
+<div class="short"><dt>Status</dt><dd>Ready for build. Not shipped in code yet</dd></div>
 </dl>
 
 <!-- ===== TL;DR ===== -->
