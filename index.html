@@ -1217,7 +1217,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); opacity: 1; pointer-even
     if (pendingWin) { pendingWin = false; setTimeout(win, 350); }
   }
   // A click on a published case study (work rows, map pins) opens its page directly.
-  // Everything else, and walking into a place in the street game, still opens the card.
+  // Everything else (About, Experience, Say hi, the ahwa, coming soon) still opens the card.
   function openOrGo(key) {
     const p = places[key];
     if (p && p.cta && /\.html$/.test(p.cta[1])) { discover(key); location.href = p.cta[1]; return; }
