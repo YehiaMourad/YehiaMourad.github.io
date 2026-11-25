@@ -65,13 +65,14 @@
 <!--
   Same structure as tamoon.html and fahs.html.
   - class="detail" hides in TL;DR mode, class="tldr" shows only in TL;DR mode.
-  - Images are placeholders (assets/tamoon-ds-*.svg) until the Figma exports arrive.
-    Swap each for a 1920 px .webp with the same name and update its src here (cover, gallery and figures):
-      assets/tamoon-ds-brands.svg       ds-01  The same Home screen in Tamoon Light, Tamoon Dark, Core and Bunn
-      assets/tamoon-ds-tokens.svg       ds-02  Core, Brand and Color layers, with one colour followed through
-      assets/tamoon-ds-offer-card.svg   ds-03  Offer card: 16 variants, Badge × State
-      assets/tamoon-ds-adoption.svg     ds-04  Parts replaced with library instances
-      assets/tamoon-ds-rules.svg        ds-05  Rules sheet with live components
+  - Images: exported from Figma, 1920 px wide .webp (cover, gallery and figures):
+      assets/tamoon-ds-brands.webp        ds-01  The same Home screen in Tamoon Light, Tamoon Dark, Core and Bunn
+      assets/tamoon-ds-tokens.webp        ds-02  Core, Brand and Color layers, with one colour followed through
+      assets/tamoon-ds-offer-card.webp    ds-03  Offer card: 16 variants, Badge × State
+      assets/tamoon-ds-adoption.webp      ds-04  Parts replaced with library instances
+      assets/tamoon-ds-rules.webp         ds-05  Rules sheet with live components
+      assets/tamoon-ds-liquid-glass.webp  ds-06  Liquid Glass on iOS 26, with iOS 18 and Android fallbacks
+      assets/tamoon-ds-light-dark.webp    ds-07  The same components in Light and Dark
 -->
 <a aria-label="Yehia Mourad, home" class="mark cs-mark" href="./"><img alt="" class="logo-l" src="assets/logo-header.svg"/><img alt="" class="logo-d" src="assets/logo-header-dark.svg"/></a>
 <div class="cs-tools">
@@ -84,7 +85,7 @@
 </a>
 </div>
 <main class="cs-page">
-<div class="cover cover-wide" role="img" aria-label="The same Home screen in Tamoon Light, Tamoon Dark, Core and Bunn" style="view-transition-name: tamoonds-cover; aspect-ratio: 1.6; background-image:url(assets/tamoon-ds-brands.svg)"></div>
+<div class="cover cover-wide" role="img" aria-label="The same Home screen in Tamoon Light, Tamoon Dark, Core and Bunn" style="view-transition-name: tamoonds-cover; aspect-ratio: 1.6; background-image:url(assets/tamoon-ds-brands.webp)"></div>
 <div aria-label="Reading mode" class="seg" role="tablist">
 <button class="on" data-mode="detailed" role="tab">Detailed</button>
 <button data-mode="tldr" role="tab">TL;DR</button>
@@ -120,11 +121,13 @@ A white-label Figma library where a new retailer is a new set of values, not a n
 <section class="gallery" aria-label="Tamoon design system at a glance">
 <span class="num">At a glance</span>
 <h2>One library, every client</h2>
-<figure data-title="Four brands, one screen"><img alt="The same Home screen in Tamoon Light, Tamoon Dark, Core and Bunn" loading="lazy" src="assets/tamoon-ds-brands.svg"/><figcaption>A client is a Brand mode. Switching the mode restyles every screen without touching a layer.</figcaption></figure>
-<figure data-title="Three layers of tokens"><img alt="Core, Brand and Color layers, with one colour followed through" loading="lazy" src="assets/tamoon-ds-tokens.svg"/><figcaption>Components only ever use the Color layer, so changing a Brand value restyles everything at once.</figcaption></figure>
-<figure data-title="Offer card, 16 variants"><img alt="Offer card: 16 variants, Badge × State" loading="lazy" src="assets/tamoon-ds-offer-card.svg"/><figcaption>Badge × State: one label on the image, and ×2 points wins over a discount.</figcaption></figure>
-<figure data-title="Rolled into the app files"><img alt="Parts replaced with library instances" loading="lazy" src="assets/tamoon-ds-adoption.svg"/><figcaption>613 icons, 123 offer cards, 151 back buttons and 71 icon buttons replaced with library instances.</figcaption></figure>
-<figure data-title="Rules that stop drift"><img alt="Rules sheet with live components" loading="lazy" src="assets/tamoon-ds-rules.svg"/><figcaption>Touch targets, corners, colour meaning and contrast, written down next to live components.</figcaption></figure>
+<figure data-title="Four brands, one screen"><img alt="The same Home screen in Tamoon Light, Tamoon Dark, Core and Bunn" loading="lazy" src="assets/tamoon-ds-brands.webp"/><figcaption>A client is a Brand mode. Switching the mode restyles every screen without touching a layer.</figcaption></figure>
+<figure data-title="Three layers of tokens"><img alt="Core, Brand and Color layers, with one colour followed through" loading="lazy" src="assets/tamoon-ds-tokens.webp"/><figcaption>Components only ever use the Color layer, so changing a Brand value restyles everything at once.</figcaption></figure>
+<figure data-title="Offer card, 16 variants"><img alt="Offer card: 16 variants, Badge × State" loading="lazy" src="assets/tamoon-ds-offer-card.webp"/><figcaption>Badge × State: one label on the image, and ×2 points wins over a discount.</figcaption></figure>
+<figure data-title="Light and Dark"><img alt="The same components in Light and Dark" loading="lazy" src="assets/tamoon-ds-light-dark.webp"/><figcaption>Nothing is redrawn for dark mode: every fill is a Color token with a Light and a Dark value.</figcaption></figure>
+<figure data-title="Liquid Glass, with fallbacks"><img alt="Liquid Glass tab bar on iOS 26, with a blur fallback on iOS 18 and a solid Material 3 surface on Android" loading="lazy" src="assets/tamoon-ds-liquid-glass.webp"/><figcaption>Glass only for controls that float above content, falling back to blur on iOS 18 and solid Material 3 on Android.</figcaption></figure>
+<figure data-title="Rolled into the app files"><img alt="Parts replaced with library instances" loading="lazy" src="assets/tamoon-ds-adoption.webp"/><figcaption>613 icons, 123 offer cards, 151 back buttons and 71 icon buttons replaced with library instances.</figcaption></figure>
+<figure data-title="Rules that stop drift"><img alt="Rules sheet with live components" loading="lazy" src="assets/tamoon-ds-rules.webp"/><figcaption>Touch targets, corners, colour meaning and contrast, written down next to live components.</figcaption></figure>
 </section>
 
 <!-- ===== 01 Problem ===== -->
@@ -150,7 +153,7 @@ A white-label Figma library where a new retailer is a new set of values, not a n
 <p style="margin-top:22px"><b>The rule:</b> components only ever use the Color layer. Changing a Brand value, or adding a client, restyles every component and screen at once.</p>
 </section>
 <figure class="wide detail">
-<img alt="Core, Brand and Color layers, with one colour followed through" class="shot-img" loading="lazy" src="assets/tamoon-ds-tokens.svg"/>
+<img alt="Core, Brand and Color layers, with one colour followed through" class="shot-img" loading="lazy" src="assets/tamoon-ds-tokens.webp"/>
 <figcaption>Core, Brand and Color layers, with one colour followed through.</figcaption>
 </figure>
 
@@ -213,7 +216,7 @@ A white-label Figma library where a new retailer is a new set of values, not a n
 <p>16 variants (Badge: none, discount, double points, both × State: default, pressed, loading, image failed), with text and visibility properties. One label on the image, and ×2 points wins over a discount. No save heart and no points line, so the card does one job: showing the price.</p>
 </section>
 <figure class="wide detail">
-<img alt="Offer card: 16 variants, Badge × State" class="shot-img" loading="lazy" src="assets/tamoon-ds-offer-card.svg"/>
+<img alt="Offer card: 16 variants, Badge × State" class="shot-img" loading="lazy" src="assets/tamoon-ds-offer-card.webp"/>
 <figcaption>Offer card: 16 variants, Badge × State.</figcaption>
 </figure>
 
@@ -226,6 +229,26 @@ A white-label Figma library where a new retailer is a new set of values, not a n
 <li><b>Category tile, Member card, Points progress, Voucher, Activity row, Input, Back button, Filter chip, Flyer hero</b> and more.</li>
 </ul>
 </section>
+
+<section class="detail">
+<span class="pill">Light and Dark</span>
+<h3>Same components, Light and Dark</h3>
+<p>Nothing is redrawn for dark mode. Every fill is a Color token with a Light and a Dark value.</p>
+</section>
+<figure class="wide detail">
+<img alt="The same components in Light and Dark: offer card, member card, activity row, chips, badges, toast, icon buttons and input" class="shot-img" loading="lazy" src="assets/tamoon-ds-light-dark.webp"/>
+<figcaption>The same components in Light and Dark, from the same Color tokens.</figcaption>
+</figure>
+
+<section class="detail">
+<span class="pill">Liquid Glass (iOS 26)</span>
+<h3>Liquid Glass on iOS 26, with fallbacks</h3>
+<p>Glass only for controls that float above content. The same component falls back to blur on iOS 18 and to a solid Material 3 surface on Android. Increase Contrast and Reduce Transparency switch glass to solid, and touch targets stay ≥ 44 pt.</p>
+</section>
+<figure class="wide detail">
+<img alt="Liquid Glass tab bar on iOS 26, with a blur fallback on iOS 18 and a solid Material 3 surface on Android" class="shot-img" loading="lazy" src="assets/tamoon-ds-liquid-glass.webp"/>
+<figcaption>A floating glass tab bar on iOS 26, the iOS 18 blur fallback, and the solid Material 3 surface on Android.</figcaption>
+</figure>
 
 <!-- ===== 05 Rollout ===== -->
 <section class="detail">
@@ -245,7 +268,7 @@ A white-label Figma library where a new retailer is a new set of values, not a n
 <p style="margin-top:22px">A "Changelog &amp; usage" page in the library records each release and the do's and don'ts, so the app files can be updated with confidence.</p>
 </section>
 <figure class="wide detail">
-<img alt="Parts replaced with library instances" class="shot-img" loading="lazy" src="assets/tamoon-ds-adoption.svg"/>
+<img alt="Parts replaced with library instances" class="shot-img" loading="lazy" src="assets/tamoon-ds-adoption.webp"/>
 <figcaption>Parts replaced with library instances.</figcaption>
 </figure>
 
@@ -262,7 +285,7 @@ A white-label Figma library where a new retailer is a new set of values, not a n
 </ul>
 </section>
 <figure class="wide detail">
-<img alt="Rules sheet with live components" class="shot-img" loading="lazy" src="assets/tamoon-ds-rules.svg"/>
+<img alt="Rules sheet with live components" class="shot-img" loading="lazy" src="assets/tamoon-ds-rules.webp"/>
 <figcaption>Rules sheet with live components.</figcaption>
 </figure>
 
