@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html dir="ltr" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Tamoon — Yehia Mourad</title>
+<meta content="An Arabic-first grocery loyalty app redesigned around the till: a scannable card in 3 seconds or less, and a first reward in 300 SAR of shopping instead of 800." name="description"/>
+<meta content="Tamoon — Yehia Mourad" property="og:title"/>
+<meta content="An Arabic-first grocery loyalty app redesigned around the till: a scannable card in 3 seconds or less, and a first reward in 300 SAR of shopping instead of 800." property="og:description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&amp;family=IBM+Plex+Sans+Arabic:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="favicon.ico" rel="icon" sizes="32x32"/>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="site.webmanifest" rel="manifest"/>
+<meta content="#efece6" name="theme-color"/>
+<meta content="https://yehiamourad.github.io/assets/og-image.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="style.css" rel="stylesheet"/>
+<style>
+  /* Tamoon only: point-value demo and result tiles */
+  .tm-eco { width: min(420px, 100%); background: var(--bg); border-radius: 18px; padding: 18px; display: grid; gap: 10px; }
+  .tm-eco-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+  .tm-eco-row:last-child { border-bottom: 0; }
+  .tm-eco-row span { color: var(--muted); }
+  .tm-eco-row b { text-align: end; font-size: 18px; font-variant-numeric: tabular-nums; }
+  .tm-eco-row small { display: block; font-size: 12px; color: var(--muted); font-weight: 400; text-align: end; }
+  .demo .demo-stage .tm-eco { background: var(--surface); }
+
+  .tm-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 22px; }
+  .tm-stats > div { background: var(--surface); border-radius: 18px; padding: 18px; box-shadow: var(--shadow); }
+  .tm-stats .k { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .tm-stats .v { display: block; font-size: 28px; font-weight: 700; letter-spacing: -.02em; margin-top: 6px; line-height: 1.1; }
+  .tm-stats .v s { font-size: 16px; font-weight: 500; color: var(--muted); margin-inline-end: 6px; }
+  .col .tm-stats p { font-size: 13.5px; color: var(--muted); line-height: 1.45; margin-top: 6px; }
+  @media (max-width: 760px) { .tm-stats { grid-template-columns: 1fr; } }
+  .col .spec td:nth-child(2) { white-space: normal; font-weight: 400; }
+  @media (max-width: 560px) { .col .spec { font-size: 13.5px; } .col .spec th, .col .spec td { padding: 10px 10px; } }
+  .col .note { font-size: 14px; color: var(--muted); margin-top: 40px; }
+</style>
+<script src="theme.js"></script>
+<script defer="" src="i18n.js"></script>
+<script defer="" src="case.js"></script>
+</head>
+<body class="cs">
+<!--
+  Same structure as fahs.html.
+  - class="detail" hides in TL;DR mode, class="tldr" shows only in TL;DR mode.
+  - Cover: assets/tamoon-hero.webp (landscape, 1.6:1).
+  - Screens: exported from Figma at 1920 px wide. Each <figure class="wide"> removes itself if its image is missing:
+      assets/tamoon-hero.webp           Home, Card and Points in Arabic
+      assets/tamoon-audit.webp          Audit board, 22 findings mapped to screens
+      assets/tamoon-signin.webp         Code entry, verifying, Home with the welcome sheet
+      assets/tamoon-first-reward.webp   Welcome sheet with 50 points, Points with progress to 200
+      assets/tamoon-points-colour.webp  Points colour tokens and contrast ratios
+      assets/tamoon-design-system.webp  Design system overview
+-->
+<a aria-label="Yehia Mourad, home" class="mark cs-mark" href="./"><img alt="" class="logo-l" src="assets/logo-header.svg"/><img alt="" class="logo-d" src="assets/logo-header-dark.svg"/></a>
+<div class="cs-tools">
+
+<button aria-label="Switch light or dark" class="chip theme-toggle" type="button">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+</button>
+<a aria-label="Close and go back" class="chip close" href="./#work">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"></path></svg>
+</a>
+</div>
+<main class="cs-page">
+<div class="cover cover-wide" role="img" aria-label="Tamoon product, card, Home, Points and offers screens in Arabic" style="view-transition-name: tamoon-cover; aspect-ratio: 1.6; background-image:url(assets/tamoon-hero.webp)"></div>
+<div aria-label="Reading mode" class="seg" role="tablist">
+<button class="on" data-mode="detailed" role="tab">Detailed</button>
+<button data-mode="tldr" role="tab">TL;DR</button>
+</div>
+<article class="col">
+<span class="kicker">Case study · Tamoon</span>
+<h1>A grocery loyalty app built around the till</h1>
+<p class="lead">
+From a locked phone to a scannable card in 3 seconds or less, and a first reward in 300 SAR of shopping instead of 800. Tamoon is an Arabic-first loyalty app for a Saudi supermarket chain. The designs are ready for build and the app hasn't launched, so the numbers here are design outputs and launch targets, not live data.
+</p>
+<dl class="meta-row">
+<div><dt>Role</dt><dd>Senior Product Designer, Misbar Tech · solo</dd></div>
+<div><dt>Client</dt><dd>Saudi supermarket chain</dd></div>
+<div><dt>Scope</dt><dd>112-screen audit, flows, UI, design system</dd></div>
+<div><dt>Platform</dt><dd>iOS · Android · Arabic RTL</dd></div>
+</dl>
+
+<!-- ===== TL;DR ===== -->
+<section class="tldr">
+<h2>The short version</h2>
+<ul>
+<li>Tamoon's first design already had the right loop: <b>show the card, earn points, redeem a voucher.</b></li>
+<li>I audited <b>all 112 screens</b> and found 22 issues. Five of the seven high-severity ones came down to two things: <b>signing in took too long, and points were worth different amounts in different places.</b></li>
+<li>Returning members sign in with <b>Face ID</b>, and the card opens from Wallet, a widget, the lock screen or Siri, even offline.</li>
+<li>A <b>first reward at 200 points</b> brings it to about 300 SAR of shopping instead of 800.</li>
+<li>Missing points are claimed by <b>scanning the receipt's ZATCA QR</b>, in minutes instead of up to 48 hours.</li>
+<li>One <b>white-label Figma library</b>: a new retailer is a new Brand mode, not a new file.</li>
+</ul>
+</section>
+
+
+<!-- ===== 01 Constraint ===== -->
+<section class="detail">
+<span class="num">01 / The constraint</span>
+<h2>Someone at a till, holding bags, with a cashier waiting</h2>
+<p>The app had to work in bright light, one-handed, with a queue behind. If the code doesn't scan on the first try, the shopper blames the app, not the scanner. That moment decides whether the app is worth keeping.</p>
+<p>Three other constraints shaped the work:</p>
+<div class="cards3">
+<div><b>Arabic first</b><p>Arabic is the source language. English is the adaptation, not the other way round.</p></div>
+<div><b>White-label</b><p>The client wanted to reuse the app for other brands, so every colour is a token that changes per client.</p></div>
+<div><b>No live data</b><p>Tamoon hadn't launched, so every persona and target is a hypothesis to test.</p></div>
+</div>
+</section>
+
+<!-- ===== 02 Audit ===== -->
+<section class="detail">
+<span class="num">02 / What I found</span>
+<h2>22 issues across 112 screens</h2>
+<p>Seven were high severity. These are the ones that shaped the redesign.</p>
+<table class="spec">
+<thead><tr><th>Area</th><th>What the first design did</th><th>Why it hurt</th></tr></thead>
+<tbody>
+<tr><td><b>Sign-in</b></td><td>Phone and password, then an OTP, on every login</td><td>Too slow at the till, and a password nobody remembers</td></tr>
+<tr><td><b>Sign-up</b></td><td>5 fields plus terms, then an OTP</td><td>People drop off before earning anything</td></tr>
+<tr><td><b>Point value</b></td><td>100 pts = 1 SAR at the till, but a 500-pt voucher = 10 SAR, and a 10% voucher had no cap</td><td>Members can't tell what their balance is worth. The business can't predict cost</td></tr>
+<tr><td><b>First reward</b></td><td>New members start at 100 pts and need 500</td><td>About 800 SAR of shopping before any reward</td></tr>
+<tr><td><b>Missing points</b></td><td>Support chat, up to 48 hours</td><td>The moment trust breaks, the fix is slowest</td></tr>
+<tr><td><b>Vouchers</b></td><td>Show the card, then show each voucher</td><td>An extra step for the cashier on every redemption</td></tr>
+<tr><td><b>New members</b></td><td>Every screen showed a member with 2,450 points</td><td>No design for the person who just signed up</td></tr>
+</tbody>
+</table>
+</section>
+<figure class="wide detail">
+<img alt="Audit board with 22 findings mapped to Tamoon screens" class="shot-img" loading="lazy" onerror="this.closest('figure').remove()" src="assets/tamoon-audit.webp"/>
+<figcaption>The audit board: 22 findings mapped to the screens they live on.</figcaption>
+</figure>
+
+<!-- ===== 03 People ===== -->
+<section class="detail">
+<span class="num">03 / Who it's for</span>
+<h2>Five hypotheses, two that drove the work</h2>
+<p>I wrote five personas as hypotheses for the first research round to confirm or drop. Two drove most decisions:</p>
+<div class="compare">
+<div><span class="pill">Errand runner · 45</span><h3>Abu Khalid</h3><p>Shops from a WhatsApp list on the way home. Wants the card up fast and nothing else.</p></div>
+<div><span class="pill">Household planner · 38</span><h3>Umm Fahad</h3><p>Plans the weekly shop for six people around the flyer. Wants clear savings in large, readable Arabic.</p></div>
+</div>
+<p style="margin-top:22px">I also designed for two groups who never appear in a persona deck: <b>older shoppers</b> (Dynamic Type, Arabic VoiceOver, labels on every icon) and <b>cashiers</b>, who should be in every usability test.</p>
+</section>
+
+<!-- ===== 04 Decisions ===== -->
+<section class="detail">
+<span class="num">04 / Key decisions</span>
+<h2>Five calls that changed the loop</h2>
+
+<span class="pill">4A · Card first, login never</span>
+<h3>Nothing may block the card</h3>
+<p><b>On the table:</b> keep password and OTP for security.</p>
+<p><b>What I decided:</b> phone, OTP, then Face ID. The password becomes optional. Sign-up drops to name and phone; the rest comes later in Profile, with bonus points for finishing it.</p>
+<p><b>Why:</b> the till sets the rule. "The card in three seconds" came first in the principles, and nothing may block it: no login prompt, no update dialog, no network call. The card opens from Apple Wallet, a widget, the lock screen or Siri, works offline, and always shows the member number in Latin digits as a fallback.</p>
+</section>
+<figure class="wide detail">
+<img alt="New sign-in: code entry, verifying, then Home with the welcome sheet" class="shot-img" loading="lazy" onerror="this.closest('figure').remove()" src="assets/tamoon-signin.webp"/>
+<figcaption>Onboarding, code entry, verifying, the one-time welcome sheet, then Home at 50 points.</figcaption>
+</figure>
+
+<section class="detail">
+<span class="pill">4B · One point value</span>
+<h3>Let the business choose the rate</h3>
+<p><b>On the table:</b> fix the copy and move on.</p>
+<p><b>What I decided:</b> I didn't pick the rate. I put three priced options in front of the client, because this is a margin decision, not a UI decision. Whichever wins, the uncapped 10% voucher goes or gets a cap, and every balance in the app shows its SAR value at one rate.</p>
+<p style="margin-top:14px">Try it: the same 1,000-point balance and 500-point voucher under each option.</p>
+</section>
+<div class="demo detail" data-demo="">
+<div class="demo-tabs" role="group" aria-label="Point value option">
+<button class="on" data-v="a" type="button">A · 1 SAR everywhere</button>
+<button data-v="b" type="button">B · 2 SAR everywhere</button>
+<button data-v="c" type="button">C · Voucher bonus</button>
+</div>
+<div class="demo-stage">
+<div class="dv" data-v="a"><div class="tm-eco">
+<div class="tm-eco-row"><span>1,000 pts at the till</span><b>10 SAR</b></div>
+<div class="tm-eco-row"><span>500-pt voucher</span><b>5 SAR</b></div>
+<div class="tm-eco-row"><span>Return to member</span><b>0.5%<small>Cheapest. The 10 SAR voucher becomes 5 SAR</small></b></div>
+</div></div>
+<div class="dv" data-v="b"><div class="tm-eco">
+<div class="tm-eco-row"><span>1,000 pts at the till</span><b>20 SAR</b></div>
+<div class="tm-eco-row"><span>500-pt voucher</span><b>10 SAR</b></div>
+<div class="tm-eco-row"><span>Return to member</span><b>1%<small>Generous, doubles programme cost</small></b></div>
+</div></div>
+<div class="dv" data-v="c"><div class="tm-eco">
+<div class="tm-eco-row"><span>1,000 pts at the till</span><b>10 SAR</b></div>
+<div class="tm-eco-row"><span>500-pt voucher</span><b>10 SAR<small>Shown as "+100% bonus"</small></b></div>
+<div class="tm-eco-row"><span>Return to member</span><b>0.5–1%<small>Pushes vouchers, which bring people back, but adds a rule</small></b></div>
+</div></div>
+</div>
+<p class="tt-note">Values follow each option's rule. The client picks one; the app shows it everywhere.</p>
+</div>
+
+<section class="detail">
+<span class="pill">4C · A first reward at 200 points</span>
+<h3>A near goal beats a bigger bonus</h3>
+<p><b>On the table:</b> a welcome bonus of more points.</p>
+<p><b>What I decided:</b> a small reward at 200 points (2 SAR or a free bakery item), with a progress bar on Home, the Card and the widget. With the 50 welcome points, that's about <b>300 SAR of shopping instead of 800</b>, so most new members reach it within their first few visits.</p>
+<p><b>Why:</b> more points without a near goal still feels far away, especially for small baskets.</p>
+</section>
+<div class="compare detail">
+<div><span class="pill">Before</span><h3>Start at 100, need 500</h3><p>About <b>800 SAR</b> of shopping before any reward.</p></div>
+<div><span class="pill">After</span><h3>Start at 50, reward at 200</h3><p>About <b>300 SAR</b> of shopping to the first reward.</p></div>
+</div>
+<figure class="wide detail">
+<img alt="New member: welcome sheet with 50 points, and Points with progress to the first reward at 200" class="shot-img" loading="lazy" onerror="this.closest('figure').remove()" src="assets/tamoon-first-reward.webp"/>
+<figcaption>The welcome sheet with 50 points, and Points with progress to the first reward.</figcaption>
+</figure>
+
+<section class="detail">
+<span class="pill">4D · Scan the receipt</span>
+<h3>Fix missing points in minutes, not 48 hours</h3>
+<p><b>On the table:</b> a better support form.</p>
+<p><b>What I decided:</b> every Saudi receipt carries a ZATCA QR code. Scan it with the in-app scanner and the missing points are added within minutes. Pending points show as pending, never as missing.</p>
+<p><b>Why:</b> "every point is traceable" was one of the eight principles, and a 48-hour support chat breaks it at exactly the wrong moment. For what the scan can't fix, support now starts from a help hub with FAQs and open tickets. The chat asks for the topic and lets the member pick the invoice from their list, so the agent has the number, branch and amount from the first message.</p>
+
+<span class="pill">4E · Gold means points</span>
+<h3>One colour, one meaning</h3>
+<p><b>What I decided:</b> gold is reserved for loyalty points across the app. Warnings moved from amber to orange so an expiry notice never reads as a reward. Text on gold is dark brown (7.32:1), never white (1.89:1).</p>
+<p><b>Why:</b> in a data-rich screen, one colour with one meaning lets people scan faster than any label.</p>
+</section>
+<figure class="wide detail">
+<img alt="Points colour tokens and their contrast ratios" class="shot-img" loading="lazy" onerror="this.closest('figure').remove()" src="assets/tamoon-points-colour.webp"/>
+<figcaption>One token set for every points surface: dark brown on gold, never white, and warnings in orange.</figcaption>
+</figure>
+
+<!-- ===== Flows ===== -->
+<section class="detail">
+<span class="num">05 / Flows after the audit</span>
+<h2>Every state before anything was applied</h2>
+<p>Every feature went through the same steps: review the current screen, agree the open decisions with the client, then a direction board with the default, empty, loading, error, success and edge-case states.</p>
+<table class="spec">
+<thead><tr><th>Flow</th><th>What changed</th></tr></thead>
+<tbody>
+<tr><td><b>Login → Home</b></td><td>Verified state, Home loading, a one-time welcome sheet with the welcome points</td></tr>
+<tr><td><b>Scan</b></td><td>Product barcode (price and points check) and receipt QR to claim missing points</td></tr>
+<tr><td><b>Points and history</b></td><td>Next reward progress, expiry warning, filtered history, pending and reversed states</td></tr>
+<tr><td><b>Loyalty card</b></td><td>QR plus barcode, attach a voucher, offline, suspended, Apple and Google Wallet</td></tr>
+<tr><td><b>Vouchers</b></td><td>Voucher detail, used and empty states; a full-screen celebration only for the first or a high-value redemption</td></tr>
+<tr><td><b>Invoices</b></td><td>Month picker, filter chips, a two-tile month summary, tax-invoice request</td></tr>
+<tr><td><b>Tax invoice data</b></td><td>Short national address with autofill, validation on save, a read-only summary once saved</td></tr>
+<tr><td><b>Refer a friend</b></td><td>WhatsApp as the primary share, invite status, monthly cap, the friend's sign-up with the code pre-filled</td></tr>
+<tr><td><b>Donate points</b></td><td>One licensed partner, preset or custom amount, impact in riyals and a real unit, confirm and success sheets</td></tr>
+<tr><td><b>Branches</b></td><td>List first with a map toggle; the member's branch drives Home and offers; detail sheet with hours</td></tr>
+<tr><td><b>Notifications</b></td><td>Compact rows, unread dot and tint, filter chips, swipe to mark read or delete with undo</td></tr>
+<tr><td><b>Language and appearance</b></td><td>Confirm the switch in the target language, then reload; Auto, Light and Dark; text size follows the device</td></tr>
+<tr><td><b>Support</b></td><td>Help hub first, topic chips, pick the invoice, offline messages become tickets</td></tr>
+<tr><td><b>Offers</b></td><td>Flyer hero, filter chips with counts, library offer cards, empty, offline and image-failed states</td></tr>
+</tbody>
+</table>
+</section>
+
+<!-- ===== Design system ===== -->
+<section class="detail">
+<span class="num">06 / The design system</span>
+<h2>One library, every client</h2>
+<p>A client is a Brand mode on top of Light and Dark colour modes, so a new retailer is a new set of values, not a new file.</p>
+
+<span class="pill">6A · Tokens and components</span>
+<h3>Core → Brand → Color</h3>
+<ul class="after-p">
+<li><b>Tokens:</b> Core → Brand → Color (Light / Dark). 13 category tints, each with an ink that passes AA on its tint.</li>
+<li><b>Components:</b> Offer card, Category tile, Member card, Points progress, Voucher, Activity row, Status badge, Filter chip, Flyer hero, Input, Toast, Back button, Icon button and more, each with loading, pressed and empty states.</li>
+<li><b>Icon button:</b> seven styles, including On dark and On media for the card and scanner screens, and a badge option for unread notifications. Back and icon buttons take their corner radius from one <code>radius/button</code> token, so one value restyles them all.</li>
+<li><b>Toasts</b> use the deep brand teal, not black, so they follow each client's brand.</li>
+<li><b>Icons:</b> 194 curated Lucide icons at a fixed 1.5 px stroke, matched in code with <code>lucide-react-native</code>.</li>
+</ul>
+
+<span class="pill">6B · Rules that stop drift</span>
+<h3>Small rules, written down</h3>
+<p>Buttons 48/40 pt, touch targets ≥ 44 pt, inputs 14 pt corners and cards 16 pt, one shape family per row, and one Al Sadu band per screen on the main brand surface only.</p>
+
+<span class="pill">6C · Rollout</span>
+<h3>Hand-built parts replaced with library instances</h3>
+<table class="spec">
+<thead><tr><th></th><th>Main app file</th><th>Second app file</th></tr></thead>
+<tbody>
+<tr><td><b>Icons</b></td><td>613</td><td>—</td></tr>
+<tr><td><b>Offer cards</b></td><td>54</td><td>69</td></tr>
+<tr><td><b>Status badges</b></td><td>19</td><td>—</td></tr>
+<tr><td><b>Back buttons</b></td><td>115 bound to the radius token, swap pending</td><td>151 swapped</td></tr>
+<tr><td><b>Icon buttons</b></td><td>—</td><td>60, plus 11 notification bells with the badge</td></tr>
+<tr><td><b>Filter chips and flyer hero</b></td><td>—</td><td>3 chips, 1 flyer</td></tr>
+</tbody>
+</table>
+</section>
+<figure class="wide detail">
+<img alt="Tamoon design system overview" class="shot-img" loading="lazy" onerror="this.closest('figure').remove()" src="assets/tamoon-design-system.webp"/>
+<figcaption>Foundations as variables, and components in their states: offer cards, chips, status badges, icon buttons and a toast.</figcaption>
+</figure>
+
+<!-- ===== Accessibility & Arabic ===== -->
+<section class="detail">
+<span class="num">07 / Accessibility and Arabic</span>
+<h2>RTL done properly</h2>
+<ul>
+<li><b>Contrast:</b> white text on the brand card was 4.17:1. I darkened the gradient start (#388699 → #2E7487) to reach 5.3:1 without changing the brand feel.</li>
+<li><b>Never colour alone:</b> an Activity row shows earned, redeemed or expired through the sign, colour and icon. Badges appear only for exceptions (pending, reversed, expiring).</li>
+<li><b>Mirroring:</b> layout, back arrows and progress mirror. Barcodes, QR codes, clocks and logos don't. Codes and phone numbers are isolated LTR so punctuation doesn't jump.</li>
+<li><b>Language:</b> Modern Standard Arabic in a warm Saudi tone, Gregorian dates with Hijri beside them where time matters, IBM Plex Sans Arabic at ≥ 1.6 line height.</li>
+</ul>
+
+<span class="pill">7A · Digits</span>
+<h3>Western digits, not Arabic-Indic</h3>
+<p>The first strategy, and the AI-drafted rules behind it, said to use Arabic-Indic digits (٢٬٤٥٠) for display in Arabic and Latin digits only for codes. I overruled it: <b>Western digits everywhere</b> (1,454.40, 15%), for prices, points, dates, counts and codes.</p>
+<p>Most apps in Saudi Arabia already use Western digits, so that's what shoppers are used to reading. They're also easier to read at a glance on a screen full of prices and points, and one digit system means a price or a code never looks different in two places on the same screen. I then converted the existing designs: about 946 text layers in the main file, 741 in the second and 42 in the library.</p>
+</section>
+
+<!-- ===== AI ===== -->
+<section class="detail">
+<span class="num">08 / How I worked with AI</span>
+<h2>A fast second pair of eyes, not the designer</h2>
+<p>I used Claude for a first pass of the 112-screen audit, drafting the strategy and copy, and bulk Figma work like swapping 613 icons and binding tokens. It often added more than the screen needed. Here's what I said no to:</p>
+<table class="spec">
+<thead><tr><th>AI suggested</th><th>What I decided</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td>Arabic-Indic digits for all display numbers</td><td>Western digits everywhere</td><td>What Saudi shoppers already read in other apps, and faster to scan</td></tr>
+<tr><td>A breadcrumb on Category details</td><td>Back button and title only</td><td>Two levels deep doesn't need a trail. The big title already says where you are</td></tr>
+<tr><td>A tinted app background</td><td>Plain white</td><td>The category tiles are already tinted, so a tinted page made the colours fight</td></tr>
+<tr><td>Aisle number, product count and offer badge on every category tile</td><td>Name and photo only</td><td>Three numbers on twelve tiles is noise. People pick a category by its picture</td></tr>
+<tr><td>A save heart and a "+N points" line on every offer card</td><td>Neither; labels sit on the image</td><td>Keeps the card to one job, showing the price. Points already show in the label</td></tr>
+<tr><td>An Al Sadu trim on every branded card</td><td>One band per screen, main brand surface only</td><td>Used everywhere, the heritage pattern turns into wallpaper</td></tr>
+<tr><td>A fully rounded search bar for the map view</td><td>The same 14 pt input as everywhere else</td><td>One input shape across the app. The buttons beside it take the same 14 pt corners</td></tr>
+</tbody>
+</table>
+<p style="margin-top:22px"><b>What I kept for myself:</b> the point economy framing, what goes on the till screen, and every trade-off shown to the client. <b>Still to replace:</b> AI placeholder product photos are in the current designs and will be swapped for real shots before launch.</p>
+</section>
+
+<!-- ===== Results ===== -->
+<section class="detail">
+<span class="num">09 / Results</span>
+<h2>What the design changed</h2>
+<p>Tamoon hasn't launched yet, so there are no usage numbers. Here's what the work changed, and how launch will be measured.</p>
+<div class="tm-stats">
+<div><span class="k">Returning sign-in</span><span class="v"><s>3 steps</s>Face ID</span><p>Was phone, password and OTP.</p></div>
+<div><span class="k">Spend to first reward</span><span class="v"><s>~800</s>~300 SAR</span><p>50 welcome points, reward at 200.</p></div>
+<div><span class="k">Missing points</span><span class="v"><s>48 h</s>Minutes</span><p>Receipt scan instead of support chat.</p></div>
+</div>
+<table class="spec">
+<thead><tr><th></th><th>Before</th><th>After</th></tr></thead>
+<tbody>
+<tr><td><b>Brand card text contrast</b></td><td>4.17:1</td><td>5.3:1</td></tr>
+<tr><td><b>Library adoption</b></td><td>Hand-built parts</td><td>613 icons, 123 offer cards, 19 badges, 151 back buttons and 71 icon buttons swapped</td></tr>
+</tbody>
+</table>
+
+<span class="pill">Launch targets</span>
+<h3>Hypotheses, recalibrated after 8 weeks</h3>
+<ul class="after-p">
+<li><b>North star:</b> share of branch transactions linked to a member card</li>
+<li>Time to card ≤ 3 s, first-try scan success ≥ 95%</li>
+<li>Sign-up completion ≥ 70% in ≤ 60 s</li>
+<li>Median time to first reward ≤ 21 days</li>
+<li>Self-serve recovery of missing points ≥ 70%</li>
+</ul>
+</section>
+
+<section class="detail">
+<span class="num">10 / What I'd do differently</span>
+<h2>Two things I'd move earlier</h2>
+<ul>
+<li><b>Get POS answers first.</b> Auto-applied vouchers and a rotating QR depend on what the tills can read. I designed them before that was confirmed, and some may move to a later phase.</li>
+<li><b>Put a cashier in the room on day one.</b> The till test was planned for after design. It should have come before.</li>
+</ul>
+<h3>Next</h3>
+<p>A 2-week usability round with 8–10 shoppers in Riyadh (including 2 over 55), a 1-week till test with real cashiers and hardware, and a 4–6 week beta in one or two branches to set real baselines.</p>
+</section>
+
+<p class="note">Client name, screens and details shared with permission.</p>
+</article>
+<a class="next-proj" href="./#work">
+<span class="small">Back to all work</span>
+<span class="go"><svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24" width="16"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</a>
+</main>
+</body>
+</html>
