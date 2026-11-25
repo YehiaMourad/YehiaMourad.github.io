@@ -88,6 +88,8 @@
   .f-contact { order: 7; grid-column: 1 / -1; min-height: 280px; }
   .proj, .f-soon { order: 5; grid-column: span 4; aspect-ratio: 4 / 3; }
   @media (min-width: 1101px) { .f-soon { aspect-ratio: auto; } } /* same height as Experience beside it */
+  /* Tamoon app + design system: a pair on their own row, same height as the 4/3 frames above */
+  @media (min-width: 1101px) { .f-tamoon { grid-column: span 6; aspect-ratio: 2 / 1; } }
 
   /* in progress */
   .f-soon { cursor: default; }
@@ -395,6 +397,24 @@
     <div class="frame-body">
       <div class="shot" style="background-image:url(assets/misbar-hero.webp); background-position:right center"></div>
       <div class="cap"><div><span class="tag">WEB · MISBAR</span><h3>A software company site that reads like an enterprise partner</h3></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
+    </div>
+    <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
+  </a>
+
+  <a class="frame proj f-tamoon" href="tamoon.html">
+    <div class="frame-label"><span>Tamoon</span><span class="mono">Case study</span><span class="size">Open ↗</span></div>
+    <div class="frame-body">
+      <div class="shot" style="background-image:url(assets/tamoon-hero.webp); background-position:center"></div>
+      <div class="cap"><div><span class="tag">MOBILE · TAMOON</span><h3>A grocery loyalty app built around the till</h3></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
+    </div>
+    <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
+  </a>
+
+  <a class="frame proj f-tamoon f-tamoon-ds" href="tamoon-design-system.html">
+    <div class="frame-label"><span>Tamoon design system</span><span class="mono">Case study</span><span class="size">Open ↗</span></div>
+    <div class="frame-body">
+      <div class="shot" style="background-image:url(assets/tamoon-ds-brands.webp); background-position:center 80%"></div>
+      <div class="cap"><div><span class="tag">DESIGN SYSTEM · TAMOON</span><h3>Tamoon design system: one library, many brands</h3></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
     </div>
     <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
   </a>
